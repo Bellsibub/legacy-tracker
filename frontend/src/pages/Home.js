@@ -27,7 +27,7 @@ export default () => {
   // // const [hasImage, setHasImage] = React.useState(true);
   // const [fixedClasses, setFixedClasses] = React.useState('dropdown');
   // const [logo, setLogo] = React.useState(require('assets/img/logo-white.svg').default);
-  const logo = require("assets/img/logo-white.svg").default;
+  const logo = require('assets/img/logo-white.svg').default;
   // styles
   const classes = useStyles();
   // effect instead of componentDidMount, componentDidUpdate and componentWillUnmount

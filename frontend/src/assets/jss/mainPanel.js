@@ -1,4 +1,4 @@
-import { drawerWidth, transition, containerFluid } from './globals';
+import { drawerWidth, appBarHeight, transition, containerFluid } from './globals';
 
 export default (theme) => ({
   wrapper: {
@@ -27,9 +27,9 @@ export default (theme) => ({
     overflowScrolling: 'touch'
   },
   content: {
-    marginTop: '70px',
-    padding: '30px 15px',
-    minHeight: 'calc(100vh - 123px)'
+    marginTop: `calc(15px + ${appBarHeight}px)`,
+    padding: '15px',
+    minHeight: `calc(100vh - ${appBarHeight}px - 30px)`
   },
   container: { ...containerFluid }
 });

@@ -152,36 +152,77 @@ export default (theme) => ({
     }
   },
   logo: {
-    padding: "15px 0px",
-    margin: "0",
-    display: "block",
-    position: "relative",
-    zIndex: "4",
-    "&:after": {
+    padding: '15px 0px',
+    margin: '0',
+    display: 'block',
+    position: 'relative',
+    zIndex: '4',
+    '&:after': {
       content: '""',
-      position: "absolute",
-      bottom: "0",
-      height: "1px",
-      right: "15px",
-      width: "calc(100% - 30px)",
-      backgroundColor: "hsla(0,0%,100%,.3)"
+      position: 'absolute',
+      bottom: '0',
+      height: '1px',
+      right: '15px',
+      width: 'calc(100% - 30px)',
+      backgroundColor: 'hsla(0,0%,100%,.3)'
     }
   },
   logoNormal: {
     ...defaultFont,
-    transition: "all 300ms linear",
-    display: "block",
-    opacity: "1",
-    transform: "translate3d(0px, 0, 0)",
-    textTransform: "uppercase",
-    padding: "5px 0px",
-    fontSize: "18px",
-    whiteSpace: "nowrap",
-    fontWeight: "400",
-    lineHeight: "30px",
-    overflow: "hidden",
-    "&,&:hover,&:focus": {
-      color: "inherit"
+    transition: 'all 300ms linear',
+    display: 'block',
+    opacity: '1',
+    transform: 'translate3d(0px, 0, 0)',
+    textTransform: 'uppercase',
+    padding: '5px 0px',
+    fontSize: '18px',
+    whiteSpace: 'nowrap',
+    fontWeight: '400',
+    lineHeight: '30px',
+    overflow: 'hidden',
+    '&,&:hover,&:focus': {
+      color: 'inherit'
     }
+  },
+  profile: {
+    padding: '30px 0 15px 0',
+    margin: '20px auto 0',
+    bottom: '0',
+    position: 'absolute',
+    width: '100%',
+    '&:before': {
+      content: '""',
+      position: 'absolute',
+      top: '0',
+      right: '15px',
+      height: '1px',
+      width: 'calc(100% - 30px)',
+      backgroundColor: 'hsla(0,0%,100%,.3)'
+    }
+  },
+  profileHeader: {
+    display: 'flex',
+    alignItems: 'center'
+
+  },
+  photo: {
+    transition: 'all 300ms linear',
+    width: '34px',
+    height: '34px',
+    overflow: 'hidden',
+    float: 'left',
+    zIndex: '5',
+    marginRight: '11px',
+    borderRadius: '50%',
+    marginLeft: '23px',
+    ...boxShadow
+  },
+  avatarImg: {
+    width: '100%',
+    verticalAlign: 'middle',
+    border: '0'
+  },
+  profileName: {
+    textTransform: 'uppercase'
   }
 });

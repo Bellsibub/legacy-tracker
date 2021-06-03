@@ -12,16 +12,18 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Icon from '@material-ui/core/Icon';
 import Hidden from '@material-ui/core/Hidden';
 
+import avatar from 'assets/img/default-avatar.png';
+import { Typography } from '@material-ui/core';
 import styling from './style';
 
 const useStyles = makeStyles(styling);
 
-const DrawerWrapper = ({ className, header, links }) => {
+const DrawerWrapper = ({ className, header, links, profile }) => {
   return (
     <div className={className}>
       {header}
       {links}
-      {/* {user} */}
+      {profile}
     </div>
   );
 };
@@ -29,7 +31,8 @@ const DrawerWrapper = ({ className, header, links }) => {
 export default (props) => {
   const classes = useStyles();
 
-  const generateLinks = (routes) => {
+  const generateLinks = (routes, section) => {
+    routes = routes.filter((r) => r.section === section)
     return routes.map((route) => {
       return (
         <ListItem key={route.name} className={classes.item}>
@@ -37,7 +40,7 @@ export default (props) => {
             to={route.path}
             activeClassName={classes.activeLink}
             className={classes.itemLink}>
-            {!route.icon ? (
+            {typeof route.icon === 'string' ? (
               <Icon className={classes.itemIcon}>{route.icon}</Icon>
             ) : (
               <route.icon className={classes.itemIcon} />
@@ -54,15 +57,26 @@ export default (props) => {
 
   const drawerHeader = (
     <div className={classes.logo}>
-      <Link
-        to="/"
-        className={classes.logoNormal}>
+      <Link to="/" className={classes.logoNormal}>
         <img src={props.logo} alt="logo" className={classes.img} />
       </Link>
     </div>
   );
 
-  const links = <List className={classes.linkList}>{generateLinks(props.routes)}</List>;
+  const links = <List className={classes.list}>{generateLinks(props.routes, 'categories')}</List>;
+
+  const profile = (
+    <div className={classes.profile}>
+      <div className={classes.profileHeader}>
+
+        <div className={classes.photo}>
+          <img src={avatar} className={classes.avatarImg} alt="..." />
+        </div>
+        <Typography variant="body1" noWrap className={classes.profileName}>Bella</Typography>
+      </div>
+      <List className={classes.list}>{generateLinks(props.routes, 'profile')}</List>;
+    </div>
+  );
 
   return (
     <>
@@ -77,7 +91,11 @@ export default (props) => {
             keepMounted: true // Better open performance on mobile.
           }}
           classes={{ paper: classes.drawer }}>
-          <DrawerWrapper className={classes.drawerWrapper} header={drawerHeader} links={links} />
+          <DrawerWrapper
+            className={classes.drawerWrapper}
+            header={drawerHeader}
+            links={links}
+            profile={profile} />
         </Drawer>
       </Hidden>
       {/* // Big screens */}
@@ -87,7 +105,11 @@ export default (props) => {
           anchor="left"
           open
           classes={{ paper: classes.drawer }}>
-          <DrawerWrapper className={classes.drawerWrapper} header={drawerHeader} links={links} />
+          <DrawerWrapper
+            className={classes.drawerWrapper}
+            header={drawerHeader}
+            links={links}
+            profile={profile} />
         </Drawer>
       </Hidden>
     </>

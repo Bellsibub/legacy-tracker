@@ -17,13 +17,31 @@ export default [
     name: 'Dashboard',
     icon: DashboardIcon,
     component: Dashboard,
-    auth: true
+    auth: true,
+    section: 'categories'
   },
   {
     path: '/widgets',
     name: 'Widgets',
     icon: WidgetsIcon,
     component: Widgets,
-    auth: true
+    auth: true,
+    section: 'categories'
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    icon: "SE",
+    component: Widgets,
+    auth: true,
+    section: 'profile'
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    icon: WidgetsIcon,
+    component: Widgets,
+    auth: true,
+    section: 'profile'
   }
 ];
