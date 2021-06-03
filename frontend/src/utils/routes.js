@@ -6,10 +6,13 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 // import Image from '@material-ui/icons/Image';
 // import Place from '@material-ui/icons/Place';
 // import Timeline from '@material-ui/icons/Timeline';
-import WidgetsIcon from '@material-ui/icons/Widgets';
 
 import Dashboard from 'views/Dashboard';
-import Widgets from 'views/Widgets';
+import Laws from 'views/Laws';
+import Geneology from 'views/Geneology';
+import Skills from 'views/Skills';
+import Aspirations from 'views/Aspirations';
+import Settings from 'views/Settings';
 
 export default [
   {
@@ -21,27 +24,51 @@ export default [
     section: 'categories'
   },
   {
-    path: '/widgets',
-    name: 'Widgets',
-    icon: WidgetsIcon,
-    component: Widgets,
+    path: '/laws-rules',
+    name: 'Laws and Rules',
+    icon: 'LR',
+    component: Laws,
+    auth: true,
+    section: 'categories'
+  },
+  {
+    path: '/geneology',
+    name: 'Geneology',
+    icon: 'GE',
+    component: Geneology,
+    auth: true,
+    section: 'categories'
+  },
+  {
+    path: '/skills',
+    name: 'Skills',
+    icon: 'SK',
+    component: Skills,
+    auth: true,
+    section: 'categories'
+  },
+  {
+    path: '/aspirations',
+    name: 'Aspirations',
+    icon: 'GE',
+    component: Aspirations,
     auth: true,
     section: 'categories'
   },
   {
     path: '/settings',
     name: 'Settings',
-    icon: "SE",
-    component: Widgets,
+    icon: 'SE',
+    component: Settings,
     auth: true,
     section: 'profile'
   },
   {
-    path: '/logout',
+    path: '/auth/login',
     name: 'Logout',
-    icon: WidgetsIcon,
-    component: Widgets,
-    auth: true,
+    icon: 'LG',
+    // component: Login,
+    auth: false,
     section: 'profile'
   }
 ];

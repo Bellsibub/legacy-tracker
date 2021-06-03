@@ -2,5 +2,5 @@ import { Typography } from '@material-ui/core';
 import React from 'react';
 
 export default () => {
-  return <Typography variant="overline">Dashboard</Typography>;
+  return <Typography variant="overline">Geneology</Typography>;
 };
