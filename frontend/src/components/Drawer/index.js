@@ -1,7 +1,7 @@
 import React from 'react';
 // javascript plugin used to create scrollbars on windows
 // import PerfectScrollbar from 'perfect-scrollbar';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 // @material-ui/core components
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,10 +16,10 @@ import styling from './style';
 
 const useStyles = makeStyles(styling);
 
-const DrawerWrapper = ({ className, links }) => {
+const DrawerWrapper = ({ className, header, links }) => {
   return (
     <div className={className}>
-      {/* {headerLinks} */}
+      {header}
       {links}
       {/* {user} */}
     </div>
@@ -52,6 +52,16 @@ export default (props) => {
     });
   };
 
+  const drawerHeader = (
+    <div className={classes.logo}>
+      <Link
+        to="/"
+        className={classes.logoNormal}>
+        <img src={props.logo} alt="logo" className={classes.img} />
+      </Link>
+    </div>
+  );
+
   const links = <List className={classes.linkList}>{generateLinks(props.routes)}</List>;
 
   return (
@@ -67,7 +77,7 @@ export default (props) => {
             keepMounted: true // Better open performance on mobile.
           }}
           classes={{ paper: classes.drawer }}>
-          <DrawerWrapper className={classes.drawerWrapper} links={links} />
+          <DrawerWrapper className={classes.drawerWrapper} header={drawerHeader} links={links} />
         </Drawer>
       </Hidden>
       {/* // Big screens */}
@@ -77,7 +87,7 @@ export default (props) => {
           anchor="left"
           open
           classes={{ paper: classes.drawer }}>
-          <DrawerWrapper className={classes.drawerWrapper} links={links} />
+          <DrawerWrapper className={classes.drawerWrapper} header={drawerHeader} links={links} />
         </Drawer>
       </Hidden>
     </>

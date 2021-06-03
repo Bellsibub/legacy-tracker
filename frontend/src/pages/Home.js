@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
@@ -26,6 +27,7 @@ export default () => {
   // // const [hasImage, setHasImage] = React.useState(true);
   // const [fixedClasses, setFixedClasses] = React.useState('dropdown');
   // const [logo, setLogo] = React.useState(require('assets/img/logo-white.svg').default);
+  const logo = require("assets/img/logo-white.svg").default;
   // styles
   const classes = useStyles();
   // effect instead of componentDidMount, componentDidUpdate and componentWillUnmount
@@ -44,7 +46,11 @@ export default () => {
   };
   return (
     <div className={classes.wrapper}>
-      <Drawer routes={routes} handleDrawerToggle={handleDrawerToggle} open={mobileOpen} />
+      <Drawer
+        routes={routes}
+        handleDrawerToggle={handleDrawerToggle}
+        open={mobileOpen}
+        logo={logo} />
       <div className={classes.mainPanel}>
         <Appbar title="Goth Legacy" handleDrawerToggle={handleDrawerToggle} />
         <div className={classes.content}>

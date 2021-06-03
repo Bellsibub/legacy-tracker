@@ -150,5 +150,38 @@ export default (theme) => ({
       backgroundColor: primaryColor[0],
       ...primaryBoxShadow
     }
+  },
+  logo: {
+    padding: "15px 0px",
+    margin: "0",
+    display: "block",
+    position: "relative",
+    zIndex: "4",
+    "&:after": {
+      content: '""',
+      position: "absolute",
+      bottom: "0",
+      height: "1px",
+      right: "15px",
+      width: "calc(100% - 30px)",
+      backgroundColor: "hsla(0,0%,100%,.3)"
+    }
+  },
+  logoNormal: {
+    ...defaultFont,
+    transition: "all 300ms linear",
+    display: "block",
+    opacity: "1",
+    transform: "translate3d(0px, 0, 0)",
+    textTransform: "uppercase",
+    padding: "5px 0px",
+    fontSize: "18px",
+    whiteSpace: "nowrap",
+    fontWeight: "400",
+    lineHeight: "30px",
+    overflow: "hidden",
+    "&,&:hover,&:focus": {
+      color: "inherit"
+    }
   }
 });
