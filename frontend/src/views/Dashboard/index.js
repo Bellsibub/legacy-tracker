@@ -4,7 +4,8 @@ import Card from 'components/Card';
 import CardHeader from 'components/CardHeader';
 import CardBody from 'components/CardBody';
 import CardFooter from 'components/CardFooter';
-import { Button } from '@material-ui/core';
+import DialogConfirm from 'components/DialogConfirm';
+// import { Button } from '@material-ui/core';
 // import { Typography } from '@material-ui/core';
 
 export default () => {
@@ -29,7 +30,10 @@ export default () => {
           <p>hello</p>
         </CardBody>
         <CardFooter>
-          <Button variant="contained" color="primary">test</Button>
+          <DialogConfirm
+            title="Create new legacy"
+            message="Are you sure you want to do this?"
+            onConfirm={() => console.log('hello')} />
         </CardFooter>
       </Card>
     </>
