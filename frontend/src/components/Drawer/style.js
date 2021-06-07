@@ -1,13 +1,12 @@
 import {
   drawerWidth,
-  transition,
+  // transition,
   boxShadow,
   defaultFont,
   primaryColor,
-  primaryBoxShadow,
-  infoColor,
+  secondaryColor,
   whiteColor,
-  grayColor,
+  grayColors,
   hexToRgb
 } from 'assets/jss/globals';
 
@@ -19,12 +18,12 @@ export default (theme) => ({
     bottom: '0',
     left: '0',
     zIndex: '1032',
-    transitionProperty: 'top, bottom, width',
-    transitionDuration: '.2s, .2s, .35s',
-    transitionTimingFunction: 'linear, linear, ease',
+    // transitionProperty: 'top, bottom, width',
+    // transitionDuration: '.2s, .2s, .35s',
+    // transitionTimingFunction: 'linear, linear, ease',
     ...boxShadow,
     color: whiteColor,
-    background: infoColor[0],
+    background: secondaryColor,
     [theme.breakpoints.up('md')]: {
       width: drawerWidth,
       position: 'fixed',
@@ -46,8 +45,8 @@ export default (theme) => ({
       textAlign: 'left',
       paddingRight: '0px',
       paddingLeft: '0',
-      transform: `translate3d(${drawerWidth}px, 0, 0)`,
-      ...transition
+      transform: `translate3d(${drawerWidth}px, 0, 0)`
+      // ...transition
     },
     '&:before,&:after': {
       position: 'absolute',
@@ -102,7 +101,7 @@ export default (theme) => ({
     width: 'auto',
     '&:hover': {
       outline: 'none',
-      backgroundColor: `rgba(${hexToRgb(grayColor[17])}, 0.8)`,
+      backgroundColor: `rgba(${hexToRgb(grayColors[17])}, 0.8)`,
       boxShadow: 'none'
     },
     '&,&:hover,&:focus': {
@@ -147,8 +146,7 @@ export default (theme) => ({
   activeLink: {
     '&,&:hover,&:focus': {
       color: whiteColor,
-      backgroundColor: primaryColor[0],
-      ...primaryBoxShadow
+      backgroundColor: primaryColor
     }
   },
   logo: {

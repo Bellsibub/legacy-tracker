@@ -28,9 +28,9 @@ const drawerMiniWidth = 80;
 
 export const appBarHeight = 150;
 
-const transition = {
-  transition: 'all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1)'
-};
+// const transition = {
+//   transition: 'all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1)'
+// };
 
 const containerFluid = {
   paddingRight: '15px',
@@ -75,45 +75,10 @@ const defaultFont = {
   lineHeight: '1.5em'
 };
 
-const primaryColor = ['#9c27b0', '#ab47bc', '#8e24aa', '#af2cc5', '#7b1fa2'];
-const warningColor = [
-  '#ff9800',
-  '#ffa726',
-  '#fb8c00',
-  '#ffa21a',
-  '#f57c00',
-  '#faf2cc',
-  '#fcf8e3'
-];
-const dangerColor = [
-  '#f44336',
-  '#ef5350',
-  '#e53935',
-  '#f55a4e',
-  '#d32f2f',
-  '#ebcccc',
-  '#f2dede'
-];
-const successColor = [
-  '#4caf50',
-  '#66bb6a',
-  '#43a047',
-  '#5cb860',
-  '#388e3c',
-  '#d0e9c6',
-  '#dff0d8'
-];
-const infoColor = [
-  '#00acc1',
-  '#26c6da',
-  '#00acc1',
-  '#00d3ee',
-  '#0097a7',
-  '#c4e3f3',
-  '#d9edf7'
-];
-const roseColor = ['#e91e63', '#ec407a', '#d81b60', '#eb3573', '#c2185b'];
-const grayColor = [
+const primaryColor = '#4277b7';
+export const secondaryColor = '#576E7D';
+export const accentColor = '#27965D';
+const grayColors = [
   '#999',
   '#777',
   '#3C4858',
@@ -148,165 +113,92 @@ const dribbbleColor = '#ea4c89';
 const redditColor = '#ff4500';
 
 const boxShadow = {
-  boxShadow:
-    `0 10px 30px -12px rgba(${
-      hexToRgb(blackColor)
-    }, 0.42), 0 4px 25px 0px rgba(${
-      hexToRgb(blackColor)
-    }, 0.12), 0 8px 10px -5px rgba(${
-      hexToRgb(blackColor)
-    }, 0.2)`
+  boxShadow: `0 10px 30px -12px rgba(${hexToRgb(
+    blackColor
+  )}, 0.42), 0 4px 25px 0px rgba(${hexToRgb(
+    blackColor
+  )}, 0.12), 0 8px 10px -5px rgba(${hexToRgb(blackColor)}, 0.2)`
 };
 
-const primaryBoxShadow = {
-  boxShadow:
-    `0 4px 20px 0 rgba(${
-      hexToRgb(blackColor)
-    },.14), 0 7px 10px -5px rgba(${
-      hexToRgb(primaryColor[0])
-    },.4)`
-};
-const infoBoxShadow = {
-  boxShadow:
-    `0 4px 20px 0 rgba(${
-      hexToRgb(blackColor)
-    },.14), 0 7px 10px -5px rgba(${
-      hexToRgb(infoColor[0])
-    },.4)`
-};
-const successBoxShadow = {
-  boxShadow:
-    `0 4px 20px 0 rgba(${
-      hexToRgb(blackColor)
-    },.14), 0 7px 10px -5px rgba(${
-      hexToRgb(successColor[0])
-    },.4)`
-};
-const warningBoxShadow = {
-  boxShadow:
-    `0 4px 20px 0 rgba(${
-      hexToRgb(blackColor)
-    },.14), 0 7px 10px -5px rgba(${
-      hexToRgb(warningColor[0])
-    },.4)`
-};
-const dangerBoxShadow = {
-  boxShadow:
-    `0 4px 20px 0 rgba(${
-      hexToRgb(blackColor)
-    },.14), 0 7px 10px -5px rgba(${
-      hexToRgb(dangerColor[0])
-    },.4)`
-};
-const roseBoxShadow = {
-  boxShadow:
-    `0 4px 20px 0 rgba(${
-      hexToRgb(blackColor)
-    },.14), 0 7px 10px -5px rgba(${
-      hexToRgb(roseColor[0])
-    },.4)`
+export const softBoxShadow = {
+  boxShadow: `0 1px 4px 0 rgba(${hexToRgb(blackColor)}, 0.14)`
 };
 
-const warningCardHeader = {
-  background: `linear-gradient(60deg, ${warningColor[1]}, ${warningColor[2]})`,
-  ...warningBoxShadow
-};
-const successCardHeader = {
-  background: `linear-gradient(60deg, ${successColor[1]}, ${successColor[2]})`,
-  ...successBoxShadow
-};
-const dangerCardHeader = {
-  background: `linear-gradient(60deg, ${dangerColor[1]}, ${dangerColor[2]})`,
-  ...dangerBoxShadow
-};
-const infoCardHeader = {
-  background: `linear-gradient(60deg, ${infoColor[1]}, ${infoColor[2]})`,
-  ...infoBoxShadow
-};
-const primaryCardHeader = {
-  background: `linear-gradient(60deg, ${primaryColor[1]}, ${primaryColor[2]})`,
-  ...primaryBoxShadow
-};
-const roseCardHeader = {
-  background: `linear-gradient(60deg, ${roseColor[1]}, ${roseColor[2]})`,
-  ...roseBoxShadow
-};
+// const card = {
+//   display: 'inline-block',
+//   position: 'relative',
+//   width: '100%',
+//   margin: '25px 0',
+//   boxShadow: `0 1px 4px 0 rgba(${hexToRgb(blackColor)}, 0.14)`,
+//   borderRadius: '6px',
+//   color: `rgba(${hexToRgb(blackColor)}, 0.87)`,
+//   background: whiteColor
+// };
 
-const card = {
-  display: 'inline-block',
-  position: 'relative',
-  width: '100%',
-  margin: '25px 0',
-  boxShadow: `0 1px 4px 0 rgba(${hexToRgb(blackColor)}, 0.14)`,
-  borderRadius: '6px',
-  color: `rgba(${hexToRgb(blackColor)}, 0.87)`,
-  background: whiteColor
-};
+// const cardActions = {
+//   margin: '0 20px 10px',
+//   paddingTop: '10px',
+//   borderTop: `1px solid ${grayColors[8]}`,
+//   height: 'auto',
+//   ...defaultFont
+// };
 
-const cardActions = {
-  margin: '0 20px 10px',
-  paddingTop: '10px',
-  borderTop: `1px solid ${grayColor[8]}`,
-  height: 'auto',
-  ...defaultFont
-};
+// const cardHeader = {
+//   margin: '-20px 15px 0',
+//   borderRadius: '3px',
+//   padding: '15px'
+// };
 
-const cardHeader = {
-  margin: '-20px 15px 0',
-  borderRadius: '3px',
-  padding: '15px'
-};
+// const defaultBoxShadow = {
+//   border: '0',
+//   borderRadius: '3px',
+//   boxShadow:
+//     `0 10px 20px -12px rgba(${
+//       hexToRgb(blackColor)
+//     }, 0.42), 0 3px 20px 0px rgba(${
+//       hexToRgb(blackColor)
+//     }, 0.12), 0 8px 10px -5px rgba(${
+//       hexToRgb(blackColor)
+//     }, 0.2)`,
+//   padding: '10px 0',
+//   transition: 'all 150ms ease 0s'
+// };
 
-const defaultBoxShadow = {
-  border: '0',
-  borderRadius: '3px',
-  boxShadow:
-    `0 10px 20px -12px rgba(${
-      hexToRgb(blackColor)
-    }, 0.42), 0 3px 20px 0px rgba(${
-      hexToRgb(blackColor)
-    }, 0.12), 0 8px 10px -5px rgba(${
-      hexToRgb(blackColor)
-    }, 0.2)`,
-  padding: '10px 0',
-  transition: 'all 150ms ease 0s'
-};
+// const tooltip = {
+//   padding: '10px 15px',
+//   minWidth: '130px',
+//   color: whiteColor,
+//   lineHeight: '1.7em',
+//   background: `rgba(${hexToRgb(grayColors[6])},0.9)`,
+//   border: 'none',
+//   borderRadius: '3px',
+//   opacity: '1!important',
+//   boxShadow:
+//     `0 8px 10px 1px rgba(${
+//       hexToRgb(blackColor)
+//     }, 0.14), 0 3px 14px 2px rgba(${
+//       hexToRgb(blackColor)
+//     }, 0.12), 0 5px 5px -3px rgba(${
+//       hexToRgb(blackColor)
+//     }, 0.2)`,
+//   maxWidth: '200px',
+//   textAlign: 'center',
+//   fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
+//   fontSize: '12px',
+//   fontStyle: 'normal',
+//   fontWeight: '400',
+//   textShadow: 'none',
+//   textTransform: 'none',
+//   letterSpacing: 'normal',
+//   wordBreak: 'normal',
+//   wordSpacing: 'normal',
+//   wordWrap: 'normal',
+//   whiteSpace: 'normal',
+//   lineBreak: 'auto'
+// };
 
-const tooltip = {
-  padding: '10px 15px',
-  minWidth: '130px',
-  color: whiteColor,
-  lineHeight: '1.7em',
-  background: `rgba(${hexToRgb(grayColor[6])},0.9)`,
-  border: 'none',
-  borderRadius: '3px',
-  opacity: '1!important',
-  boxShadow:
-    `0 8px 10px 1px rgba(${
-      hexToRgb(blackColor)
-    }, 0.14), 0 3px 14px 2px rgba(${
-      hexToRgb(blackColor)
-    }, 0.12), 0 5px 5px -3px rgba(${
-      hexToRgb(blackColor)
-    }, 0.2)`,
-  maxWidth: '200px',
-  textAlign: 'center',
-  fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
-  fontSize: '12px',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  textShadow: 'none',
-  textTransform: 'none',
-  letterSpacing: 'normal',
-  wordBreak: 'normal',
-  wordSpacing: 'normal',
-  wordWrap: 'normal',
-  whiteSpace: 'normal',
-  lineBreak: 'auto'
-};
-
-const title = {
-  color: grayColor[2],
+export const title = {
+  color: grayColors[2],
   textDecoration: 'none',
   fontWeight: '300',
   marginTop: '30px',
@@ -314,53 +206,48 @@ const title = {
   minHeight: '32px',
   fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
   '& small': {
-    color: grayColor[1],
+    color: grayColors[1],
     fontSize: '65%',
     fontWeight: '400',
     lineHeight: '1'
   }
 };
 
-const cardTitle = {
-  ...title,
-  marginTop: '0',
-  marginBottom: '3px',
-  minHeight: 'auto',
-  '& a': {
-    ...title,
-    marginTop: '.625rem',
-    marginBottom: '0.75rem',
-    minHeight: 'auto'
-  }
-};
+// const cardTitle = {
+//   ...title,
+//   marginTop: '0',
+//   marginBottom: '3px',
+//   minHeight: 'auto',
+//   '& a': {
+//     ...title,
+//     marginTop: '.625rem',
+//     marginBottom: '0.75rem',
+//     minHeight: 'auto'
+//   }
+// };
 
-const cardSubtitle = {
-  marginTop: '-.375rem'
-};
+// const cardSubtitle = {
+//   marginTop: '-.375rem'
+// };
 
-const cardLink = {
-  '& + $cardLink': {
-    marginLeft: '1.25rem'
-  }
-};
+// const cardLink = {
+//   '& + $cardLink': {
+//     marginLeft: '1.25rem'
+//   }
+// };
 
 export {
   hexToRgb,
   drawerWidth,
   drawerMiniWidth,
-  transition,
+  // transition,
   container,
   containerFluid,
   boxShadow,
-  card,
+  // card,
   defaultFont,
   primaryColor,
-  warningColor,
-  dangerColor,
-  successColor,
-  infoColor,
-  roseColor,
-  grayColor,
+  grayColors,
   blackColor,
   whiteColor,
   twitterColor,
@@ -372,25 +259,13 @@ export {
   tumblrColor,
   behanceColor,
   dribbbleColor,
-  redditColor,
-  primaryBoxShadow,
-  infoBoxShadow,
-  successBoxShadow,
-  warningBoxShadow,
-  dangerBoxShadow,
-  roseBoxShadow,
-  warningCardHeader,
-  successCardHeader,
-  dangerCardHeader,
-  infoCardHeader,
-  primaryCardHeader,
-  roseCardHeader,
-  cardActions,
-  cardHeader,
-  defaultBoxShadow,
-  tooltip,
-  title,
-  cardTitle,
-  cardSubtitle,
-  cardLink
+  redditColor
+  // cardActions,
+  // cardHeader,
+  // defaultBoxShadow,
+  // tooltip,
+  // title,
+  // cardTitle,
+  // cardSubtitle,
+  // cardLink
 };

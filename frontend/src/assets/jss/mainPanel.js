@@ -1,4 +1,4 @@
-import { drawerWidth, appBarHeight, transition, containerFluid } from './globals';
+import { drawerWidth, appBarHeight, containerFluid } from './globals';
 
 export default (theme) => ({
   wrapper: {
@@ -12,16 +12,16 @@ export default (theme) => ({
     }
   },
   mainPanel: {
-    transitionProperty: 'top, bottom, width',
-    transitionDuration: '.2s, .2s, .35s',
-    transitionTimingFunction: 'linear, linear, ease',
+    // transitionProperty: 'top, bottom, width',
+    // transitionDuration: '.2s, .2s, .35s',
+    // transitionTimingFunction: 'linear, linear, ease',
     [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${drawerWidth}px)`
     },
     overflow: 'auto',
     position: 'relative',
     float: 'right',
-    ...transition,
+    // ...transition,
     maxHeight: '100%',
     width: '100%',
     overflowScrolling: 'touch'
