@@ -6,14 +6,21 @@ import CardBody from 'components/CardBody';
 import CardFooter from 'components/CardFooter';
 import DialogConfirm from 'components/DialogConfirm';
 import DialogEdit from 'components/DialogEdit';
+// import DialogItemActions from 'components/DialogItemActions';
+import IconItem from 'components/IconItem';
 import { ArrowUpward } from '@material-ui/icons';
-
+import aspirationImage1 from 'assets/img/Aspiration1.png';
+import aspirationImage2 from 'assets/img/Aspiration2.png';
 // import DialogEditText from 'components/DialogEditText';
 // import DialogEditSelect from 'components/DialogEditSelect';
 // import { Button } from '@material-ui/core';
 // import { Typography } from '@material-ui/core';
 
-const testArray = ['test1', 'test2', 'test3']
+const testArray = ['test1', 'test2', 'test3'];
+const images = [
+  { url: aspirationImage1, title: 'Romance', checked: true },
+  { url: aspirationImage2, title: 'Smart', checked: false }
+];
 // const arrowIcon = ArrowUpward;
 export default () => {
   return (
@@ -34,7 +41,10 @@ export default () => {
           <h4 className="cardCategory">this is a subtitle</h4>
         </CardHeader>
         <CardBody>
-          <p>hello</p>
+          {/* Example of how use DialogItemAction & Icon Item */}
+          {images.map((image) => (
+            <IconItem key={image.title} {...image} />
+          ))}
         </CardBody>
         <CardFooter>
           {/* confirm with iconbutton */}
