@@ -6,27 +6,43 @@ import {
   DialogContent,
   DialogTitle,
   Typography,
-  Button
+  Button,
+  IconButton
 } from '@material-ui/core';
 // import { addList } from 'store/tasks';
 // import { useStyles } from './style';
+import { makeStyles } from '@material-ui/core/styles';
+import dialog from 'assets/jss/dialog';
 
-export default ({ title, message, onConfirm }) => {
-  // const classes = useStyles();
+const useStyles = makeStyles(dialog);
+
+export default ({ title, message, onConfirm, ...other }) => {
+  const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
   // const [value, setValue] = React.useState('');
   // const dispatch = useDispatch();
-
   const toggleDialog = () => {
     setOpen(!open);
   };
 
   return (
     <>
-      <Button variant="contained" color="primary" onClick={toggleDialog}>
-        test
-      </Button>
-      <Dialog open={open} onClose={toggleDialog} aria-labelledby="dialogConfirm">
+      {other.icon && (
+        <IconButton color={`${other.color || 'primary'}`} onClick={toggleDialog}>
+          <other.icon />
+        </IconButton>
+      )}
+      {other.buttonText && (
+        <Button variant="contained" color={`${other.color || 'primary'}`} onClick={toggleDialog}>
+          {other.buttonText}
+        </Button>
+      )}
+      <Dialog
+        open={open}
+        onClose={toggleDialog}
+        aria-labelledby="dialogConfirm"
+        className={classes.dialog}>
         <DialogTitle id="dialogConfirm">{title}</DialogTitle>
         <DialogContent>
           <Typography variant="body1">{message}</Typography>
