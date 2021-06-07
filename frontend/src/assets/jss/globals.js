@@ -75,53 +75,59 @@ const defaultFont = {
   lineHeight: '1.5em'
 };
 
-const primaryColor = '#4277b7';
-export const secondaryColor = '#576E7D';
-export const accentColor = '#27965D';
-const grayColors = [
-  '#999',
-  '#777',
-  '#3C4858',
-  '#AAAAAA',
-  '#D2D2D2',
-  '#DDD',
-  '#555555',
-  '#333',
-  '#eee',
-  '#ccc',
-  '#e4e4e4',
-  '#E5E5E5',
-  '#f9f9f9',
-  '#f5f5f5',
-  '#495057',
-  '#e7e7e7',
-  '#212121',
-  '#c8c8c8',
-  '#505050'
-];
-const blackColor = '#000';
-const whiteColor = '#FFF';
-const twitterColor = '#55acee';
-const facebookColor = '#3b5998';
-const googleColor = '#dd4b39';
-const linkedinColor = '#0976b4';
-const pinterestColor = '#cc2127';
-const youtubeColor = '#e52d27';
-const tumblrColor = '#35465c';
-const behanceColor = '#1769ff';
-const dribbbleColor = '#ea4c89';
-const redditColor = '#ff4500';
+export const colorPalette = {
+  primary: { main: '#4277b7' },
+  secondary: { main: '#576E7D' },
+  accent: { main: '#27965D' }
+};
+
+// export const primaryColor = '#4277b7';
+// export const secondaryColor = '#576E7D';
+// export const accentColor = '#27965D';
+// const grayColors = [
+//   '#999',
+//   '#777',
+//   '#3C4858',
+//   '#AAAAAA',
+//   '#D2D2D2',
+//   '#DDD',
+//   '#555555',
+//   '#333',
+//   '#eee',
+//   '#ccc',
+//   '#e4e4e4',
+//   '#E5E5E5',
+//   '#f9f9f9',
+//   '#f5f5f5',
+//   '#495057',
+//   '#e7e7e7',
+//   '#212121',
+//   '#c8c8c8',
+//   '#505050'
+// ];
+// const blackColor = '#000';
+// const whiteColor = '#FFF';
+// const twitterColor = '#55acee';
+// const facebookColor = '#3b5998';
+// const googleColor = '#dd4b39';
+// const linkedinColor = '#0976b4';
+// const pinterestColor = '#cc2127';
+// const youtubeColor = '#e52d27';
+// const tumblrColor = '#35465c';
+// const behanceColor = '#1769ff';
+// const dribbbleColor = '#ea4c89';
+// const redditColor = '#ff4500';
 
 const boxShadow = {
   boxShadow: `0 10px 30px -12px rgba(${hexToRgb(
-    blackColor
+    '#000'
   )}, 0.42), 0 4px 25px 0px rgba(${hexToRgb(
-    blackColor
-  )}, 0.12), 0 8px 10px -5px rgba(${hexToRgb(blackColor)}, 0.2)`
+    '#000'
+  )}, 0.12), 0 8px 10px -5px rgba(${hexToRgb('#000')}, 0.2)`
 };
 
 export const softBoxShadow = {
-  boxShadow: `0 1px 4px 0 rgba(${hexToRgb(blackColor)}, 0.14)`
+  boxShadow: `0 1px 4px 0 rgba(${hexToRgb('#000')}, 0.14)`
 };
 
 // const card = {
@@ -198,7 +204,7 @@ export const softBoxShadow = {
 // };
 
 export const title = {
-  color: grayColors[2],
+  // color: grayColors[2],
   textDecoration: 'none',
   fontWeight: '300',
   marginTop: '30px',
@@ -206,7 +212,7 @@ export const title = {
   minHeight: '32px',
   fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
   '& small': {
-    color: grayColors[1],
+    // color: grayColors[1],
     fontSize: '65%',
     fontWeight: '400',
     lineHeight: '1'
@@ -245,21 +251,20 @@ export {
   containerFluid,
   boxShadow,
   // card,
-  defaultFont,
-  primaryColor,
-  grayColors,
-  blackColor,
-  whiteColor,
-  twitterColor,
-  facebookColor,
-  googleColor,
-  linkedinColor,
-  pinterestColor,
-  youtubeColor,
-  tumblrColor,
-  behanceColor,
-  dribbbleColor,
-  redditColor
+  defaultFont
+  // grayColors,
+  // blackColor,
+  // whiteColor,
+  // twitterColor,
+  // facebookColor,
+  // googleColor,
+  // linkedinColor,
+  // pinterestColor,
+  // youtubeColor,
+  // tumblrColor,
+  // behanceColor,
+  // dribbbleColor,
+  // redditColor
   // cardActions,
   // cardHeader,
   // defaultBoxShadow,

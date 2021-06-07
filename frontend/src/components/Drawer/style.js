@@ -2,12 +2,12 @@ import {
   drawerWidth,
   // transition,
   boxShadow,
-  defaultFont,
-  primaryColor,
-  secondaryColor,
-  whiteColor,
-  grayColors,
-  hexToRgb
+  defaultFont
+  // primaryColor,
+  // secondaryColor,
+  // whiteColor,
+  // grayColors,
+  // hexToRgb
 } from 'assets/jss/globals';
 
 export default (theme) => ({
@@ -22,8 +22,8 @@ export default (theme) => ({
     // transitionDuration: '.2s, .2s, .35s',
     // transitionTimingFunction: 'linear, linear, ease',
     ...boxShadow,
-    color: whiteColor,
-    background: secondaryColor,
+    color: 'white',
+    background: theme.palette.secondary.main,
     [theme.breakpoints.up('md')]: {
       width: drawerWidth,
       position: 'fixed',
@@ -101,7 +101,7 @@ export default (theme) => ({
     width: 'auto',
     '&:hover': {
       outline: 'none',
-      backgroundColor: `rgba(${hexToRgb(grayColors[17])}, 0.8)`,
+      backgroundColor: theme.palette.action.hover,
       boxShadow: 'none'
     },
     '&,&:hover,&:focus': {
@@ -145,8 +145,8 @@ export default (theme) => ({
   },
   activeLink: {
     '&,&:hover,&:focus': {
-      color: whiteColor,
-      backgroundColor: primaryColor
+      color: 'white',
+      backgroundColor: theme.palette.primary.main
     }
   },
   logo: {
@@ -201,7 +201,6 @@ export default (theme) => ({
   profileHeader: {
     display: 'flex',
     alignItems: 'center'
-
   },
   photo: {
     transition: 'all 300ms linear',

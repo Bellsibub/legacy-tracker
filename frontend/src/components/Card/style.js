@@ -1,18 +1,18 @@
 import {
-  whiteColor,
-  blackColor,
-  hexToRgb,
+  // whiteColor,
+  // blackColor,
+  // hexToRgb,
   softBoxShadow
 } from 'assets/jss/globals';
 
-const cardStyle = {
+export default (theme) => ({
   card: {
     border: '0',
     marginBottom: '30px',
     marginTop: '30px',
     borderRadius: '6px',
-    color: `rgba(${hexToRgb(blackColor)}, 0.87)`,
-    background: whiteColor,
+    color: theme.palette.text.primary,
+    background: theme.palette.background.default,
     width: '100%',
     ...softBoxShadow,
     position: 'relative',
@@ -22,6 +22,4 @@ const cardStyle = {
     wordWrap: 'break-word',
     fontSize: '.875rem'
   }
-};
-
-export default cardStyle;
+});

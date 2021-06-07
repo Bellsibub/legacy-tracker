@@ -1,19 +1,19 @@
 import {
   containerFluid,
   defaultFont,
-  primaryColor,
-  whiteColor,
+  // primaryColor,
+  // whiteColor,
   appBarHeight
 } from 'assets/jss/globals';
 
-export default () => ({
+export default (theme) => ({
   appBar: {
-    backgroundColor: primaryColor[1],
+    backgroundColor: theme.palette.primary.main,
     // boxShadow: 'none',
     position: 'absolute',
     // width: '100%',
     zIndex: '1029',
-    color: whiteColor,
+    color: 'white',
     border: '0',
     transition: 'all 150ms ease 0s',
     minHeight: `${appBarHeight}px`,

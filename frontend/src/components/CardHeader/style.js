@@ -1,12 +1,14 @@
 import {
-  whiteColor,
-  grayColors,
+  // whiteColor,
+  // grayColors,
   title
+  // primaryColor,
+  // accentColor
   // blackColor,
   // hexToRgb,
 } from 'assets/jss/globals';
 
-const cardHeaderStyle = {
+export default (theme) => ({
   cardHeader: {
     padding: '0.75rem 1.25rem',
     // marginBottom: "0",
@@ -41,12 +43,23 @@ const cardHeaderStyle = {
     // }
   },
 
+  primary: {
+    '& $cardHeaderIcon, & $cardHeaderText': {
+      backgroundColor: theme.palette.primary.main
+    }
+  },
+  accent: {
+    '& $cardHeaderIcon, & $cardHeaderText': {
+      backgroundColor: theme.palette.accent.main
+    }
+  },
+
   cardHeaderStats: {
     '& .cardCategory, & .cardTitle': {
-      textAlign: "right"
+      textAlign: 'right'
     },
     '& .cardCategory': {
-      color: grayColors[0],
+      color: theme.palette.text.secondary,
       fontSize: '.9rem',
       paddingTop: '10px',
       letterSpacing: '0.08333em',
@@ -57,8 +70,8 @@ const cardHeaderStyle = {
     },
     '& .cardTitle': {
       ...title,
-      marginTop: "0px",
-      marginBottom: "3px",
+      marginTop: '0px',
+      marginBottom: '3px',
       minHeight: 'auto',
       fontSize: '2rem'
     }
@@ -68,7 +81,7 @@ const cardHeaderStyle = {
     background: 'transparent',
     boxShadow: 'none',
     borderRadius: '3px',
-    backgroundColor: grayColors[0],
+    backgroundColor: theme.palette.primary.main,
     padding: '15px',
     marginTop: '-30px',
     // marginRight: "15px",
@@ -76,7 +89,7 @@ const cardHeaderStyle = {
     margin: '0 15px',
     // padding: "0",
     position: 'relative',
-    color: whiteColor,
+    color: 'white',
     '& svg': {
       // lineHeight: "56px",
       // textAlign: "center",
@@ -87,15 +100,15 @@ const cardHeaderStyle = {
   },
   cardHeaderText: {
     display: 'inline-block',
-    float: "none",
-    marginRight: "0",
-    borderRadius: "3px",
-    backgroundColor: grayColors[0],
-    padding: "15px",
-    marginTop: "-20px",
+    float: 'none',
+    marginRight: '0',
+    borderRadius: '3px',
+    backgroundColor: theme.palette.primary.main,
+    padding: '15px',
+    marginTop: '-20px',
     '& .cardCategory, & .cardTitle': {
-      color: whiteColor,
-      margin: "10px 0"
+      color: 'white',
+      margin: '10px 0'
     },
     '& .cardCategory': {
       // color: grayColors[0],
@@ -115,6 +128,4 @@ const cardHeaderStyle = {
       fontWeight: 400
     }
   }
-};
-
-export default cardHeaderStyle;
+});
