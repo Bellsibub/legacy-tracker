@@ -186,5 +186,20 @@ export const data = {
     'Sunlight',
     'Vending Machine',
     'Falling'
-  ]
+  ],
+  goals: {
+    aspirations: [
+      { id: '8d9adsadqwdasyoiuh', focused: true, complete: false, text: 'Complete 4 aspirations' },
+      { id: '8d97tiug9asyoiuh', focused: false, complete: false, text: 'Complete 8 aspirations' },
+      { id: '8d9asyoi875tiyughjuh', focused: false, complete: false, text: 'Complete 12 aspirations' },
+      { id: '079uypoijlk8d9asyoiuh', focused: false, complete: true, text: 'Complete 16 aspirations' },
+      { id: '78yoiuh8d9asyoiuh', focused: false, complete: false, text: 'Complete 20 aspirations' },
+      { id: '87yoiu8d9asyoiuh', focused: false, complete: false, text: 'Complete 24 aspirations' },
+      { id: '798yuioh8d9asyoiuh', focused: false, complete: true, text: 'Complete 28 aspiraitons' },
+      { id: 'y8uoh8d9asyoiuh', focused: false, complete: false, text: 'Complete 32 aspiraitons' },
+      { id: 'y7tui8d9asyoiuh', focused: false, complete: false, text: 'Complete 36 aspitations' },
+      { id: 'kdl8d9asyoiuh', focused: false, complete: false, text: 'Complete all aspirations' }
+
+    ]
+  }
 };
