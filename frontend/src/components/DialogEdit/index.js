@@ -59,7 +59,7 @@ export default ({ text, select, title, label, items, currentItem, onConfirm, ...
         <DialogTitle id="dialogEditSelection">{title}</DialogTitle>
         <DialogContent>
           {select && (
-            <FormControl className={classes.dialogSelect}>
+            <FormControl className={classes.dialogFullWidth}>
               <Select
                 labelId="dialogSelectLabel"
                 id="dialogSelect"

@@ -1,17 +1,23 @@
-export default (theme) => ({
+export default () => ({
   dialog: {
-    [theme.breakpoints.up("sm")]: {
-      margin: "auto",
-      maxWidth: "800px"
-    },
     // borderRadius: "6px",
-    marginTop: "100px !important",
     // overflow: "visible",
     // maxHeight: "unset",
-    position: "relative",
-    height: "fit-content"
+    // position: 'relative'
   },
-  dialogSelect: {
-    width: "100%"
+  dialogFullWidth: {
+    width: '100%',
+    margin: '8px 0 4px 0'
+  },
+  dialogMultiSelect: {
+    marginTop: '25px'
+  },
+  dialogDivider: {
+    margin: '10px 0'
+  },
+  dialogSectionTitle: {
+    marginTop: '25px',
+    paddingLeft: 0,
+    paddingBottom: 0
   }
-})
+});

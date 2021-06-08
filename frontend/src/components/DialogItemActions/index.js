@@ -51,9 +51,9 @@ export default ({ title, open, setOpen }) => {
       <Dialog
         open={open}
         onClose={toggleDialog}
-        aria-labelledby="dialogEditSelection"
+        aria-labelledby="dialogItemActions"
         className={classes.dialog}>
-        <DialogTitle id="dialogEditSelection">{title}</DialogTitle>
+        <DialogTitle id="dialogItemActions">{title}</DialogTitle>
         <DialogContent>
           <List>
             {actionOptions.map((action) => (
