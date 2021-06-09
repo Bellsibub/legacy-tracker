@@ -34,7 +34,7 @@ const ListItemCollapse = ({ mainItem, itemsKey }) => {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
-
+  // console.log(mainItem);
   const handleClick = () => {
     setOpen(!open);
   };
@@ -49,7 +49,7 @@ const ListItemCollapse = ({ mainItem, itemsKey }) => {
       <Divider />
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List dense component="div" disablePadding>
-          {mainItem[itemsKey].map((item) => (
+          {mainItem[itemsKey].map(({ ...item }) => (
             <ListItem key={item.id} className={classes.nested}>
               <ListItemIcon>
                 <img src={item.image} alt={item.name} className={classes.itemIcon} />
@@ -80,7 +80,7 @@ export default ({ title, items, itemsKey }) => {
         {_.map(groups, (group, key) => (
           <List
             subheader={<ListSubheader component="div">{`GENERATION ${key}`}</ListSubheader>}
-            key={key}>
+            key={`generation-${key}`}>
             {group.map((item) => (
               <div key={item.id}>
                 {item.aspirations.length > 0 ? (

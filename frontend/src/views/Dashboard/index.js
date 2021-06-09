@@ -98,11 +98,6 @@ export default () => {
               currentItem="test1"
               onConfirm={(value) => console.log(value)} />
 
-            {/* dialog sims */}
-            <DialogSims
-              buttonText
-              title="Edit this sim"
-              onConfirm={(value) => console.log(value)} />
           </CardFooter>
         </Card>
       </Grid>

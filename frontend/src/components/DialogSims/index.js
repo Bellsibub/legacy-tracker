@@ -31,34 +31,16 @@ import { Edit } from '@material-ui/icons';
 
 import dialog from 'assets/jss/dialog';
 
-import { data } from 'utils/data';
+import { data, traits, aspirations, sims } from 'utils/data';
 
 const useStyles = makeStyles(dialog);
 
-const defaultSiminfo = {
-  firstName: '',
-  lastName: '',
-  gender: '',
-  adopted: false,
-  species: '',
-  traits: [],
-  aspirations: [],
-  relations: {
-    mother: null,
-    father: null,
-    spouse: null
-  },
-  role: '',
-  status: '',
-  causeOfDeath: null
-};
-
-export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, ...other }) => {
+export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
   const classes = useStyles();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const [open, setOpen] = React.useState(false);
-  const [simInfo, setSimInfo] = React.useState({ ...defaultSiminfo });
+  const [simInfo, setSimInfo] = React.useState({ ...currentItem });
 
   const toggleDialog = () => {
     setOpen(!open);
@@ -120,14 +102,14 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, ...othe
   return (
     <>
       {buttonIcon && (
-        <IconButton color={`${other.color || 'primary'}`} onClick={toggleDialog}>
+        <IconButton color="primary" onClick={toggleDialog}>
           <Edit />
         </IconButton>
       )}
       {buttonText && (
         <Button
           variant="contained"
-          color={`${other.color || 'primary'}`}
+          color="primary"
           onClick={toggleDialog}>
           EDIT
         </Button>
@@ -224,13 +206,14 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, ...othe
               className={classes.dialogMultiSelect}
               id="traits"
               name="traits"
-              // value={simInfo.traits}
+              value={simInfo.traits}
               onChange={handleTraitChange}
               multiple
               disableCloseOnSelect
               filterSelectedOptions
+              getOptionSelected={(option, val) => option.id === val.id}
               getOptionDisabled={(option) => validateTraitSelection(option)}
-              options={data.traits}
+              options={traits}
               groupBy={(option) => {
                 return option.type.toUpperCase();
               }}
@@ -247,12 +230,13 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, ...othe
               className={classes.dialogMultiSelect}
               id="aspirations"
               name="aspirations"
-              // value={simInfo.aspirations}
+              value={simInfo.aspirations}
               onChange={handleAspirationChange}
+              getOptionSelected={(option, val) => option.id === val.id}
               multiple
               disableCloseOnSelect
               filterSelectedOptions
-              options={data.aspirations}
+              options={aspirations}
               groupBy={(option) => {
                 return option.type.toUpperCase();
               }}
@@ -272,18 +256,20 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, ...othe
               className={classes.dialogMultiSelect}
               id="mother"
               name="mother"
-              // value={simInfo.relations.mother}
+              value={simInfo.relations.mother}
               onChange={handleRelationChange}
-              options={data.sims}
+              options={sims}
+              getOptionSelected={(option, val) => option.id === val.id}
               getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
               renderInput={(params) => <TextField {...params} label="Mother" />} />
             <Autocomplete
               className={classes.dialogMultiSelect}
               id="father"
               name="father"
-              // value={simInfo.relations.father}
+              value={simInfo.relations.father}
               onChange={handleRelationChange}
-              options={data.sims}
+              options={sims}
+              getOptionSelected={(option, val) => option.id === val.id}
               getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
               renderInput={(params) => <TextField {...params} label="Father" />} />
             {/* Spouse */}
@@ -291,9 +277,10 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, ...othe
               className={classes.dialogMultiSelect}
               id="spouse"
               name="spouse"
-              // value={simInfo.relations.spouse}
+              value={simInfo.relations.spouse}
               onChange={handleRelationChange}
               options={data.sims}
+              getOptionSelected={(option, val) => option.id === val.id}
               getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
               renderInput={(params) => <TextField {...params} label="Spouse" />} />
             {/* LEGACY STATUS */}
@@ -306,7 +293,7 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, ...othe
               className={classes.dialogMultiSelect}
               id="role"
               name="role"
-              // value={simInfo.role}
+              value={simInfo.role}
               onChange={handleSingleSelectChange}
               options={data.roles}
               renderInput={(params) => <TextField {...params} label="Role" />} />
@@ -315,7 +302,7 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, ...othe
               className={classes.dialogMultiSelect}
               id="status"
               name="status"
-              // value={simInfo.role}
+              value={simInfo.status}
               onChange={handleSingleSelectChange}
               options={data.status}
               renderInput={(params) => <TextField {...params} label="Status" />} />
@@ -325,7 +312,7 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, ...othe
               className={classes.dialogMultiSelect}
               id="causeOfDeath"
               name="causeOfDeath"
-              // value={simInfo.role}
+              value={simInfo.causeOfDeath}
               onChange={handleSingleSelectChange}
               options={data.causeOfDeath}
               renderInput={(params) => <TextField {...params} label="Cause of Death" />} />

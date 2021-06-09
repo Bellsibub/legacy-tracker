@@ -1,14 +1,16 @@
-import {
-// whiteColor,
-// hexToRgb
-} from "assets/jss/globals";
-
-const cardBodyStyle = {
+export default (theme) => ({
   cardBody: {
-    padding: "1rem 20px"
-    // flex: "1 1 auto",
-    // WebkitBoxFlex: "1",
-    // position: "relative"
+    padding: '1rem 20px',
+    '& .cardCategory': {
+      textAlign: 'right',
+      color: theme.palette.text.secondary,
+      fontSize: '.9rem',
+      letterSpacing: '0.08333em',
+      lineHeight: 2.66,
+      textTransform: 'uppercase',
+      fontWeight: 400,
+      margin: '0'
+    }
   }
   // cardBodyBackground: {
   //   position: "relative",
@@ -51,6 +53,4 @@ const cardBodyStyle = {
   // cardBodyCalendar: {
   //   padding: "0px !important"
   // }
-};
-
-export default cardBodyStyle;
+});

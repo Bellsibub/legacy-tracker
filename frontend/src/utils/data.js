@@ -1,9 +1,11 @@
 import aspirationImage1 from 'assets/img/Aspiration1.png';
 import aspirationImage2 from 'assets/img/Aspiration2.png';
+import trait1 from 'assets/img/Trait1.png';
 
 export const aspirations = [
   {
     id: '69tadadayiugj',
+    parent: 'aspirations',
     name: 'Friend of the Animals',
     type: 'adult',
     image: aspirationImage1,
@@ -12,6 +14,7 @@ export const aspirations = [
   },
   {
     id: '69tyi4tgugj',
+    parent: 'aspirations',
     name: 'Bodybuilder',
     type: 'adult',
     image: aspirationImage2,
@@ -20,6 +23,7 @@ export const aspirations = [
   },
   {
     id: '69tygfsdgiugj',
+    parent: 'aspirations',
     name: 'Painter Extraordinaire',
     type: 'adult',
     image: aspirationImage1,
@@ -28,6 +32,7 @@ export const aspirations = [
   },
   {
     id: '69ty234riugj',
+    parent: 'aspirations',
     name: 'Musical Genius',
     type: 'adult',
     image: aspirationImage1,
@@ -36,6 +41,7 @@ export const aspirations = [
   },
   {
     id: '694adfgtyiugj',
+    parent: 'aspirations',
     name: 'Bestselling Author',
     type: 'adult',
     image: aspirationImage2,
@@ -44,6 +50,7 @@ export const aspirations = [
   },
   {
     id: '69t4a5g6r46yiugj',
+    parent: 'aspirations',
     name: 'Jungle Explorer',
     type: 'adult',
     image: aspirationImage2,
@@ -52,6 +59,7 @@ export const aspirations = [
   },
   {
     id: '69ty98jb32lkyiugj',
+    parent: 'aspirations',
     name: 'Archaeology Scholar',
     type: 'adult',
     image: aspirationImage2,
@@ -60,6 +68,7 @@ export const aspirations = [
   },
   {
     id: '69tyiua7df9834gj',
+    parent: 'aspirations',
     name: 'Artistic Prodigy',
     type: 'child',
     image: aspirationImage1,
@@ -68,6 +77,7 @@ export const aspirations = [
   },
   {
     id: '69j4u4kityiugj',
+    parent: 'aspirations',
     name: 'Rambunctious Scamp',
     type: 'child',
     image: aspirationImage1,
@@ -76,6 +86,7 @@ export const aspirations = [
   },
   {
     id: '69ty546345yiugj',
+    parent: 'aspirations',
     name: 'Social Butterfly',
     type: 'child',
     image: aspirationImage1,
@@ -84,6 +95,7 @@ export const aspirations = [
   },
   {
     id: '69354y436tyiugj',
+    parent: 'aspirations',
     name: 'Whiz Kid',
     type: 'child',
     image: aspirationImage1,
@@ -92,10 +104,187 @@ export const aspirations = [
   }
 ];
 
+export const traits = [
+  {
+    id: '56f4a12',
+    parent: 'traits',
+    name: 'Angelic',
+    type: 'toddler',
+    image: trait1,
+    pack: 'base_game'
+  },
+  {
+    id: '3erdfedcxz',
+    parent: 'traits',
+    name: 'Charmer',
+    type: 'toddler',
+    image: trait1,
+    pack: 'base_game'
+  },
+  {
+    id: '35refdc',
+    parent: 'traits',
+    name: 'Clingy',
+    type: 'toddler',
+    image: trait1,
+    pack: 'base_game'
+  },
+  {
+    id: '5asd4',
+    parent: 'traits',
+    name: 'Bro',
+    type: 'adult',
+    image: trait1,
+    pack: 'base_game'
+  },
+  {
+    id: 'sjakdgh982hdjhja',
+    parent: 'traits',
+    name: 'Insider',
+    type: 'adult',
+    image: trait1,
+    pack: 'get_together'
+  },
+  {
+    id: 'adjskf9pufajskl',
+    parent: 'traits',
+    name: 'Freegan',
+    type: 'adult',
+    image: trait1,
+    pack: 'eco_lifestyle'
+  },
+  {
+    id: '4d5a428ftiugkj',
+    parent: 'traits',
+    name: 'Green Friend',
+    type: 'adult',
+    image: trait1,
+    pack: 'eco_lifestyle'
+  }
+];
+
+export const legacy = {
+  generation: 2,
+  ruler: {
+    id: '968df32ftyuioh',
+    role: 'Ruler',
+    generation: 2,
+    species: 'Human',
+    traits: [
+      {
+        id: '35refdc',
+        parent: 'traits',
+        name: 'Clingy',
+        type: 'toddler',
+        image: trait1,
+        pack: 'base_game'
+      },
+      {
+        id: '5asd4',
+        parent: 'traits',
+        name: 'Bro',
+        type: 'adult',
+        image: trait1,
+        pack: 'base_game'
+      },
+      {
+        id: 'sjakdgh982hdjhja',
+        parent: 'traits',
+        name: 'Insider',
+        type: 'adult',
+        image: trait1,
+        pack: 'get_together'
+      },
+      {
+        id: 'adjskf9pufajskl',
+        parent: 'traits',
+        name: 'Freegan',
+        type: 'adult',
+        image: trait1,
+        pack: 'eco_lifestyle'
+      }
+    ],
+    aspirations: [
+      {
+        id: '69j4u4kityiugj',
+        parent: 'aspirations',
+        name: 'Rambunctious Scamp',
+        type: 'child',
+        image: aspirationImage1,
+        pack: 'base_game',
+        completed: 0
+      },
+      {
+        id: '69354y436tyiugj',
+        parent: 'aspirations',
+        name: 'Whiz Kid',
+        type: 'child',
+        image: aspirationImage1,
+        pack: 'base_game',
+        completed: 0
+      }
+    ],
+    firstName: 'Jane',
+    lastName: 'Doe',
+    gender: 'Female',
+    adopted: false,
+    relations: {
+      father: {
+        id: '968yui3troh',
+        firstName: 'John',
+        lastName: 'Doe'
+      },
+      mother: {
+        id: '968y47f56a4uioh',
+        firstName: 'Jane',
+        lastName: 'Doe'
+      },
+      spouse: {
+        id: '968gs65a5g6yuioh',
+        firstName: 'James',
+        lastName: 'Gang'
+      }
+    },
+    status: 'Alive, in legacy household',
+    causeOfDeath: null
+  }
+};
+
 export const sims = [
   {
     id: '968yui3troh',
+    role: 'Founder',
     generation: 1,
+    traits: [
+      {
+        id: '35refdc',
+        name: 'Clingy',
+        type: 'toddler',
+        image: trait1,
+        pack: 'base_game'
+      },
+      {
+        id: '5asd4',
+        name: 'Bro',
+        type: 'adult',
+        image: trait1,
+        pack: 'base_game'
+      },
+      {
+        id: 'sjakdgh982hdjhja',
+        name: 'Insider',
+        type: 'adult',
+        image: trait1,
+        pack: 'get_together'
+      },
+      {
+        id: 'adjskf9pufajskl',
+        name: 'Freegan',
+        type: 'adult',
+        image: trait1,
+        pack: 'eco_lifestyle'
+      }
+    ],
     aspirations: [
       {
         id: '69tadadayiugj',
@@ -128,7 +317,9 @@ export const sims = [
   },
   {
     id: '968y47f56a4uioh',
+    role: 'Spouse',
     generation: 1,
+    traits: [],
     aspirations: [],
     firstName: 'Jane',
     lastName: 'Doe',
@@ -136,7 +327,9 @@ export const sims = [
   },
   {
     id: '94524r668yuioh',
+    role: 'Heir',
     generation: 1,
+    traits: [],
     aspirations: [],
     firstName: 'Jane',
     lastName: 'Rose',
@@ -144,19 +337,42 @@ export const sims = [
   },
   {
     id: '968df32ftyuioh',
+    role: 'Ruler',
     generation: 2,
+    traits: [
+      {
+        id: '35refdc',
+        name: 'Clingy',
+        type: 'toddler',
+        image: trait1,
+        pack: 'base_game'
+      },
+      {
+        id: '5asd4',
+        name: 'Bro',
+        type: 'adult',
+        image: trait1,
+        pack: 'base_game'
+      },
+      {
+        id: 'sjakdgh982hdjhja',
+        name: 'Insider',
+        type: 'adult',
+        image: trait1,
+        pack: 'get_together'
+      },
+      {
+        id: 'adjskf9pufajskl',
+        name: 'Freegan',
+        type: 'adult',
+        image: trait1,
+        pack: 'eco_lifestyle'
+      }
+    ],
     aspirations: [
       {
         id: '69j4u4kityiugj',
         name: 'Rambunctious Scamp',
-        type: 'child',
-        image: aspirationImage1,
-        pack: 'base_game',
-        completed: 0
-      },
-      {
-        id: '69ty546345yiugj',
-        name: 'Social Butterfly',
         type: 'child',
         image: aspirationImage1,
         pack: 'base_game',
@@ -177,7 +393,9 @@ export const sims = [
   },
   {
     id: '968gs65a5g6yuioh',
+    role: 'Spouse',
     generation: 2,
+    traits: [],
     aspirations: [],
     firstName: 'James',
     lastName: 'Gang',
@@ -185,7 +403,9 @@ export const sims = [
   },
   {
     id: '968g369a8g7yuioh',
+    role: 'Potential Heir',
     generation: 2,
+    traits: [],
     aspirations: [
       {
         id: '69t4a5g6r46yiugj',
@@ -194,17 +414,29 @@ export const sims = [
         image: aspirationImage2,
         pack: 'jungle_adventure',
         completed: 0
-      },
-      {
-        id: '69ty98jb32lkyiugj',
-        name: 'Archaeology Scholar',
-        type: 'adult',
-        image: aspirationImage2,
-        pack: 'jungle_adventure',
-        completed: 0
       }
     ],
     firstName: 'Lolli',
+    lastName: 'Doe',
+    gender: 'Female'
+  },
+  {
+    id: '455ad6a65as4d5s4d',
+    role: 'Potential Heir',
+    generation: 2,
+    traits: [],
+    aspirations: [],
+    firstName: 'Amy',
+    lastName: 'Doe',
+    gender: 'Female'
+  },
+  {
+    id: 'gdas45s3g41s',
+    role: 'Non-eligible child',
+    generation: 2,
+    traits: [],
+    aspirations: [],
+    firstName: 'Amy',
     lastName: 'Doe',
     gender: 'Female'
   }
@@ -470,14 +702,16 @@ export const data = {
     { type: 'adult', name: 'World-famous celebrity' }
   ],
   roles: [
+    'Founder',
+    'Ruler',
+    'Heir',
+    'Potential heir',
+    'Spouse',
+    'Secondary spouse',
+    'Non-eligible child',
     'Cadet child',
     'Cadet spouse',
-    'Founder',
-    'Heir',
-    'Non-eligible child',
-    'Secondary spouse',
-    'Spare',
-    'Spouse'
+    'Spare'
   ],
   status: ['Alive, in legacy household', 'Alive, not in legacy household', 'Dead'],
   causeOfDeath: [
