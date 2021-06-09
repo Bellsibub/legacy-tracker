@@ -2,6 +2,7 @@
 import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import Ruler from 'components/Ruler';
+import Heir from 'components/Heir';
 
 import { legacy } from 'utils/data'
 
@@ -18,7 +19,7 @@ export default () => {
         </Grid>
         {/* Heir */}
         <Grid item lg={6} md={9} sm={9} xs={12}>
-          {/* <Heir /> */}
+          <Heir heir={legacy.heir} potentialHeirs={legacy.potentialHeirs} />
         </Grid>
       </Grid>
       <Grid container spacing={3}>

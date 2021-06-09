@@ -82,25 +82,25 @@ export default (theme) => ({
     boxShadow: 'none',
     borderRadius: '3px',
     backgroundColor: theme.palette.primary.main,
-    padding: '15px',
+    padding: '5px',
     marginTop: '-30px',
     // marginRight: "15px",
     float: 'left',
-    margin: '0 15px',
+    margin: '0 5px',
     // padding: "0",
     position: 'relative',
     color: 'white',
     '& svg': {
       // lineHeight: "56px",
       // textAlign: "center",
-      width: '46px',
-      height: '46px',
+      width: '36px',
+      height: '36px',
       margin: '10px 10px 4px'
     }
   },
   cardHeaderText: {
     display: 'inline-block',
-    float: 'none',
+    float: 'left',
     marginRight: '0',
     borderRadius: '3px',
     backgroundColor: theme.palette.primary.main,
@@ -108,7 +108,8 @@ export default (theme) => ({
     marginTop: '-20px',
     '& .cardCategory, & .cardTitle': {
       color: 'white',
-      margin: '10px 0'
+      margin: '10px 0',
+      textAlign: 'left'
     },
     '& .cardCategory': {
       // color: grayColors[0],

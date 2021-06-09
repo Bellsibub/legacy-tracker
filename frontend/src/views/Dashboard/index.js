@@ -12,6 +12,7 @@ import IconItem from 'components/IconItem';
 import { ArrowUpward } from '@material-ui/icons';
 
 import { Grid } from '@material-ui/core';
+import Stats from 'components/Stats';
 
 const testArray = ['test1', 'test2', 'test3'];
 // const images = [
@@ -24,34 +25,13 @@ export default () => {
     <Grid container spacing={3}>
       {/* icon header */}
       <Grid item xs={12} sm={6} md={6} lg={3}>
-        <Card>
-          <CardHeader color="accent" stats icon={DashboardIcon}>
-            <p className="cardCategory">SCORE</p>
-            <h3 className="cardTitle">
-              3 <small>points</small>
-            </h3>
-          </CardHeader>
-        </Card>
+        <Stats value={3} type="score" />
       </Grid>
       <Grid item xs={12} sm={6} md={6} lg={3}>
-        <Card>
-          <CardHeader color="accent" stats icon={DashboardIcon}>
-            <p className="cardCategory">SCORE</p>
-            <h3 className="cardTitle">
-              3 <small>points</small>
-            </h3>
-          </CardHeader>
-        </Card>
+        <Stats value={3} type="totalCompleted" />
       </Grid>
       <Grid item xs={12} sm={6} md={6} lg={3}>
-        <Card>
-          <CardHeader color="accent" stats icon={DashboardIcon}>
-            <p className="cardCategory">SCORE</p>
-            <h3 className="cardTitle">
-              3 <small>points</small>
-            </h3>
-          </CardHeader>
-        </Card>
+        <Stats value={33.33} type="percentage" />
       </Grid>
       {/* text header with body and footer */}
       <Grid item lg={6} xs={12}>
@@ -97,7 +77,6 @@ export default () => {
               items={testArray}
               currentItem="test1"
               onConfirm={(value) => console.log(value)} />
-
           </CardFooter>
         </Card>
       </Grid>

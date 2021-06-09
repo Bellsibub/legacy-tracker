@@ -247,7 +247,39 @@ export const legacy = {
     },
     status: 'Alive, in legacy household',
     causeOfDeath: null
-  }
+  },
+  heir: null,
+  potentialHeirs: [
+    {
+      id: '968g369a8g7yuioh',
+      role: 'Potential Heir',
+      generation: 2,
+      traits: [],
+      aspirations: [
+        {
+          id: '69t4a5g6r46yiugj',
+          name: 'Jungle Explorer',
+          type: 'adult',
+          image: aspirationImage2,
+          pack: 'jungle_adventure',
+          completed: 0
+        }
+      ],
+      firstName: 'Lolli',
+      lastName: 'Doe',
+      gender: 'Female'
+    },
+    {
+      id: '455ad6a65as4d5s4d',
+      role: 'Potential Heir',
+      generation: 2,
+      traits: [],
+      aspirations: [],
+      firstName: 'Amy',
+      lastName: 'Doe',
+      gender: 'Female'
+    }
+  ]
 };
 
 export const sims = [
