@@ -4,7 +4,8 @@ import { Grid, Typography } from '@material-ui/core';
 
 import Goals from 'components/Goals'
 import IconItemsList from 'components/IconItemsList';
-import { aspirations } from 'utils/data'
+import { aspirations, sims } from 'utils/data'
+import ItemBySimsList from 'components/ItemBySimsList';
 
 export default () => {
   return (
@@ -15,7 +16,11 @@ export default () => {
       </Grid>
       {/* Icon Items list */}
       <Grid item lg={6} md={9} sm={9} xs={12}>
-        <IconItemsList items={aspirations} splitBy="type" />
+        <IconItemsList title="Aspirations" items={aspirations} splitBy="type" />
+      </Grid>
+      {/* Item By Sims List */}
+      <Grid item lg={6} md={9} sm={9} xs={12}>
+        <ItemBySimsList title="Aspirations per Sim" itemsKey="aspirations" items={sims} />
       </Grid>
     </Grid>
   )

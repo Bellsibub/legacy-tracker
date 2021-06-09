@@ -22,7 +22,7 @@ import styling from './style';
 
 const useStyles = makeStyles(styling);
 
-export default ({ items, splitBy }) => {
+export default ({ title, items, splitBy }) => {
   const classes = useStyles();
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('xs'));
@@ -31,7 +31,7 @@ export default ({ items, splitBy }) => {
   return (
     <Card>
       <CardHeader color="accent" text>
-        <h3 className="cardTitle">Aspirations</h3>
+        <h3 className="cardTitle">{title}</h3>
       </CardHeader>
       <CardBody>
         {/* list of items icons with actions */}

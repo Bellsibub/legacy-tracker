@@ -5,5 +5,8 @@ export default (theme) => ({
   },
   listItem: {
     display: 'flex'
+  },
+  listText: {
+    fontSize: '24px'
   }
 });

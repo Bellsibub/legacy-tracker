@@ -90,16 +90,243 @@ export const aspirations = [
     pack: 'base_game',
     completed: 0
   }
-]
+];
+
+export const sims = [
+  {
+    id: '968yui3troh',
+    generation: 1,
+    aspirations: [
+      {
+        id: '69tadadayiugj',
+        name: 'Friend of the Animals',
+        type: 'adult',
+        image: aspirationImage1,
+        pack: 'cats_and_dogs',
+        completed: 0
+      },
+      {
+        id: '69tyi4tgugj',
+        name: 'Bodybuilder',
+        type: 'adult',
+        image: aspirationImage2,
+        pack: 'base_game',
+        completed: 1
+      },
+      {
+        id: '69tygfsdgiugj',
+        name: 'Painter Extraordinaire',
+        type: 'adult',
+        image: aspirationImage1,
+        pack: 'base_game',
+        completed: 0
+      }
+    ],
+    firstName: 'John',
+    lastName: 'Doe',
+    gender: 'Male'
+  },
+  {
+    id: '968y47f56a4uioh',
+    generation: 1,
+    aspirations: [],
+    firstName: 'Jane',
+    lastName: 'Doe',
+    gender: 'Female'
+  },
+  {
+    id: '94524r668yuioh',
+    generation: 1,
+    aspirations: [],
+    firstName: 'Jane',
+    lastName: 'Rose',
+    gender: 'Other'
+  },
+  {
+    id: '968df32ftyuioh',
+    generation: 2,
+    aspirations: [
+      {
+        id: '69j4u4kityiugj',
+        name: 'Rambunctious Scamp',
+        type: 'child',
+        image: aspirationImage1,
+        pack: 'base_game',
+        completed: 0
+      },
+      {
+        id: '69ty546345yiugj',
+        name: 'Social Butterfly',
+        type: 'child',
+        image: aspirationImage1,
+        pack: 'base_game',
+        completed: 0
+      },
+      {
+        id: '69354y436tyiugj',
+        name: 'Whiz Kid',
+        type: 'child',
+        image: aspirationImage1,
+        pack: 'base_game',
+        completed: 0
+      }
+    ],
+    firstName: 'Jane',
+    lastName: 'Doe',
+    gender: 'Female'
+  },
+  {
+    id: '968gs65a5g6yuioh',
+    generation: 2,
+    aspirations: [],
+    firstName: 'James',
+    lastName: 'Gang',
+    gender: 'Male'
+  },
+  {
+    id: '968g369a8g7yuioh',
+    generation: 2,
+    aspirations: [
+      {
+        id: '69t4a5g6r46yiugj',
+        name: 'Jungle Explorer',
+        type: 'adult',
+        image: aspirationImage2,
+        pack: 'jungle_adventure',
+        completed: 0
+      },
+      {
+        id: '69ty98jb32lkyiugj',
+        name: 'Archaeology Scholar',
+        type: 'adult',
+        image: aspirationImage2,
+        pack: 'jungle_adventure',
+        completed: 0
+      }
+    ],
+    firstName: 'Lolli',
+    lastName: 'Doe',
+    gender: 'Female'
+  }
+];
 
 export const data = {
   sims: [
-    { firstName: 'John', lastName: 'Doe', gender: 'Male' },
-    { firstName: 'Jane', lastName: 'Doe', gender: 'Female' },
-    { firstName: 'Jane', lastName: 'Rose', gender: 'Other' },
-    { firstName: 'Jane', lastName: 'Doe', gender: 'Female' },
-    { firstName: 'James', lastName: 'Gang', gender: 'Male' },
-    { firstName: 'Jane', lastName: 'Doe', gender: 'Female' }
+    {
+      id: '968yui3troh',
+      generation: 1,
+      aspirations: [
+        {
+          id: '69tadadayiugj',
+          name: 'Friend of the Animals',
+          type: 'adult',
+          image: aspirationImage1,
+          pack: 'cats_and_dogs',
+          completed: 0
+        },
+        {
+          id: '69tyi4tgugj',
+          name: 'Bodybuilder',
+          type: 'adult',
+          image: aspirationImage2,
+          pack: 'base_game',
+          completed: 1
+        },
+        {
+          id: '69tygfsdgiugj',
+          name: 'Painter Extraordinaire',
+          type: 'adult',
+          image: aspirationImage1,
+          pack: 'base_game',
+          completed: 0
+        }
+      ],
+      firstName: 'John',
+      lastName: 'Doe',
+      gender: 'Male'
+    },
+    {
+      id: '968y47f56a4uioh',
+      generation: 1,
+      aspirations: [],
+      firstName: 'Jane',
+      lastName: 'Doe',
+      gender: 'Female'
+    },
+    {
+      id: '94524r668yuioh',
+      generation: 1,
+      aspirations: [],
+      firstName: 'Jane',
+      lastName: 'Rose',
+      gender: 'Other'
+    },
+    {
+      id: '968df32ftyuioh',
+      generation: 2,
+      aspirations: [
+        {
+          id: '69j4u4kityiugj',
+          name: 'Rambunctious Scamp',
+          type: 'child',
+          image: aspirationImage1,
+          pack: 'base_game',
+          completed: 0
+        },
+        {
+          id: '69ty546345yiugj',
+          name: 'Social Butterfly',
+          type: 'child',
+          image: aspirationImage1,
+          pack: 'base_game',
+          completed: 0
+        },
+        {
+          id: '69354y436tyiugj',
+          name: 'Whiz Kid',
+          type: 'child',
+          image: aspirationImage1,
+          pack: 'base_game',
+          completed: 0
+        }
+      ],
+      firstName: 'Jane',
+      lastName: 'Doe',
+      gender: 'Female'
+    },
+    {
+      id: '968gs65a5g6yuioh',
+      generation: 2,
+      aspirations: [],
+      firstName: 'James',
+      lastName: 'Gang',
+      gender: 'Male'
+    },
+    {
+      id: '968g369a8g7yuioh',
+      generation: 2,
+      aspirations: [
+        {
+          id: '69t4a5g6r46yiugj',
+          name: 'Jungle Explorer',
+          type: 'adult',
+          image: aspirationImage2,
+          pack: 'jungle_adventure',
+          completed: 0
+        },
+        {
+          id: '69ty98jb32lkyiugj',
+          name: 'Archaeology Scholar',
+          type: 'adult',
+          image: aspirationImage2,
+          pack: 'jungle_adventure',
+          completed: 0
+        }
+      ],
+      firstName: 'Lolli',
+      lastName: 'Doe',
+      gender: 'Female'
+    }
   ],
   genders: ['Male', 'Female', 'Other'],
   species: [
@@ -283,17 +510,66 @@ export const data = {
   ],
   goals: {
     aspirations: [
-      { id: '8d9adsadqwdasyoiuh', focused: true, complete: false, text: 'Complete 4 aspirations' },
-      { id: '8d97tiug9asyoiuh', focused: false, complete: false, text: 'Complete 8 aspirations' },
-      { id: '8d9asyoi875tiyughjuh', focused: false, complete: false, text: 'Complete 12 aspirations' },
-      { id: '079uypoijlk8d9asyoiuh', focused: false, complete: true, text: 'Complete 16 aspirations' },
-      { id: '78yoiuh8d9asyoiuh', focused: false, complete: false, text: 'Complete 20 aspirations' },
-      { id: '87yoiu8d9asyoiuh', focused: false, complete: false, text: 'Complete 24 aspirations' },
-      { id: '798yuioh8d9asyoiuh', focused: false, complete: true, text: 'Complete 28 aspiraitons' },
-      { id: 'y8uoh8d9asyoiuh', focused: false, complete: false, text: 'Complete 32 aspiraitons' },
-      { id: 'y7tui8d9asyoiuh', focused: false, complete: false, text: 'Complete 36 aspitations' },
-      { id: 'kdl8d9asyoiuh', focused: false, complete: false, text: 'Complete all aspirations' }
-
+      {
+        id: '8d9adsadqwdasyoiuh',
+        focused: true,
+        complete: false,
+        text: 'Complete 4 aspirations'
+      },
+      {
+        id: '8d97tiug9asyoiuh',
+        focused: false,
+        complete: false,
+        text: 'Complete 8 aspirations'
+      },
+      {
+        id: '8d9asyoi875tiyughjuh',
+        focused: false,
+        complete: false,
+        text: 'Complete 12 aspirations'
+      },
+      {
+        id: '079uypoijlk8d9asyoiuh',
+        focused: false,
+        complete: true,
+        text: 'Complete 16 aspirations'
+      },
+      {
+        id: '78yoiuh8d9asyoiuh',
+        focused: false,
+        complete: false,
+        text: 'Complete 20 aspirations'
+      },
+      {
+        id: '87yoiu8d9asyoiuh',
+        focused: false,
+        complete: false,
+        text: 'Complete 24 aspirations'
+      },
+      {
+        id: '798yuioh8d9asyoiuh',
+        focused: false,
+        complete: true,
+        text: 'Complete 28 aspiraitons'
+      },
+      {
+        id: 'y8uoh8d9asyoiuh',
+        focused: false,
+        complete: false,
+        text: 'Complete 32 aspiraitons'
+      },
+      {
+        id: 'y7tui8d9asyoiuh',
+        focused: false,
+        complete: false,
+        text: 'Complete 36 aspitations'
+      },
+      {
+        id: 'kdl8d9asyoiuh',
+        focused: false,
+        complete: false,
+        text: 'Complete all aspirations'
+      }
     ]
   }
 };

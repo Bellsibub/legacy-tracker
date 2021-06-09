@@ -124,7 +124,8 @@ export default (theme) => ({
     '& .cardTitle': {
       // ...title
       textTransform: 'uppercase',
-      fontSize: '1.5rem',
+      fontSize: '1rem',
+      letterSpacing: '0.1em',
       fontWeight: 400
     }
   }

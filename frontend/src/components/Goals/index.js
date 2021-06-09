@@ -37,7 +37,7 @@ export default () => {
       <CardHeader color="accent" icon={EmojiEvents} />
       <CardBody>
         {/* list of goals */}
-        <List dense>
+        <List>
           {data.goals.aspirations.map((item) => (
             <div key={item.id}>
               <div className={classes.listItem}>
@@ -48,7 +48,7 @@ export default () => {
                 <ListItem
                 // onClick={dispatch(completeGoal('aspirations', { ...item }))}
                   button>
-                  <ListItemText primary={item.text} />
+                  <ListItemText primary={item.text} className={classes.listText} />
                   <ListItemIcon>
                     <Checkbox
                       edge="end"
