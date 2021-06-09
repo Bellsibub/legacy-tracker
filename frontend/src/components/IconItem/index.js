@@ -11,7 +11,7 @@ import styling from './style';
 
 const useStyles = makeStyles(styling);
 
-export default ({ ...image }) => {
+export default ({ item }) => {
   const [open, setOpen] = React.useState(false);
 
   const classes = useStyles();
@@ -23,12 +23,11 @@ export default ({ ...image }) => {
       <div className={classes.root}>
         <ButtonBase
           focusRipple
-          key={image.title}
           className={classes.image}
           onClick={toggleDialog}>
-          <img src={image.url} alt={image.title} />
+          <img src={item.image} alt={item.name} />
           <span className={classes.imageBackdrop} />
-          {image.checked && (
+          {item.completed >= 1 && (
             <span className={classes.imageMarked}>
               <Icon>
                 <CheckRounded />
@@ -38,7 +37,8 @@ export default ({ ...image }) => {
         </ButtonBase>
       </div>
       <DialogItemActions
-        title={`Editing ${image.title}`}
+        title={`Editing ${item.name}`}
+        id={item.id}
         open={open}
         setOpen={setOpen} />
     </>

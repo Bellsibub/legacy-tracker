@@ -39,20 +39,12 @@ export default () => {
         {/* list of goals */}
         <List dense>
           {data.goals.aspirations.map((item) => (
-            <>
+            <div key={item.id}>
               <div className={classes.listItem}>
                 <FocusToggle
                   onChange={handleChanges}
                   // onChange={dispatch(setFocus({ ...item }))}
                   checked={item.focused} />
-                {/* <IconButton
-                  className={classes.focusButton}
-                  small
-                  color={item.focused ? 'primary' : 'default'}
-                  // onClick={dispatch(setFocus({ ...item }))}
-                  edge="start">
-                  <DashboardIcon />
-                </IconButton> */}
                 <ListItem
                 // onClick={dispatch(completeGoal('aspirations', { ...item }))}
                   button>
@@ -67,7 +59,7 @@ export default () => {
                 </ListItem>
               </div>
               <Divider />
-            </>
+            </div>
           ))}
         </List>
       </CardBody>

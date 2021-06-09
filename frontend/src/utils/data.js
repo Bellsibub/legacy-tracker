@@ -1,3 +1,97 @@
+import aspirationImage1 from 'assets/img/Aspiration1.png';
+import aspirationImage2 from 'assets/img/Aspiration2.png';
+
+export const aspirations = [
+  {
+    id: '69tadadayiugj',
+    name: 'Friend of the Animals',
+    type: 'adult',
+    image: aspirationImage1,
+    pack: 'cats_and_dogs',
+    completed: 0
+  },
+  {
+    id: '69tyi4tgugj',
+    name: 'Bodybuilder',
+    type: 'adult',
+    image: aspirationImage2,
+    pack: 'base_game',
+    completed: 1
+  },
+  {
+    id: '69tygfsdgiugj',
+    name: 'Painter Extraordinaire',
+    type: 'adult',
+    image: aspirationImage1,
+    pack: 'base_game',
+    completed: 0
+  },
+  {
+    id: '69ty234riugj',
+    name: 'Musical Genius',
+    type: 'adult',
+    image: aspirationImage1,
+    pack: 'base_game',
+    completed: 0
+  },
+  {
+    id: '694adfgtyiugj',
+    name: 'Bestselling Author',
+    type: 'adult',
+    image: aspirationImage2,
+    pack: 'base_game',
+    completed: 0
+  },
+  {
+    id: '69t4a5g6r46yiugj',
+    name: 'Jungle Explorer',
+    type: 'adult',
+    image: aspirationImage2,
+    pack: 'jungle_adventure',
+    completed: 0
+  },
+  {
+    id: '69ty98jb32lkyiugj',
+    name: 'Archaeology Scholar',
+    type: 'adult',
+    image: aspirationImage2,
+    pack: 'jungle_adventure',
+    completed: 0
+  },
+  {
+    id: '69tyiua7df9834gj',
+    name: 'Artistic Prodigy',
+    type: 'child',
+    image: aspirationImage1,
+    pack: 'base_game',
+    completed: 0
+  },
+  {
+    id: '69j4u4kityiugj',
+    name: 'Rambunctious Scamp',
+    type: 'child',
+    image: aspirationImage1,
+    pack: 'base_game',
+    completed: 0
+  },
+  {
+    id: '69ty546345yiugj',
+    name: 'Social Butterfly',
+    type: 'child',
+    image: aspirationImage1,
+    pack: 'base_game',
+    completed: 0
+  },
+  {
+    id: '69354y436tyiugj',
+    name: 'Whiz Kid',
+    type: 'child',
+    image: aspirationImage1,
+    pack: 'base_game',
+    completed: 0
+  }
+]
+
 export const data = {
   sims: [
     { firstName: 'John', lastName: 'Doe', gender: 'Male' },

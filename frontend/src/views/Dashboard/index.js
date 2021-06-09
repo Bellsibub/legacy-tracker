@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import Card from 'components/Card';
@@ -9,15 +10,14 @@ import DialogEdit from 'components/DialogEdit';
 import DialogSims from 'components/DialogSims';
 import IconItem from 'components/IconItem';
 import { ArrowUpward } from '@material-ui/icons';
-import aspirationImage1 from 'assets/img/Aspiration1.png';
-import aspirationImage2 from 'assets/img/Aspiration2.png';
+
 import { Grid } from '@material-ui/core';
 
 const testArray = ['test1', 'test2', 'test3'];
-const images = [
-  { url: aspirationImage1, title: 'Romance', checked: true },
-  { url: aspirationImage2, title: 'Smart', checked: false }
-];
+// const images = [
+//   { url: aspirationImage1, title: 'Romance', checked: true },
+//   { url: aspirationImage2, title: 'Smart', checked: false }
+// ];
 // const arrowIcon = ArrowUpward;
 export default () => {
   return (
@@ -62,9 +62,9 @@ export default () => {
           </CardHeader>
           <CardBody>
             {/* Example of how use DialogItemAction & Icon Item */}
-            {images.map((image) => (
+            {/* {images.map((image) => (
               <IconItem key={image.title} {...image} />
-            ))}
+            ))} */}
           </CardBody>
           <CardFooter>
             {/* confirm with iconbutton */}

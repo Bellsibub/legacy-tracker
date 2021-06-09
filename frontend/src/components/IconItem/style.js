@@ -1,11 +1,7 @@
 export default (theme) => ({
   root: {
     display: 'flex',
-    margin: '10px',
-    // flexWrap: 'wrap',
-    // minWidth: 300,
-    width: '100%',
-    height: '100%'
+    justifyContent: 'center'
   },
   image: {
     position: 'relative',

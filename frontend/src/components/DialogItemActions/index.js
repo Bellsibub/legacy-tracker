@@ -20,25 +20,28 @@ const useStyles = makeStyles(dialog);
 const actionOptions = [
   {
     title: 'Complete this',
-    onAction: () => {
+    onAction: (id) => {
+      console.log('for', id);
       console.log('hello');
     }
   },
   {
     title: 'Revert completions',
-    onAction: () => {
+    onAction: (id) => {
+      console.log('for', id);
       console.log('hello');
     }
   },
   {
     title: 'Set as Focus',
-    onAction: () => {
+    onAction: (id) => {
+      console.log('for', id);
       console.log('hello');
     }
   }
 ];
 
-export default ({ title, open, setOpen }) => {
+export default ({ title, open, setOpen, id }) => {
   const classes = useStyles();
   // const dispatch = useDispatch();
 
@@ -62,7 +65,7 @@ export default ({ title, open, setOpen }) => {
                 button
                 onClick={() => {
                   toggleDialog();
-                  action.onAction();
+                  action.onAction(id);
                 }}>
                 <ListItemText primary={action.title} />
               </ListItem>
