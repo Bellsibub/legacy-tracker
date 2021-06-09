@@ -4,7 +4,6 @@ export default (theme) => ({
     color: 'white'
   },
   listItem: {
-    display: 'flex',
-    margin: '10px 0'
+    display: 'flex'
   }
 });
