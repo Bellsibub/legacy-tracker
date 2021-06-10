@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux'
 // material ui
 import { Divider, Chip, Avatar, Grid, Typography } from '@material-ui/core';
 // import { makeStyles } from '@material-ui/core/styles';
@@ -42,21 +43,22 @@ const ChipSection = ({ items, title }) => {
   );
 };
 
-export default ({ item }) => {
+export default () => {
   // const classes = useStyles();
+  const ruler = useSelector((store) => store.legacy.ruler)
   return (
     <Card>
-      <CardHeader color="accent" stats icon={Crown}>
+      <CardHeader color="accent" icon={Crown}>
         <Typography variant="subtitle2">RULER</Typography>
-        <Typography variant="h2">{`${item.firstName} ${item.lastName}`}</Typography>
+        <Typography variant="h2">{`${ruler.firstName} ${ruler.lastName}`}</Typography>
       </CardHeader>
-      <ChipSection items={item.traits} title="traits" />
-      <ChipSection items={item.aspirations} title="aspirations" />
+      <ChipSection items={ruler.traits} title="traits" />
+      <ChipSection items={ruler.aspirations} title="aspirations" />
       <CardFooter>
         <DialogSims
           buttonText
-          title={`Edit ${item.firstName} ${item.lastName}`}
-          currentItem={item}
+          title={`Edit ${ruler.firstName} ${ruler.lastName}`}
+          currentItem={ruler}
           onConfirm={(value) => console.log(value)} />
       </CardFooter>
     </Card>

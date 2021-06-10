@@ -1,4 +1,5 @@
 import React from 'react';
+// import _ from 'lodash'
 import { makeStyles } from '@material-ui/core/styles';
 
 import {
@@ -8,24 +9,30 @@ import {
   DialogTitle,
   TextField,
   Button,
-  FormControl,
-  MenuItem,
-  Input,
-  Typography,
-  Select,
   IconButton
 } from '@material-ui/core';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
 import { Edit } from '@material-ui/icons';
 
 import dialog from 'assets/jss/dialog';
 
 const useStyles = makeStyles(dialog);
 
-export default ({ text, select, title, label, items, currentItem, onConfirm }) => {
+export default ({
+  text,
+  select,
+  title,
+  label,
+  items,
+  currentItem,
+  onConfirm,
+  keyValue,
+  ...iconProps
+}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(currentItem);
-
   const toggleDialog = () => {
     setOpen(!open);
   };
@@ -36,38 +43,34 @@ export default ({ text, select, title, label, items, currentItem, onConfirm }) =
       onConfirm(value);
     }
   };
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  const handleMultiSelectChange = (event, newValue) => {
+    setValue(newValue)
   };
 
   return (
     <>
-      <IconButton color="primary" onClick={toggleDialog}>
+      <IconButton color="primary" onClick={toggleDialog} {...iconProps}>
         <Edit />
       </IconButton>
       <Dialog
         open={open}
         onClose={toggleDialog}
         aria-labelledby="dialogEditSelection"
-        className={classes.dialog}>
+        maxWidth="sm"
+        fullWidth>
         <DialogTitle id="dialogEditSelection">{title}</DialogTitle>
         <DialogContent>
           {select && (
-            <FormControl className={classes.dialogFullWidth}>
-              <Select
-                labelId="dialogSelectLabel"
-                id="dialogSelect"
-                value={value}
-                onChange={handleChange}
-                input={<Input />}>
-                {items.map((item) => (
-                  <MenuItem key={item} value={item}>
-                    <Typography variant="body1">{item}</Typography>
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <Autocomplete
+              className={classes.dialogMultiSelect}
+              id={keyValue}
+              name={keyValue}
+              value={value}
+              onChange={handleMultiSelectChange}
+              options={items}
+              getOptionSelected={(option, val) => option.id === val.id}
+              getOptionLabel={(option) => option[keyValue]}
+              renderInput={(params) => <TextField {...params} />} />
           )}
           {text && (
             <TextField

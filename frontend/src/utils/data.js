@@ -280,6 +280,270 @@ export const legacy = {
       lastName: 'Doe',
       gender: 'Female'
     }
+  ],
+  laws: {
+    gender: {
+      id: '678yuighj',
+      title: 'Matriarchy',
+      description:
+        'The Founder must be female. Only girls are eligible to be named heir unless there are no female children, at which point boys become eligible for that generation.'
+    },
+    bloodline: {
+      id: '45fs4af43af',
+      title: 'Traditional',
+      description:
+        'Children who are naturally born from the previous generation are eligible to be named heir. Adopted children are ineligible to be named heir unless there are no naturally born children, at which point they become eligible for that generation.'
+    },
+    heir: {
+      id: '4f5s34af821f2saf',
+      title: 'First Born',
+      description:
+        'The oldest, by order of joining the family, eligible living child is named heir.'
+    },
+    species: {
+      id: 'fa43783442ds1f2as4fd5',
+      title: 'Brood',
+      description:
+        'Heirs must be carried in a pregnancy by the previous heir, regardless of the heir’s gender'
+    }
+  },
+  rules: [
+    'No cheats/hacks/mods that give you an advantage over someone who did not use them',
+    'No restarting after bad events',
+    'Family must remain on the same lot for the duration of the challenge (except vacations)',
+    'A Sim may use an anti-aging item ONCE in their lifetime (youth potion or milking the cow plant)',
+    'Sims lifespans must be set to “Normal” in the gameplay menu',
+    'You may not change a Sim’s current aspiration until it is completed',
+    'You may not bring a Sim back from the dead once the reaper has taken them. You MAY plead',
+    'You may not move/marry out the sim who currently holds the title of ‘heir’',
+    'When playing a Legacy Challenge, your legacy family is the ONLY family you may play',
+    'You are allowed to follow Sims to their jobs (Doctor, Detective, or Scientist careers)',
+    'You may start with an Alien or Vampire Founder and have Alien/Vampire heirs',
+    'Wishing Well from Sims 4 Romantic Garden Pack can be used only ONCE per Sim in their lifetime',
+    'If you marry in a spouse with the “City Native” aspiration, you may randomly generate a new one',
+    'Any Sim in the household can be set as a Toddler’s caretaker',
+    'You do not need to roll for lot traits, you can change them at any time',
+    'If you have the Sims 4 Parenthood Pack you do NOT need to roll for any of the upbringing traits',
+    'If you have The Sims 4 Cats & Dogs you may adopt pets',
+    'If you have The Sims 4 Seasons you may purchase any of the new traits with Satisfaction Points',
+    'The new weather machine may be used to its fullest extent, risks and all',
+    'You may befriend and use Patchy the Scarecrow to his fullest extent',
+    'You may purchase and use the trait re-arranger potion. However, you must roll for new traits',
+    'You are welcome to create as many holidays as you want while playing the legacy challenge',
+    'Your Sims may not participate in the random Lottery holiday',
+    'The Money Tree aspiration reward is too powerful and is not allowed',
+    'Spouses may not bring in any money with them when they move in/marry into the family',
+    'The first spouse specifically to partner with the heir is known as the primary spouse',
+    'One “Primary Spouse” per generation, but any number of secondary spouses',
+    'You may always introduce children into your family via pregnancy or adoption',
+    'Children may only be adopted as infants',
+    'You may not adopt if there are any infants (natural born or adopted) living in the house',
+    'When an infant ages up into a toddler, you must roll for their toddler trait',
+    'When aging to child, roll for their aspiration and first trait',
+    'You may use the death flower to guarantee success when pleading with the reaper to save a dying sim',
+    'You may NOT use ambrosia to resurrect a dead sim',
+    'You may invite ghost sims back into your family but they cannot earn money or points',
+    'Ghost Sims can still be memorialized but only by Sims that knew them in life',
+    'An invited ghost who is no longer welcome may be moved out just like unwanted family members'
+  ]
+};
+
+export const rules = [
+  'No cheats/hacks/mods that give you an advantage over someone who did not use them',
+  'No restarting after bad events',
+  'Family must remain on the same lot for the duration of the challenge (except vacations)',
+  'A Sim may use an anti-aging item ONCE in their lifetime (youth potion or milking the cow plant)',
+  'Sims lifespans must be set to “Normal” in the gameplay menu',
+  'You may not change a Sim’s current aspiration until it is completed',
+  'You may not bring a Sim back from the dead once the reaper has taken them. You MAY plead',
+  'You may not move/marry out the sim who currently holds the title of ‘heir’',
+  'When playing a Legacy Challenge, your legacy family is the ONLY family you may play',
+  'You are allowed to follow Sims to their jobs (Doctor, Detective, or Scientist careers)',
+  'You may start with an Alien or Vampire Founder and have Alien/Vampire heirs',
+  'Wishing Well from Sims 4 Romantic Garden Pack can be used only ONCE per Sim in their lifetime',
+  'If you marry in a spouse with the “City Native” aspiration, you may randomly generate a new one',
+  'Any Sim in the household can be set as a Toddler’s caretaker',
+  'You do not need to roll for lot traits, you can change them at any time',
+  'If you have the Sims 4 Parenthood Pack you do NOT need to roll for any of the upbringing traits',
+  'If you have The Sims 4 Cats & Dogs you may adopt pets',
+  'If you have The Sims 4 Seasons you may purchase any of the new traits with Satisfaction Points',
+  'The new weather machine may be used to its fullest extent, risks and all',
+  'You may befriend and use Patchy the Scarecrow to his fullest extent',
+  'You may purchase and use the trait re-arranger potion. However, you must roll for new traits',
+  'You are welcome to create as many holidays as you want while playing the legacy challenge',
+  'Your Sims may not participate in the random Lottery holiday',
+  'The Money Tree aspiration reward is too powerful and is not allowed',
+  'Spouses may not bring in any money with them when they move in/marry into the family',
+  'The first spouse specifically to partner with the heir is known as the primary spouse',
+  'One “Primary Spouse” per generation, but any number of secondary spouses',
+  'You may always introduce children into your family via pregnancy or adoption',
+  'Children may only be adopted as infants',
+  'You may not adopt if there are any infants (natural born or adopted) living in the house',
+  'When an infant ages up into a toddler, you must roll for their toddler trait',
+  'When aging to child, roll for their aspiration and first trait',
+  'You may use the death flower to guarantee success when pleading with the reaper to save a dying sim',
+  'You may NOT use ambrosia to resurrect a dead sim',
+  'You may invite ghost sims back into your family but they cannot earn money or points',
+  'Ghost Sims can still be memorialized but only by Sims that knew them in life',
+  'An invited ghost who is no longer welcome may be moved out just like unwanted family members'
+];
+
+export const laws = {
+  gender: [
+    {
+      id: '678yuighj',
+      title: 'Matriarchy',
+      description:
+        'The Founder must be female. Only girls are eligible to be named heir unless there are no female children, at which point boys become eligible for that generation.'
+    },
+    {
+      id: '4fa354f8q4w3',
+      title: 'Strict Matriarchy',
+      description:
+        'The Founder must be female. Only girls are eligible to be named heir. Male children cannot, under any circumstance, ever be the heir to the next generation.'
+    },
+    {
+      id: 'fad4357a43f5',
+      title: 'Patriarchy',
+      description:
+        'The Founder must be male. Only boys are eligible to be named heir unless there are no male children, at which point girls become eligible for that generation.'
+    },
+    {
+      id: 'f432351ea',
+      title: 'Strict Patriarchy',
+      description:
+        'The Founder must be male. Only boys are eligible to be named heir. Female children cannot, under any circumstance, ever be the heir to the next generation.'
+    },
+    {
+      id: 'ds1af3831wea2d',
+      title: 'Equality',
+      description:
+        'The Founder may be of either gender. Both boys and girls are eligible for the title of heir.'
+    },
+    {
+      id: '43ghs44r531dgftsh5e5ra',
+      title: 'Strict Equality',
+      description:
+        'The founder may be of either gender. However, only children of the opposite gender to the founder are eligible to be named heir. This repeats itself for the next generation (the next heir must be a different gender than the previous heir) so that each generation will have alternating-genders as heirs.'
+    }
+  ],
+  bloodline: [
+    {
+      id: 'hgs24354365a43w43',
+      title: 'Strict Traditional',
+      description:
+        'To be eligible to be named heir, a child must be naturally born from their previous-generation parents and be able to trace an unbroken bloodline back to the founder. Adopted children may never be named heir.'
+    },
+    {
+      id: '45fs4af43af',
+      title: 'Traditional',
+      description:
+        'Children who are naturally born from the previous generation are eligible to be named heir. Adopted children are ineligible to be named heir unless there are no naturally born children, at which point they become eligible for that generation.'
+    },
+    {
+      id: 'hsfd4z35433aw4',
+      title: 'Modern',
+      description:
+        'Both Naturally born and adopted children are eligible to be named heir.'
+    },
+    {
+      id: '424hfd5xsh433a5q2r3a',
+      title: 'Foster',
+      description:
+        'Children who are adopted are eligible to be named heir. Naturally born children are not eligible to be named heir unless there are no adopted children, at which point they become eligible for that generation.'
+    },
+    {
+      id: 'gfsdg43se421gr35a',
+      title: 'Strict Foster',
+      description:
+        'Only Children who are adopted are eligible for the title of heir. Naturally born children may never be heir.'
+    }
+  ],
+  heir: [
+    {
+      id: '4f5s34af821f2saf',
+      title: 'First Born',
+      description:
+        'The oldest, by order of joining the family, eligible living child is named heir.'
+    },
+    {
+      id: 'agrw3g435g4321r',
+      title: 'Last Born',
+      description:
+        'The youngest, by order of joining the family, eligible living child is named heir.'
+    },
+    {
+      id: 'agre4354rg354',
+      title: 'Living Will',
+      description:
+        'The eligible child with the highest friendly relationship score with their previous-generation’s parent will be named heir.'
+    },
+    {
+      id: 'ahreh4r1es3h5214bs',
+      title: 'Merit',
+      description:
+        'The child with the most fully completed aspirations will be named heir. If there is a tie, the child with the highest level in a single skill will become heir from among the children who are tied.'
+    },
+    {
+      id: '4r6a5ghw',
+      title: 'Strength',
+      description:
+        'The first born eligible child becomes heir by default… but the tile can be forcefully taken from them if an eligible sibling beats them in a fight. That sibling may have their title taken, (or taken back) if they lose a fight to another eligible sibling.'
+    },
+    {
+      id: 'a465grfe',
+      title: 'Random',
+      description:
+        'The title of heir is randomly selected from the pool of all eligible children. Every time the eligible pool changes size, The heir must be re-rolled using the new pool.'
+    },
+    {
+      id: 'a465r3ge',
+      title: 'Exemplar',
+      description:
+        'At the beginning of the challenge, name a single trait. This trait must be one of your founder’s three traits.. Any eligible heir that has this trait will gain the title of heir. If a single generation has no children with this trait follow the First Born rule. If more than one child has the Exemplar trait then the oldest child WITH the trait will be the heir.'
+    },
+    {
+      id: '64hrst6',
+      title: 'Democracy',
+      description:
+        'This rule may be used if you are displaying your Legacy Challenge in some public way. Either via Let’s Play, Livestream, blog or other format where people can leave comment. The heir is chosen by your viewers/readers from among the pool of eligible heirs.'
+    },
+    {
+      id: '4sr6ht',
+      title: 'Magical Bloodline',
+      description:
+        'Choose the heir by whoever has the strongest magical bloodline trait. If there is no magical bloodline trait (ie in the earlier generations) then the law defaults to first born until magic is introduced to the family. If multiple potential heirs have the same level of magical trait, choose the oldest one.'
+    },
+    {
+      id: '64sthr',
+      title: 'Magical strength',
+      description:
+        'Similar to the Strength law above, this one requires two or more potential heirs to have a magical duel. Whoever wins the duel, is the new heir.'
+    }
+  ],
+  species: [
+    {
+      id: 's46t5h1r3',
+      title: 'Xenoarchy',
+      description: 'Heirs must alternate between human and alien'
+    },
+    {
+      id: 'fa43783442ds46sth51f2as4fd5',
+      title: 'Xenophobic',
+      description: 'Heirs cannot be a different species from the founder'
+    },
+    {
+      id: 'fa43783442ds1f2as4fd5',
+      title: 'Brood',
+      description:
+        'Heirs must be carried in a pregnancy by the previous heir, regardless of the heir’s gender'
+    },
+    {
+      id: '68gz47rs531f',
+      title: 'Tolerant',
+      description:
+        'The species of the child has no impact on their eligibility for heir status'
+    }
   ]
 };
 

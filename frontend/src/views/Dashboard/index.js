@@ -9,28 +9,16 @@ import CardBody from 'components/CardBody';
 import CardFooter from 'components/CardFooter';
 import DialogConfirm from 'components/DialogConfirm';
 import DialogEdit from 'components/DialogEdit';
-import Stats from 'components/Stats';
+import Ruler from 'components/Ruler';
+// import Heir from 'components/Heir';
 
-const testArray = ['test1', 'test2', 'test3'];
-// const images = [
-//   { url: aspirationImage1, title: 'Romance', checked: true },
-//   { url: aspirationImage2, title: 'Smart', checked: false }
-// ];
-// const arrowIcon = ArrowUpward;
 export default () => {
   return (
     <Grid container spacing={3}>
-      {/* icon header */}
-      <Grid item xs={12} sm={6} md={6} lg={3}>
-        <Stats value={3} type="score" />
+      {/* Ruler */}
+      <Grid item lg={6} md={9} sm={9} xs={12}>
+        <Ruler />
       </Grid>
-      <Grid item xs={12} sm={6} md={6} lg={3}>
-        <Stats value={3} type="totalCompleted" />
-      </Grid>
-      <Grid item xs={12} sm={6} md={6} lg={3}>
-        <Stats value={33.33} type="percentage" />
-      </Grid>
-      {/* text header with body and footer */}
       <Grid item lg={6} xs={12}>
         <Card>
           <CardHeader color="accent" text>
@@ -67,12 +55,12 @@ export default () => {
               onConfirm={(value) => console.log(value)} />
 
             {/* edit with select */}
-            <DialogEdit
+            {/* <DialogEdit
               select
               title="Select new law"
               items={testArray}
               currentItem="test1"
-              onConfirm={(value) => console.log(value)} />
+              onConfirm={(value) => console.log(value)} /> */}
           </CardFooter>
         </Card>
       </Grid>

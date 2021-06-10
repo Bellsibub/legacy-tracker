@@ -30,7 +30,7 @@ export default ({ value, type }) => {
 
   return (
     <Card>
-      <CardHeader color="accent" stats icon={data.icon}>
+      <CardHeader color="accent" icon={data.icon}>
         <Typography variant="subtitle2">{data.title}</Typography>
         <Typography variant="h2">
           {value} <small>{data.accent}</small>
