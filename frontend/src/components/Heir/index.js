@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
+// import { makeStyles } from '@material-ui/core/styles';
 // material ui
 import {
   Divider,
@@ -7,25 +7,25 @@ import {
   ListItem,
   ListItemIcon,
   IconButton,
-  ListItemText
+  ListItemText,
+  Typography
 } from '@material-ui/core';
-// import { makeStyles } from '@material-ui/core/styles';
 
-// custom components
+// core components
 import Card from 'components/Card';
 import CardHeader from 'components/CardHeader';
 import CardBody from 'components/CardBody';
-import CardFooter from 'components/CardFooter';
-import DialogSims from 'components/DialogSims';
-import { ArrowUp, ArrowUpCircleOutline, Crown } from 'mdi-material-ui';
+import { ArrowUpCircleOutline, Crown } from 'mdi-material-ui';
+
+// styles
 // import styling from './style';
 
 // const useStyles = makeStyles(styling);
 
 const PotentialHeir = ({ item, onClick }) => {
   const handleClick = () => {
-    onClick(item)
-  }
+    onClick(item);
+  };
   return (
     <>
       <ListItem key={item.id}>
@@ -51,18 +51,20 @@ export default ({ currentHeir, potentialHeirs }) => {
   return (
     <Card>
       <CardHeader color="accent" stats icon={Crown}>
-        <p className="cardCategory">HEIR</p>
+        <Typography variant="subtitle2">HEIR</Typography>
         {heir ? (
-          <h3 className="cardTitle">{`${heir.firstName} ${heir.lastName}`}</h3>
+          <Typography variant="h2">{`${heir.firstName} ${heir.lastName}`}</Typography>
         ) : (
-          <h3 className="cardSubtitle">No current heir selected</h3>
+          <Typography variant="caption" component="p">
+            No current heir selected
+          </Typography>
         )}
       </CardHeader>
       {potentialHeirs && (
         <>
           <Divider variant="middle" />
           <CardBody>
-            <p className="cardCategory">POTENTIAL HEIRS</p>
+            <Typography variant="subtitle2">POTENTIAL HEIRS</Typography>
 
             <List>
               <Divider variant="middle" />

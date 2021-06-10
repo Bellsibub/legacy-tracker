@@ -1,5 +1,6 @@
 import React from 'react';
-// import { useDispatch } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
+
 import {
   Dialog,
   DialogActions,
@@ -10,8 +11,6 @@ import {
   ListItem,
   ListItemText
 } from '@material-ui/core';
-// @material-ui/core components
-import { makeStyles } from '@material-ui/core/styles';
 
 import dialog from 'assets/jss/dialog';
 
@@ -43,7 +42,6 @@ const actionOptions = [
 
 export default ({ title, open, setOpen, id }) => {
   const classes = useStyles();
-  // const dispatch = useDispatch();
 
   const toggleDialog = () => {
     setOpen(!open);

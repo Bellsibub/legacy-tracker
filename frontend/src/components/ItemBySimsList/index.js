@@ -73,7 +73,7 @@ export default ({ title, items, itemsKey }) => {
   return (
     <Card>
       <CardHeader color="accent" text>
-        <h3 className="cardTitle">{title}</h3>
+        <Typography variant="h3">{title}</Typography>
       </CardHeader>
       <CardBody>
         {/* list of items icons with actions */}

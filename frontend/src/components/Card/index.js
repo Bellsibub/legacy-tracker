@@ -1,16 +1,12 @@
-/* eslint-disable react/require-default-props */
 import React from 'react';
-// nodejs library that concatenates classes
 import classNames from 'classnames';
-
-// @material-ui/core components
 import { makeStyles } from '@material-ui/core/styles';
 
-import styling from './style';
+import styles from './style';
 
-const useStyles = makeStyles(styling);
+const useStyles = makeStyles(styles);
 
-export default function Card({ className, children, ...other }) {
+export default ({ className, children, ...other }) => {
   const classes = useStyles();
   const cardClasses = classNames({
     [classes.card]: true,

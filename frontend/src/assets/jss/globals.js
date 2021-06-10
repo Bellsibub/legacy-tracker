@@ -28,46 +28,33 @@ const drawerMiniWidth = 80;
 
 export const appBarHeight = 150;
 
-// const transition = {
-//   transition: 'all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1)'
+// const containerFluid = {
+
+//   // }
 // };
 
-const containerFluid = {
-  paddingRight: '15px',
-  paddingLeft: '15px',
-  marginRight: 'auto',
-  marginLeft: 'auto',
-  '&:before,&:after': {
-    display: 'table',
-    content: '" "'
-  },
-  '&:after': {
-    clear: 'both'
-  }
-};
-
-const container = {
-  paddingRight: '15px',
-  paddingLeft: '15px',
-  marginRight: 'auto',
-  marginLeft: 'auto',
-  '@media (min-width: 768px)': {
-    width: '750px'
-  },
-  '@media (min-width: 992px)': {
-    width: '970px'
-  },
-  '@media (min-width: 1200px)': {
-    width: '1170px'
-  },
-  '&:before,&:after': {
-    display: 'table',
-    content: '" "'
-  },
-  '&:after': {
-    clear: 'both'
-  }
-};
+// const container = {
+//   paddingRight: '15px',
+//   paddingLeft: '15px',
+//   marginRight: 'auto',
+//   marginLeft: 'auto',
+//   '@media (min-width: 768px)': {
+//     width: '750px'
+//   },
+//   '@media (min-width: 992px)': {
+//     width: '970px'
+//   },
+//   '@media (min-width: 1200px)': {
+//     width: '1170px'
+//   },
+//   '&:before,&:after': {
+//     display: 'table',
+//     content: '" "'
+//   },
+//   '&:after': {
+//     clear: 'both'
+//   }
+// };
 
 const defaultFont = {
   fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -81,43 +68,6 @@ export const colorPalette = {
   accent: { main: '#27965D' }
 };
 
-// export const primaryColor = '#4277b7';
-// export const secondaryColor = '#576E7D';
-// export const accentColor = '#27965D';
-// const grayColors = [
-//   '#999',
-//   '#777',
-//   '#3C4858',
-//   '#AAAAAA',
-//   '#D2D2D2',
-//   '#DDD',
-//   '#555555',
-//   '#333',
-//   '#eee',
-//   '#ccc',
-//   '#e4e4e4',
-//   '#E5E5E5',
-//   '#f9f9f9',
-//   '#f5f5f5',
-//   '#495057',
-//   '#e7e7e7',
-//   '#212121',
-//   '#c8c8c8',
-//   '#505050'
-// ];
-// const blackColor = '#000';
-// const whiteColor = '#FFF';
-// const twitterColor = '#55acee';
-// const facebookColor = '#3b5998';
-// const googleColor = '#dd4b39';
-// const linkedinColor = '#0976b4';
-// const pinterestColor = '#cc2127';
-// const youtubeColor = '#e52d27';
-// const tumblrColor = '#35465c';
-// const behanceColor = '#1769ff';
-// const dribbbleColor = '#ea4c89';
-// const redditColor = '#ff4500';
-
 const boxShadow = {
   boxShadow: `0 10px 30px -12px rgba(${hexToRgb(
     '#000'
@@ -129,79 +79,6 @@ const boxShadow = {
 export const softBoxShadow = {
   boxShadow: `0 1px 4px 0 rgba(${hexToRgb('#000')}, 0.14)`
 };
-
-// const card = {
-//   display: 'inline-block',
-//   position: 'relative',
-//   width: '100%',
-//   margin: '25px 0',
-//   boxShadow: `0 1px 4px 0 rgba(${hexToRgb(blackColor)}, 0.14)`,
-//   borderRadius: '6px',
-//   color: `rgba(${hexToRgb(blackColor)}, 0.87)`,
-//   background: whiteColor
-// };
-
-// const cardActions = {
-//   margin: '0 20px 10px',
-//   paddingTop: '10px',
-//   borderTop: `1px solid ${grayColors[8]}`,
-//   height: 'auto',
-//   ...defaultFont
-// };
-
-// const cardHeader = {
-//   margin: '-20px 15px 0',
-//   borderRadius: '3px',
-//   padding: '15px'
-// };
-
-// const defaultBoxShadow = {
-//   border: '0',
-//   borderRadius: '3px',
-//   boxShadow:
-//     `0 10px 20px -12px rgba(${
-//       hexToRgb(blackColor)
-//     }, 0.42), 0 3px 20px 0px rgba(${
-//       hexToRgb(blackColor)
-//     }, 0.12), 0 8px 10px -5px rgba(${
-//       hexToRgb(blackColor)
-//     }, 0.2)`,
-//   padding: '10px 0',
-//   transition: 'all 150ms ease 0s'
-// };
-
-// const tooltip = {
-//   padding: '10px 15px',
-//   minWidth: '130px',
-//   color: whiteColor,
-//   lineHeight: '1.7em',
-//   background: `rgba(${hexToRgb(grayColors[6])},0.9)`,
-//   border: 'none',
-//   borderRadius: '3px',
-//   opacity: '1!important',
-//   boxShadow:
-//     `0 8px 10px 1px rgba(${
-//       hexToRgb(blackColor)
-//     }, 0.14), 0 3px 14px 2px rgba(${
-//       hexToRgb(blackColor)
-//     }, 0.12), 0 5px 5px -3px rgba(${
-//       hexToRgb(blackColor)
-//     }, 0.2)`,
-//   maxWidth: '200px',
-//   textAlign: 'center',
-//   fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
-//   fontSize: '12px',
-//   fontStyle: 'normal',
-//   fontWeight: '400',
-//   textShadow: 'none',
-//   textTransform: 'none',
-//   letterSpacing: 'normal',
-//   wordBreak: 'normal',
-//   wordSpacing: 'normal',
-//   wordWrap: 'normal',
-//   whiteSpace: 'normal',
-//   lineBreak: 'auto'
-// };
 
 export const title = {
   // color: grayColors[2],
@@ -219,36 +96,11 @@ export const title = {
   }
 };
 
-// const cardTitle = {
-//   ...title,
-//   marginTop: '0',
-//   marginBottom: '3px',
-//   minHeight: 'auto',
-//   '& a': {
-//     ...title,
-//     marginTop: '.625rem',
-//     marginBottom: '0.75rem',
-//     minHeight: 'auto'
-//   }
-// };
-
-// const cardSubtitle = {
-//   marginTop: '-.375rem'
-// };
-
-// const cardLink = {
-//   '& + $cardLink': {
-//     marginLeft: '1.25rem'
-//   }
-// };
-
 export {
   hexToRgb,
   drawerWidth,
   drawerMiniWidth,
   // transition,
-  container,
-  containerFluid,
   boxShadow,
   // card,
   defaultFont

@@ -1,17 +1,14 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+
+import { ArrowUpward } from '@material-ui/icons';
+import { Grid, Typography } from '@material-ui/core';
+
 import Card from 'components/Card';
 import CardHeader from 'components/CardHeader';
 import CardBody from 'components/CardBody';
 import CardFooter from 'components/CardFooter';
 import DialogConfirm from 'components/DialogConfirm';
 import DialogEdit from 'components/DialogEdit';
-import DialogSims from 'components/DialogSims';
-import IconItem from 'components/IconItem';
-import { ArrowUpward } from '@material-ui/icons';
-
-import { Grid } from '@material-ui/core';
 import Stats from 'components/Stats';
 
 const testArray = ['test1', 'test2', 'test3'];
@@ -37,8 +34,7 @@ export default () => {
       <Grid item lg={6} xs={12}>
         <Card>
           <CardHeader color="accent" text>
-            <h3 className="cardTitle">Dialog Examples</h3>
-            <h4 className="cardCategory">this is a subtitle</h4>
+            <Typography variant="h3">Dialog Examples</Typography>
           </CardHeader>
           <CardBody>
             {/* Example of how use DialogItemAction & Icon Item */}

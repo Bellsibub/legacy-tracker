@@ -29,12 +29,12 @@ export default ({ title, message, onConfirm, ...other }) => {
   return (
     <>
       {other.icon && (
-        <IconButton color={`${other.color || 'primary'}`} onClick={toggleDialog}>
+        <IconButton color="primary" onClick={toggleDialog}>
           <other.icon />
         </IconButton>
       )}
       {other.buttonText && (
-        <Button variant="contained" color={`${other.color || 'primary'}`} onClick={toggleDialog}>
+        <Button variant="contained" color="primary" onClick={toggleDialog}>
           {other.buttonText}
         </Button>
       )}

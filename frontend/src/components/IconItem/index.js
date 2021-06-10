@@ -1,10 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import ButtonBase from '@material-ui/core/ButtonBase';
-// import Typography from '@material-ui/core/Typography';
 
-import { Icon } from '@material-ui/core';
+import { ButtonBase, Icon } from '@material-ui/core';
 import { CheckRounded } from '@material-ui/icons';
+
 import DialogItemActions from 'components/DialogItemActions';
 
 import styling from './style';
@@ -21,10 +20,7 @@ export default ({ item }) => {
   return (
     <>
       <div className={classes.root}>
-        <ButtonBase
-          focusRipple
-          className={classes.image}
-          onClick={toggleDialog}>
+        <ButtonBase focusRipple className={classes.image} onClick={toggleDialog}>
           <img src={item.image} alt={item.name} />
           <span className={classes.imageBackdrop} />
           {item.completed >= 1 && (

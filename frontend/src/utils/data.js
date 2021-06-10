@@ -164,6 +164,7 @@ export const traits = [
 ];
 
 export const legacy = {
+  name: 'Goth',
   generation: 2,
   ruler: {
     id: '968df32ftyuioh',

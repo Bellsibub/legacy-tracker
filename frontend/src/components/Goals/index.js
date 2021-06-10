@@ -1,26 +1,23 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 // material ui
-import DashboardIcon from '@material-ui/icons/Dashboard';
 import {
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   Checkbox,
-  Divider,
-  IconButton
+  Divider
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { EmojiEvents } from '@material-ui/icons';
 
 // custom components
 import Card from 'components/Card';
 import CardHeader from 'components/CardHeader';
 import CardBody from 'components/CardBody';
-import { data } from 'utils/data';
-
 import FocusToggle from 'components/FocusToggle';
-import { EmojiEvents } from '@material-ui/icons';
+
+import { data } from 'utils/data';
 import styling from './style';
 
 const useStyles = makeStyles(styling);
@@ -30,13 +27,12 @@ export default () => {
 
   const handleChanges = (value) => {
     console.log(value);
-  }
+  };
 
   return (
     <Card>
-      <CardHeader color="accent" icon={EmojiEvents} />
+      <CardHeader color="blue" icon={EmojiEvents} />
       <CardBody>
-        {/* list of goals */}
         <List>
           {data.goals.aspirations.map((item) => (
             <div key={item.id}>
@@ -46,13 +42,15 @@ export default () => {
                   // onChange={dispatch(setFocus({ ...item }))}
                   checked={item.focused} />
                 <ListItem
-                // onClick={dispatch(completeGoal('aspirations', { ...item }))}
+                  // onClick={dispatch(completeGoal('aspirations', { ...item }))}
                   button>
                   <ListItemText primary={item.text} className={classes.listText} />
                   <ListItemIcon>
                     <Checkbox
                       edge="end"
-                      onChange={(e) => { handleChanges(e.target.checked) }}
+                      onChange={(e) => {
+                        handleChanges(e.target.checked);
+                      }}
                       // onChange={dispatch(completeGoal('aspirations', { ...item }))}
                       checked={item.complete} />
                   </ListItemIcon>

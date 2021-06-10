@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import _ from 'lodash';
 // material ui
@@ -31,15 +30,19 @@ export default ({ title, items, splitBy }) => {
   return (
     <Card>
       <CardHeader color="accent" text>
-        <h3 className="cardTitle">{title}</h3>
+        <Typography variant="h3">{title}</Typography>
       </CardHeader>
       <CardBody>
-        {/* list of items icons with actions */}
         {_.map(groups, (group, key) => (
           <div key={key}>
-            <Typography variant="h4">{key.toUpperCase()}</Typography>
+            <Typography variant="subtitle1" color="textPrimary">
+              {key.toUpperCase()}
+            </Typography>
             <Divider />
-            <GridList className={classes.gridList} cellHeight={64} cols={smallScreen ? 3 : 5}>
+            <GridList
+              className={classes.gridList}
+              cellHeight={64}
+              cols={smallScreen ? 3 : 5}>
               {group.map((item) => (
                 <GridListTile key={item.name} className={classes.gridTile}>
                   <IconItem item={item} />

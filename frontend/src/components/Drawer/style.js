@@ -1,13 +1,7 @@
 import {
   drawerWidth,
-  // transition,
   boxShadow,
   defaultFont
-  // primaryColor,
-  // secondaryColor,
-  // whiteColor,
-  // grayColors,
-  // hexToRgb
 } from 'assets/jss/globals';
 
 export default (theme) => ({
@@ -18,9 +12,6 @@ export default (theme) => ({
     bottom: '0',
     left: '0',
     zIndex: '1032',
-    // transitionProperty: 'top, bottom, width',
-    // transitionDuration: '.2s, .2s, .35s',
-    // transitionTimingFunction: 'linear, linear, ease',
     ...boxShadow,
     color: 'white',
     background: theme.palette.secondary.main,
@@ -46,7 +37,6 @@ export default (theme) => ({
       paddingRight: '0px',
       paddingLeft: '0',
       transform: `translate3d(${drawerWidth}px, 0, 0)`
-      // ...transition
     },
     '&:before,&:after': {
       position: 'absolute',

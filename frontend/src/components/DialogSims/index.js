@@ -1,8 +1,4 @@
-/* eslint-disable react/no-string-refs */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/no-array-index-key */
 import React from 'react';
-import _ from 'lodash';
 // material ui components
 import {
   Dialog,
@@ -72,7 +68,7 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
       aspirations: [...newValue]
     }));
   };
-  const handleRelationChange = (event, newValue, reason) => {
+  const handleRelationChange = (event, newValue) => {
     const { id } = event.target;
     setSimInfo((prevState) => ({
       ...prevState,
@@ -107,10 +103,7 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
         </IconButton>
       )}
       {buttonText && (
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={toggleDialog}>
+        <Button variant="contained" color="primary" onClick={toggleDialog}>
           EDIT
         </Button>
       )}
@@ -158,8 +151,8 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
                 value={simInfo.gender}
                 onChange={handleChange}
                 input={<Input />}>
-                {data.genders.map((item, index) => (
-                  <MenuItem key={index} value={item}>
+                {data.genders.map((item) => (
+                  <MenuItem key={item} value={item}>
                     <Typography variant="body1">{item}</Typography>
                   </MenuItem>
                 ))}
@@ -190,8 +183,8 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
                 value={simInfo.species}
                 onChange={handleChange}
                 input={<Input />}>
-                {data.species.map((item, index) => (
-                  <MenuItem key={index} value={item}>
+                {data.species.map((item) => (
+                  <MenuItem key={item} value={item}>
                     <Typography variant="body1">{item}</Typography>
                   </MenuItem>
                 ))}

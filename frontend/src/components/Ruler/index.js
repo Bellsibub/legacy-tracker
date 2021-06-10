@@ -1,12 +1,6 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 // material ui
-import {
-  Divider,
-  Chip,
-  Avatar,
-  Grid
-} from '@material-ui/core';
+import { Divider, Chip, Avatar, Grid, Typography } from '@material-ui/core';
 // import { makeStyles } from '@material-ui/core/styles';
 
 // custom components
@@ -16,6 +10,7 @@ import CardBody from 'components/CardBody';
 import CardFooter from 'components/CardFooter';
 import DialogSims from 'components/DialogSims';
 import { Crown } from 'mdi-material-ui';
+
 // import styling from './style';
 
 // const useStyles = makeStyles(styling);
@@ -25,7 +20,7 @@ const ChipSection = ({ items, title }) => {
     <>
       <Divider variant="middle" />
       <CardBody>
-        <p className="cardCategory">{title.toUpperCase()}</p>
+        <Typography variant="subtitle2">{title.toUpperCase()}</Typography>
         <Grid
           container
           direction="row"
@@ -49,12 +44,11 @@ const ChipSection = ({ items, title }) => {
 
 export default ({ item }) => {
   // const classes = useStyles();
-
   return (
     <Card>
       <CardHeader color="accent" stats icon={Crown}>
-        <p className="cardCategory">RULER</p>
-        <h3 className="cardTitle">{`${item.firstName} ${item.lastName}`}</h3>
+        <Typography variant="subtitle2">RULER</Typography>
+        <Typography variant="h2">{`${item.firstName} ${item.lastName}`}</Typography>
       </CardHeader>
       <ChipSection items={item.traits} title="traits" />
       <ChipSection items={item.aspirations} title="aspirations" />
