@@ -4,7 +4,9 @@ import { Grid, Typography } from '@material-ui/core';
 import Ruler from 'components/Ruler';
 import Heir from 'components/Heir';
 
-import { legacy } from 'utils/data'
+import { legacy, sims } from 'utils/data'
+import Table from 'components/Table';
+import GenerationList from 'components/GenerationList';
 
 // import Goals from 'components/Goals'
 
@@ -24,8 +26,9 @@ export default () => {
       </Grid>
       <Grid container spacing={3}>
         {/* Generations */}
-        <Grid item xs={12}>
+        <Grid item lg={8} xs={12}>
           {/* <Generations /> */}
+          <GenerationList items={sims} />
         </Grid>
       </Grid>
     </>

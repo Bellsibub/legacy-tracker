@@ -50,7 +50,7 @@ export default ({ currentHeir, potentialHeirs }) => {
 
   return (
     <Card>
-      <CardHeader color="accent" stats icon={Crown}>
+      <CardHeader color="accent" icon={Crown}>
         <Typography variant="subtitle2">HEIR</Typography>
         {heir ? (
           <Typography variant="h2">{`${heir.firstName} ${heir.lastName}`}</Typography>
