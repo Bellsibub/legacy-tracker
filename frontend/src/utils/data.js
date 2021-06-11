@@ -268,7 +268,16 @@ export const legacy = {
       ],
       firstName: 'Lolli',
       lastName: 'Doe',
-      gender: 'Female'
+      gender: 'Female',
+      relations: {
+        mother: '',
+        father: '',
+        spouse: ''
+      },
+      species: '',
+      status: '',
+      causeOfDeath: '',
+      adopted: false
     },
     {
       id: '455ad6a65as4d5s4d',
@@ -278,7 +287,16 @@ export const legacy = {
       aspirations: [],
       firstName: 'Amy',
       lastName: 'Doe',
-      gender: 'Female'
+      gender: 'Female',
+      relations: {
+        mother: '',
+        father: '',
+        spouse: ''
+      },
+      species: '',
+      status: '',
+      causeOfDeath: '',
+      adopted: false
     }
   ],
   laws: {
@@ -610,7 +628,16 @@ export const sims = [
     ],
     firstName: 'John',
     lastName: 'Doe',
-    gender: 'Male'
+    gender: 'Male',
+    relations: {
+      mother: '',
+      father: '',
+      spouse: ''
+    },
+    species: '',
+    status: '',
+    causeOfDeath: '',
+    adopted: false
   },
   {
     id: '968y47f56a4uioh',
@@ -620,7 +647,16 @@ export const sims = [
     aspirations: [],
     firstName: 'Jane',
     lastName: 'Doe',
-    gender: 'Female'
+    gender: 'Female',
+    relations: {
+      mother: '',
+      father: '',
+      spouse: ''
+    },
+    species: '',
+    status: '',
+    causeOfDeath: '',
+    adopted: false
   },
   {
     id: '94524r668yuioh',
@@ -630,7 +666,16 @@ export const sims = [
     aspirations: [],
     firstName: 'Jane',
     lastName: 'Rose',
-    gender: 'Other'
+    gender: 'Other',
+    relations: {
+      mother: '',
+      father: '',
+      spouse: ''
+    },
+    species: '',
+    status: '',
+    causeOfDeath: '',
+    adopted: false
   },
   {
     id: '968df32ftyuioh',
@@ -686,7 +731,16 @@ export const sims = [
     ],
     firstName: 'Jane',
     lastName: 'Doe',
-    gender: 'Female'
+    gender: 'Female',
+    relations: {
+      mother: '',
+      father: '',
+      spouse: ''
+    },
+    species: '',
+    status: '',
+    causeOfDeath: '',
+    adopted: false
   },
   {
     id: '968gs65a5g6yuioh',
@@ -696,7 +750,16 @@ export const sims = [
     aspirations: [],
     firstName: 'James',
     lastName: 'Gang',
-    gender: 'Male'
+    gender: 'Male',
+    relations: {
+      mother: '',
+      father: '',
+      spouse: ''
+    },
+    species: '',
+    status: '',
+    causeOfDeath: '',
+    adopted: false
   },
   {
     id: '968g369a8g7yuioh',
@@ -715,7 +778,16 @@ export const sims = [
     ],
     firstName: 'Lolli',
     lastName: 'Doe',
-    gender: 'Female'
+    gender: 'Female',
+    relations: {
+      mother: '',
+      father: '',
+      spouse: ''
+    },
+    species: '',
+    status: '',
+    causeOfDeath: '',
+    adopted: false
   },
   {
     id: '455ad6a65as4d5s4d',
@@ -725,7 +797,16 @@ export const sims = [
     aspirations: [],
     firstName: 'Amy',
     lastName: 'Doe',
-    gender: 'Female'
+    gender: 'Female',
+    relations: {
+      mother: '',
+      father: '',
+      spouse: ''
+    },
+    species: '',
+    status: '',
+    causeOfDeath: '',
+    adopted: false
   },
   {
     id: 'gdas45s3g41s',
@@ -735,7 +816,16 @@ export const sims = [
     aspirations: [],
     firstName: 'Amy',
     lastName: 'Doe',
-    gender: 'Female'
+    gender: 'Female',
+    relations: {
+      mother: '',
+      father: '',
+      spouse: ''
+    },
+    species: '',
+    status: '',
+    causeOfDeath: '',
+    adopted: false
   }
 ];
 

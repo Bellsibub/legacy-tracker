@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 // material ui components
 import {
@@ -36,7 +37,13 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const [open, setOpen] = React.useState(false);
-  const [simInfo, setSimInfo] = React.useState({ ...currentItem });
+  const [simInfo, setSimInfo] = React.useState(
+    currentItem || { relations: {} }
+  );
+
+  React.useEffect(() => {
+    setSimInfo(currentItem || { relations: {} })
+  }, [open])
 
   const toggleDialog = () => {
     setOpen(!open);
@@ -87,6 +94,9 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
   };
 
   const validateTraitSelection = (selection) => {
+    if (!simInfo.traits) {
+      return false;
+    }
     const adultTraits = simInfo.traits.filter((trait) => trait.type === 'adult');
     const toddlersTraits = simInfo.traits.filter((trait) => trait.type === 'toddler');
     return (
@@ -104,7 +114,7 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
       )}
       {buttonText && (
         <Button variant="contained" color="primary" onClick={toggleDialog}>
-          EDIT
+          {typeof buttonText === 'string' ? buttonText : 'edit'}
         </Button>
       )}
       <Dialog
@@ -123,7 +133,7 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
             <TextField
               required
               autoFocus
-              value={simInfo.firstName}
+              value={simInfo.firstName || ''}
               onChange={handleChange}
               margin="dense"
               id="fname"
@@ -133,7 +143,7 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
               fullWidth />
             <TextField
               required
-              value={simInfo.lastName}
+              value={simInfo.lastName || ''}
               onChange={handleChange}
               margin="dense"
               id="lname"
@@ -148,7 +158,7 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
                 labelId="gender"
                 id="genderSelect"
                 name="gender"
-                value={simInfo.gender}
+                value={simInfo.gender || ''}
                 onChange={handleChange}
                 input={<Input />}>
                 {data.genders.map((item) => (
@@ -165,7 +175,7 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
                   <Grid item>Naturally Born</Grid>
                   <Grid item>
                     <Switch
-                      checked={simInfo.adopted}
+                      checked={simInfo.adopted || false}
                       onChange={handleChange}
                       name="adopted" />
                   </Grid>
@@ -180,7 +190,7 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
                 labelId="species"
                 id="speciesSelect"
                 name="species"
-                value={simInfo.species}
+                value={simInfo.species || ''}
                 onChange={handleChange}
                 input={<Input />}>
                 {data.species.map((item) => (
@@ -199,18 +209,21 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
               className={classes.dialogMultiSelect}
               id="traits"
               name="traits"
-              value={simInfo.traits}
+              value={simInfo.traits || []}
               onChange={handleTraitChange}
               multiple
               disableCloseOnSelect
               filterSelectedOptions
-              getOptionSelected={(option, val) => option.id === val.id}
+              getOptionSelected={(option, value) => {
+                // Accept empty string
+                if (value === null || value.id === option.id) { return true; }
+              }}
               getOptionDisabled={(option) => validateTraitSelection(option)}
               options={traits}
               groupBy={(option) => {
                 return option.type.toUpperCase();
               }}
-              getOptionLabel={(option) => option.name}
+              getOptionLabel={(option) => (option ? option.name : null)}
               renderOption={(option, { selected }) => (
                 <>
                   <Checkbox checked={selected} />
@@ -223,7 +236,7 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
               className={classes.dialogMultiSelect}
               id="aspirations"
               name="aspirations"
-              value={simInfo.aspirations}
+              value={simInfo.aspirations || []}
               onChange={handleAspirationChange}
               getOptionSelected={(option, val) => option.id === val.id}
               multiple
@@ -249,7 +262,7 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
               className={classes.dialogMultiSelect}
               id="mother"
               name="mother"
-              value={simInfo.relations.mother}
+              value={simInfo.relations.mother || null}
               onChange={handleRelationChange}
               options={sims}
               getOptionSelected={(option, val) => option.id === val.id}
@@ -259,18 +272,18 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
               className={classes.dialogMultiSelect}
               id="father"
               name="father"
-              value={simInfo.relations.father}
+              value={simInfo.relations.father || null}
               onChange={handleRelationChange}
               options={sims}
               getOptionSelected={(option, val) => option.id === val.id}
               getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
               renderInput={(params) => <TextField {...params} label="Father" />} />
-            {/* Spouse */}
+
             <Autocomplete
               className={classes.dialogMultiSelect}
               id="spouse"
               name="spouse"
-              value={simInfo.relations.spouse}
+              value={simInfo.relations.spouse || null}
               onChange={handleRelationChange}
               options={data.sims}
               getOptionSelected={(option, val) => option.id === val.id}
@@ -286,7 +299,7 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
               className={classes.dialogMultiSelect}
               id="role"
               name="role"
-              value={simInfo.role}
+              value={simInfo.role || null}
               onChange={handleSingleSelectChange}
               options={data.roles}
               renderInput={(params) => <TextField {...params} label="Role" />} />
@@ -295,7 +308,7 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
               className={classes.dialogMultiSelect}
               id="status"
               name="status"
-              value={simInfo.status}
+              value={simInfo.status || null}
               onChange={handleSingleSelectChange}
               options={data.status}
               renderInput={(params) => <TextField {...params} label="Status" />} />
@@ -305,7 +318,7 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
               className={classes.dialogMultiSelect}
               id="causeOfDeath"
               name="causeOfDeath"
-              value={simInfo.causeOfDeath}
+              value={simInfo.causeOfDeath || null}
               onChange={handleSingleSelectChange}
               options={data.causeOfDeath}
               renderInput={(params) => <TextField {...params} label="Cause of Death" />} />

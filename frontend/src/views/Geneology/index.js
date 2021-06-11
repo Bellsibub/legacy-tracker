@@ -28,7 +28,7 @@ export default () => {
         {/* Generations */}
         <Grid item lg={8} xs={12}>
           {/* <Generations /> */}
-          <GenerationList items={sims} />
+          <GenerationList items={sims} generation={2} />
         </Grid>
       </Grid>
     </>

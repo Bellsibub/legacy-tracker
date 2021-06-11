@@ -41,7 +41,7 @@ export default (theme) => ({
     borderLeft: `1px solid ${theme.palette.divider}`,
     alignItems: 'center'
   },
-  tabelCellButton: {
+  tableCellButton: {
     alignItems: 'center',
     justifyContent: 'center',
     '& > *': {

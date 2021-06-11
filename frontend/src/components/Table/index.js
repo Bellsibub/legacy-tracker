@@ -22,6 +22,8 @@ import {
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import DialogSims from 'components/DialogSims';
 import styles from './style';
+import ChipCell from './Cells/ChipCell';
+import EditSimCell from './Cells/EditSimCell';
 
 const useStyles = makeStyles(styles);
 
@@ -35,22 +37,6 @@ const header = {
 const moreInfo = {
   causeOfDeath: 'Cause Of Death',
   relations: 'Relations'
-};
-
-const ChipCell = ({ items }) => {
-  return (
-    <Grid container direction="row" alignItems="center" spacing={1}>
-      {items.map((item) => (
-        <Grid item key={item.id}>
-          <Chip
-            label={item.name}
-            variant="outlined"
-            color="primary"
-            avatar={<Avatar src={item.image} />} />
-        </Grid>
-      ))}
-    </Grid>
-  );
 };
 
 const CollapseRow = ({ ...item }) => {
@@ -85,13 +71,7 @@ const CollapseRow = ({ ...item }) => {
             </TableCell>
           );
         })}
-        <TableCell className={classes.tabelCellButton}>
-          {/* <DialogSims
-            buttonText
-            title={`Edit ${item.firstName} ${item.lastName}`}
-            currentItem={item}
-            onConfirm={(value) => console.log(value)} /> */}
-        </TableCell>
+        <EditSimCell item={item} />
         <TableCell className={classes.expandTableCell}>
           <IconButton onClick={handleClick}>
             {open ? <ExpandLess /> : <ExpandMore />}
