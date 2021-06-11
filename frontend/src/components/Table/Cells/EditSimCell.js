@@ -1,6 +1,6 @@
 import React from 'react';
 // import _ from 'lodash';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
 // @material-ui/core components
@@ -9,7 +9,7 @@ import TableCell from '@material-ui/core/TableCell';
 import DialogSims from 'components/DialogSims';
 
 // actions
-// import { addNewSim } from 'store/legacy';
+import { editSim } from 'store/legacy';
 
 import styles from '../style';
 
@@ -17,11 +17,11 @@ const useStyles = makeStyles(styles);
 
 export default ({ item }) => {
   const classes = useStyles();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const handleEditSimConfirm = (value) => {
-  //   dispatch(addNewSim({ genNum: value.generation, ...value }));
-  // };
+  const handleEditSimConfirm = (value) => {
+    dispatch(editSim({ genNum: value.generation, ...value }));
+  };
 
   return (
     <>
@@ -29,8 +29,7 @@ export default ({ item }) => {
         <DialogSims
           buttonIcon
           title={`Edit ${item.firstName} ${item.lastName}`}
-          // onConfirm={handleEditSimConfirm}
-          onConfirm={(value) => console.log(value)}
+          onConfirm={handleEditSimConfirm}
           currentItem={item} />
       </TableCell>
     </>

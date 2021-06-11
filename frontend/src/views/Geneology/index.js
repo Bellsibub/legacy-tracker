@@ -34,6 +34,7 @@ export default () => {
         <DialogSims
           title="Create your first sim in this generation!"
           buttonText="Start new generation"
+          newGen
           onConfirm={handleNewSimConfirm} />
       </Grid>
       <Grid container spacing={3}>

@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import _ from 'lodash';
+import { useSelector } from 'react-redux';
 // material ui components
 import {
   Dialog,
@@ -32,18 +34,30 @@ import { data, traits, aspirations, sims } from 'utils/data';
 
 const useStyles = makeStyles(dialog);
 
-export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
+export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, newGen }) => {
   const classes = useStyles();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const generation = useSelector((store) => store.legacy.generation);
+  const generationOpts = useSelector((store) => {
+    const opts = _.keys(store.legacy.generations);
+    if (newGen) {
+      opts.push(generation + 1);
+    }
+    return opts;
+  });
+
+  const defaultValues = {
+    relations: {},
+    generation: newGen ? generation + 1 : generation
+  };
+
   const [open, setOpen] = React.useState(false);
-  const [simInfo, setSimInfo] = React.useState(
-    currentItem || { relations: {} }
-  );
+  const [simInfo, setSimInfo] = React.useState(currentItem || { ...defaultValues });
 
   React.useEffect(() => {
-    setSimInfo(currentItem || { relations: {} })
-  }, [open])
+    setSimInfo(currentItem || { ...defaultValues });
+  }, [open]);
 
   const toggleDialog = () => {
     setOpen(!open);
@@ -126,6 +140,23 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
         <form onSubmit={handleSubmit}>
           <DialogTitle id="dialogEditSims">{title}</DialogTitle>
           <DialogContent>
+            {/* Generation */}
+            <FormControl required className={classes.dialogFullWidth}>
+              <InputLabel id="generation">Generation</InputLabel>
+              <Select
+                labelId="generation"
+                id="generationSelect"
+                name="generation"
+                value={simInfo.generation || 1}
+                onChange={handleChange}
+                input={<Input />}>
+                {generationOpts.map((item) => (
+                  <MenuItem key={item} value={item}>
+                    <Typography variant="body1">{item}</Typography>
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
             {/* GENERAL */}
             <DialogTitle className={classes.dialogSectionTitle}>General</DialogTitle>
             <Divider className={classes.dialogDivider} />
@@ -216,7 +247,9 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm }) => {
               filterSelectedOptions
               getOptionSelected={(option, value) => {
                 // Accept empty string
-                if (value === null || value.id === option.id) { return true; }
+                if (value === null || value.id === option.id) {
+                  return true;
+                }
               }}
               getOptionDisabled={(option) => validateTraitSelection(option)}
               options={traits}
