@@ -9,11 +9,13 @@ export const legacySlice = createSlice({
   initialState: { generations, ...legacy },
   reducers: {
     addNewSim(state, { payload }) {
-      console.log(payload);
       state.generations[payload.generation].push({ ...payload.newSim });
+    },
+    addNewGeneration(state, { payload }) {
+      _.assign(state.generations, { [payload.generation]: [] })
     }
   }
 });
 
-export const { addNewSim } = legacySlice.actions;
+export const { addNewSim, addNewGeneration } = legacySlice.actions;
 export default legacySlice.reducer;
