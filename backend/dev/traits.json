@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Angelic",
+    "type": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Trait1.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Charmer",
+    "type": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Trait1.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Clingy",
+    "type": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Trait1.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Bro",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Trait1.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Insider",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Trait1.png",
+    "pack": "get_together"
+  },
+  {
+    "name": "Freegan",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Trait1.png",
+    "pack": "eco_lifestyle"
+  },
+  {
+    "name": "Green Friend",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Trait1.png",
+    "pack": "eco_lifestyle"
+  }
+]

@@ -21,7 +21,8 @@ export default [
     icon: DashboardIcon,
     component: Dashboard,
     auth: true,
-    section: 'categories'
+    section: 'categories',
+    noLegacyShow: true
   },
   {
     path: '/laws-rules',
@@ -29,7 +30,8 @@ export default [
     icon: 'LR',
     component: Laws,
     auth: true,
-    section: 'categories'
+    section: 'categories',
+    noLegacyShow: false
   },
   {
     path: '/geneology',
@@ -37,7 +39,8 @@ export default [
     icon: 'GE',
     component: Geneology,
     auth: true,
-    section: 'categories'
+    section: 'categories',
+    noLegacyShow: false
   },
   {
     path: '/skills',
@@ -45,7 +48,8 @@ export default [
     icon: 'SK',
     component: Skills,
     auth: true,
-    section: 'categories'
+    section: 'categories',
+    noLegacyShow: false
   },
   {
     path: '/aspirations',
@@ -53,7 +57,8 @@ export default [
     icon: 'GE',
     component: Aspirations,
     auth: true,
-    section: 'categories'
+    section: 'categories',
+    noLegacyShow: false
   },
   {
     path: '/settings',
@@ -61,7 +66,8 @@ export default [
     icon: 'SE',
     component: Settings,
     auth: true,
-    section: 'profile'
+    section: 'profile',
+    noLegacyShow: true
   },
   {
     path: '/auth/login',
@@ -69,6 +75,7 @@ export default [
     icon: 'LG',
     // component: Login,
     auth: false,
-    section: 'profile'
+    section: 'profile',
+    noLegacyShow: true
   }
 ];

@@ -6,18 +6,23 @@ import dotenv from 'dotenv';
 import router from './routes';
 import errorHandler from './controllers/errorController';
 import AppError from './utils/appError';
+import devSeed from './dev/seed';
 
 dotenv.config();
 
 const mongoUrl = process.env.NODE_ENV === 'production'
   ? process.env.MONGO_URL
-  : 'mongodb://localhost/legacy-tracker';
+  : 'mongodb://localhost/legacyTracker';
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
 });
 mongoose.Promise = Promise;
+
+if (process.env.RESET_DB) {
+  devSeed();
+}
 
 const port = process.env.PORT || 8080;
 const app = express();

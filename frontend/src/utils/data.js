@@ -2,6 +2,44 @@ import aspirationImage1 from 'assets/img/Aspiration1.png';
 import aspirationImage2 from 'assets/img/Aspiration2.png';
 import trait1 from 'assets/img/Trait1.png';
 
+export const startingSim = {
+  role: 'Founder',
+  generation: 1,
+  firstName: 'Bella',
+  lastName: 'Goth',
+  gender: 'Female',
+  species: {
+    value: 'Human',
+    _id: '60c5d964bae7ee3724418514'
+  }
+};
+
+export const startingLegacySettings = {
+  name: "Goth",
+  laws: {
+    gender: {
+      title: 'Matriarchy',
+      description:
+        'The Founder must be female. Only girls are eligible to be named heir unless there are no female children, at which point boys become eligible for that generation.'
+    },
+    bloodline: {
+      title: 'Traditional',
+      description:
+        'Children who are naturally born from the previous generation are eligible to be named heir. Adopted children are ineligible to be named heir unless there are no naturally born children, at which point they become eligible for that generation.'
+    },
+    heir: {
+      title: 'First Born',
+      description:
+        'The oldest, by order of joining the family, eligible living child is named heir.'
+    },
+    species: {
+      title: 'Brood',
+      description:
+        'Heirs must be carried in a pregnancy by the previous heir, regardless of the heir’s gender'
+    }
+  }
+}
+
 export const aspirations = [
   {
     id: '69tadadayiugj',
@@ -363,6 +401,391 @@ export const legacy = {
     'You may invite ghost sims back into your family but they cannot earn money or points',
     'Ghost Sims can still be memorialized but only by Sims that knew them in life',
     'An invited ghost who is no longer welcome may be moved out just like unwanted family members'
+  ],
+  score: {
+    aspirations: {
+      total: 0,
+      amount: 0,
+      percentage: 0
+    },
+    skills: {
+      total: 0,
+      amount: 0,
+      percentage: 0
+    }
+  },
+  tasks: [
+    {
+      id: '69tadadayiugj',
+      parent: 'aspirations',
+      name: 'Friend of the Animals',
+      pack: 'cats_and_dogs',
+      completed: 0
+    }
+  ],
+  sims: [
+    {
+      id: '968yui3troh',
+      role: 'Founder',
+      generation: 1,
+      traits: [
+        {
+          id: '35refdc',
+          name: 'Clingy',
+          type: 'toddler',
+          image: trait1,
+          pack: 'base_game'
+        },
+        {
+          id: '5asd4',
+          name: 'Bro',
+          type: 'adult',
+          image: trait1,
+          pack: 'base_game'
+        },
+        {
+          id: 'sjakdgh982hdjhja',
+          name: 'Insider',
+          type: 'adult',
+          image: trait1,
+          pack: 'get_together'
+        },
+        {
+          id: 'adjskf9pufajskl',
+          name: 'Freegan',
+          type: 'adult',
+          image: trait1,
+          pack: 'eco_lifestyle'
+        }
+      ],
+      aspirations: [
+        {
+          id: '69tadadayiugj',
+          name: 'Friend of the Animals',
+          type: 'adult',
+          image: aspirationImage1,
+          pack: 'cats_and_dogs',
+          completed: 0
+        },
+        {
+          id: '69tyi4tgugj',
+          name: 'Bodybuilder',
+          type: 'adult',
+          image: aspirationImage2,
+          pack: 'base_game',
+          completed: 1
+        },
+        {
+          id: '69tygfsdgiugj',
+          name: 'Painter Extraordinaire',
+          type: 'adult',
+          image: aspirationImage1,
+          pack: 'base_game',
+          completed: 0
+        }
+      ],
+      firstName: 'John',
+      lastName: 'Doe',
+      gender: 'Male',
+      relations: {
+        mother: '',
+        father: '',
+        spouse: ''
+      },
+      species: '',
+      status: '',
+      causeOfDeath: '',
+      adopted: false
+    },
+    {
+      id: '968y47f56a4uioh',
+      role: 'Spouse',
+      generation: 1,
+      traits: [],
+      aspirations: [],
+      firstName: 'Jane',
+      lastName: 'Doe',
+      gender: 'Female',
+      relations: {
+        mother: '',
+        father: '',
+        spouse: ''
+      },
+      species: '',
+      status: '',
+      causeOfDeath: '',
+      adopted: false
+    },
+    {
+      id: '94524r668yuioh',
+      role: 'Heir',
+      generation: 1,
+      traits: [],
+      aspirations: [],
+      firstName: 'Jane',
+      lastName: 'Rose',
+      gender: 'Other',
+      relations: {
+        mother: '',
+        father: '',
+        spouse: ''
+      },
+      species: '',
+      status: '',
+      causeOfDeath: '',
+      adopted: false
+    },
+    {
+      id: '968df32ftyuioh',
+      role: 'Ruler',
+      generation: 2,
+      traits: [
+        {
+          id: '35refdc',
+          name: 'Clingy',
+          type: 'toddler',
+          image: trait1,
+          pack: 'base_game'
+        },
+        {
+          id: '5asd4',
+          name: 'Bro',
+          type: 'adult',
+          image: trait1,
+          pack: 'base_game'
+        },
+        {
+          id: 'sjakdgh982hdjhja',
+          name: 'Insider',
+          type: 'adult',
+          image: trait1,
+          pack: 'get_together'
+        },
+        {
+          id: 'adjskf9pufajskl',
+          name: 'Freegan',
+          type: 'adult',
+          image: trait1,
+          pack: 'eco_lifestyle'
+        }
+      ],
+      aspirations: [
+        {
+          id: '69j4u4kityiugj',
+          name: 'Rambunctious Scamp',
+          type: 'child',
+          image: aspirationImage1,
+          pack: 'base_game',
+          completed: 0
+        },
+        {
+          id: '69354y436tyiugj',
+          name: 'Whiz Kid',
+          type: 'child',
+          image: aspirationImage1,
+          pack: 'base_game',
+          completed: 0
+        }
+      ],
+      firstName: 'Jane',
+      lastName: 'Doe',
+      gender: 'Female',
+      relations: {
+        mother: '',
+        father: '',
+        spouse: ''
+      },
+      species: '',
+      status: '',
+      causeOfDeath: '',
+      adopted: false
+    },
+    {
+      id: '968gs65a5g6yuioh',
+      role: 'Spouse',
+      generation: 2,
+      traits: [],
+      aspirations: [],
+      firstName: 'James',
+      lastName: 'Gang',
+      gender: 'Male',
+      relations: {
+        mother: '',
+        father: '',
+        spouse: ''
+      },
+      species: '',
+      status: '',
+      causeOfDeath: '',
+      adopted: false
+    },
+    {
+      id: '968g369a8g7yuioh',
+      role: 'Potential Heir',
+      generation: 2,
+      traits: [],
+      aspirations: [
+        {
+          id: '69t4a5g6r46yiugj',
+          name: 'Jungle Explorer',
+          type: 'adult',
+          image: aspirationImage2,
+          pack: 'jungle_adventure',
+          completed: 0
+        }
+      ],
+      firstName: 'Lolli',
+      lastName: 'Doe',
+      gender: 'Female',
+      relations: {
+        mother: '',
+        father: '',
+        spouse: ''
+      },
+      species: '',
+      status: '',
+      causeOfDeath: '',
+      adopted: false
+    },
+    {
+      id: '455ad6a65as4d5s4d',
+      role: 'Potential Heir',
+      generation: 2,
+      traits: [],
+      aspirations: [],
+      firstName: 'Amy',
+      lastName: 'Doe',
+      gender: 'Female',
+      relations: {
+        mother: '',
+        father: '',
+        spouse: ''
+      },
+      species: '',
+      status: '',
+      causeOfDeath: '',
+      adopted: false
+    },
+    {
+      id: 'gdas45s3g41s',
+      role: 'Non-eligible child',
+      generation: 2,
+      traits: [],
+      aspirations: [],
+      firstName: 'Amy',
+      lastName: 'Doe',
+      gender: 'Female',
+      relations: {
+        mother: '',
+        father: '',
+        spouse: ''
+      },
+      species: '',
+      status: '',
+      causeOfDeath: '',
+      adopted: false
+    }
+  ],
+  aspirations: [
+    {
+      id: '69tadadayiugj',
+      parent: 'aspirations',
+      name: 'Friend of the Animals',
+      type: 'adult',
+      image: aspirationImage1,
+      pack: 'cats_and_dogs',
+      completed: 0
+    },
+    {
+      id: '69tyi4tgugj',
+      parent: 'aspirations',
+      name: 'Bodybuilder',
+      type: 'adult',
+      image: aspirationImage2,
+      pack: 'base_game',
+      completed: 1
+    },
+    {
+      id: '69tygfsdgiugj',
+      parent: 'aspirations',
+      name: 'Painter Extraordinaire',
+      type: 'adult',
+      image: aspirationImage1,
+      pack: 'base_game',
+      completed: 0
+    },
+    {
+      id: '69ty234riugj',
+      parent: 'aspirations',
+      name: 'Musical Genius',
+      type: 'adult',
+      image: aspirationImage1,
+      pack: 'base_game',
+      completed: 0
+    },
+    {
+      id: '694adfgtyiugj',
+      parent: 'aspirations',
+      name: 'Bestselling Author',
+      type: 'adult',
+      image: aspirationImage2,
+      pack: 'base_game',
+      completed: 0
+    },
+    {
+      id: '69t4a5g6r46yiugj',
+      parent: 'aspirations',
+      name: 'Jungle Explorer',
+      type: 'adult',
+      image: aspirationImage2,
+      pack: 'jungle_adventure',
+      completed: 0
+    },
+    {
+      id: '69ty98jb32lkyiugj',
+      parent: 'aspirations',
+      name: 'Archaeology Scholar',
+      type: 'adult',
+      image: aspirationImage2,
+      pack: 'jungle_adventure',
+      completed: 0
+    },
+    {
+      id: '69tyiua7df9834gj',
+      parent: 'aspirations',
+      name: 'Artistic Prodigy',
+      type: 'child',
+      image: aspirationImage1,
+      pack: 'base_game',
+      completed: 0
+    },
+    {
+      id: '69j4u4kityiugj',
+      parent: 'aspirations',
+      name: 'Rambunctious Scamp',
+      type: 'child',
+      image: aspirationImage1,
+      pack: 'base_game',
+      completed: 0
+    },
+    {
+      id: '69ty546345yiugj',
+      parent: 'aspirations',
+      name: 'Social Butterfly',
+      type: 'child',
+      image: aspirationImage1,
+      pack: 'base_game',
+      completed: 0
+    },
+    {
+      id: '69354y436tyiugj',
+      parent: 'aspirations',
+      name: 'Whiz Kid',
+      type: 'child',
+      image: aspirationImage1,
+      pack: 'base_game',
+      completed: 0
+    }
   ]
 };
 

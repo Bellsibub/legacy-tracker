@@ -1,0 +1,110 @@
+{
+  "gender": [
+    {
+      "title": "Matriarchy",
+      "description": "The Founder must be female. Only girls are eligible to be named heir unless there are no female children, at which point boys become eligible for that generation."
+    },
+    {
+      "title": "Strict Matriarchy",
+      "description": "The Founder must be female. Only girls are eligible to be named heir. Male children cannot, under any circumstance, ever be the heir to the next generation."
+    },
+    {
+      "title": "Patriarchy",
+      "description": "The Founder must be male. Only boys are eligible to be named heir unless there are no male children, at which point girls become eligible for that generation."
+    },
+    {
+      "title": "Strict Patriarchy",
+      "description": "The Founder must be male. Only boys are eligible to be named heir. Female children cannot, under any circumstance, ever be the heir to the next generation."
+    },
+    {
+      "title": "Equality",
+      "description": "The Founder may be of either gender. Both boys and girls are eligible for the title of heir."
+    },
+    {
+      "title": "Strict Equality",
+      "description": "The founder may be of either gender. However, only children of the opposite gender to the founder are eligible to be named heir. This repeats itself for the next generation (the next heir must be a different gender than the previous heir) so that each generation will have alternating-genders as heirs."
+    }
+  ],
+  "bloodline": [
+    {
+      "title": "Strict Traditional",
+      "description": "To be eligible to be named heir, a child must be naturally born from their previous-generation parents and be able to trace an unbroken bloodline back to the founder. Adopted children may never be named heir."
+    },
+    {
+      "title": "Traditional",
+      "description": "Children who are naturally born from the previous generation are eligible to be named heir. Adopted children are ineligible to be named heir unless there are no naturally born children, at which point they become eligible for that generation."
+    },
+    {
+      "title": "Modern",
+      "description": "Both Naturally born and adopted children are eligible to be named heir."
+    },
+    {
+      "title": "Foster",
+      "description": "Children who are adopted are eligible to be named heir. Naturally born children are not eligible to be named heir unless there are no adopted children, at which point they become eligible for that generation."
+    },
+    {
+      "title": "Strict Foster",
+      "description": "Only Children who are adopted are eligible for the title of heir. Naturally born children may never be heir."
+    }
+  ],
+  "heir": [
+    {
+      "title": "First Born",
+      "description": "The oldest, by order of joining the family, eligible living child is named heir."
+    },
+    {
+      "title": "Last Born",
+      "description": "The youngest, by order of joining the family, eligible living child is named heir."
+    },
+    {
+      "title": "Living Will",
+      "description": "The eligible child with the highest friendly relationship score with their previous-generation’s parent will be named heir."
+    },
+    {
+      "title": "Merit",
+      "description": "The child with the most fully completed aspirations will be named heir. If there is a tie, the child with the highest level in a single skill will become heir from among the children who are tied."
+    },
+    {
+      "title": "Strength",
+      "description": "The first born eligible child becomes heir by default… but the tile can be forcefully taken from them if an eligible sibling beats them in a fight. That sibling may have their title taken, (or taken back) if they lose a fight to another eligible sibling."
+    },
+    {
+      "title": "Random",
+      "description": "The title of heir is randomly selected from the pool of all eligible children. Every time the eligible pool changes size, The heir must be re-rolled using the new pool."
+    },
+    {
+      "title": "Exemplar",
+      "description": "At the beginning of the challenge, name a single trait. This trait must be one of your founder’s three traits.. Any eligible heir that has this trait will gain the title of heir. If a single generation has no children with this trait follow the First Born rule. If more than one child has the Exemplar trait then the oldest child WITH the trait will be the heir."
+    },
+    {
+      "title": "Democracy",
+      "description": "This rule may be used if you are displaying your Legacy Challenge in some public way. Either via Let’s Play, Livestream, blog or other format where people can leave comment. The heir is chosen by your viewers/readers from among the pool of eligible heirs."
+    },
+    {
+      "title": "Magical Bloodline",
+      "description": "Choose the heir by whoever has the strongest magical bloodline trait. If there is no magical bloodline trait (ie in the earlier generations) then the law defaults to first born until magic is introduced to the family. If multiple potential heirs have the same level of magical trait, choose the oldest one."
+    },
+    {
+      "title": "Magical strength",
+      "description": "Similar to the Strength law above, this one requires two or more potential heirs to have a magical duel. Whoever wins the duel, is the new heir."
+    }
+  ],
+  "species": [
+    {
+      "title": "Xenoarchy",
+      "description": "Heirs must alternate between human and alien"
+    },
+    {
+      "title": "Xenophobic",
+      "description": "Heirs cannot be a different species from the founder"
+    },
+    {
+      "title": "Brood",
+      "description": "Heirs must be carried in a pregnancy by the previous heir, regardless of the heir’s gender"
+    },
+    {
+      "title": "Tolerant",
+      "description": "The species of the child has no impact on their eligibility for heir status"
+    }
+  ]
+}

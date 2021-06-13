@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -29,8 +30,12 @@ const DrawerWrapper = ({ className, header, links, profile }) => {
 };
 const Links = ({ routes, section }) => {
   const classes = useStyles();
+  const legacy = useSelector((store) => store.legacy)
   routes = routes.filter((r) => r.section === section);
   return routes.map((route) => {
+    if (!legacy.generation && !route.noLegacyShow) {
+      return
+    }
     return (
       <ListItem key={route.name} className={classes.item}>
         <NavLink
@@ -57,7 +62,7 @@ export default ({ logo, routes, open, handleDrawerToggle }) => {
 
   const drawerHeader = (
     <div className={classes.logo}>
-      <Link to="/" className={classes.logoNormal}>
+      <Link to="/dashboard" className={classes.logoNormal}>
         <img src={logo} alt="logo" className={classes.img} />
       </Link>
     </div>

@@ -19,8 +19,8 @@ export default ({ item }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const handleEditSimConfirm = (value) => {
-    dispatch(editSim({ genNum: value.generation, ...value }));
+  const handleEditSimConfirm = (newSim) => {
+    dispatch(editSim({ ...newSim }));
   };
 
   return (

@@ -1,0 +1,127 @@
+/* eslint-disable no-underscore-dangle */
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { setLegacy } from 'store/session';
+import { API_URL } from 'utils/apiConfig';
+
+export const createLegacy = createAsyncThunk(
+  'legacy/createLegacy',
+  async (legacyData, thunkAPI) => {
+    try {
+      const response = await fetch(API_URL('legacy'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...legacyData })
+      });
+      const data = await response.json();
+      console.log('Created LEGACY:', data);
+      if (response.status === 201) {
+        thunkAPI.dispatch(setLegacy(data._id));
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const initLegacy = createAsyncThunk(
+  'legacy/initLegacy',
+  async ({ founder, legacy }, thunkAPI) => {
+    try {
+      // 1. create a new sim to be the ruler
+      const simResponse = await fetch(API_URL('sim'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...founder })
+      });
+      const newSim = await simResponse.json();
+      console.log('new SIM', newSim);
+      // 2. call the next api call to create a new legacy with the newly created sim
+      if (simResponse.status === 201) {
+        thunkAPI.dispatch(createLegacy({ ...legacy, ruler: newSim._id }));
+        return newSim;
+      } else {
+        return thunkAPI.rejectWithValue(newSim);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const getLegacy = createAsyncThunk(
+  'legacy/getLegacy',
+  async (legacyID, thunkAPI) => {
+    try {
+      const response = await fetch(API_URL(`legacy/${legacyID}`), {
+        method: 'GET'
+      });
+      const data = await response.json();
+      console.log('fetched LEGACY: ', data);
+      if (response.status === 200) {
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const updateSim = createAsyncThunk(
+  'legacy/updateSim',
+  async ({ simData, legacyID }, thunkAPI) => {
+    try {
+      // 1. create a new sim to be the ruler
+      const simResponse = await fetch(API_URL(`sim/${simData._id}`), {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...simData })
+      });
+      const updatedSim = await simResponse.json();
+      console.log('updated SIM', updatedSim);
+      // 2. call the next api call to fetch the full legacy object to update the state
+      if (simResponse.status === 201) {
+        thunkAPI.dispatch(getLegacy(legacyID));
+        return updatedSim;
+      } else {
+        return thunkAPI.rejectWithValue(updatedSim);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const updateLegacy = createAsyncThunk(
+  'legacy/updateLegacy',
+  async ({ newData, legacyID }, thunkAPI) => {
+    console.log(newData);
+    try {
+      // 1. create a new sim to be the ruler
+      const legacyResponse = await fetch(API_URL(`legacy/${legacyID}`), {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...newData })
+      });
+      const data = await legacyResponse.json();
+      console.log('updated LEGACY', data);
+      // 2. call the next api call to fetch the full legacy object to update the state
+      if (legacyResponse.status === 201) {
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);

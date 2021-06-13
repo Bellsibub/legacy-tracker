@@ -68,7 +68,7 @@ export default ({
               value={value}
               onChange={handleMultiSelectChange}
               options={items}
-              getOptionSelected={(option, val) => option.id === val.id}
+              getOptionSelected={(option, val) => option[keyValue] === val[keyValue]}
               getOptionLabel={(option) => option[keyValue]}
               renderInput={(params) => <TextField {...params} />} />
           )}

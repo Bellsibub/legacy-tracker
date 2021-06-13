@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -7,6 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import store from 'store';
 import HomeLayout from 'pages/Home';
+import NoMatch from 'pages/nomatch';
 
 import { muitheme } from 'assets/jss/theme';
 
@@ -17,6 +19,7 @@ ReactDOM.render(
         <CssBaseline />
         <Switch>
           <Route path="/" component={HomeLayout} />
+          {/* <Route component={NoMatch} /> */}
         </Switch>
       </ThemeProvider>
     </BrowserRouter>

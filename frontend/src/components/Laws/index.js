@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import _ from 'lodash';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 // material ui
 import {
   Typography,
@@ -21,15 +22,18 @@ import Card from 'components/Card';
 import CardHeader from 'components/CardHeader';
 import CardBody from 'components/CardBody';
 import DialogEdit from 'components/DialogEdit';
+import DialogSelectLaws from 'components/DialogSelectLaws';
 
-import { laws as lawsData } from 'utils/data'
+// services
+import { updateLegacy } from 'store/legacy/services';
 
 import styling from './style';
 
 const useStyles = makeStyles(styling);
 
-const LawItemCollapse = ({ category, ...law }) => {
+const LawItemCollapse = ({ category, onConfirm, ...law }) => {
   const classes = useStyles();
+  const { laws } = useSelector((store) => store.session.data);
   const [open, setOpen] = React.useState(false);
 
   const handleExpandToggle = () => {
@@ -45,10 +49,10 @@ const LawItemCollapse = ({ category, ...law }) => {
           <DialogEdit
             select
             title="Select new law"
-            items={lawsData[category]}
+            items={laws[category]}
             currentItem={law}
             keyValue="title"
-            onConfirm={(value) => console.log(value)}
+            onConfirm={onConfirm}
             edge="end" />
         </ListItemSecondaryAction>
       </ListItem>
@@ -66,21 +70,48 @@ const LawItemCollapse = ({ category, ...law }) => {
 };
 
 export default () => {
-  const laws = useSelector((store) => store.legacy.laws);
+  const dispatch = useDispatch();
+  const { laws, _id } = useSelector((store) => store.legacy);
+
+  const handleSelectedLaw = (value, key) => {
+    dispatch(updateLegacy({ newData: { laws: { [key]: value } }, legacyID: _id }));
+  };
+  const handleNewLaws = (value) => {
+    dispatch(updateLegacy({ newData: { laws: value }, legacyID: _id }))
+  }
+
   return (
     <Card>
       <CardHeader color="accent" icon={Gavel}>
         <Typography variant="subtitle2">LAWS</Typography>
       </CardHeader>
-      <CardBody>
-        {_.map(laws, (law, key) => (
-          <List
-            subheader={<ListSubheader component="div">{`${key.toUpperCase()}`}</ListSubheader>}
-            key={`laws-${key}`}>
-            <LawItemCollapse {...law} category={key} />
-          </List>
-        ))}
-      </CardBody>
+      {laws ? (
+        <CardBody>
+          {_.map(laws, (law, key) => (
+            <List
+              subheader={
+                <ListSubheader component="div">{`${key.toUpperCase()}`}</ListSubheader>
+              }
+              key={`laws-${key}`}>
+              <LawItemCollapse
+                {...law}
+                category={key}
+                onConfirm={(value) => handleSelectedLaw(value, key)} />
+            </List>
+          ))}
+        </CardBody>
+      ) : (
+        <CardBody>
+          <DialogSelectLaws
+            title="Select new law"
+            // items={laws[category]}
+            // currentItem={law}
+            // keyValue="title"
+            buttonText="Select new law"
+            onConfirm={handleNewLaws}
+            edge="end" />
+        </CardBody>
+      )}
     </Card>
   );
 };

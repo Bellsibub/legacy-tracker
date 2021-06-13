@@ -24,14 +24,14 @@ const statsInfo = {
   percentage: { title: 'Percentage', accent: '%', icon: Percent }
 };
 
-export default ({ value, type }) => {
+export default ({ value, type, title }) => {
   // const classes = useStyles();
   const data = statsInfo[type];
 
   return (
     <Card>
       <CardHeader color="accent" icon={data.icon}>
-        <Typography variant="subtitle2">{data.title}</Typography>
+        <Typography variant="subtitle2">{title || data.title}</Typography>
         <Typography variant="h2">
           {value} <small>{data.accent}</small>
         </Typography>

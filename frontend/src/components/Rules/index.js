@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import _ from 'lodash';
 import { useSelector } from 'react-redux';
@@ -32,7 +33,7 @@ const RuleItem = ({ rule }) => {
   return (
     <>
       <ListItem>
-        <ListItemText primary={rule} />
+        <ListItemText primary={rule.value} />
         <ListItemSecondaryAction>
           <DialogEdit
             text
@@ -62,8 +63,8 @@ export default () => {
         <Typography variant="subtitle2">RULES</Typography>
       </CardHeader>
       <CardBody>
-        {_.map(rules, (rule, key) => (
-          <List key={key}>
+        {_.map(rules, (rule) => (
+          <List key={rule._id}>
             <RuleItem rule={rule} />
           </List>
         ))}

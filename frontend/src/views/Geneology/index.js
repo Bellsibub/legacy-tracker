@@ -3,23 +3,31 @@ import React from 'react';
 import _ from 'lodash';
 import { useSelector, useDispatch, batch } from 'react-redux';
 import { Fab, Grid, Typography, Box } from '@material-ui/core';
+
+import { Plus } from 'mdi-material-ui';
+
 import Ruler from 'components/Ruler';
 import Heir from 'components/Heir';
-
-// import { legacy, sims } from 'utils/data'
 import Table from 'components/Table';
 import GenerationList from 'components/GenerationList';
-import { Plus } from 'mdi-material-ui';
 import DialogSims from 'components/DialogSims';
-
+// services
+import { getLegacy } from 'store/legacy/services'
 // actions
 import { addNewSim, addNewGeneration } from 'store/legacy';
 
 export default () => {
   const dispatch = useDispatch();
-  const { ruler, heir, potentialHeirs, generations } = useSelector(
-    (store) => store.legacy
+  const { legacyID } = useSelector((store) => store.session)
+  const generations = useSelector(
+    (store) => _.groupBy(store.legacy.sims, 'generation')
   );
+
+  // React.useEffect(() => {
+  //   if (legacyID && !generations) {
+  //     dispatch(getLegacy(legacyID));
+  //   }
+  // }, []);
 
   const handleNewSimConfirm = (newSim) => {
     const nextGen = _.size(generations) + 1
@@ -27,6 +35,7 @@ export default () => {
     dispatch(addNewGeneration({ generation: nextGen }));
     dispatch(addNewSim({ generation: nextGen, newSim }));
   };
+
   return (
     <>
       {/* Add new gen button */}
@@ -40,11 +49,11 @@ export default () => {
       <Grid container spacing={3}>
         {/* Ruler */}
         <Grid item lg={6} md={9} sm={9} xs={12}>
-          <Ruler item={ruler} />
+          <Ruler />
         </Grid>
         {/* Heir */}
         <Grid item lg={6} md={9} sm={9} xs={12}>
-          <Heir heir={heir} potentialHeirs={potentialHeirs} />
+          <Heir />
         </Grid>
       </Grid>
       <Grid container spacing={3}>

@@ -1,7 +1,8 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import _ from 'lodash';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 // material ui components
 import {
   Dialog,
@@ -31,16 +32,29 @@ import { Edit } from '@material-ui/icons';
 import dialog from 'assets/jss/dialog';
 
 import { data, traits, aspirations, sims } from 'utils/data';
+import Aspirations from './Inputs/SelectAspirations';
+import Species from './Inputs/SelectSpecies';
+import Traits from './Inputs/SelectTraits';
+import CauseOfDeath from './Inputs/SelectCod';
+import Status from './Inputs/SelectStatus';
+import Roles from './Inputs/SelectRole';
+import Relations from './Inputs/SelectRelations';
+import TextInput from './Inputs/TextInput';
+import SimpleSelect from './Inputs/SimpleSelect';
+import SwitchToggle from './Inputs/SwitchToggle';
 
 const useStyles = makeStyles(dialog);
 
 export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, newGen }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const dispatch = useDispatch();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const sessionData = useSelector((store) => store.session.data);
   const generation = useSelector((store) => store.legacy.generation);
+  const generations = useSelector((store) => _.groupBy(store.legacy.sims, 'generation'));
   const generationOpts = useSelector((store) => {
-    const opts = _.keys(store.legacy.generations);
+    const opts = _.keys(generations);
     if (newGen) {
       opts.push(generation + 1);
     }
@@ -107,18 +121,6 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, newGen 
     }));
   };
 
-  const validateTraitSelection = (selection) => {
-    if (!simInfo.traits) {
-      return false;
-    }
-    const adultTraits = simInfo.traits.filter((trait) => trait.type === 'adult');
-    const toddlersTraits = simInfo.traits.filter((trait) => trait.type === 'toddler');
-    return (
-      (adultTraits.length >= 3 && selection.type === 'adult')
-      || (toddlersTraits.length >= 1 && selection.type === 'toddler')
-    );
-  };
-
   return (
     <>
       {buttonIcon && (
@@ -161,61 +163,23 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, newGen 
             <DialogTitle className={classes.dialogSectionTitle}>General</DialogTitle>
             <Divider className={classes.dialogDivider} />
             {/* name */}
-            <TextField
-              required
-              autoFocus
-              value={simInfo.firstName || ''}
+            <TextInput
+              value={simInfo.firstName}
               onChange={handleChange}
-              margin="dense"
-              id="fname"
-              name="firstName"
               label="First Name"
-              type="text"
-              fullWidth />
-            <TextField
-              required
-              value={simInfo.lastName || ''}
+              name="firstName" />
+            <TextInput
+              value={simInfo.lastName}
               onChange={handleChange}
-              margin="dense"
-              id="lname"
-              name="lastName"
               label="Last Name"
-              type="text"
-              fullWidth />
+              name="lastName" />
             {/* Gender */}
-            <FormControl required className={classes.dialogFullWidth}>
-              <InputLabel id="gender">Gender</InputLabel>
-              <Select
-                labelId="gender"
-                id="genderSelect"
-                name="gender"
-                value={simInfo.gender || ''}
-                onChange={handleChange}
-                input={<Input />}>
-                {data.genders.map((item) => (
-                  <MenuItem key={item} value={item}>
-                    <Typography variant="body1">{item}</Typography>
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <SimpleSelect value={simInfo.gender} onChange={handleChange} label="Gender" />
             {/* is adopted */}
-            <FormControl className={classes.dialogFullWidth}>
-              <Typography component="div">
-                <Grid component="label" container alignItems="center" spacing={1}>
-                  <Grid item>Naturally Born</Grid>
-                  <Grid item>
-                    <Switch
-                      checked={simInfo.adopted || false}
-                      onChange={handleChange}
-                      name="adopted" />
-                  </Grid>
-                  <Grid item>Adopted</Grid>
-                </Grid>
-              </Typography>
-            </FormControl>
+            <SwitchToggle value={simInfo.adopted} onChange={handleChange} label="Adopted" />
             {/* species */}
-            <FormControl required className={classes.dialogFullWidth}>
+            <Species value={simInfo.species} onChange={handleSingleSelectChange} />
+            {/* <FormControl required className={classes.dialogFullWidth}>
               <InputLabel id="species">Species</InputLabel>
               <Select
                 labelId="species"
@@ -230,131 +194,45 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, newGen 
                   </MenuItem>
                 ))}
               </Select>
-            </FormControl>
-            {/* TRAITS */}
+            </FormControl> */}
+            {/* TRAITS and ASPIRATIONS */}
             <DialogTitle className={classes.dialogSectionTitle}>
               Traits and Aspirations
             </DialogTitle>
             <Divider className={classes.dialogDivider} />
-            <Autocomplete
-              className={classes.dialogMultiSelect}
-              id="traits"
-              name="traits"
-              value={simInfo.traits || []}
-              onChange={handleTraitChange}
-              multiple
-              disableCloseOnSelect
-              filterSelectedOptions
-              getOptionSelected={(option, value) => {
-                // Accept empty string
-                if (value === null || value.id === option.id) {
-                  return true;
-                }
-              }}
-              getOptionDisabled={(option) => validateTraitSelection(option)}
-              options={traits}
-              groupBy={(option) => {
-                return option.type.toUpperCase();
-              }}
-              getOptionLabel={(option) => (option ? option.name : null)}
-              renderOption={(option, { selected }) => (
-                <>
-                  <Checkbox checked={selected} />
-                  {option.name}
-                </>
-              )}
-              renderInput={(params) => <TextField {...params} label="Traits" />} />
-            {/* ASPIRATIONS (multiselect) */}
-            <Autocomplete
-              className={classes.dialogMultiSelect}
-              id="aspirations"
-              name="aspirations"
-              value={simInfo.aspirations || []}
-              onChange={handleAspirationChange}
-              getOptionSelected={(option, val) => option.id === val.id}
-              multiple
-              disableCloseOnSelect
-              filterSelectedOptions
-              options={aspirations}
-              groupBy={(option) => {
-                return option.type.toUpperCase();
-              }}
-              getOptionLabel={(option) => option.name}
-              renderOption={(option, { selected }) => (
-                <>
-                  <Checkbox checked={selected} />
-                  {option.name}
-                </>
-              )}
-              renderInput={(params) => <TextField {...params} label="Aspirations" />} />
+            <Traits value={simInfo.traits} onChange={handleTraitChange} />
+            <Aspirations value={simInfo.aspirations} onChange={handleAspirationChange} />
             {/* RELATIONS */}
             <DialogTitle className={classes.dialogSectionTitle}>Relations</DialogTitle>
             <Divider className={classes.dialogDivider} />
-            {/* Mother and Father */}
-            <Autocomplete
-              className={classes.dialogMultiSelect}
-              id="mother"
-              name="mother"
-              value={simInfo.relations.mother || null}
+            <Relations
+              value={simInfo.relations.mother}
+              label="Mother"
               onChange={handleRelationChange}
-              options={sims}
-              getOptionSelected={(option, val) => option.id === val.id}
-              getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
-              renderInput={(params) => <TextField {...params} label="Mother" />} />
-            <Autocomplete
-              className={classes.dialogMultiSelect}
-              id="father"
-              name="father"
-              value={simInfo.relations.father || null}
+              currentSimID={simInfo._id} />
+            <Relations
+              value={simInfo.relations.father}
+              label="Father"
               onChange={handleRelationChange}
-              options={sims}
-              getOptionSelected={(option, val) => option.id === val.id}
-              getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
-              renderInput={(params) => <TextField {...params} label="Father" />} />
-
-            <Autocomplete
-              className={classes.dialogMultiSelect}
-              id="spouse"
-              name="spouse"
-              value={simInfo.relations.spouse || null}
+              currentSimID={simInfo._id} />
+            <Relations
+              value={simInfo.relations.spouse}
+              label="Spouse"
               onChange={handleRelationChange}
-              options={data.sims}
-              getOptionSelected={(option, val) => option.id === val.id}
-              getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
-              renderInput={(params) => <TextField {...params} label="Spouse" />} />
+              currentSimID={simInfo._id} />
             {/* LEGACY STATUS */}
             <DialogTitle className={classes.dialogSectionTitle}>
               Legacy status
             </DialogTitle>
             <Divider className={classes.dialogDivider} />
             {/* Role */}
-            <Autocomplete
-              className={classes.dialogMultiSelect}
-              id="role"
-              name="role"
-              value={simInfo.role || null}
-              onChange={handleSingleSelectChange}
-              options={data.roles}
-              renderInput={(params) => <TextField {...params} label="Role" />} />
+            <Roles value={simInfo.role} onChange={handleSingleSelectChange} />
             {/* Status */}
-            <Autocomplete
-              className={classes.dialogMultiSelect}
-              id="status"
-              name="status"
-              value={simInfo.status || null}
-              onChange={handleSingleSelectChange}
-              options={data.status}
-              renderInput={(params) => <TextField {...params} label="Status" />} />
-
+            <Status value={simInfo.status} onChange={handleSingleSelectChange} />
             {/* Cause of Death */}
-            <Autocomplete
-              className={classes.dialogMultiSelect}
-              id="causeOfDeath"
-              name="causeOfDeath"
-              value={simInfo.causeOfDeath || null}
-              onChange={handleSingleSelectChange}
-              options={data.causeOfDeath}
-              renderInput={(params) => <TextField {...params} label="Cause of Death" />} />
+            <CauseOfDeath
+              value={simInfo.causeOfDeath}
+              onChange={handleSingleSelectChange} />
           </DialogContent>
           <DialogActions>
             <Button onClick={toggleDialog}>Cancel</Button>

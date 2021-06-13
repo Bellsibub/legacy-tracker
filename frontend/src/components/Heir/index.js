@@ -1,4 +1,6 @@
 import React from 'react';
+import _ from 'lodash';
+import { useSelector, useDispatch } from 'react-redux';
 // import { makeStyles } from '@material-ui/core/styles';
 // material ui
 import {
@@ -17,6 +19,7 @@ import CardHeader from 'components/CardHeader';
 import CardBody from 'components/CardBody';
 import { ArrowUpCircleOutline, Crown } from 'mdi-material-ui';
 
+import { updateHeir } from 'store/legacy';
 // styles
 // import styling from './style';
 
@@ -41,11 +44,12 @@ const PotentialHeir = ({ item, onClick }) => {
   );
 };
 
-export default ({ currentHeir, potentialHeirs }) => {
-  // const classes = useStyles();
-  const [heir, setHeir] = React.useState(currentHeir);
-  const handleHeirChange = (value) => {
-    setHeir(value);
+export default () => {
+  const dispatch = useDispatch();
+  const { heir, potentialHeirs } = useSelector((store) => store.legacy);
+
+  const handleHeirChange = (newHeir) => {
+    dispatch(updateHeir({ newHeir }))
   };
 
   return (
@@ -68,7 +72,7 @@ export default ({ currentHeir, potentialHeirs }) => {
 
             <List>
               <Divider variant="middle" />
-              {potentialHeirs.map((item) => (
+              {_.map(potentialHeirs, (item) => (
                 <PotentialHeir key={item.id} item={item} onClick={handleHeirChange} />
               ))}
             </List>

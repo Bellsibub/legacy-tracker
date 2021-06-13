@@ -1,5 +1,6 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 // material ui
 import { Divider, Chip, Avatar, Grid, Typography } from '@material-ui/core';
 // import { makeStyles } from '@material-ui/core/styles';
@@ -11,6 +12,10 @@ import CardBody from 'components/CardBody';
 import CardFooter from 'components/CardFooter';
 import DialogSims from 'components/DialogSims';
 import { Crown } from 'mdi-material-ui';
+
+// import { editSim, setRuler } from 'store/legacy';
+// services
+import { updateSim } from 'store/legacy/services';
 
 // import styling from './style';
 
@@ -29,7 +34,7 @@ const ChipSection = ({ items, title }) => {
           alignItems="center"
           spacing={1}>
           {items.map((item) => (
-            <Grid item key={item.id}>
+            <Grid item key={item._id}>
               <Chip
                 label={item.name}
                 variant="outlined"
@@ -45,21 +50,29 @@ const ChipSection = ({ items, title }) => {
 
 export default () => {
   // const classes = useStyles();
-  const ruler = useSelector((store) => store.legacy.ruler)
+  const dispatch = useDispatch();
+  const { ruler, _id } = useSelector((store) => store.legacy);
+
+  const handleEditSimConfirm = (newSim) => {
+    console.log('NEW sim to update', newSim);
+    dispatch(updateSim({ simData: newSim, legacyID: _id }));
+  };
   return (
     <Card>
       <CardHeader color="accent" icon={Crown}>
         <Typography variant="subtitle2">RULER</Typography>
         <Typography variant="h2">{`${ruler.firstName} ${ruler.lastName}`}</Typography>
       </CardHeader>
-      <ChipSection items={ruler.traits} title="traits" />
-      <ChipSection items={ruler.aspirations} title="aspirations" />
+      {ruler.traits.length > 0 && <ChipSection items={ruler.traits} title="traits" />}
+      {ruler.aspirations.length > 0 && (
+        <ChipSection items={ruler.aspirations} title="aspirations" />
+      )}
       <CardFooter>
         <DialogSims
           buttonText
           title={`Edit ${ruler.firstName} ${ruler.lastName}`}
           currentItem={ruler}
-          onConfirm={(value) => console.log(value)} />
+          onConfirm={handleEditSimConfirm} />
       </CardFooter>
     </Card>
   );
