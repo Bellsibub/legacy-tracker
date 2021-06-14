@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-plusplus */
+/* eslint-disable no-await-in-loop */
 /* eslint-disable no-underscore-dangle */
 import Legacy from '../models/legacyModel';
 // import Sims from '../models/simsModel';
@@ -61,10 +64,10 @@ export const update = async (req, res, next) => {
     const newLaw = req.body.laws;
     const keys = Object.keys(newLaw);
 
+    // this update runs only for a law change
+    // TODO: create a seperate endpoint for this
     if (newLaw) {
-      // eslint-disable-next-line no-plusplus
       for (let i = 0; i < keys.length; i++) {
-        // eslint-disable-next-line no-await-in-loop
         await Legacy.updateOne(
           { _id: id },
           {
@@ -94,12 +97,16 @@ export const update = async (req, res, next) => {
   }
 };
 
-export const updateLaws = async (req, res, next) => {
+export const completeCategoryItem = async (req, res, next) => {
   try {
-    const { id } = req.params;
-
-    const doc = await Legacy.updateOne({ _id: id }, { ...laws }, { new: true });
-
+    const { id, category, itemid } = req.params;
+    await Legacy.updateOne(
+      { _id: id, [`${category}._id`]: itemid },
+      { $inc: { [`${category}.$.completed`]: 1 } },
+      { new: true }
+    );
+    const doc = await Legacy.findOne({ _id: id });
+    // console.log(doc);
     if (!doc) {
       return next(
         new AppError(
@@ -109,8 +116,29 @@ export const updateLaws = async (req, res, next) => {
         )
       );
     }
-    res.status(201).json(doc);
+    res.status(200).json(doc);
   } catch (error) {
     next(error);
   }
 };
+
+// export const updateLaws = async (req, res, next) => {
+//   try {
+//     const { id } = req.params;
+
+//     const doc = await Legacy.updateOne({ _id: id }, { ...laws }, { new: true });
+
+//     if (!doc) {
+//       return next(
+//         new AppError(
+//           404,
+//           'Not Found',
+//           'The ID you provided did not exist. Please try again'
+//         )
+//       );
+//     }
+//     res.status(201).json(doc);
+//   } catch (error) {
+//     next(error);
+//   }
+// };

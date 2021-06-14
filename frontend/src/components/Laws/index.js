@@ -104,9 +104,6 @@ export default () => {
         <CardBody>
           <DialogSelectLaws
             title="Select new law"
-            // items={laws[category]}
-            // currentItem={law}
-            // keyValue="title"
             buttonText="Select new law"
             onConfirm={handleNewLaws}
             edge="end" />

@@ -21,7 +21,7 @@ export const create = async (req, res, next) => {
 export const update = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const doc = await Sims.findByIdAndUpdate(id, { ...req.body }, { new: true });
+    const doc = await Sims.updateOne({ _id: id }, { ...req.body }, { new: true });
     // await Legacy.updateOne({}, { $push: { sims: [doc._id] } });
     if (!doc) {
       return next(
@@ -46,6 +46,30 @@ export const get = async (req, res, next) => {
 
     const doc = await request.mongoQuery;
 
+    res.status(200).json(doc);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const addCategoryItem = async (req, res, next) => {
+  try {
+    const { id, category } = req.params;
+    await Sims.updateOne(
+      { _id: id },
+      { $push: { [`${category}`]: { ...req.body } } },
+      { new: true }
+    );
+    const doc = await Sims.findById(id);
+    if (!doc) {
+      return next(
+        new AppError(
+          404,
+          'Not Found',
+          'The ID you provided did not exist. Please try again'
+        )
+      );
+    }
     res.status(200).json(doc);
   } catch (error) {
     next(error);

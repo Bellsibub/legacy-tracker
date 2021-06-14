@@ -45,7 +45,7 @@ export default ({ title, items, splitBy }) => {
               cols={smallScreen ? 3 : 5}>
               {group.map((item) => (
                 <GridListTile key={item.name} className={classes.gridTile}>
-                  <IconItem item={item} />
+                  <IconItem category={title.toLowerCase()} item={item} />
                 </GridListTile>
               ))}
             </GridList>

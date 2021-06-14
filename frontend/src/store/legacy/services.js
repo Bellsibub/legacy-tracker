@@ -78,7 +78,7 @@ export const updateSim = createAsyncThunk(
   'legacy/updateSim',
   async ({ simData, legacyID }, thunkAPI) => {
     try {
-      // 1. create a new sim to be the ruler
+      // 1. update sim based on ID
       const simResponse = await fetch(API_URL(`sim/${simData._id}`), {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -115,6 +115,63 @@ export const updateLegacy = createAsyncThunk(
       console.log('updated LEGACY', data);
       // 2. call the next api call to fetch the full legacy object to update the state
       if (legacyResponse.status === 201) {
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+export const addCategoryItemToSims = createAsyncThunk(
+  'legacy/addCategoryItemToSims',
+  async ({ category, item, simID, legacyID }, thunkAPI) => {
+    // console.log(newData);
+    try {
+      // 1. create a new sim to be the ruler
+      const response = await fetch(API_URL(`sim/${simID}/${category}`), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...item })
+      });
+      const data = await response.json();
+      console.log('updated SIM', data);
+      // 2. call the next api call to fetch the full legacy object to update the state
+      if (response.status === 200) {
+        thunkAPI.dispatch(getLegacy(legacyID));
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+export const completeCategoryItem = createAsyncThunk(
+  'legacy/completeCategoryItem',
+  async ({ category, itemID, legacyID, simID }, thunkAPI) => {
+    // console.log(newData);
+    try {
+      // 1. create a new sim to be the ruler
+      const legacyResponse = await fetch(
+        API_URL(`legacy/${legacyID}/${category}/${itemID}`),
+        {
+          method: 'POST'
+        }
+      );
+      const data = await legacyResponse.json();
+      console.log('updated LEGACY', data);
+      const updatedItem = data[category].find((el) => el._id === itemID);
+      console.log('UpdatedITEM', updatedItem);
+      // 2. call the next api call to fetch the full legacy object to update the state
+      if (legacyResponse.status === 200) {
+        thunkAPI.dispatch(
+          addCategoryItemToSims({ category, item: { ...updatedItem }, simID, legacyID })
+        );
         return data;
       } else {
         return thunkAPI.rejectWithValue(data);

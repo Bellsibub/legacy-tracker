@@ -10,10 +10,12 @@ const router = new Router();
 router.get('/legacy', legacy.getAll)
 router.get('/legacy/:id', legacy.getOne)
 router.post('/legacy', legacy.create)
+router.post('/legacy/:id/:category/:itemid', legacy.completeCategoryItem)
 router.patch('/legacy/:id', legacy.update)
 
 router.get('/sim', sims.get)
 router.post('/sim', sims.create)
+router.post('/sim/:id/:category', sims.addCategoryItem)
 router.patch('/sim/:id', sims.update)
 
 router.get('/categories', categories.get)

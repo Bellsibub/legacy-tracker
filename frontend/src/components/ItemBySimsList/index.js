@@ -42,7 +42,7 @@ const ListItemCollapse = ({ mainItem, itemsKey }) => {
     <>
       <ListItem button onClick={handleClick}>
         <ListItemText primary={`${mainItem.firstName} ${mainItem.lastName}`} />
-        <Badge badgeContent={5} color="primary">
+        <Badge badgeContent={mainItem[itemsKey].length} color="primary">
           {open ? <ExpandLess /> : <ExpandMore />}
         </Badge>
       </ListItem>

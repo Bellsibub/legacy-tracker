@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-plusplus */
 import { createSlice } from '@reduxjs/toolkit';
@@ -39,8 +40,9 @@ export const legacySlice = createSlice({
       state.tasks.push({ ...payload.newTask });
     },
     completeTask(state, { payload }) {
+      console.log(payload);
       const index = state[payload.category].findIndex(
-        (item) => item.id === payload.taskObject.id
+        (item) => item._id === payload.item._id
       );
       state[payload.category][index].completed++;
     }
