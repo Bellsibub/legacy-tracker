@@ -11,7 +11,7 @@ import APIRequest from '../utils/apiRequest';
 
 export const create = async (req, res, next) => {
   try {
-    const { name, ruler } = req.body;
+    const { name, ruler, goals } = req.body;
     // const laws = await LawsModel.find()
     const rules = await RulesModel.find();
     const aspirations = await AspirationModel.find();
@@ -22,7 +22,8 @@ export const create = async (req, res, next) => {
       sims: [ruler],
       aspirations,
       traits,
-      rules
+      rules,
+      goals
     });
     const doc = await Legacy.findById(newLegacy._id);
     res.status(201).json(doc);
@@ -103,6 +104,32 @@ export const completeCategoryItem = async (req, res, next) => {
     await Legacy.updateOne(
       { _id: id, [`${category}._id`]: itemid },
       { $inc: { [`${category}.$.completed`]: 1 } },
+      { new: true }
+    );
+    const doc = await Legacy.findOne({ _id: id });
+    // console.log(doc);
+    if (!doc) {
+      return next(
+        new AppError(
+          404,
+          'Not Found',
+          'The ID you provided did not exist. Please try again'
+        )
+      );
+    }
+    res.status(200).json(doc);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const toggleGoal = async (req, res, next) => {
+  try {
+    const { id, category, itemid } = req.params;
+    const { bool, property } = req.body;
+    await Legacy.updateOne(
+      { _id: id, [`goals.${category}._id`]: itemid },
+      { $set: { [`goals.${category}.$.${property}`]: bool } },
       { new: true }
     );
     const doc = await Legacy.findOne({ _id: id });

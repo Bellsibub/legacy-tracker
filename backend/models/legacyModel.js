@@ -5,7 +5,11 @@ import { dataSchema } from './dataModel';
 
 const { Schema } = mongoose;
 
-const lawsSchema = new Schema({});
+const lawsSchema = new Schema({
+  text: { type: String, default: '' },
+  focused: { type: Boolean, default: false },
+  completed: { type: Boolean, default: false }
+});
 
 const legacySchema = new Schema({
   name: {
@@ -48,7 +52,10 @@ const legacySchema = new Schema({
     }
   },
   rules: [{ type: dataSchema }],
-  sims: [{ type: Schema.Types.ObjectId, ref: 'Sims' }]
+  sims: [{ type: Schema.Types.ObjectId, ref: 'Sims' }],
+  goals: {
+    aspirations: [{ type: lawsSchema }]
+  }
 });
 
 const autoPopulate = function (next) {

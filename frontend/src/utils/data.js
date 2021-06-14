@@ -15,7 +15,7 @@ export const startingSim = {
 };
 
 export const startingLegacySettings = {
-  name: "Goth",
+  name: 'Goth',
   laws: {
     gender: {
       title: 'Matriarchy',
@@ -37,8 +37,62 @@ export const startingLegacySettings = {
       description:
         'Heirs must be carried in a pregnancy by the previous heir, regardless of the heir’s gender'
     }
+  },
+  goals: {
+    aspirations: [
+      {
+        focused: true,
+        complete: false,
+        text: 'Complete 4 aspirations'
+      },
+      {
+        focused: false,
+        complete: false,
+        text: 'Complete 8 aspirations'
+      },
+      {
+        focused: false,
+        complete: false,
+        text: 'Complete 12 aspirations'
+      },
+      {
+        focused: false,
+        complete: true,
+        text: 'Complete 16 aspirations'
+      },
+      {
+        focused: false,
+        complete: false,
+        text: 'Complete 20 aspirations'
+      },
+      {
+        focused: false,
+        complete: false,
+        text: 'Complete 24 aspirations'
+      },
+      {
+        focused: false,
+        complete: true,
+        text: 'Complete 28 aspiraitons'
+      },
+      {
+        focused: false,
+        complete: false,
+        text: 'Complete 32 aspiraitons'
+      },
+      {
+        focused: false,
+        complete: false,
+        text: 'Complete 36 aspitations'
+      },
+      {
+        focused: false,
+        complete: false,
+        text: 'Complete all aspirations'
+      }
+    ]
   }
-}
+};
 
 export const aspirations = [
   {

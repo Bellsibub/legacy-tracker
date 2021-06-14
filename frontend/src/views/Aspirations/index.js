@@ -10,7 +10,7 @@ import IconItemsList from 'components/IconItemsList';
 import ItemBySimsList from 'components/ItemBySimsList';
 
 export default () => {
-  const { score, aspirations, sims } = useSelector((store) => store.legacy)
+  const { score, aspirations, sims, goals } = useSelector((store) => store.legacy)
 
   return (
     <Grid container spacing={3}>
@@ -25,7 +25,7 @@ export default () => {
       </Grid>
       {/* Goals */}
       <Grid item lg={6} md={9} sm={9} xs={12}>
-        <Goals />
+        <Goals category="aspirations" data={goals.aspirations} />
       </Grid>
       {/* Icon Items list */}
       <Grid item lg={6} md={9} sm={9} xs={12}>

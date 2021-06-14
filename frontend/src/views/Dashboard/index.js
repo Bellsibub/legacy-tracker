@@ -9,7 +9,7 @@ import Heir from 'components/Heir';
 import Stats from 'components/Stats';
 import DialogConfirm from 'components/DialogConfirm';
 import { initLegacy } from 'store/legacy/services';
-import { startingSim, startingLegacySettings } from 'utils/data';
+import { startingSim, startingLegacySettings } from 'utils/defaultData';
 
 export default () => {
   const dispatch = useDispatch();
