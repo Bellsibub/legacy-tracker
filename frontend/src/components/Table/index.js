@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
@@ -114,7 +115,7 @@ export default ({ cellData }) => {
         </TableHead>
         <TableBody>
           {cellData.map((item) => (
-            <CollapseRow key={item.id} {...item} />
+            <CollapseRow key={item._id} {...item} />
           ))}
         </TableBody>
       </Table>

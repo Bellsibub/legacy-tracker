@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
@@ -13,7 +14,7 @@ export default ({ items }) => {
   return (
     <Grid container direction="row" alignItems="center" spacing={1}>
       {items.map((item) => (
-        <Grid item key={item.id}>
+        <Grid item key={item._id}>
           <Chip
             label={item.name}
             variant="outlined"

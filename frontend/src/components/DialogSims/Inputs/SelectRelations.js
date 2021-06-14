@@ -11,12 +11,21 @@ import dialog from 'assets/jss/dialog';
 
 const useStyles = makeStyles(dialog);
 
-export default ({ value, onChange, currentSimID, label, generation }) => {
+export default ({ value, onChange, currentSimID, label, generation, newGen }) => {
   const classes = useStyles();
-  const sims = useSelector((store) => {
-    const simsopts = store.legacy.sims.filter((sim) => sim._id !== currentSimID);
-    return simsopts.filter((sim) => sim.generation === generation - 1);
-  });
+  const sims = useSelector((store) => store.legacy.sims.filter((sim) => sim._id !== currentSimID));
+  const [simsOpts, setSims] = React.useState(sims);
+
+  React.useEffect(() => {
+    let _sims = [];
+    if (newGen) {
+      _sims = sims.filter((sim) => sim.generation === generation - 1);
+      setSims(_sims);
+    } else {
+      _sims = sims.filter((sim) => sim.generation === generation);
+      setSims(_sims);
+    }
+  }, [generation, newGen]);
 
   return (
     <Autocomplete
@@ -25,7 +34,7 @@ export default ({ value, onChange, currentSimID, label, generation }) => {
       name={label.toLowerCase()}
       value={value || null}
       onChange={onChange}
-      options={sims}
+      options={simsOpts}
       getOptionSelected={(option, val) => option._id === val._id}
       getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
       renderInput={(params) => <TextField {...params} label={label} />} />

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import _ from 'lodash';
@@ -50,7 +51,7 @@ const ListItemCollapse = ({ mainItem, itemsKey }) => {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List dense component="div" disablePadding>
           {mainItem[itemsKey].map(({ ...item }) => (
-            <ListItem key={item.id} className={classes.nested}>
+            <ListItem key={item._id} className={classes.nested}>
               <ListItemIcon>
                 <img src={item.image} alt={item.name} className={classes.itemIcon} />
               </ListItemIcon>
@@ -82,7 +83,7 @@ export default ({ title, items, itemsKey }) => {
             subheader={<ListSubheader component="div">{`GENERATION ${key}`}</ListSubheader>}
             key={`generation-${key}`}>
             {group.map((item) => (
-              <div key={item.id}>
+              <div key={item._id}>
                 {item.aspirations.length > 0 ? (
                   <ListItemCollapse mainItem={item} itemsKey={itemsKey} />
                 ) : (

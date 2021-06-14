@@ -51,6 +51,7 @@ export default () => {
           title="Create your first sim in this generation!"
           buttonText="Start new generation"
           newGen
+          generation={generation + 1}
           onConfirm={handleNewSimConfirm} />
         <DialogConfirm
           disabled={!disabled}
@@ -73,7 +74,7 @@ export default () => {
         {/* Generations */}
         <Grid item lg={8} xs={12}>
           {_.map(generations, (gen, key) => (
-            <GenerationList key={key} items={gen} generation={key} />
+            <GenerationList key={key} items={gen} generation={parseInt(key, 10)} />
           ))}
           {/* <Generations /> */}
         </Grid>

@@ -52,6 +52,7 @@ export default ({
   currentItem,
   onConfirm,
   newGen,
+  generation,
   disabled
 }) => {
   const classes = useStyles();
@@ -60,12 +61,12 @@ export default ({
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const [open, setOpen] = React.useState(false);
   const sessionData = useSelector((store) => store.session.data);
-  const { generation, name } = useSelector((store) => store.legacy);
+  const { name } = useSelector((store) => store.legacy);
   const generations = useSelector((store) => _.groupBy(store.legacy.sims, 'generation'));
   const generationOpts = _.keys(generations);
   const defaultValues = {
     relations: {},
-    generation: newGen ? generation + 1 : generation,
+    generation,
     lastName: newGen ? name : ''
   };
 
@@ -73,6 +74,7 @@ export default ({
 
   React.useEffect(() => {
     setSimInfo(currentItem || { ...defaultValues });
+    console.log(simInfo);
   }, [open]);
 
   const toggleDialog = () => {
@@ -142,7 +144,7 @@ export default ({
         <form onSubmit={handleSubmit}>
           <DialogTitle id="dialogEditSims">{title}</DialogTitle>
           <DialogContent>
-            {/* Generation */}
+            {/* Generation
             {!newGen && (
               <FormControl required className={classes.dialogFullWidth}>
                 <InputLabel id="generation">Generation</InputLabel>
@@ -160,7 +162,7 @@ export default ({
                   ))}
                 </Select>
               </FormControl>
-            )}
+            )} */}
             {/* GENERAL */}
             <DialogTitle className={classes.dialogSectionTitle}>General</DialogTitle>
             <Divider className={classes.dialogDivider} />
@@ -199,18 +201,21 @@ export default ({
               label="Mother"
               onChange={handleRelationChange}
               generation={simInfo.generation}
+              newGen={newGen || false}
               currentSimID={simInfo._id} />
             <Relations
               value={simInfo.relations.father}
               label="Father"
               onChange={handleRelationChange}
               generation={simInfo.generation}
+              newGen={newGen || false}
               currentSimID={simInfo._id} />
             <Relations
               value={simInfo.relations.spouse}
               label="Spouse"
               onChange={handleRelationChange}
               generation={simInfo.generation}
+              newGen={newGen || false}
               currentSimID={simInfo._id} />
             {/* LEGACY STATUS */}
             <DialogTitle className={classes.dialogSectionTitle}>
