@@ -6,11 +6,16 @@ import APIRequest from '../utils/apiRequest';
 
 export const create = async (req, res, next) => {
   try {
+    const { simData, legacyID } = req.body;
     const doc = await Sims.create({
-      ...req.body
+      ...simData
     });
-    
-    await Legacy.updateOne({}, { $push: { sims: [doc._id] } }, { new: true });
+
+    await Legacy.updateOne(
+      { _id: legacyID },
+      { $push: { sims: [doc._id] } },
+      { new: true, upsert: true }
+    );
 
     res.status(201).json(doc);
   } catch (error) {

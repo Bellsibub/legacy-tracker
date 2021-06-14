@@ -11,29 +11,35 @@ import Heir from 'components/Heir';
 import Table from 'components/Table';
 import GenerationList from 'components/GenerationList';
 import DialogSims from 'components/DialogSims';
+import DialogConfirm from 'components/DialogConfirm';
 // services
-import { getLegacy } from 'store/legacy/services'
+import { createSim } from 'store/legacy/services';
 // actions
 import { addNewSim, addNewGeneration } from 'store/legacy';
 
 export default () => {
   const dispatch = useDispatch();
-  const { legacyID } = useSelector((store) => store.session)
-  const generations = useSelector(
-    (store) => _.groupBy(store.legacy.sims, 'generation')
-  );
+  const [disabled, setDisabled] = React.useState(false);
+  const { _id, generation } = useSelector((store) => store.legacy);
+  const generations = useSelector((store) => _.groupBy(store.legacy.sims, 'generation'));
 
-  // React.useEffect(() => {
-  //   if (legacyID && !generations) {
-  //     dispatch(getLegacy(legacyID));
-  //   }
-  // }, []);
+  React.useEffect(() => {
+    const k = _.findLastKey(generations);
+    if (k - 1 === generation) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+    // if (legacyID && !generations) {
+    //   dispatch(getLegacy(legacyID));
+    // }
+  }, [generation]);
+
+  const calculatedPermission = () => {};
 
   const handleNewSimConfirm = (newSim) => {
-    const nextGen = _.size(generations) + 1
-    console.log(nextGen);
-    dispatch(addNewGeneration({ generation: nextGen }));
-    dispatch(addNewSim({ generation: nextGen, newSim }));
+    // console.log(newSim);
+    dispatch(createSim({ simData: newSim, legacyID: _id }));
   };
 
   return (
@@ -41,9 +47,16 @@ export default () => {
       {/* Add new gen button */}
       <Grid container justify="flex-end">
         <DialogSims
+          disabled={disabled}
           title="Create your first sim in this generation!"
           buttonText="Start new generation"
           newGen
+          onConfirm={handleNewSimConfirm} />
+        <DialogConfirm
+          disabled={!disabled}
+          title="Are you sure you want to begin the next generation? There is no going back after this!"
+          buttonText="Init next gen"
+          // newGen
           onConfirm={handleNewSimConfirm} />
       </Grid>
       <Grid container spacing={3}>
@@ -59,8 +72,8 @@ export default () => {
       <Grid container spacing={3}>
         {/* Generations */}
         <Grid item lg={8} xs={12}>
-          {_.map(generations, (generation, key) => (
-            <GenerationList key={key} items={generation} generation={key} />
+          {_.map(generations, (gen, key) => (
+            <GenerationList key={key} items={gen} generation={key} />
           ))}
           {/* <Generations /> */}
         </Grid>

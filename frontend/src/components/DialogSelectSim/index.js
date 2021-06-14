@@ -27,7 +27,7 @@ export default ({ title, open, setOpen, item, category, action }) => {
   const dispatch = useDispatch();
   const { _id, generation } = useSelector((store) => store.legacy);
   const sims = useSelector((store) => {
-    return store.legacy.sims.filter((sim) => sim.generation === generation)
+    return store.legacy.sims.filter((sim) => sim.generation >= generation)
   })
 
   const toggleDialog = () => {

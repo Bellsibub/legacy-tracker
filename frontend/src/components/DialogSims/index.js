@@ -45,28 +45,30 @@ import SwitchToggle from './Inputs/SwitchToggle';
 
 const useStyles = makeStyles(dialog);
 
-export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, newGen }) => {
+export default ({
+  title,
+  buttonText,
+  buttonIcon,
+  currentItem,
+  onConfirm,
+  newGen,
+  disabled
+}) => {
   const classes = useStyles();
   const theme = useTheme();
   const dispatch = useDispatch();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const [open, setOpen] = React.useState(false);
   const sessionData = useSelector((store) => store.session.data);
-  const generation = useSelector((store) => store.legacy.generation);
+  const { generation, name } = useSelector((store) => store.legacy);
   const generations = useSelector((store) => _.groupBy(store.legacy.sims, 'generation'));
-  const generationOpts = useSelector((store) => {
-    const opts = _.keys(generations);
-    if (newGen) {
-      opts.push(generation + 1);
-    }
-    return opts;
-  });
-
+  const generationOpts = _.keys(generations);
   const defaultValues = {
     relations: {},
-    generation: newGen ? generation + 1 : generation
+    generation: newGen ? generation + 1 : generation,
+    lastName: newGen ? name : ''
   };
 
-  const [open, setOpen] = React.useState(false);
   const [simInfo, setSimInfo] = React.useState(currentItem || { ...defaultValues });
 
   React.useEffect(() => {
@@ -82,15 +84,13 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, newGen 
     toggleDialog();
     onConfirm(simInfo);
   };
-
   const handleChange = (event) => {
-    const { name, value, checked } = event.target;
+    const { target } = event;
     setSimInfo((prevState) => ({
       ...prevState,
-      [name]: checked || value
+      [target.name]: target.checked || target.value
     }));
   };
-
   const handleTraitChange = (event, newValue) => {
     setSimInfo((prevState) => ({
       ...prevState,
@@ -124,12 +124,12 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, newGen 
   return (
     <>
       {buttonIcon && (
-        <IconButton color="primary" onClick={toggleDialog}>
+        <IconButton disabled={disabled} color="primary" onClick={toggleDialog}>
           <Edit />
         </IconButton>
       )}
       {buttonText && (
-        <Button variant="contained" color="primary" onClick={toggleDialog}>
+        <Button disabled={disabled} variant="contained" color="primary" onClick={toggleDialog}>
           {typeof buttonText === 'string' ? buttonText : 'edit'}
         </Button>
       )}
@@ -143,22 +143,24 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, newGen 
           <DialogTitle id="dialogEditSims">{title}</DialogTitle>
           <DialogContent>
             {/* Generation */}
-            <FormControl required className={classes.dialogFullWidth}>
-              <InputLabel id="generation">Generation</InputLabel>
-              <Select
-                labelId="generation"
-                id="generationSelect"
-                name="generation"
-                value={simInfo.generation || 1}
-                onChange={handleChange}
-                input={<Input />}>
-                {generationOpts.map((item) => (
-                  <MenuItem key={item} value={item}>
-                    <Typography variant="body1">{item}</Typography>
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            {!newGen && (
+              <FormControl required className={classes.dialogFullWidth}>
+                <InputLabel id="generation">Generation</InputLabel>
+                <Select
+                  labelId="generation"
+                  id="generationSelect"
+                  name="generation"
+                  value={simInfo.generation || 1}
+                  onChange={handleChange}
+                  input={<Input />}>
+                  {generationOpts.map((item) => (
+                    <MenuItem key={item} value={item}>
+                      <Typography variant="body1">{item}</Typography>
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
             {/* GENERAL */}
             <DialogTitle className={classes.dialogSectionTitle}>General</DialogTitle>
             <Divider className={classes.dialogDivider} />
@@ -176,25 +178,12 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, newGen 
             {/* Gender */}
             <SimpleSelect value={simInfo.gender} onChange={handleChange} label="Gender" />
             {/* is adopted */}
-            <SwitchToggle value={simInfo.adopted} onChange={handleChange} label="Adopted" />
+            <SwitchToggle
+              value={simInfo.adopted}
+              onChange={handleChange}
+              label="Adopted" />
             {/* species */}
             <Species value={simInfo.species} onChange={handleSingleSelectChange} />
-            {/* <FormControl required className={classes.dialogFullWidth}>
-              <InputLabel id="species">Species</InputLabel>
-              <Select
-                labelId="species"
-                id="speciesSelect"
-                name="species"
-                value={simInfo.species || ''}
-                onChange={handleChange}
-                input={<Input />}>
-                {data.species.map((item) => (
-                  <MenuItem key={item} value={item}>
-                    <Typography variant="body1">{item}</Typography>
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl> */}
             {/* TRAITS and ASPIRATIONS */}
             <DialogTitle className={classes.dialogSectionTitle}>
               Traits and Aspirations
@@ -209,16 +198,19 @@ export default ({ title, buttonText, buttonIcon, currentItem, onConfirm, newGen 
               value={simInfo.relations.mother}
               label="Mother"
               onChange={handleRelationChange}
+              generation={simInfo.generation}
               currentSimID={simInfo._id} />
             <Relations
               value={simInfo.relations.father}
               label="Father"
               onChange={handleRelationChange}
+              generation={simInfo.generation}
               currentSimID={simInfo._id} />
             <Relations
               value={simInfo.relations.spouse}
               label="Spouse"
               onChange={handleRelationChange}
+              generation={simInfo.generation}
               currentSimID={simInfo._id} />
             {/* LEGACY STATUS */}
             <DialogTitle className={classes.dialogSectionTitle}>

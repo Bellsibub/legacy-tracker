@@ -9,43 +9,43 @@ export const legacySlice = createSlice({
   name: 'legacy',
   initialState: {},
   reducers: {
-    addNewSim(state, { payload }) {
-      state.generations[payload.generation].push({ ...payload.newSim });
-    },
-    editSim(state, { payload }) {
-      const index = state.generations[payload.generation].findIndex(
-        (sim) => sim.id === payload.id
-      );
-      state.generations[payload.generation][index] = { ...payload };
-    },
-    addNewGeneration(state, { payload }) {
-      _.assign(state.generations, { [payload.generation]: [] });
-    },
-    updateHeir(state, { payload }) {
-      state.heir = payload.newHeir;
-      state.potentialHeirs = _.omitBy(
-        state.potentialHeirs,
-        (heir) => heir.id === payload.newHeir.id
-      );
-    },
-    setRuler(state) {
-      const ruler = state.generations[state.generation].find(
-        (sim) => sim.role === 'Ruler'
-      );
-      if (ruler) {
-        state.ruler = { ...ruler };
-      }
-    },
-    addNewTask(state, { payload }) {
-      state.tasks.push({ ...payload.newTask });
-    },
-    completeTask(state, { payload }) {
-      console.log(payload);
-      const index = state[payload.category].findIndex(
-        (item) => item._id === payload.item._id
-      );
-      state[payload.category][index].completed++;
-    }
+    // addNewSim(state, { payload }) {
+    //   state.generations[payload.generation].push({ ...payload.newSim });
+    // },
+    // editSim(state, { payload }) {
+    //   const index = state.generations[payload.generation].findIndex(
+    //     (sim) => sim.id === payload.id
+    //   );
+    //   state.generations[payload.generation][index] = { ...payload };
+    // },
+    // addNewGeneration(state, { payload }) {
+    //   _.assign(state.generations, { [payload.generation]: [] });
+    // },
+    // updateHeir(state, { payload }) {
+    //   state.heir = payload.newHeir;
+    //   state.potentialHeirs = _.omitBy(
+    //     state.potentialHeirs,
+    //     (heir) => heir.id === payload.newHeir.id
+    //   );
+    // },
+    // setRuler(state) {
+    //   const ruler = state.generations[state.generation].find(
+    //     (sim) => sim.role === 'Ruler'
+    //   );
+    //   if (ruler) {
+    //     state.ruler = { ...ruler };
+    //   }
+    // },
+    // addNewTask(state, { payload }) {
+    //   state.tasks.push({ ...payload.newTask });
+    // },
+    // completeTask(state, { payload }) {
+    //   console.log(payload);
+    //   const index = state[payload.category].findIndex(
+    //     (item) => item._id === payload.item._id
+    //   );
+    //   state[payload.category][index].completed++;
+    // }
   },
   extraReducers: {
     [createLegacy.fulfilled]: (state, { payload }) => {

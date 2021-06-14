@@ -35,7 +35,7 @@ export const initLegacy = createAsyncThunk(
       const simResponse = await fetch(API_URL('sim'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...founder })
+        body: JSON.stringify({ simData: { ...founder } })
       });
       const newSim = await simResponse.json();
       console.log('new SIM', newSim);
@@ -66,6 +66,32 @@ export const getLegacy = createAsyncThunk(
         return data;
       } else {
         return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const createSim = createAsyncThunk(
+  'legacy/createSim',
+  async ({ simData, legacyID }, thunkAPI) => {
+    try {
+      // 1. create a new sim to be the ruler
+      const simResponse = await fetch(API_URL('sim'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ simData, legacyID })
+      });
+      const newSim = await simResponse.json();
+      console.log('new SIM', newSim);
+      // 2. call the next api call to create a new legacy with the newly created sim
+      if (simResponse.status === 201) {
+        thunkAPI.dispatch(getLegacy(legacyID));
+        return newSim;
+      } else {
+        return thunkAPI.rejectWithValue(newSim);
       }
     } catch (error) {
       console.log('Error', error.response.data);

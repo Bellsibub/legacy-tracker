@@ -7,7 +7,6 @@ export default ({ value, onChange, label, name }) => {
   return (
     <TextField
       required
-      autoFocus
       value={value || ''}
       onChange={onChange}
       margin="dense"

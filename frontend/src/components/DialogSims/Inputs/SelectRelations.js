@@ -11,13 +11,12 @@ import dialog from 'assets/jss/dialog';
 
 const useStyles = makeStyles(dialog);
 
-export default ({ value, onChange, currentSimID, label }) => {
+export default ({ value, onChange, currentSimID, label, generation }) => {
   const classes = useStyles();
   const sims = useSelector((store) => {
-    return store.legacy.sims.filter((sim) => sim._id !== currentSimID);
+    const simsopts = store.legacy.sims.filter((sim) => sim._id !== currentSimID);
+    return simsopts.filter((sim) => sim.generation === generation - 1);
   });
-
-  // filter out the sim that is being edited
 
   return (
     <Autocomplete

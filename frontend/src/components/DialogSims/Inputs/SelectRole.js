@@ -34,6 +34,6 @@ export default ({ value, onChange }) => {
       value={value || null}
       onChange={onChange}
       options={roles}
-      renderInput={(params) => <TextField {...params} label="Role" />} />
+      renderInput={(params) => <TextField {...params} label="Role" required />} />
   );
 };

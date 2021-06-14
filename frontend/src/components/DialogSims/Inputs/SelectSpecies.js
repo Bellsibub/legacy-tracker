@@ -27,6 +27,6 @@ export default ({ value, onChange }) => {
       options={species}
       getOptionSelected={(option, val) => option._id === val._id}
       getOptionLabel={(option) => option.value}
-      renderInput={(params) => <TextField {...params} label="Species" />} />
+      renderInput={(params) => <TextField {...params} label="Species" required />} />
   )
 }
