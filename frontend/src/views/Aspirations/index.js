@@ -15,17 +15,17 @@ export default () => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} sm={6} md={6} lg={3}>
-        <Stats value={5} type="score" />
+        <Stats value={score.aspirations.score || 0} type="score" />
       </Grid>
       <Grid item xs={12} sm={6} md={6} lg={3}>
-        <Stats value={2} type="totalCompleted" />
+        <Stats value={score.aspirations.count || 0} type="totalCompleted" />
       </Grid>
       <Grid item xs={12} sm={6} md={6} lg={3}>
-        <Stats value={33.33} type="percentage" />
+        <Stats value={score.aspirations.percentage || 0} type="percentage" />
       </Grid>
       {/* Goals */}
       <Grid item lg={6} md={9} sm={9} xs={12}>
-        <Goals category="aspirations" data={goals.aspirations} />
+        <Goals isDynamic category="aspirations" data={goals.aspirations} />
       </Grid>
       {/* Icon Items list */}
       <Grid item lg={6} md={9} sm={9} xs={12}>

@@ -9,6 +9,8 @@ import NoMatch from 'pages/nomatch';
 // core components
 import Drawer from 'components/Drawer';
 import Appbar from 'components/Appbar';
+// actions
+import { setScores } from 'store/legacy'
 // services
 import { getLegacy } from 'store/legacy/services';
 import { getData } from 'store/session/services';
@@ -25,7 +27,7 @@ export default () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { legacyID } = useSelector((store) => store.session);
-  const { generation } = useSelector((store) => store.legacy);
+  const { generation, fetchDone } = useSelector((store) => store.legacy);
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -34,6 +36,11 @@ export default () => {
     }
     dispatch(getData());
   }, []);
+  React.useEffect(() => {
+    if (fetchDone) {
+      dispatch(setScores())
+    }
+  }, [fetchDone]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);

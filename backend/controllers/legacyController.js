@@ -16,6 +16,9 @@ export const create = async (req, res, next) => {
     const rules = await RulesModel.find();
     const aspirations = await AspirationModel.find();
     const traits = await TraitsModel.find();
+    
+    goals.aspirations[goals.aspirations.length - 1].count = aspirations.length
+    
     const newLegacy = await Legacy.create({
       name,
       ruler,
@@ -64,7 +67,7 @@ export const update = async (req, res, next) => {
     const { id } = req.params;
     const newLaw = req.body.laws;
     const keys = Object.keys(newLaw);
-
+    
     // this update runs only for a law change
     // TODO: create a seperate endpoint for this
     if (newLaw) {

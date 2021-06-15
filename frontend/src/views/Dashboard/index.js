@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
@@ -30,11 +31,11 @@ export default () => {
           <Grid item lg={6} md={9} sm={9} xs={12}>
             <Heir />
           </Grid>
-          {_.map(score, (scoreValues, key) => (
+          {/* {_.map(score, (scoreValues, key) => (
             <Grid item xs={12} sm={6} md={6} lg={3} key={key}>
               <Stats value={scoreValues.total} type="score" title={key} />
             </Grid>
-          ))}
+          ))} */}
         </Grid>
       )}
       {!generation && (

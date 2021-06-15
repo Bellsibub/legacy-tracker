@@ -37,34 +37,44 @@ export const startingLegacySettings = {
   goals: {
     aspirations: [
       {
-        text: 'Complete 4 aspirations'
+        text: 'Complete 4 aspirations',
+        count: 4
       },
       {
-        text: 'Complete 8 aspirations'
+        text: 'Complete 8 aspirations',
+        count: 8
       },
       {
-        text: 'Complete 12 aspirations'
+        text: 'Complete 12 aspirations',
+        count: 12
       },
       {
-        text: 'Complete 16 aspirations'
+        text: 'Complete 16 aspirations',
+        count: 16
       },
       {
-        text: 'Complete 20 aspirations'
+        text: 'Complete 20 aspirations',
+        count: 20
       },
       {
-        text: 'Complete 24 aspirations'
+        text: 'Complete 24 aspirations',
+        count: 24
       },
       {
-        text: 'Complete 28 aspiraitons'
+        text: 'Complete 28 aspiraitons',
+        count: 28
       },
       {
-        text: 'Complete 32 aspiraitons'
+        text: 'Complete 32 aspiraitons',
+        count: 32
       },
       {
-        text: 'Complete 36 aspitations'
+        text: 'Complete 36 aspitations',
+        count: 36
       },
       {
-        text: 'Complete all aspirations'
+        text: 'Complete all aspirations',
+        count: 56
       }
     ]
   }

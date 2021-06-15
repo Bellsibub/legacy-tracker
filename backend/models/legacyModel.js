@@ -7,6 +7,7 @@ const { Schema } = mongoose;
 
 const lawsSchema = new Schema({
   text: { type: String, default: '' },
+  count: { type: Number },
   focused: { type: Boolean, default: false },
   completed: { type: Boolean, default: false }
 });
