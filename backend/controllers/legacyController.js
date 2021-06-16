@@ -125,25 +125,26 @@ export const completeCategoryItem = async (req, res, next) => {
     next(error);
   }
 };
+
 export const updateCategoryItem = async (req, res, next) => {
   try {
     const { id, category, itemid } = req.params;
     const { remove } = req.body;
-    let doc;
+
     if (remove) {
-      doc = await Legacy.updateOne(
+      await Legacy.updateOne(
         { _id: id, [`${category}._id`]: itemid },
         { $unset: { [`${category}.$.${remove}`]: '' } },
         { new: true }
       );
     }
-    
-    doc = await Legacy.updateOne(
+
+    await Legacy.updateOne(
       { _id: id, [`${category}._id`]: itemid },
       { $set: { [`${category}.$`]: { ...req.body } } },
       { new: true }
     );
-    // const doc = await Legacy.findOne({ _id: id });
+    const doc = await Legacy.findOne({ _id: id });
     if (!doc) {
       return next(
         new AppError(

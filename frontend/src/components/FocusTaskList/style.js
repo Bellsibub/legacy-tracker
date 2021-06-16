@@ -4,9 +4,9 @@ export default (theme) => ({
     color: 'white'
   },
   listItem: {
-    display: 'flex'
-  },
-  listText: {
-    fontSize: '24px'
+    display: 'flex',
+    '& > li': {
+      position: 'unset'
+    }
   }
 });

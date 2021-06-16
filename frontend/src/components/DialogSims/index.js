@@ -1,37 +1,24 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
-// material ui components
+import { makeStyles } from '@material-ui/core/styles';
+
+// 3rd party components
 import {
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  TextField,
   Button,
-  FormControl,
-  MenuItem,
-  Input,
-  Typography,
-  Select,
   IconButton,
-  InputLabel,
-  Grid,
-  Switch,
   Divider,
-  Checkbox,
   useTheme,
   useMediaQuery
 } from '@material-ui/core';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
 import { Edit } from '@material-ui/icons';
-
+// styling
 import dialog from 'assets/jss/dialog';
-
-import { data, traits, aspirations, sims } from 'utils/data';
+// custom components
 import Aspirations from './Inputs/SelectAspirations';
 import Species from './Inputs/SelectSpecies';
 import Traits from './Inputs/SelectTraits';

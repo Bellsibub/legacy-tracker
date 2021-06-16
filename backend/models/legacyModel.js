@@ -76,6 +76,11 @@ const autoPopulate = function (next) {
     {
       path: 'potentialHeirs',
       model: 'Sims'
+    },
+    {
+      path: 'aspirations.focusTarget',
+      model: 'Sims',
+      select: 'firstName lastName'
     }
   ]);
 

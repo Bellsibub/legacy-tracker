@@ -1,20 +1,19 @@
-// /* eslint-disable no-undef */
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import _ from 'lodash';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { ButtonBase, Icon } from '@material-ui/core';
+// 3rd-party components
+import { ButtonBase, Icon, Menu, MenuItem } from '@material-ui/core';
 import { CheckRounded } from '@material-ui/icons';
-
-import IconItemDropdown from 'components/IconItemDropdown';
-
-// services
-import { completeCategoryItem, updateCategoryItem } from 'store/legacy/services';
-
 import { AlertBoxOutline } from 'mdi-material-ui';
+
+// custom components
+import DialogSelectSim from 'components/DialogSelectSim';
+// services
+import { updateCategoryItem } from 'store/legacy/services';
+// styling
 import styling from './style';
 
 const useStyles = makeStyles(styling);
@@ -22,6 +21,8 @@ const useStyles = makeStyles(styling);
 export default ({ category, item }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [action, setAction] = React.useState('');
+  const [dialog, setDialog] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { _id } = useSelector((store) => store.legacy);
 
@@ -29,52 +30,6 @@ export default ({ category, item }) => {
     [classes.image]: true,
     [classes.focused]: item.inFocus
   });
-  const actionOptions = _.filter(
-    [
-      {
-        title: 'Complete this',
-        onAction: (simID) => {
-          dispatch(
-            completeCategoryItem({ category, itemID: item._id, legacyID: _id, simID })
-          );
-        },
-        hasOptions: true,
-        visible: true
-      },
-      {
-        title: 'Revert completions',
-        onAction: (id) => {
-          console.log('for', id);
-          console.log('hello');
-        },
-        hasOptions: false,
-        visible: true
-      },
-      {
-        title: 'Set as Focus',
-        onAction: (simID) => {
-          const newData = { focusTarget: simID, inFocus: true };
-          dispatch(
-            updateCategoryItem({ category, itemID: item._id, legacyID: _id, newData })
-          );
-        },
-        hasOptions: true,
-        visible: !item.inFocus
-      },
-      {
-        title: 'Remove Focus',
-        onAction: () => {
-          const newData = { remove: 'focusTarget', inFocus: false };
-          dispatch(
-            updateCategoryItem({ category, itemID: item._id, legacyID: _id, newData })
-          );
-        },
-        hasOptions: true,
-        visible: item.inFocus || false
-      }
-    ],
-    (o) => o.visible
-  );
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -82,6 +37,19 @@ export default ({ category, item }) => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleSelect = (actionType, selectSim) => {
+    handleClose();
+    if (selectSim) {
+      setAction(actionType);
+      setDialog(true);
+    } else if (actionType === 'removefocus') {
+      const newData = { remove: 'focusTarget', inFocus: false };
+      dispatch(
+        updateCategoryItem({ category, itemID: item._id, legacyID: _id, newData })
+      );
+    }
   };
 
   return (
@@ -105,12 +73,30 @@ export default ({ category, item }) => {
             </span>
           )}
         </ButtonBase>
-        <IconItemDropdown
-          category={category}
-          categoryItem={item}
-          items={actionOptions}
+        <Menu
           anchorEl={anchorEl}
-          handleClose={handleClose} />
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}>
+          <MenuItem onClick={() => handleSelect('complete', true)}>
+            Complete this
+          </MenuItem>
+          {item.inFocus ? (
+            <MenuItem onClick={() => handleSelect('removefocus', false)}>
+              Remove as Focus
+            </MenuItem>
+          ) : (
+            <MenuItem onClick={() => handleSelect('setfocus', true)}>
+              Set as Focus
+            </MenuItem>
+          )}
+        </Menu>
+        <DialogSelectSim
+          open={dialog}
+          setOpen={setDialog}
+          actionType={action}
+          category={category}
+          categoryItem={item} />
       </div>
     </>
   );

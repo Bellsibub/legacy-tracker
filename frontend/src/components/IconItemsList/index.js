@@ -1,6 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
-// material ui
+
+// 3rd party components
 import {
   Divider,
   GridList,
@@ -17,6 +18,7 @@ import CardHeader from 'components/CardHeader';
 import CardBody from 'components/CardBody';
 import IconItem from 'components/IconItem';
 
+// styling
 import styling from './style';
 
 const useStyles = makeStyles(styling);

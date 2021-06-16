@@ -21,6 +21,8 @@
   },
   "plugins": ["react-hooks"],
   "rules": {
+    "no-unused-vars":"off",
+    "no-underscore-dangle":"off",
     "quotes": "off",
     "jsx-a11y/label-has-associated-control": [
       2,

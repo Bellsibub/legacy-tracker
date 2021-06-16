@@ -9,16 +9,15 @@ import { EmojiEvents } from '@material-ui/icons';
 import Card from 'components/Card';
 import CardHeader from 'components/CardHeader';
 import CardBody from 'components/CardBody';
-import GoalListItem from 'components/GoalListItem';
+import FocusTaskItem from 'components/FocusTaskItem';
 
 // styling
 import styling from './style';
 
 const useStyles = makeStyles(styling);
 
-export default ({ data, category, isDynamic }) => {
+export default ({ data, category }) => {
   const classes = useStyles();
-
   return (
     <Card>
       <CardHeader color="blue" icon={EmojiEvents} />
@@ -27,7 +26,7 @@ export default ({ data, category, isDynamic }) => {
           {data.map((item) => (
             <div key={item._id}>
               <div className={classes.listItem}>
-                <GoalListItem item={item} category={category} isDynamic={isDynamic} />
+                <FocusTaskItem item={item} category={category} />
               </div>
               <Divider />
             </div>

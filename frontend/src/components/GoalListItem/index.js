@@ -1,10 +1,9 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-// @material-ui
+
+// 3rd party components
 import {
   Checkbox,
   FormControlLabel,
@@ -12,10 +11,12 @@ import {
   ListItemText,
   ListItemIcon
 } from '@material-ui/core';
+import { AlertCircle, AlertCircleOutline } from 'mdi-material-ui';
 import { PriorityHigh, PriorityHighOutlined } from '@material-ui/icons';
+
 // services
 import { toggleGoal } from 'store/legacy/services';
-import { AlertCircle, AlertCircleOutline } from 'mdi-material-ui';
+// styling
 import styles from './style';
 
 const useStyles = makeStyles(styles);
@@ -26,19 +27,12 @@ export default ({ item, category, isDynamic }) => {
   const { _id } = useSelector((store) => store.legacy);
   const checkedComp = item.completed;
   const checkedFocus = item.focused;
-  // const [checkedComp, setCheckedComp] = React.useState(item.completed);
-  // const [checkedFocus, setCheckedFocus] = React.useState(item.focused);
 
   const listItemClasses = classNames({
     [classes.completed]: checkedComp
   });
 
   const handleChange = (property) => {
-    // if (property === 'completed') {
-    //   setCheckedComp(!checkedComp);
-    // } else {
-    //   setCheckedFocus(!checkedFocus);
-    // }
     dispatch(
       toggleGoal({
         category,
@@ -56,13 +50,13 @@ export default ({ item, category, isDynamic }) => {
         <>
           <ListItem
             className={listItemClasses}
-            button
+            // button
             disabled={checkedComp}
             onClick={() => {
-              handleChange('focused');
+              // handleChange('focused');
             }}>
             <ListItemText primary={item.text} className={classes.listText} />
-            <FormControlLabel
+            {/* <FormControlLabel
               label="Set as focus"
               labelPlacement="end"
               control={
@@ -71,10 +65,9 @@ export default ({ item, category, isDynamic }) => {
                   onChange={() => {
                     handleChange('focused');
                   }}
-                  // edge={isDynamic ? 'end' : 'start'}
                   icon={<AlertCircleOutline className={classes.unCheckedColor} />}
                   checkedIcon={<AlertCircle className={classes.checkedColor} />} />
-              } />
+              } /> */}
           </ListItem>
         </>
       ) : (
@@ -87,7 +80,6 @@ export default ({ item, category, isDynamic }) => {
                 onChange={() => {
                   handleChange('focused');
                 }}
-                // edge={isDynamic ? 'end' : 'start'}
                 icon={<AlertCircleOutline className={classes.unCheckedColor} />}
                 checkedIcon={<AlertCircle className={classes.checkedColor} />} />
             } />
