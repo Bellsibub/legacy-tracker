@@ -3,7 +3,7 @@
 /* eslint-disable no-plusplus */
 import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import { createLegacy, getLegacy, updateLegacy, toggleGoal } from './services';
+import { createLegacy, getLegacy, updateLegacy, updateCategoryItem } from './services';
 
 export const legacySlice = createSlice({
   name: 'legacy',

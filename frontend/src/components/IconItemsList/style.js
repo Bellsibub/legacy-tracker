@@ -1,5 +1,9 @@
 export default () => ({
   gridList: {
-    alignItems: 'center'
+    alignItems: 'center',
+    '& > li': {
+      height: 'auto !important'
+
+    }
   }
 });

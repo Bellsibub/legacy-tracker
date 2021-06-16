@@ -19,7 +19,7 @@ export default ({ anchorEl, handleClose, items, category, categoryItem }) => {
         onClose={handleClose}>
         {items.map((item) => (
           <div key={item.title}>
-            {item.hasOptions ? (
+            {(item.hasOptions) ? (
               <>
                 <MenuItem
                   onClick={() => {

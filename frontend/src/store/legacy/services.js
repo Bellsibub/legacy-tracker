@@ -259,3 +259,41 @@ export const completeCategoryItem = createAsyncThunk(
     }
   }
 );
+export const updateCategoryItem = createAsyncThunk(
+  'legacy/updateCategoryItem',
+  async ({ category, itemID, legacyID, newData }, thunkAPI) => {
+    // console.log(newData);
+    const state = thunkAPI.getState().legacy;
+    try {
+      // setup the body to be sent
+      const oldData = state[category].find((item) => item._id === itemID);
+      let body = { ...oldData, ...newData }
+      body = _.omit(body, newData.remove)
+      // 1. create a new sim to be the ruler
+      const legacyResponse = await fetch(
+        API_URL(`legacy/${legacyID}/${category}/${itemID}`),
+        {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...body })
+        }
+      );
+      const data = await legacyResponse.json();
+      console.log('updated LEGACY', data);
+      // const updatedItem = data[category].find((el) => el._id === itemID);
+
+      // console.log('UpdatedITEM', updatedItem);
+      // 2. call the next api call to fetch the full legacy object to update the state
+      if (legacyResponse.status === 201) {
+        thunkAPI.dispatch(getLegacy(legacyID))
+        return data;
+      } else {
+        console.log(data);
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);

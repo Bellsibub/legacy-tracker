@@ -8,7 +8,8 @@ export const categoriesSchema = new Schema({
   image: String,
   pack: String,
   completed: Number,
-  inFocus: Boolean
+  inFocus: Boolean,
+  focusTarget: String
 });
 
 export const AspirationModel = mongoose.model(

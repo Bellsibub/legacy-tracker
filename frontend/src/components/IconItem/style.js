@@ -1,10 +1,12 @@
 export default (theme) => ({
   root: {
+    position: 'relative',
     display: 'flex',
-    justifyContent: 'center'
+    flexDirection: 'column',
+    justifyContent: 'center',
+    margin: theme.spacing(2)
   },
   image: {
-    position: 'relative',
     '& > *': {
       borderRadius: '5px'
     },
@@ -17,6 +19,7 @@ export default (theme) => ({
     }
   },
   imageBackdrop: {
+    height: 'auto',
     position: 'absolute',
     left: 0,
     right: 0,
@@ -37,5 +40,20 @@ export default (theme) => ({
     '& svg': {
       color: theme.palette.accent.main
     }
+  },
+  imageFocused: {
+    height: 'auto',
+    display: 'flex',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    backgroundColor: 'white',
+    borderRadius: '5px',
+    '& svg': {
+      color: theme.palette.accent.main
+    }
+  },
+  focused: {
+    border: `1px solid ${theme.palette.accent.main}`
   }
 });

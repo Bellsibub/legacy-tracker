@@ -16,9 +16,9 @@ export const create = async (req, res, next) => {
     const rules = await RulesModel.find();
     const aspirations = await AspirationModel.find();
     const traits = await TraitsModel.find();
-    
-    goals.aspirations[goals.aspirations.length - 1].count = aspirations.length
-    
+
+    goals.aspirations[goals.aspirations.length - 1].count = aspirations.length;
+
     const newLegacy = await Legacy.create({
       name,
       ruler,
@@ -67,7 +67,7 @@ export const update = async (req, res, next) => {
     const { id } = req.params;
     const newLaw = req.body.laws;
     const keys = Object.keys(newLaw);
-    
+
     // this update runs only for a law change
     // TODO: create a seperate endpoint for this
     if (newLaw) {
@@ -121,6 +121,39 @@ export const completeCategoryItem = async (req, res, next) => {
       );
     }
     res.status(200).json(doc);
+  } catch (error) {
+    next(error);
+  }
+};
+export const updateCategoryItem = async (req, res, next) => {
+  try {
+    const { id, category, itemid } = req.params;
+    const { remove } = req.body;
+    let doc;
+    if (remove) {
+      doc = await Legacy.updateOne(
+        { _id: id, [`${category}._id`]: itemid },
+        { $unset: { [`${category}.$.${remove}`]: '' } },
+        { new: true }
+      );
+    }
+    
+    doc = await Legacy.updateOne(
+      { _id: id, [`${category}._id`]: itemid },
+      { $set: { [`${category}.$`]: { ...req.body } } },
+      { new: true }
+    );
+    // const doc = await Legacy.findOne({ _id: id });
+    if (!doc) {
+      return next(
+        new AppError(
+          404,
+          'Not Found',
+          'The ID you provided did not exist. Please try again'
+        )
+      );
+    }
+    res.status(201).json(doc);
   } catch (error) {
     next(error);
   }
