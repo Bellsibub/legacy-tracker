@@ -27,8 +27,18 @@ export default ({ item, category }) => {
   const { _id } = useSelector((store) => store.legacy);
   const checkedFocus = item.inFocus;
 
-  const handleChange = (complete) => {
-    console.log(complete);
+  const getFocusText = () => {
+    switch (category) {
+      case 'skills':
+        return `Max out the ${item.name} skill`;
+      case 'aspirations':
+        return `Complete ${item.name} for ${item.focusTarget.firstName.toUpperCase()}`;
+      default:
+        return item.name;
+    }
+  };
+
+  const handleSimRelatedChange = (complete) => {
     if (complete) {
       dispatch(
         completeCategoryItemTask({
@@ -54,20 +64,55 @@ export default ({ item, category }) => {
       );
     }
   };
+  const handleNonRelationChange = (complete) => {
+    if (complete) {
+      dispatch(
+        completeCategoryItemTask({
+          category,
+          itemID: item._id,
+          legacyID: _id,
+          newData: {
+            inFocus: false,
+            completed: item.completed + 1
+          }
+        })
+      );
+    } else {
+      dispatch(
+        updateCategoryItem({
+          category,
+          itemID: item._id,
+          legacyID: _id,
+          newData: { inFocus: false }
+        })
+      );
+    }
+  };
 
   return (
     <>
       <ListItem
         button
         onClick={() => {
-          handleChange(true);
+          if (item.simRelated) {
+            handleSimRelatedChange(true);
+          } else {
+            handleNonRelationChange(true);
+          }
         }}>
-        <ListItemText primary={item.name} />
+        <ListItemText
+          className={classes.listTextMultiLine}
+          primary={getFocusText()}
+          secondary={category.toUpperCase()} />
         <ListItemIcon className={classes.listAction}>
           <Checkbox
             edge="end"
             onChange={() => {
-              handleChange(true);
+              if (item.simRelated) {
+                handleSimRelatedChange(true);
+              } else {
+                handleNonRelationChange(true);
+              }
             }}
             checked={!checkedFocus} />
         </ListItemIcon>
@@ -75,7 +120,11 @@ export default ({ item, category }) => {
       <IconButton
         className={classes.deleteButton}
         onClick={() => {
-          handleChange(false);
+          if (item.simRelated) {
+            handleSimRelatedChange(false);
+          } else {
+            handleNonRelationChange(false);
+          }
         }}>
         <Delete />
       </IconButton>

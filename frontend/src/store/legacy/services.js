@@ -276,9 +276,13 @@ export const completeCategoryItem = createAsyncThunk(
             })
           );
         }
-        thunkAPI.dispatch(
-          addCategoryItemToSims({ category, item: { ...updatedItem }, simID, legacyID })
-        );
+        if (simID) {
+          thunkAPI.dispatch(
+            addCategoryItemToSims({ category, item: { ...updatedItem }, simID, legacyID })
+          );
+        } else {
+          thunkAPI.dispatch(getLegacy(legacyID));
+        }
         return data;
       } else {
         return thunkAPI.rejectWithValue(data);
@@ -327,9 +331,11 @@ export const completeCategoryItemTask = createAsyncThunk(
             })
           );
         }
-        thunkAPI.dispatch(
-          addCategoryItemToSims({ category, item: { ...updatedItem }, simID, legacyID })
-        );
+        if (simID) {
+          thunkAPI.dispatch(
+            addCategoryItemToSims({ category, item: { ...updatedItem }, simID, legacyID })
+          );
+        }
         return data;
       } else {
         return thunkAPI.rejectWithValue(data);

@@ -23,7 +23,7 @@ import styling from './style';
 
 const useStyles = makeStyles(styling);
 
-export default ({ title, items, splitBy }) => {
+export default ({ title, items, splitBy, ...other }) => {
   const classes = useStyles();
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('xs'));
@@ -47,7 +47,7 @@ export default ({ title, items, splitBy }) => {
               cols={smallScreen ? 3 : 5}>
               {group.map((item) => (
                 <GridListTile key={item.name} className={classes.gridTile}>
-                  <IconItem category={title.toLowerCase()} item={item} />
+                  <IconItem category={title.toLowerCase()} item={item} {...other} />
                 </GridListTile>
               ))}
             </GridList>

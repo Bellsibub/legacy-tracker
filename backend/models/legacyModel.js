@@ -5,7 +5,7 @@ import { dataSchema } from './dataModel';
 
 const { Schema } = mongoose;
 
-const lawsSchema = new Schema({
+const goalSchema = new Schema({
   text: { type: String, default: '' },
   count: { type: Number },
   focused: { type: Boolean, default: false },
@@ -33,6 +33,7 @@ const legacySchema = new Schema({
   },
   potentialHeirs: [{ type: Schema.Types.ObjectId, ref: 'Sims' }],
   aspirations: [{ type: categoriesSchema }],
+  skills: [{ type: categoriesSchema }],
   traits: [{ type: categoriesSchema }],
   laws: {
     gender: {
@@ -55,7 +56,9 @@ const legacySchema = new Schema({
   rules: [{ type: dataSchema }],
   sims: [{ type: Schema.Types.ObjectId, ref: 'Sims' }],
   goals: {
-    aspirations: [{ type: lawsSchema }]
+    aspirations: [{ type: goalSchema }],
+    skills: [{ type: goalSchema }],
+    food: [{ type: goalSchema }]    
   }
 });
 

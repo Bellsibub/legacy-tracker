@@ -17,6 +17,11 @@ export const AspirationModel = mongoose.model(
   categoriesSchema,
   'aspirations'
 );
+export const SkillsModel = mongoose.model(
+  'Skills',
+  categoriesSchema,
+  'skills'
+);
 export const TraitsModel = mongoose.model(
   'Traits',
   categoriesSchema,

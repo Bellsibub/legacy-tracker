@@ -5,5 +5,9 @@ export default (theme) => ({
   },
   listAction: {
     minWidth: '24px'
+  },
+  listTextMultiLine: {
+    display: 'flex',
+    flexDirection: 'column-reverse'
   }
 });

@@ -1,6 +1,7 @@
-import { AspirationModel, TraitsModel } from '../models/categoriesModel';
+import { AspirationModel, TraitsModel, SkillsModel } from '../models/categoriesModel';
 import { RulesModel, LawsModel, SpeciesModel, CodModel } from '../models/dataModel';
 import aspirations from './aspirations.json';
+import skills from './skills.json';
 import traits from './traits.json';
 import rules from './rules.json';
 import species from './species.json';
@@ -14,7 +15,11 @@ export default async () => {
   await SpeciesModel.deleteMany({});
   await CodModel.deleteMany({});
   await LawsModel.deleteMany({});
+  await SkillsModel.deleteMany({});
 
+  skills.forEach((modelData) => {
+    new SkillsModel(modelData).save();
+  });
   aspirations.forEach((modelData) => {
     new AspirationModel(modelData).save();
   });

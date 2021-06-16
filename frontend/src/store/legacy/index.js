@@ -15,6 +15,14 @@ export const legacySlice = createSlice({
         score: 0,
         count: 0,
         percentage: 0
+      },
+      skills: {
+        score: 0,
+        count: 0,
+        percentage: 0
+      },
+      food: {
+        score: 0
       }
     }
   },
@@ -22,20 +30,20 @@ export const legacySlice = createSlice({
     setScores(state, { payload }) {
       state.score = _.mapValues(state.goals, (goals, key) => {
         const goalCount = _.countBy(goals, 'completed');
-        const completionCount = _.sumBy(state[key], (o) => o.completed);
-        const percentage = (completionCount / state[key].length) * 100;
+        let completionCount;
+        let percentage;
+        if (key !== 'food') {
+          completionCount = _.sumBy(state[key], (o) => o.completed);
+          percentage = ((completionCount / state[key].length) * 100).toFixed(2);
+        }
         return {
           score: goalCount.true,
-          count: completionCount,
-          percentage: percentage.toFixed(2)
+          count: completionCount || null,
+          percentage: percentage || null
         };
       });
-      // const score = _.countBy(state.goals.aspirations, 'completed')
-      // state.score.aspirations = score.true
     },
-    validateGoals(state, { payload }) {
-
-    }
+    validateGoals(state, { payload }) {}
   },
   extraReducers: {
     [createLegacy.pending]: (state, { payload }) => {

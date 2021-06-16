@@ -5,7 +5,7 @@
 import Legacy from '../models/legacyModel';
 // import Sims from '../models/simsModel';
 import { RulesModel, LawsModel } from '../models/dataModel';
-import { AspirationModel, TraitsModel } from '../models/categoriesModel';
+import { AspirationModel, TraitsModel, SkillsModel } from '../models/categoriesModel';
 import AppError from '../utils/appError';
 import APIRequest from '../utils/apiRequest';
 
@@ -15,9 +15,11 @@ export const create = async (req, res, next) => {
     // const laws = await LawsModel.find()
     const rules = await RulesModel.find();
     const aspirations = await AspirationModel.find();
+    const skills = await SkillsModel.find();
     const traits = await TraitsModel.find();
 
     goals.aspirations[goals.aspirations.length - 1].count = aspirations.length;
+    goals.skills[goals.skills.length - 1].count = skills.length;
 
     const newLegacy = await Legacy.create({
       name,
@@ -26,7 +28,8 @@ export const create = async (req, res, next) => {
       aspirations,
       traits,
       rules,
-      goals
+      goals,
+      skills
     });
     const doc = await Legacy.findById(newLegacy._id);
     res.status(201).json(doc);

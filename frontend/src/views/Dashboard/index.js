@@ -16,10 +16,6 @@ import FocusTaskList from 'components/FocusTaskList';
 export default () => {
   const dispatch = useDispatch();
   const { score, generation } = useSelector((store) => store.legacy);
-  const aspirationTasks = useSelector((store) => {
-    return _.filter(store.legacy.aspirations, ['inFocus', true])
-  })
-
   const handleStartNewGen = () => {
     dispatch(initLegacy({ founder: startingSim, legacy: startingLegacySettings }));
   };
@@ -41,7 +37,7 @@ export default () => {
             </Grid>
           ))} */}
           <Grid item lg={6} md={9} sm={9} xs={12}>
-            <FocusTaskList category="aspirations" data={aspirationTasks} />
+            <FocusTaskList />
           </Grid>
         </Grid>
       )}

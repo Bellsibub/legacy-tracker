@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Charisma",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Comedy",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Robotics",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "pack": "discover_university",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Research & Debate",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "pack": "discover_university",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Communication",
+    "type": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Imagination",
+    "type": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Creativity",
+    "type": "child",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Mental",
+    "type": "child",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  }
+]

@@ -29,7 +29,7 @@ export default () => {
       </Grid>
       {/* Icon Items list */}
       <Grid item lg={6} md={9} sm={9} xs={12}>
-        <IconItemsList title="Aspirations" items={aspirations} splitBy="type" />
+        <IconItemsList title="Aspirations" items={aspirations} splitBy="type" simRelated />
       </Grid>
       {/* Item By Sims List */}
       <Grid item lg={6} md={9} sm={9} xs={12}>

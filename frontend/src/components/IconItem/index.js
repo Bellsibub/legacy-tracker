@@ -12,13 +12,13 @@ import { AlertBoxOutline } from 'mdi-material-ui';
 // custom components
 import DialogSelectSim from 'components/DialogSelectSim';
 // services
-import { updateCategoryItem } from 'store/legacy/services';
+import { updateCategoryItem, completeCategoryItem } from 'store/legacy/services';
 // styling
 import styling from './style';
 
 const useStyles = makeStyles(styling);
 
-export default ({ category, item }) => {
+export default ({ category, item, simRelated }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [action, setAction] = React.useState('');
@@ -41,14 +41,43 @@ export default ({ category, item }) => {
 
   const handleSelect = (actionType, selectSim) => {
     handleClose();
-    if (selectSim) {
+    if (selectSim && simRelated) {
       setAction(actionType);
       setDialog(true);
-    } else if (actionType === 'removefocus') {
-      const newData = { remove: 'focusTarget', inFocus: false };
-      dispatch(
-        updateCategoryItem({ category, itemID: item._id, legacyID: _id, newData })
-      );
+    } else {
+      switch (actionType) {
+        case 'removefocus':
+          dispatch(
+            updateCategoryItem({
+              category,
+              itemID: item._id,
+              legacyID: _id,
+              newData: { inFocus: false }
+            })
+          );
+          break;
+        case 'complete':
+          dispatch(
+            completeCategoryItem({
+              category,
+              itemID: item._id,
+              legacyID: _id
+            })
+          );
+          break;
+        case 'setfocus':
+          dispatch(
+            updateCategoryItem({
+              category,
+              itemID: item._id,
+              legacyID: _id,
+              newData: { inFocus: true }
+            })
+          );
+          break;
+        default:
+          break;
+      }
     }
   };
 
@@ -91,12 +120,14 @@ export default ({ category, item }) => {
             </MenuItem>
           )}
         </Menu>
-        <DialogSelectSim
-          open={dialog}
-          setOpen={setDialog}
-          actionType={action}
-          category={category}
-          categoryItem={item} />
+        {simRelated && (
+          <DialogSelectSim
+            open={dialog}
+            setOpen={setDialog}
+            actionType={action}
+            category={category}
+            categoryItem={item} />
+        )}
       </div>
     </>
   );
