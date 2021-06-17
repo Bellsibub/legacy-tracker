@@ -4,7 +4,7 @@
   "description": "Backendpart of legacy tracker",
   "main": "server.js",
   "scripts": {
-    "start": "babel-node server.js",
+    "start": "set NODE_ENV=production&&babel-node server.js",
     "dev": "set NODE_ENV=development&&nodemon server.js --exec babel-node",
     "devReset": "set NODE_ENV=development&&set RESET_DB=true&&nodemon server.js --exec babel-node",
     "testENV": "set NODE_ENV=testing&&babel-node server.js",
@@ -24,6 +24,8 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "jwks-rsa": "^2.0.3",
     "lodash": "^4.17.21",
     "mongoose": "^5.12.12",
     "mongoose-autopopulate": "^0.14.0",
