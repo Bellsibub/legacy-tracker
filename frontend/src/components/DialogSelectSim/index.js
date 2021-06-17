@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 // 3rd party components
 import {
@@ -24,6 +25,8 @@ const useStyles = makeStyles(dialog);
 export default ({ open, setOpen, categoryItem, category, actionType }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+
   const { _id, generation } = useSelector((store) => store.legacy);
   const sims = useSelector((store) => {
     return store.legacy.sims.filter((sim) => sim.generation >= generation);
@@ -47,14 +50,19 @@ export default ({ open, setOpen, categoryItem, category, actionType }) => {
         );
         break;
       case 'setfocus':
-        dispatch(
-          updateCategoryItem({
-            category,
-            itemID: categoryItem._id,
-            legacyID: _id,
-            newData: { focusTarget: simID, inFocus: true }
+        getAccessTokenSilently()
+          .then((token) => {
+            dispatch(
+              updateCategoryItem({
+                category,
+                itemID: categoryItem._id,
+                legacyID: _id,
+                newData: { focusTarget: simID, inFocus: true },
+                token
+              })
+            );
           })
-        );
+          .catch((err) => console.log(err))
         break;
       default:
         break;

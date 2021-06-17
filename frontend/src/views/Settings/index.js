@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
@@ -7,10 +8,11 @@ import Loading from 'components/Loading';
 // import Goals from 'components/Goals'
 
 export default () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
   if (isLoading) {
     return <Loading />;
   }
+  console.log(user)
   return (
     isAuthenticated && (
       <>

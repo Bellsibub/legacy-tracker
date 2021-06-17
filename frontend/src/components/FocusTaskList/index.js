@@ -33,7 +33,6 @@ export default () => {
       });
     });
   });
-  console.log(tasks);
   return (
     <Card>
       <CardHeader color="blue" icon={EmojiEvents} />

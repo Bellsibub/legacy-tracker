@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 // import { makeStyles } from '@material-ui/core/styles';
 // material ui
 import { Typography } from '@material-ui/core';
@@ -24,11 +24,16 @@ import { createSim } from 'store/legacy/services';
 export default ({ items, generation }) => {
   // const classes = useStyles();
   const dispatch = useDispatch();
+  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
   const { _id } = useSelector((store) => store.legacy);
 
   const handleNewSimConfirm = (newSim) => {
     // console.log(newSim);
-    dispatch(createSim({ simData: newSim, legacyID: _id }));
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(createSim({ simData: newSim, legacyID: _id, token }));
+      })
+      .catch((err) => console.log(err))
   };
 
   return (

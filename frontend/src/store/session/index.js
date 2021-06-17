@@ -4,16 +4,28 @@ import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
 import { legacy, sims } from 'utils/data';
 import { load } from 'store/localStorage';
-import { getData } from './services'
+import { getData } from './services';
 
 // import { createLegacy } from './services';
 
 export const sessionSlice = createSlice({
   name: 'session',
-  initialState: load({ namespace: 'session' }) || { legacyID: '', data: {} },
+  initialState: load({ namespace: 'session' }) || {
+    legacyID: '',
+    data: {},
+    user: { id: '', legacies: {} }
+  },
   reducers: {
     setLegacy(state, { payload }) {
-      state.legacyID = payload;
+      state.user.legacies = _.forIn(state.user.legacies, (l) => l.active === false)
+      state.user.legacies = _.assign(state.user.legacies, {
+        id: payload.id,
+        active: true
+      });
+      state.legacyID = payload.id;
+    },
+    setUserID(state, { payload }) {
+      state.user.id = payload;
     }
   },
   extraReducers: {
@@ -23,5 +35,5 @@ export const sessionSlice = createSlice({
   }
 });
 
-export const { setLegacy } = sessionSlice.actions;
+export const { setLegacy, setUserID } = sessionSlice.actions;
 export default sessionSlice.reducer;

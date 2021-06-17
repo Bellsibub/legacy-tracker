@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-expressions */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import NoMatch from 'pages/nomatch';
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 
 // @material-ui
 
@@ -12,7 +13,8 @@ import Drawer from 'components/Drawer';
 import Appbar from 'components/Appbar';
 import Loading from 'components/Loading';
 // actions
-import { setScores } from 'store/legacy'
+import { setScores } from 'store/legacy';
+import { setUserID } from 'store/session';
 // services
 import { getLegacy } from 'store/legacy/services';
 import { getData } from 'store/session/services';
@@ -26,6 +28,7 @@ import styles from 'assets/jss/mainPanel';
 const useStyles = makeStyles(styles);
 
 export const Home = () => {
+  const { getAccessTokenSilently, isLoading, isAuthenticated, user } = useAuth0();
   const classes = useStyles();
   const dispatch = useDispatch();
   const { legacyID } = useSelector((store) => store.session);
@@ -33,14 +36,25 @@ export const Home = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   React.useEffect(() => {
-    if (legacyID) {
-      dispatch(getLegacy(legacyID));
-    }
-    dispatch(getData());
+    console.log('hello');
+    getAccessTokenSilently()
+      .then((token) => {
+        if (isAuthenticated) {
+          dispatch(setUserID(user.sub))
+        }
+        if (legacyID) {
+          dispatch(getLegacy({ legacyID, token }));
+        }
+        dispatch(getData({ token }));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
+
   React.useEffect(() => {
     if (fetchDone) {
-      dispatch(setScores())
+      dispatch(setScores());
     }
   }, [fetchDone]);
 
@@ -84,8 +98,6 @@ export const Home = () => {
 
 export default withAuthenticationRequired(Home, {
   onRedirecting: () => {
-    return (
-      <Loading />
-    )
+    return <Loading />;
   }
 });

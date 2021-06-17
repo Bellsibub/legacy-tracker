@@ -1,16 +1,45 @@
 /* eslint-disable no-underscore-dangle */
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { API_URL } from 'utils/apiConfig';
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+
+import { API_URL, AUTH_URL } from 'utils/apiConfig';
 
 export const getData = createAsyncThunk(
   'session/getData',
-  async (thunkAPI) => {
+  async ({ token }, thunkAPI) => {
     try {
       const response = await fetch(API_URL(`data`), {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       });
       const data = await response.json();
       console.log('fetched DATA: ', data);
+      if (response.status === 200) {
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+export const updateUser = createAsyncThunk(
+  'session/updateUser',
+  async ({ token }, thunkAPI) => {
+    try {
+      const userID = thunkAPI.getState().session.user.id;
+      const { legacies } = thunkAPI.getState().session.user;
+      const response = await fetch(API_URL(`users/${userID}`), {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ user_metadata: { ...legacies } })
+      });
+      const data = await response.json();
+      console.log('updated user: ', data);
       if (response.status === 200) {
         return data;
       } else {

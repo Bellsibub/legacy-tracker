@@ -1,6 +1,8 @@
 import React from 'react';
 // import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+
 import { makeStyles } from '@material-ui/core/styles';
 
 // @material-ui/core components
@@ -18,11 +20,17 @@ const useStyles = makeStyles(styles);
 export default ({ item }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+
   const { _id } = useSelector((store) => store.legacy);
 
   const handleEditSimConfirm = (newSim) => {
     console.log('NEW sim to update', newSim);
-    dispatch(updateSim({ simData: newSim, legacyID: _id }));
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(updateSim({ simData: newSim, legacyID: _id, token }));
+      })
+      .catch((err) => console.log(err))
   };
 
   return (

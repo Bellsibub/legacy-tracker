@@ -2,6 +2,8 @@
 import React from 'react';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+
 // material ui
 import {
   Typography,
@@ -71,13 +73,23 @@ const LawItemCollapse = ({ category, onConfirm, ...law }) => {
 
 export default () => {
   const dispatch = useDispatch();
+  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+
   const { laws, _id } = useSelector((store) => store.legacy);
 
   const handleSelectedLaw = (value, key) => {
-    dispatch(updateLegacy({ newData: { laws: { [key]: value } }, legacyID: _id }));
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(updateLegacy({ newData: { laws: { [key]: value } }, legacyID: _id, token }));
+      })
+      .catch((err) => console.log(err))
   };
   const handleNewLaws = (value) => {
-    dispatch(updateLegacy({ newData: { laws: value }, legacyID: _id }))
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(updateLegacy({ newData: { laws: value }, legacyID: _id, token }))
+      })
+      .catch((err) => console.log(err))
   }
 
   return (

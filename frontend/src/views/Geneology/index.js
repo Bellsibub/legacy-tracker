@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import _ from 'lodash';
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+
 import { useSelector, useDispatch, batch } from 'react-redux';
 import { Fab, Grid, Typography, Box } from '@material-ui/core';
 
@@ -19,6 +21,8 @@ import { addNewSim, addNewGeneration } from 'store/legacy';
 
 export default () => {
   const dispatch = useDispatch();
+  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+
   const [disabled, setDisabled] = React.useState(false);
   const { _id, generation } = useSelector((store) => store.legacy);
   const generations = useSelector((store) => _.groupBy(store.legacy.sims, 'generation'));
@@ -39,7 +43,11 @@ export default () => {
 
   const handleNewSimConfirm = (newSim) => {
     // console.log(newSim);
-    dispatch(createSim({ simData: newSim, legacyID: _id }));
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(createSim({ simData: newSim, legacyID: _id, token }));
+      })
+      .catch((err) => console.log(err))
   };
 
   return (

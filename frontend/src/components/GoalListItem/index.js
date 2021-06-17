@@ -1,5 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -24,6 +26,8 @@ const useStyles = makeStyles(styles);
 export default ({ item, category, isDynamic }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+
   const { _id } = useSelector((store) => store.legacy);
   const checkedComp = item.completed;
   const checkedFocus = item.focused;
@@ -33,15 +37,20 @@ export default ({ item, category, isDynamic }) => {
   });
 
   const handleChange = (property) => {
-    dispatch(
-      toggleGoal({
-        category,
-        goalID: item._id,
-        legacyID: _id,
-        value: property === 'completed' ? !checkedComp : !checkedFocus,
-        property
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(
+          toggleGoal({
+            category,
+            goalID: item._id,
+            legacyID: _id,
+            value: property === 'completed' ? !checkedComp : !checkedFocus,
+            property,
+            token
+          })
+        );
       })
-    );
+      .catch((err) => console.log(err));
   };
 
   return (

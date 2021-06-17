@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import _ from 'lodash';
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Grid } from '@material-ui/core';
@@ -12,13 +13,17 @@ import DialogConfirm from 'components/DialogConfirm';
 import { initLegacy } from 'store/legacy/services';
 import { startingSim, startingLegacySettings } from 'utils/defaultData';
 import FocusTaskList from 'components/FocusTaskList';
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 export default () => {
   const dispatch = useDispatch();
+  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
   const { score, generation } = useSelector((store) => store.legacy);
   const handleStartNewGen = () => {
-    dispatch(initLegacy({ founder: startingSim, legacy: startingLegacySettings }));
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(initLegacy({ founder: startingSim, legacy: startingLegacySettings, token }));
+      })
+      .catch((err) => console.log(err))
   };
   return (
     <>

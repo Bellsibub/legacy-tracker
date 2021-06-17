@@ -1,5 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -24,6 +26,8 @@ const useStyles = makeStyles(styles);
 export default ({ item, category }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+
   const { _id } = useSelector((store) => store.legacy);
   const checkedFocus = item.inFocus;
 
@@ -40,52 +44,72 @@ export default ({ item, category }) => {
 
   const handleSimRelatedChange = (complete) => {
     if (complete) {
-      dispatch(
-        completeCategoryItemTask({
-          category,
-          itemID: item._id,
-          legacyID: _id,
-          simID: item.focusTarget._id,
-          newData: {
-            remove: 'focusTarget',
-            inFocus: false,
-            completed: item.completed + 1
-          }
+      getAccessTokenSilently()
+        .then((token) => {
+          dispatch(
+            completeCategoryItemTask({
+              category,
+              itemID: item._id,
+              legacyID: _id,
+              simID: item.focusTarget._id,
+              newData: {
+                remove: 'focusTarget',
+                inFocus: false,
+                completed: item.completed + 1
+              },
+              token
+            })
+          );
         })
-      );
+        .catch((err) => console.log(err))
     } else {
-      dispatch(
-        updateCategoryItem({
-          category,
-          itemID: item._id,
-          legacyID: _id,
-          newData: { remove: 'focusTarget', inFocus: false }
+      getAccessTokenSilently()
+        .then((token) => {
+          dispatch(
+            updateCategoryItem({
+              category,
+              itemID: item._id,
+              legacyID: _id,
+              newData: { remove: 'focusTarget', inFocus: false },
+              token
+            })
+          );
         })
-      );
+        .catch((err) => console.log(err))
     }
   };
   const handleNonRelationChange = (complete) => {
     if (complete) {
-      dispatch(
-        completeCategoryItemTask({
-          category,
-          itemID: item._id,
-          legacyID: _id,
-          newData: {
-            inFocus: false,
-            completed: item.completed + 1
-          }
+      getAccessTokenSilently()
+        .then((token) => {
+          dispatch(
+            completeCategoryItemTask({
+              category,
+              itemID: item._id,
+              legacyID: _id,
+              newData: {
+                inFocus: false,
+                completed: item.completed + 1
+              },
+              token
+            })
+          );
         })
-      );
+        .catch((err) => console.log(err))
     } else {
-      dispatch(
-        updateCategoryItem({
-          category,
-          itemID: item._id,
-          legacyID: _id,
-          newData: { inFocus: false }
+      getAccessTokenSilently()
+        .then((token) => {
+          dispatch(
+            updateCategoryItem({
+              category,
+              itemID: item._id,
+              legacyID: _id,
+              newData: { inFocus: false },
+              token
+            })
+          );
         })
-      );
+        .catch((err) => console.log(err))
     }
   };
 

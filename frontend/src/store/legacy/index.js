@@ -10,6 +10,7 @@ export const legacySlice = createSlice({
   initialState: {
     loading: false,
     fetchDone: false,
+    error: null,
     score: {
       aspirations: {
         score: 0,
@@ -53,6 +54,11 @@ export const legacySlice = createSlice({
     [createLegacy.fulfilled]: (state, { payload }) => {
       return { ...state, ...payload, fetchDone: true, loading: false };
     },
+    [createLegacy.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.fetchDone = false;
+      state.error = { ...payload }
+    },
     [getLegacy.pending]: (state, { payload }) => {
       state.loading = true;
       state.fetchDone = false;
@@ -60,9 +66,19 @@ export const legacySlice = createSlice({
     [getLegacy.fulfilled]: (state, { payload }) => {
       return { ...state, ...payload, fetchDone: true, loading: false };
     },
+    [getLegacy.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.fetchDone = false;
+      state.error = { ...payload }
+    },
     [updateLegacy.fulfilled]: (state, { payload }) => {
       return { ...payload };
     }
+    // [updateLegacy.rejected]: (state, { payload }) => {
+    //   state.loading = false;
+    //   state.fetchDone = false;
+    //   state.error = { ...payload }
+    // },
   }
 });
 
