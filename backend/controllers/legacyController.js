@@ -7,6 +7,7 @@ import Legacy from '../models/legacyModel';
 import { RulesModel, LawsModel } from '../models/dataModel';
 import { AspirationModel, TraitsModel, SkillsModel } from '../models/categoriesModel';
 import AppError from '../utils/appError';
+import { UserModel } from '../models/userModel';
 import APIRequest from '../utils/apiRequest';
 
 export const create = async (req, res, next) => {
@@ -57,6 +58,19 @@ export const getOne = async (req, res, next) => {
     const { id } = req.params;
     // By default this returns the lastest 20 thoughts
     const doc = await Legacy.findById(id);
+    // .sort().limit();
+
+    res.status(200).json(doc);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getUser = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    // By default this returns the lastest 20 thoughts
+    const doc = await UserModel.findOne({ email: id });
     // .sort().limit();
 
     res.status(200).json(doc);

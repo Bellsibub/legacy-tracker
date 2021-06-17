@@ -14,6 +14,7 @@ router.post('/legacy/:id/:category/:itemid', legacy.completeCategoryItem)
 router.patch('/legacy/:id/:category/:itemid', legacy.updateCategoryItem)
 router.post('/legacy/:id/goals/:category/:itemid', legacy.toggleGoal)
 router.patch('/legacy/:id', legacy.update)
+router.get('/users/:id', legacy.getUser)
 
 router.get('/sim', sims.get)
 router.post('/sim', sims.create)

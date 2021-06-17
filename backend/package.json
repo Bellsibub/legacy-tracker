@@ -4,7 +4,9 @@
   "description": "Backendpart of legacy tracker",
   "main": "server.js",
   "scripts": {
-    "start": "set NODE_ENV=production&&babel-node server.js",
+    "start": "babel-node server.js",
+    "startPROD": "set NODE_ENV=production&&babel-node server.js",
+    "prodRESET": "set NODE_ENV=production&&set RESET_DB=true&&babel-node server.js",
     "dev": "set NODE_ENV=development&&nodemon server.js --exec babel-node",
     "devReset": "set NODE_ENV=development&&set RESET_DB=true&&nodemon server.js --exec babel-node",
     "testENV": "set NODE_ENV=testing&&babel-node server.js",
