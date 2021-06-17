@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 // @material-ui/core components
@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core';
 
 import avatar from 'assets/img/default-avatar.png';
+import Logout from 'components/Logout';
 import styling from './style';
 
 const useStyles = makeStyles(styling);
@@ -30,30 +31,34 @@ const DrawerWrapper = ({ className, header, links, profile }) => {
 };
 const Links = ({ routes, section }) => {
   const classes = useStyles();
-  const legacy = useSelector((store) => store.legacy)
+  const legacy = useSelector((store) => store.legacy);
   routes = routes.filter((r) => r.section === section);
   return routes.map((route) => {
     if (!legacy.generation && !route.noLegacyShow) {
-      return
+      return;
     }
-    return (
-      <ListItem key={route.name} className={classes.item}>
-        <NavLink
-          to={route.path}
-          activeClassName={classes.activeLink}
-          className={classes.itemLink}>
-          {typeof route.icon === 'string' ? (
-            <Icon className={classes.itemIcon}>{route.icon}</Icon>
-          ) : (
-            <route.icon className={classes.itemIcon} />
-          )}
-          <ListItemText
-            primary={route.name}
-            disableTypography
-            className={classes.itemText} />
-        </NavLink>
-      </ListItem>
-    );
+    if (route.isLogout) {
+      return (<Logout route={route} />)
+    } else {
+      return (
+        <ListItem key={route.name} className={classes.item}>
+          <NavLink
+            to={route.path}
+            activeClassName={classes.activeLink}
+            className={classes.itemLink}>
+            {typeof route.icon === 'string' ? (
+              <Icon className={classes.itemIcon}>{route.icon}</Icon>
+            ) : (
+              <route.icon className={classes.itemIcon} />
+            )}
+            <ListItemText
+              primary={route.name}
+              disableTypography
+              className={classes.itemText} />
+          </NavLink>
+        </ListItem>
+      );
+    }
   });
 };
 

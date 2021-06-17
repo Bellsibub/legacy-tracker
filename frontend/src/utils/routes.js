@@ -76,6 +76,7 @@ export default [
     // component: Login,
     auth: false,
     section: 'profile',
-    noLegacyShow: true
+    noLegacyShow: true,
+    isLogout: true
   }
 ];

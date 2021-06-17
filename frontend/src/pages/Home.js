@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import NoMatch from 'pages/nomatch';
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 // @material-ui
 
 // core components
 import Drawer from 'components/Drawer';
 import Appbar from 'components/Appbar';
+import Loading from 'components/Loading';
 // actions
 import { setScores } from 'store/legacy'
 // services
@@ -23,7 +25,7 @@ import styles from 'assets/jss/mainPanel';
 
 const useStyles = makeStyles(styles);
 
-export default () => {
+export const Home = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { legacyID } = useSelector((store) => store.session);
@@ -79,3 +81,11 @@ export default () => {
     </>
   );
 };
+
+export default withAuthenticationRequired(Home, {
+  onRedirecting: () => {
+    return (
+      <Loading />
+    )
+  }
+});
