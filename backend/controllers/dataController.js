@@ -1,4 +1,10 @@
-import { CodModel, SpeciesModel, LawsModel } from '../models/dataModel';
+import {
+  CodModel,
+  SpeciesModel,
+  LawsModel,
+  PacksModel,
+  RulesModel
+} from '../models/dataModel';
 // import AppError from '../utils/appError';
 
 export const get = async (req, res, next) => {
@@ -7,16 +13,20 @@ export const get = async (req, res, next) => {
     const causeOfDeath = await CodModel.find();
     const species = await SpeciesModel.find();
     const laws = await LawsModel.find();
+    const packs = await PacksModel.find();
+    const rules = await RulesModel.find();
     // .sort().limit();
     // format laws
-    const formatLaws = {} 
+    const formatLaws = {};
     laws.forEach((key, index) => {
-      Object.assign(formatLaws, { [key.type]: laws[index].items })
-    })
+      Object.assign(formatLaws, { [key.type]: laws[index].items });
+    });
     res.status(200).json({
       causeOfDeath,
       species,
-      laws: formatLaws
+      laws: formatLaws,
+      packs,
+      rules
     });
   } catch (error) {
     next(error);

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import NoMatch from 'pages/nomatch';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
@@ -17,7 +17,7 @@ import { setScores } from 'store/legacy';
 import { setUserID } from 'store/session';
 // services
 import { getLegacy } from 'store/legacy/services';
-import { getData, getUserLegacies } from 'store/session/services';
+import { getData, getUserLegacies, getUserMetadata } from 'store/session/services';
 
 // utils and data
 import routes from 'utils/routes';
@@ -28,20 +28,21 @@ import styles from 'assets/jss/mainPanel';
 const useStyles = makeStyles(styles);
 
 export const Home = () => {
+  const history = useHistory();
   const { getAccessTokenSilently, isLoading, isAuthenticated, user } = useAuth0();
   const classes = useStyles();
   const dispatch = useDispatch();
   const { legacyID } = useSelector((store) => store.session);
+  const { firstTime } = useSelector((store) => store.session.user);
   const { generation, fetchDone } = useSelector((store) => store.legacy);
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   React.useEffect(() => {
-    console.log('hello');
     getAccessTokenSilently()
       .then((token) => {
         if (isAuthenticated) {
           dispatch(setUserID(user.sub))
-          dispatch(getUserLegacies({ token }));
+          dispatch(getUserMetadata({ token }));
         }
         dispatch(getData({ token }));
       })
@@ -51,8 +52,14 @@ export const Home = () => {
   }, []);
 
   React.useEffect(() => {
+  }, [firstTime, fetchDone])
+
+  React.useEffect(() => {
     if (fetchDone) {
       dispatch(setScores());
+      if (firstTime || !legacyID) {
+        history.push('/onboarding')
+      }
     }
   }, [fetchDone]);
   React.useEffect(() => {

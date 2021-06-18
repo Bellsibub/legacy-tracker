@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
 import { legacy, sims } from 'utils/data';
 import { load } from 'store/localStorage';
-import { getData, getUserLegacies } from './services';
+import { getData, getUserMetadata } from './services';
 
 // import { createLegacy } from './services';
 
@@ -13,7 +13,7 @@ export const sessionSlice = createSlice({
   initialState: {
     legacyID: '',
     data: {},
-    user: { id: '' }
+    user: { id: '', firstTime: true }
   },
   reducers: {
     setLegacy(state, { payload }) {
@@ -32,8 +32,9 @@ export const sessionSlice = createSlice({
     [getData.fulfilled]: (state, { payload }) => {
       state.data = { ...payload };
     },
-    [getUserLegacies.fulfilled]: (state, { payload }) => {
+    [getUserMetadata.fulfilled]: (state, { payload }) => {
       state.legacyID = payload.legacy;
+      state.user.firstTime = payload.firstTime;
     }
   }
 });

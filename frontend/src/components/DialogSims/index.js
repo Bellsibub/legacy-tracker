@@ -19,16 +19,16 @@ import { Edit } from '@material-ui/icons';
 // styling
 import dialog from 'assets/jss/dialog';
 // custom components
-import Aspirations from './Inputs/SelectAspirations';
-import Species from './Inputs/SelectSpecies';
-import Traits from './Inputs/SelectTraits';
-import CauseOfDeath from './Inputs/SelectCod';
-import Status from './Inputs/SelectStatus';
-import Roles from './Inputs/SelectRole';
-import Relations from './Inputs/SelectRelations';
-import TextInput from './Inputs/TextInput';
-import SimpleSelect from './Inputs/SimpleSelect';
-import SwitchToggle from './Inputs/SwitchToggle';
+import Aspirations from 'components/Inputs/SelectAspirations';
+import Species from 'components/Inputs/SelectSpecies';
+import Traits from 'components/Inputs/SelectTraits';
+import CauseOfDeath from 'components/Inputs/SelectCod';
+import Status from 'components/Inputs/SelectStatus';
+import Roles from 'components/Inputs/SelectRole';
+import Relations from 'components/Inputs/SelectRelations';
+import TextInput from 'components/Inputs/TextInput';
+import SimpleSelect from 'components/Inputs/SimpleSelect';
+import SwitchToggle from 'components/Inputs/SwitchToggle';
 
 const useStyles = makeStyles(dialog);
 
@@ -131,25 +131,6 @@ export default ({
         <form onSubmit={handleSubmit}>
           <DialogTitle id="dialogEditSims">{title}</DialogTitle>
           <DialogContent>
-            {/* Generation
-            {!newGen && (
-              <FormControl required className={classes.dialogFullWidth}>
-                <InputLabel id="generation">Generation</InputLabel>
-                <Select
-                  labelId="generation"
-                  id="generationSelect"
-                  name="generation"
-                  value={simInfo.generation || 1}
-                  onChange={handleChange}
-                  input={<Input />}>
-                  {generationOpts.map((item) => (
-                    <MenuItem key={item} value={item}>
-                      <Typography variant="body1">{item}</Typography>
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            )} */}
             {/* GENERAL */}
             <DialogTitle className={classes.dialogSectionTitle}>General</DialogTitle>
             <Divider className={classes.dialogDivider} />

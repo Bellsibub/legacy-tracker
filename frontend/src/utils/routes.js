@@ -13,6 +13,7 @@ import Geneology from 'views/Geneology';
 import Skills from 'views/Skills';
 import Aspirations from 'views/Aspirations';
 import Settings from 'views/Settings';
+import OnBoarding from 'views/OnBoarding';
 
 export default [
   {
@@ -67,6 +68,15 @@ export default [
     component: Settings,
     auth: true,
     section: 'profile',
+    noLegacyShow: true
+  },
+  {
+    path: '/onboarding',
+    name: 'OnBoarding',
+    // icon: 'SE',
+    component: OnBoarding,
+    auth: true,
+    section: 'none',
     noLegacyShow: true
   },
   {

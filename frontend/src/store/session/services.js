@@ -51,8 +51,8 @@ export const addLegacyToUser = createAsyncThunk(
     }
   }
 );
-export const getUserLegacies = createAsyncThunk(
-  'session/getUserLegacies',
+export const getUserMetadata = createAsyncThunk(
+  'session/getUserMetadata',
   async ({ token }, thunkAPI) => {
     try {
       const userID = thunkAPI.getState().session.user.id;

@@ -1,4 +1,6 @@
 import React from 'react';
+import classNames from 'classnames';
+
 // import { useDispatch } from 'react-redux';
 import {
   Dialog,
@@ -7,17 +9,24 @@ import {
   DialogTitle,
   Typography,
   Button,
-  IconButton
+  IconButton,
+  Icon,
+  ButtonBase
 } from '@material-ui/core';
 // import { addList } from 'store/tasks';
 // import { useStyles } from './style';
 import { makeStyles } from '@material-ui/core/styles';
 import dialog from 'assets/jss/dialog';
+import { AlertOutline } from 'mdi-material-ui';
 
 const useStyles = makeStyles(dialog);
 
-export default ({ title, message, onConfirm, ...other }) => {
+export default ({ title, message, onConfirm, className, children, ...other }) => {
   const classes = useStyles();
+
+  const buttonBaseClasses = classNames({
+    [className]: className !== undefined
+  });
 
   const [open, setOpen] = React.useState(false);
   // const [value, setValue] = React.useState('');
@@ -41,6 +50,11 @@ export default ({ title, message, onConfirm, ...other }) => {
           disabled={other.disabled}>
           {other.buttonText}
         </Button>
+      )}
+      {other.buttonBase && (
+        <ButtonBase focusRipple onClick={toggleDialog} className={buttonBaseClasses}>
+          {children}
+        </ButtonBase>
       )}
       <Dialog
         open={open}

@@ -14,7 +14,7 @@ export const create = async (req, res, next) => {
   try {
     const { name, ruler, goals } = req.body;
     // const laws = await LawsModel.find()
-    const rules = await RulesModel.find();
+    // const rules = await RulesModel.find();
     const aspirations = await AspirationModel.find();
     const skills = await SkillsModel.find();
     const traits = await TraitsModel.find();
@@ -29,7 +29,6 @@ export const create = async (req, res, next) => {
       sims: [ruler],
       aspirations,
       traits,
-      rules,
       goals,
       skills,
       packs

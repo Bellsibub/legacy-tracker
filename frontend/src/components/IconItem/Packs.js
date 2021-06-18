@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import classNames from 'classnames';
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,38 +17,43 @@ import DialogSelectSim from 'components/DialogSelectSim';
 import { updatePacks, completeCategoryItem } from 'store/legacy/services';
 import { updateUserMetadata } from 'store/session/services';
 // styling
+import DialogConfirm from 'components/DialogConfirm';
 import styling from './style';
 
 const useStyles = makeStyles(styling);
 
-export default ({ category, item }) => {
+export default ({ category, item, ...other }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
 
   // const [action, setAction] = React.useState('');
-  // const [dialog, setDialog] = React.useState(false);
+  const [itemActive, setItemActive] = React.useState(item.active);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { _id } = useSelector((store) => store.legacy);
 
   const imageClasses = classNames({
     [classes.image]: true,
-    [classes.focused]: item.active
+    [classes.focused]: itemActive
   });
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+  const handleToggle = (event) => {
+    other.setPacks((prev) => ([...prev, item]));
+    setItemActive(!itemActive);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const handleSelect = (actionType) => {
-    handleClose();
-
-    switch (actionType) {
-      case 'removeactive':
+  const handleConfirm = () => {
+    // handleClose();
+    setItemActive(!itemActive);
+    switch (item.active) {
+      case true:
         getAccessTokenSilently()
           .then((token) => {
             dispatch(
@@ -60,10 +65,10 @@ export default ({ category, item }) => {
               })
             );
           })
-          .catch((err) => console.log(err))
+          .catch((err) => console.log(err));
 
         break;
-      case 'setactive':
+      case false:
         getAccessTokenSilently()
           .then((token) => {
             dispatch(
@@ -75,7 +80,7 @@ export default ({ category, item }) => {
               })
             );
           })
-          .catch((err) => console.log(err))
+          .catch((err) => console.log(err));
         break;
       default:
         break;
@@ -85,32 +90,49 @@ export default ({ category, item }) => {
   return (
     <>
       <div className={classes.root}>
-        <ButtonBase focusRipple className={imageClasses} onClick={handleClick}>
-          <img src={item.image} alt={item.name} />
-          <span className={classes.imageBackdrop} />
-          {item.active && (
-            <span className={classes.imageFocused}>
-              <Icon>
-                <AlertBoxOutline />
-              </Icon>
-            </span>
-          )}
-        </ButtonBase>
-        <Menu
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}>
-          {item.active ? (
-            <MenuItem onClick={() => handleSelect('removeactive', false)}>
-              Remove as Active
-            </MenuItem>
-          ) : (
-            <MenuItem onClick={() => handleSelect('setactive', true)}>
-              Set as Active
-            </MenuItem>
-          )}
-        </Menu>
+        {other.justToggle && (
+          <ButtonBase focusRipple className={imageClasses} onClick={handleToggle}>
+            <img src={item.image} alt={item.name} />
+            <span className={classes.imageBackdrop} />
+            {itemActive && (
+              <span className={classes.imageFocused}>
+                <Icon>
+                  <AlertBoxOutline />
+                </Icon>
+              </span>
+            )}
+          </ButtonBase>
+        )}
+        {!other.justToggle && (
+          <>
+            <DialogConfirm buttonBase className={imageClasses} onConfirm={handleConfirm} title="test">
+              <img src={item.image} alt={item.name} />
+              <span className={classes.imageBackdrop} />
+              {itemActive && (
+                <span className={classes.imageFocused}>
+                  <Icon>
+                    <AlertBoxOutline />
+                  </Icon>
+                </span>
+              )}
+            </DialogConfirm>
+            {/* <Menu
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}>
+              {item.active ? (
+                <MenuItem onClick={() => handleSelect('removeactive', false)}>
+                  Remove as Active
+                </MenuItem>
+              ) : (
+                <MenuItem onClick={() => handleSelect('setactive', true)}>
+                  Set as Active
+                </MenuItem>
+              )}
+            </Menu> */}
+          </>
+        )}
       </div>
     </>
   );
