@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     '& > li': {
       height: 'auto !important'
-
     }
   }
 }));
@@ -33,7 +32,7 @@ export default ({ ...props }) => {
   const classes = useStyles();
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('xs'));
-  const items = useSelector((store) => store.session.data.packs)
+  const items = useSelector((store) => store.session.data.packs);
   const groups = _.groupBy(items, 'type');
 
   return (
@@ -50,7 +49,12 @@ export default ({ ...props }) => {
             cols={smallScreen ? 3 : 5}>
             {group.map((item) => (
               <GridListTile key={item.name} className={classes.gridTile}>
-                <IconItem category="packs" item={item} type="pack" justToggle {...props} />
+                <IconItem
+                  category="packs"
+                  item={item}
+                  type="pack"
+                  justToggle
+                  {...props} />
               </GridListTile>
             ))}
           </GridList>

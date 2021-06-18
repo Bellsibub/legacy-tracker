@@ -63,30 +63,28 @@ export default ({ onConfirm, simInfo, setSimInfo }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        {/* <DialogTitle id="dialogEditSims">{title}</DialogTitle> */}
-        {/* <DialogContent> */}
-        {/* GENERAL */}
-        <DialogTitle className={classes.dialogSectionTitle}>General</DialogTitle>
-        <Divider className={classes.dialogDivider} />
-        {/* name */}
-        <TextInput
-          value={simInfo.firstName}
-          onChange={handleChange}
-          label="First Name"
-          name="firstName" />
-        <TextInput
-          value={simInfo.lastName}
-          onChange={handleChange}
-          label="Last Name"
-          name="lastName" />
-        {/* Gender */}
-        <SimpleSelect value={simInfo.gender} onChange={handleChange} label="Gender" />
-        {/* species */}
-        <Species value={simInfo.species} onChange={handleSingleSelectChange} />
-        {/* <Traits value={simInfo.traits} onChange={handleTraitChange} items={packs} /> */}
-        {/* <Aspirations value={simInfo.aspirations} onChange={handleAspirationChange} /> */}
-      </form>
+      {/* <DialogTitle id="dialogEditSims">{title}</DialogTitle> */}
+      {/* <DialogContent> */}
+      {/* GENERAL */}
+      <DialogTitle className={classes.dialogSectionTitle}>General</DialogTitle>
+      <Divider className={classes.dialogDivider} />
+      {/* name */}
+      <TextInput
+        value={simInfo.firstName}
+        onChange={handleChange}
+        label="First Name"
+        name="firstName" />
+      <TextInput
+        value={simInfo.lastName}
+        onChange={handleChange}
+        label="Last Name"
+        name="lastName" />
+      {/* Gender */}
+      <SimpleSelect value={simInfo.gender} onChange={handleChange} label="Gender" />
+      {/* species */}
+      <Species value={simInfo.species} onChange={handleSingleSelectChange} />
+      {/* <Traits value={simInfo.traits} onChange={handleTraitChange} items={packs} /> */}
+      {/* <Aspirations value={simInfo.aspirations} onChange={handleAspirationChange} /> */}
     </>
   );
 };
