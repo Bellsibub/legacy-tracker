@@ -44,6 +44,7 @@ const jwtCheck = jwt({
 // Add middlewares to enable cors and json body parsing
 app.use(cors());
 app.use(express.json());
+
 app.use(jwtCheck);
 
 // Add router module and error handler

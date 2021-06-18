@@ -17,7 +17,7 @@ import { setScores } from 'store/legacy';
 import { setUserID } from 'store/session';
 // services
 import { getLegacy } from 'store/legacy/services';
-import { getData } from 'store/session/services';
+import { getData, getUserLegacies } from 'store/session/services';
 
 // utils and data
 import routes from 'utils/routes';
@@ -41,9 +41,7 @@ export const Home = () => {
       .then((token) => {
         if (isAuthenticated) {
           dispatch(setUserID(user.sub))
-        }
-        if (legacyID) {
-          dispatch(getLegacy({ legacyID, token }));
+          dispatch(getUserLegacies({ token }));
         }
         dispatch(getData({ token }));
       })
@@ -57,6 +55,13 @@ export const Home = () => {
       dispatch(setScores());
     }
   }, [fetchDone]);
+  React.useEffect(() => {
+    getAccessTokenSilently().then((token) => {
+      if (legacyID) {
+        dispatch(getLegacy({ legacyID, token }));
+      }
+    })
+  }, [legacyID]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);

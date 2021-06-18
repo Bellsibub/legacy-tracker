@@ -1,18 +1,30 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Grid, Typography } from '@material-ui/core';
 import { useAuth0 } from '@auth0/auth0-react';
 import Loading from 'components/Loading';
-
+import { getUserLegacies } from 'store/session/services';
+import { initLegacy } from 'store/legacy/services';
+import { startingSim, startingLegacySettings } from 'utils/defaultData';
 // import Goals from 'components/Goals'
 
 export default () => {
+  const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+  const handleStartNewGen = () => {
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(initLegacy({ founder: startingSim, legacy: startingLegacySettings, token }));
+      })
+      .catch((err) => console.log(err))
+  };
+
   if (isLoading) {
     return <Loading />;
   }
-  console.log(user)
+
   return (
     isAuthenticated && (
       <>
@@ -29,6 +41,7 @@ export default () => {
           {/* legacy settings */}
           <Grid item lg={6} xs={12}>
             {/* <legacy settings /> */}
+            <button type="button" onClick={handleStartNewGen}>StartNewLegacy</button>
           </Grid>
           {/* games settings */}
           <Grid item xs={12}>

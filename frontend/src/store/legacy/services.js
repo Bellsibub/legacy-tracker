@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { verifyGoalCompletion } from 'utils/calculations';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { updateUser } from 'store/session/services';
+import { addLegacyToUser } from 'store/session/services';
 import { setLegacy } from 'store/session';
 import { API_URL } from 'utils/apiConfig';
 
@@ -20,7 +20,7 @@ export const createLegacy = createAsyncThunk(
       if (response.status === 201) {
         thunkAPI.dispatch(setLegacy({ id: data._id }));
         // call the authAPI to save to usermeta
-        thunkAPI.dispatch(updateUser({ token }));
+        thunkAPI.dispatch(addLegacyToUser({ token, legacyID: data._id }));
         return data;
       } else {
         return thunkAPI.rejectWithValue(data);

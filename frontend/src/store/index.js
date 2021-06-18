@@ -8,8 +8,4 @@ const reducer = combineReducers({
   session
 });
 
-const store = configureStore({ reducer });
-
-store.subscribe(() => save(store.getState().session, { namespace: 'session' }));
-
-export default store;
+export default configureStore({ reducer });
