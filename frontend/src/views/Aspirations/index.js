@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import _ from 'lodash';
 import { useSelector } from 'react-redux';
 import { Grid, Typography } from '@material-ui/core';
 
@@ -10,7 +11,24 @@ import IconItemsList from 'components/IconItemsList';
 import ItemBySimsList from 'components/ItemBySimsList';
 
 export default () => {
-  const { score, aspirations, sims, goals } = useSelector((store) => store.legacy)
+  const { score, sims, goals } = useSelector((store) => store.legacy)
+  const packs = useSelector((store) => {
+    return _.filter(store.legacy.packs, ['active', true]);
+  });
+  const aspirations = useSelector((store) => {
+    return _.filter(store.legacy.aspirations, (item) => {
+      let st;
+      _.forEach(packs, (pack) => {
+        if (pack.name === item.pack) {
+          st = true;
+          return false;
+        } else {
+          st = false;
+        }
+      });
+      return st;
+    });
+  });
 
   return (
     <Grid container spacing={3}>
@@ -29,7 +47,7 @@ export default () => {
       </Grid>
       {/* Icon Items list */}
       <Grid item lg={6} md={9} sm={9} xs={12}>
-        <IconItemsList title="Aspirations" items={aspirations} splitBy="type" simRelated />
+        <IconItemsList title="Aspirations" items={aspirations} splitBy="type" type="item" simRelated />
       </Grid>
       {/* Item By Sims List */}
       <Grid item lg={6} md={9} sm={9} xs={12}>

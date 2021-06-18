@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
+import _ from 'lodash';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 // material ui components
@@ -16,7 +17,23 @@ const useStyles = makeStyles(dialog);
 
 export default ({ value, onChange }) => {
   const classes = useStyles();
-  const { aspirations } = useSelector((store) => store.legacy)
+  const packs = useSelector((store) => {
+    return _.filter(store.legacy.packs, ['active', true]);
+  });
+  const aspirations = useSelector((store) => {
+    return _.filter(store.legacy.aspirations, (item) => {
+      let st;
+      _.forEach(packs, (pack) => {
+        if (pack.name === item.pack) {
+          st = true;
+          return false;
+        } else {
+          st = false;
+        }
+      });
+      return st;
+    });
+  });
 
   return (
     <Autocomplete

@@ -1,5 +1,11 @@
 import { AspirationModel, TraitsModel, SkillsModel } from '../models/categoriesModel';
-import { RulesModel, LawsModel, SpeciesModel, CodModel } from '../models/dataModel';
+import {
+  RulesModel,
+  LawsModel,
+  SpeciesModel,
+  CodModel,
+  PacksModel
+} from '../models/dataModel';
 import aspirations from './aspirations.json';
 import skills from './skills.json';
 import traits from './traits.json';
@@ -7,6 +13,7 @@ import rules from './rules.json';
 import species from './species.json';
 import causeOfDeath from './causeOfDeath.json';
 import laws from './laws.json';
+import packs from './packs.json';
 
 export default async () => {
   await AspirationModel.deleteMany({});
@@ -16,7 +23,11 @@ export default async () => {
   await CodModel.deleteMany({});
   await LawsModel.deleteMany({});
   await SkillsModel.deleteMany({});
+  await PacksModel.deleteMany({});
 
+  packs.forEach((modelData) => {
+    new PacksModel(modelData).save();
+  });
   skills.forEach((modelData) => {
     new SkillsModel(modelData).save();
   });

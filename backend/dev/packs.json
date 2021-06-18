@@ -1,0 +1,52 @@
+[
+  {
+    "name": "base_game",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "type": "base game version"
+  },
+  {
+    "name": "jungle_adventure",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "type": "game pack"
+  },
+  {
+    "name": "cats_and_dogs",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "type": "expansion"
+  },
+  {
+    "name": "discover_university",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "type": "expansion"
+  },
+  {
+    "name": "eco_lifestyle",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "type": "expansion"
+  },
+  {
+    "name": "get_together",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "type": "expansion"
+  },
+  {
+    "name": "throwback_fit",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "type": "kit"
+  },
+  {
+    "name": "country_kitchen",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "type": "kit"
+  },
+  {
+    "name": "tiny_living",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "type": "stuff pack"
+  },
+  {
+    "name": "paranormal",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "type": "stuff pack"
+  }
+]

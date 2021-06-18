@@ -4,7 +4,7 @@
 /* eslint-disable no-underscore-dangle */
 import Legacy from '../models/legacyModel';
 // import Sims from '../models/simsModel';
-import { RulesModel, LawsModel } from '../models/dataModel';
+import { RulesModel, LawsModel, PacksModel } from '../models/dataModel';
 import { AspirationModel, TraitsModel, SkillsModel } from '../models/categoriesModel';
 import AppError from '../utils/appError';
 import { UserModel } from '../models/userModel';
@@ -18,6 +18,7 @@ export const create = async (req, res, next) => {
     const aspirations = await AspirationModel.find();
     const skills = await SkillsModel.find();
     const traits = await TraitsModel.find();
+    const packs = await PacksModel.find();
 
     goals.aspirations[goals.aspirations.length - 1].count = aspirations.length;
     goals.skills[goals.skills.length - 1].count = skills.length;
@@ -30,7 +31,8 @@ export const create = async (req, res, next) => {
       traits,
       rules,
       goals,
-      skills
+      skills,
+      packs
     });
     const doc = await Legacy.findById(newLegacy._id);
     res.status(201).json(doc);
@@ -177,6 +179,32 @@ export const updateCategoryItem = async (req, res, next) => {
   }
 };
 
+export const updatePacks = async (req, res, next) => {
+  try {
+    const { id, itemid } = req.params;
+    // const { remove } = req.body;
+    const { bool } = req.body;
+    const doc = await Legacy.updateOne(
+      { _id: id, 'packs._id': itemid },
+      { $set: { 'packs.$.active': bool } },
+      { new: true }
+    );
+    // const doc = await Legacy.findOne({ _id: id });
+    if (!doc) {
+      return next(
+        new AppError(
+          404,
+          'Not Found',
+          'The ID you provided did not exist. Please try again'
+        )
+      );
+    }
+    res.status(201).json(doc);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const toggleGoal = async (req, res, next) => {
   try {
     const { id, category, itemid } = req.params;
@@ -202,24 +230,3 @@ export const toggleGoal = async (req, res, next) => {
     next(error);
   }
 };
-
-// export const updateLaws = async (req, res, next) => {
-//   try {
-//     const { id } = req.params;
-
-//     const doc = await Legacy.updateOne({ _id: id }, { ...laws }, { new: true });
-
-//     if (!doc) {
-//       return next(
-//         new AppError(
-//           404,
-//           'Not Found',
-//           'The ID you provided did not exist. Please try again'
-//         )
-//       );
-//     }
-//     res.status(201).json(doc);
-//   } catch (error) {
-//     next(error);
-//   }
-// };

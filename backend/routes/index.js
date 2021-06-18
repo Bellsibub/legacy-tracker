@@ -14,6 +14,7 @@ const router = new Router();
 router.get('/legacy', legacy.getAll);
 router.get('/legacy/:id', legacy.getOne);
 router.post('/legacy', legacy.create);
+router.patch('/legacy/:id/packs/:itemid', legacy.updatePacks);
 router.post('/legacy/:id/:category/:itemid', legacy.completeCategoryItem);
 router.patch('/legacy/:id/:category/:itemid', legacy.updateCategoryItem);
 router.post('/legacy/:id/goals/:category/:itemid', legacy.toggleGoal);

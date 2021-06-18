@@ -1,16 +1,34 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import _ from 'lodash';
 import { useSelector } from 'react-redux';
 import { Grid, Typography } from '@material-ui/core';
 
-import Goals from 'components/Goals'
-import Stats from 'components/Stats'
+import Goals from 'components/Goals';
+import Stats from 'components/Stats';
 import IconItemsList from 'components/IconItemsList';
 // import { aspirations, sims } from 'utils/data'
 import ItemBySimsList from 'components/ItemBySimsList';
 
 export default () => {
-  const { score, skills, sims, goals } = useSelector((store) => store.legacy)
+  const { score, sims, goals } = useSelector((store) => store.legacy);
+  const packs = useSelector((store) => {
+    return _.filter(store.legacy.packs, ['active', true]);
+  });
+  const skills = useSelector((store) => {
+    return _.filter(store.legacy.skills, (item) => {
+      let st;
+      _.forEach(packs, (pack) => {
+        if (pack.name === item.pack) {
+          st = true;
+          return false;
+        } else {
+          st = false;
+        }
+      });
+      return st;
+    });
+  });
 
   return (
     <Grid container spacing={3}>
@@ -29,12 +47,12 @@ export default () => {
       </Grid>
       {/* Icon Items list */}
       <Grid item lg={6} md={9} sm={9} xs={12}>
-        <IconItemsList title="Skills" items={skills} splitBy="type" />
+        <IconItemsList title="Skills" items={skills} splitBy="type" type="item" />
       </Grid>
       {/* Item By Sims List */}
       {/* <Grid item lg={6} md={9} sm={9} xs={12}>
         <ItemBySimsList title="Aspirations per Sim" itemsKey="skills" items={sims} />
       </Grid> */}
     </Grid>
-  )
+  );
 };

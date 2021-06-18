@@ -217,6 +217,38 @@ export const toggleGoal = createAsyncThunk(
   }
 );
 
+export const updatePacks = createAsyncThunk(
+  'legacy/updatePacks',
+  async ({ packID, legacyID, value, token }, thunkAPI) => {
+    // console.log(newData);
+    try {
+      // 1. create a new sim to be the ruler
+      const legacyResponse = await fetch(
+        API_URL(`legacy/${legacyID}/packs/${packID}`),
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({ bool: value })
+        }
+      );
+      const data = await legacyResponse.json();
+      // 2. call the next api call to fetch the full legacy object to update the state
+      if (legacyResponse.status === 201) {
+        thunkAPI.dispatch(getLegacy({ legacyID, token }));
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const updateCategoryItem = createAsyncThunk(
   'legacy/updateCategoryItem',
   async ({ category, itemID, legacyID, newData, token }, thunkAPI) => {

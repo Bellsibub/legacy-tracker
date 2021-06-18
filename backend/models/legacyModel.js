@@ -1,7 +1,7 @@
 /* eslint-disable func-names */
 import mongoose from 'mongoose';
 import { categoriesSchema } from './categoriesModel';
-import { dataSchema } from './dataModel';
+import { dataSchema, packsSchema } from './dataModel';
 
 const { Schema } = mongoose;
 
@@ -35,6 +35,7 @@ const legacySchema = new Schema({
   aspirations: [{ type: categoriesSchema }],
   skills: [{ type: categoriesSchema }],
   traits: [{ type: categoriesSchema }],
+  packs: [{ type: packsSchema }],
   laws: {
     gender: {
       title: { type: String },
@@ -58,7 +59,7 @@ const legacySchema = new Schema({
   goals: {
     aspirations: [{ type: goalSchema }],
     skills: [{ type: goalSchema }],
-    food: [{ type: goalSchema }]    
+    food: [{ type: goalSchema }]
   }
 });
 
