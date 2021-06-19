@@ -29,7 +29,7 @@ ReactDOM.render(
           <CssBaseline />
           <Switch>
             <Route path="/" component={HomeLayout} />
-            {/* <Route component={NoMatch} /> */}
+            <Route component={NoMatch} />
           </Switch>
         </ThemeProvider>
       </BrowserRouter>

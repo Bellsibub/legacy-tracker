@@ -13,6 +13,7 @@ const router = new Router();
 
 router.get('/legacy', legacy.getAll);
 router.get('/legacy/:id', legacy.getOne);
+router.delete('/legacy/:id', legacy.deleteLegacy);
 router.post('/legacy', legacy.create);
 router.patch('/legacy/:id/packs/:itemid', legacy.updatePacks);
 router.post('/legacy/:id/:category/:itemid', legacy.completeCategoryItem);
@@ -23,6 +24,7 @@ router.patch('/legacy/:id', legacy.update);
 
 router.patch('/users/:id/legacies', authAPI.addLegacyToUser);
 router.get('/users/:id/legacies', authAPI.getUserLegacies);
+router.delete('/users/:id/legacies', authAPI.removeLegacyForUser);
 
 router.get('/sim', sims.get);
 router.post('/sim', sims.create);

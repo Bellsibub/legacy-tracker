@@ -1,12 +1,15 @@
+import _ from 'lodash';
 import { AspirationModel, TraitsModel, SkillsModel } from '../models/categoriesModel';
 import {
   RulesModel,
   LawsModel,
   SpeciesModel,
   CodModel,
-  PacksModel
+  PacksModel,
+  GoalsModel
 } from '../models/dataModel';
 import aspirations from './aspirations.json';
+import goals from './goals.json';
 import skills from './skills.json';
 import traits from './traits.json';
 import rules from './rules.json';
@@ -16,6 +19,7 @@ import laws from './laws.json';
 import packs from './packs.json';
 
 export default async () => {
+  await GoalsModel.deleteMany({});
   await AspirationModel.deleteMany({});
   await TraitsModel.deleteMany({});
   await RulesModel.deleteMany({});
@@ -24,6 +28,8 @@ export default async () => {
   await LawsModel.deleteMany({});
   await SkillsModel.deleteMany({});
   await PacksModel.deleteMany({});
+
+  new GoalsModel({ ...goals }).save();
 
   packs.forEach((modelData) => {
     new PacksModel(modelData).save();

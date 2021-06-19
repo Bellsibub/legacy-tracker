@@ -15,7 +15,25 @@ export const lawsSchema = new Schema({
   type: { type: String },
   items: Array
 });
+export const goalSchema = new Schema({
+  aspirations: [{
+    text: String,
+    count: Number
+  }],
+  skills: [{
+    text: String,
+    count: Number
+  }],
+  food: [{
+    text: String
+  }]
+});
 
+export const GoalsModel = mongoose.model(
+  'Goals',
+  goalSchema,
+  'goals'
+);
 export const RulesModel = mongoose.model(
   'Rules',
   dataSchema,

@@ -41,7 +41,7 @@ export default ({ category, item, ...other }) => {
     setAnchorEl(event.currentTarget);
   };
   const handleToggle = (event) => {
-    other.setPacks((prev) => ([...prev, item]));
+    other.setPacks(item._id);
     setItemActive(!itemActive);
   };
 
@@ -105,7 +105,11 @@ export default ({ category, item, ...other }) => {
         )}
         {!other.justToggle && (
           <>
-            <DialogConfirm buttonBase className={imageClasses} onConfirm={handleConfirm} title="test">
+            <DialogConfirm
+              buttonBase
+              className={imageClasses}
+              onConfirm={handleConfirm}
+              title="test">
               <img src={item.image} alt={item.name} />
               <span className={classes.imageBackdrop} />
               {itemActive && (

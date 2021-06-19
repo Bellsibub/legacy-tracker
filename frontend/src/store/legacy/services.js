@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { verifyGoalCompletion } from 'utils/calculations';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { addLegacyToUser } from 'store/session/services';
+import { addLegacyToUser, removeLegacyForUser } from 'store/session/services';
 import { setLegacy } from 'store/session';
 import { API_URL } from 'utils/apiConfig';
 
@@ -71,6 +71,30 @@ export const getLegacy = createAsyncThunk(
         }
       });
       const data = await response.json();
+      if (response.status === 200) {
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const deleteLegacy = createAsyncThunk(
+  'legacy/deleteLegacy',
+  async ({ legacyID, token }, thunkAPI) => {
+    try {
+      const response = await fetch(API_URL(`legacy/${legacyID}`), {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const data = await response.json();
+      thunkAPI.dispatch(removeLegacyForUser({ token }));
       if (response.status === 200) {
         return data;
       } else {

@@ -4,7 +4,7 @@
 /* eslint-disable no-underscore-dangle */
 import Legacy from '../models/legacyModel';
 // import Sims from '../models/simsModel';
-import { RulesModel, LawsModel, PacksModel } from '../models/dataModel';
+import { RulesModel, LawsModel, PacksModel, GoalsModel } from '../models/dataModel';
 import { AspirationModel, TraitsModel, SkillsModel } from '../models/categoriesModel';
 import AppError from '../utils/appError';
 import { UserModel } from '../models/userModel';
@@ -12,13 +12,13 @@ import APIRequest from '../utils/apiRequest';
 
 export const create = async (req, res, next) => {
   try {
-    const { name, ruler, goals } = req.body;
+    const { name, ruler, packs } = req.body;
     // const laws = await LawsModel.find()
     // const rules = await RulesModel.find();
+    const goals = await GoalsModel.findOne();
     const aspirations = await AspirationModel.find();
     const skills = await SkillsModel.find();
     const traits = await TraitsModel.find();
-    const packs = await PacksModel.find();
 
     goals.aspirations[goals.aspirations.length - 1].count = aspirations.length;
     goals.skills[goals.skills.length - 1].count = skills.length;
@@ -35,6 +35,20 @@ export const create = async (req, res, next) => {
     });
     const doc = await Legacy.findById(newLegacy._id);
     res.status(201).json(doc);
+  } catch (error) {
+    next(error);
+  }
+};
+export const deleteLegacy = async (req, res, next) => {
+  try {
+    // const { name, ruler, packs } = req.body;
+    const { id } = req.params;
+    // const laws = await LawsModel.find()
+    // const rules = await RulesModel.find();
+    const doc = await Legacy.findOneAndRemove({ _id: id });
+    
+    // const doc = await Legacy.findById(newLegacy._id);
+    res.status(200).json(doc);
   } catch (error) {
     next(error);
   }
@@ -60,7 +74,15 @@ export const getOne = async (req, res, next) => {
     // By default this returns the lastest 20 thoughts
     const doc = await Legacy.findById(id);
     // .sort().limit();
-
+    if (!doc) {
+      return next(
+        new AppError(
+          404,
+          'Not Found',
+          'The ID you provided did not exist. Please try again'
+        )
+      );
+    }
     res.status(200).json(doc);
   } catch (error) {
     next(error);

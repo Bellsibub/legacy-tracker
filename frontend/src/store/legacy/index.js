@@ -3,30 +3,31 @@
 /* eslint-disable no-plusplus */
 import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import { createLegacy, getLegacy, updateLegacy, updateCategoryItem } from './services';
+import { createLegacy, getLegacy, updateLegacy, deleteLegacy } from './services';
 
+const initState = {
+  loading: false,
+  fetchDone: false,
+  error: null,
+  score: {
+    aspirations: {
+      score: 0,
+      count: 0,
+      percentage: 0
+    },
+    skills: {
+      score: 0,
+      count: 0,
+      percentage: 0
+    },
+    food: {
+      score: 0
+    }
+  }
+}
 export const legacySlice = createSlice({
   name: 'legacy',
-  initialState: {
-    loading: false,
-    fetchDone: false,
-    error: null,
-    score: {
-      aspirations: {
-        score: 0,
-        count: 0,
-        percentage: 0
-      },
-      skills: {
-        score: 0,
-        count: 0,
-        percentage: 0
-      },
-      food: {
-        score: 0
-      }
-    }
-  },
+  initialState: initState,
   reducers: {
     setScores(state, { payload }) {
       state.score = _.mapValues(state.goals, (goals, key) => {
@@ -43,6 +44,9 @@ export const legacySlice = createSlice({
           percentage: percentage || null
         };
       });
+    },
+    resetLegacy(state, { payload }) {
+      state = initState
     },
     validateGoals(state, { payload }) {}
   },
@@ -71,6 +75,13 @@ export const legacySlice = createSlice({
       state.fetchDone = false;
       state.error = { ...payload }
     },
+    [deleteLegacy.pending]: (state, { payload }) => {
+      state.loading = true;
+      state.fetchDone = false;
+    },
+    [deleteLegacy.fulfilled]: (state, { payload }) => {
+      return { ...initState, fetchDone: true, loading: false };
+    },
     [updateLegacy.fulfilled]: (state, { payload }) => {
       return { ...payload };
     }
@@ -91,6 +102,7 @@ export const {
   completeTask,
   addNewTask,
   setScores,
-  validateGoals
+  validateGoals,
+  resetLegacy
 } = legacySlice.actions;
 export default legacySlice.reducer;

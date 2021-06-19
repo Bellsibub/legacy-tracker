@@ -28,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default ({ ...props }) => {
+export default ({ items, ...props }) => {
   const classes = useStyles();
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('xs'));
-  const items = useSelector((store) => store.session.data.packs);
+  // const items = useSelector((store) => store.session.data.packs);
   const groups = _.groupBy(items, 'type');
 
   return (

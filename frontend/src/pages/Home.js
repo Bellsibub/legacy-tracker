@@ -52,12 +52,9 @@ export const Home = () => {
   }, []);
 
   React.useEffect(() => {
-  }, [firstTime, fetchDone])
-
-  React.useEffect(() => {
     if (fetchDone) {
       dispatch(setScores());
-      if (firstTime || !legacyID) {
+      if (firstTime) {
         history.push('/onboarding')
       }
     }
@@ -100,7 +97,7 @@ export const Home = () => {
         <div className={classes.content}>
           <Switch>
             {getRoutes(routes)}
-            <Route component={NoMatch} />
+            {/* <Route component={NoMatch} /> */}
           </Switch>
         </div>
       </div>

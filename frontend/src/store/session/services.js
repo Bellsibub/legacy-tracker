@@ -51,6 +51,29 @@ export const addLegacyToUser = createAsyncThunk(
     }
   }
 );
+export const removeLegacyForUser = createAsyncThunk(
+  'session/removeLegacyForUser',
+  async ({ token, legacyID }, thunkAPI) => {
+    try {
+      const userID = thunkAPI.getState().session.user.id;
+      // const { legacies } = thunkAPI.getState().session.user;
+      const response = await fetch(API_URL(`users/${userID}/legacies`), {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
+      });
+      const data = await response.json();
+      console.log('updated user: ', data);
+      if (response.status === 200) {
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 export const getUserMetadata = createAsyncThunk(
   'session/getUserMetadata',
   async ({ token }, thunkAPI) => {

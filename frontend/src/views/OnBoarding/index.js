@@ -16,10 +16,10 @@ import CreateNewLegacy from 'components/CreateNewLegacy';
 export default () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
-  const { packs } = useSelector((store) => store.legacy)
+  const { dataFetchDone } = useSelector((store) => store.session)
 
   return (
-    isAuthenticated && (
+    dataFetchDone && (
       <>
         <Grid container spacing={3}>
           <Grid item xs={12}>

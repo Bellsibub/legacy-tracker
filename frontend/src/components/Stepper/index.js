@@ -1,43 +1,49 @@
 import React from 'react';
 import _ from 'lodash';
+import { useHistory } from 'react-router-dom'
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { useSelector, useDispatch } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import DialogConfirm from 'components/DialogConfirm';
+
+import { initLegacy } from 'store/legacy/services';
+
 import Step1 from './Step1';
 import Step2 from './Step2';
-
+import Step3 from './Step3';
+import Step4 from './Step4';
 import styles from './style';
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     width: '100%'
-//   },
-//   backButton: {
-//     marginRight: theme.spacing(1)
-//   },
-//   instructions: {
-//     marginTop: theme.spacing(1),
-//     marginBottom: theme.spacing(1)
-//   }
-// }));
 const useStyles = makeStyles(styles);
 
 const getSteps = () => {
   return [
     {
       label: 'Packs/Expansions',
-      title: 'Select the packs you want active for this legacy'
+      title: 'Select the packs you want active for this legacy',
+      help: 'You can change this later 😃'
     },
     {
       label: 'Founder',
       title: 'Who is the founder?',
       help: "Don't worry you can change this later"
     },
-    { label: 'Laws', title: '' },
-    { label: 'Name', title: '' }
+    {
+      label: 'Laws',
+      title: 'Select the laws for the legacy',
+      help: 'Guess what, you can change this later!'
+    },
+    {
+      label: 'Name',
+      title: 'Finally select the name of the legacy',
+      help: "This can't be changed! ⚠️"
+    }
   ];
 };
 
@@ -45,14 +51,18 @@ const defaultValues = {
   generation: 1,
   role: 'Founder',
   status: 'Alive, in legacy household'
-  // lastName: newGen ? name : ''
 };
 
 export default () => {
   const classes = useStyles();
-
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+  const availablePacks = useSelector((store) => store.session.data.packs);
   const [simInfo, setSimInfo] = React.useState({ ...defaultValues });
-  const [packs, setPacks] = React.useState([]);
+  const [legacyName, setLegacyName] = React.useState('');
+  const [packs, setPacks] = React.useState(availablePacks);
+  const [laws, setLaws] = React.useState({});
   const [activeStep, setActiveStep] = React.useState(0);
   const [errors, setErrors] = React.useState([]);
   const steps = getSteps();
@@ -62,38 +72,51 @@ export default () => {
     return _.includes(errors, index);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // toggleDialog();
-    // onConfirm(simInfo);
-  };
-
   const handleNext = (event) => {
     if (!myForm.current.checkValidity()) {
       // return;
       setErrors((prevState) => [...prevState, activeStep]);
+    } else {
+      setErrors(errors.filter((err, index) => err !== activeStep));
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
+    if (!myForm.current.checkValidity()) {
+      // return;
+      setErrors((prevState) => [...prevState, activeStep]);
+    } else {
+      setErrors(errors.filter((err, index) => err !== activeStep));
+    }
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
+  const handleFinish = () => {
+    console.log(packs)
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(
+          initLegacy({ founder: simInfo, legacy: { laws, packs, name: legacyName }, token })
+        );
+        history.push('/dashboard')
+      })
+      .catch((err) => console.log(err));
+  };
+  const handleSetPacks = (id) => {
+    setPacks(packs.map((item) => (item._id === id ? { ...item, active: true } : item)));
   };
 
   const getStepContent = (stepIndex) => {
     switch (stepIndex) {
       case 0:
-        return <Step1 packs={packs} setPacks={setPacks} />;
+        return <Step1 items={packs} setPacks={handleSetPacks} />;
       case 1:
         return <Step2 simInfo={simInfo} setSimInfo={setSimInfo} packs={packs} />;
       case 2:
-        return <div>hello2</div>;
+        return <Step3 setLaws={setLaws} />;
       case 3:
-        return <div>hello2</div>;
+        return <Step4 legacyName={legacyName} setlegacyName={setLegacyName} />;
       default:
         return <div>unknown index</div>;
     }
@@ -108,37 +131,39 @@ export default () => {
             labelProps.error = true;
           }
           return (
-            <Step key={label}>
+            <Step key={label.label}>
               <StepLabel {...labelProps}>{label.label}</StepLabel>
             </Step>
           );
         })}
       </Stepper>
-      <form ref={myForm} onSubmit={handleSubmit} className={classes.form}>
-        {activeStep === steps.length ? (
-          <>
-            <Typography className={classes.instructions}>All steps completed</Typography>
-            <Button onClick={handleReset}>Reset</Button>
-          </>
-        ) : (
-          <>
-            <Typography className={classes.title} variant="h4" color="primary">
-              {steps[activeStep].title}
-            </Typography>
-            <Typography className={classes.title} variant="h5" color="primary">
-              {steps[activeStep].help}
-            </Typography>
-            {getStepContent(activeStep)}
-            <div className={classes.buttons}>
-              <Button disabled={activeStep === 0} onClick={handleBack}>
-                Back
-              </Button>
+      <form ref={myForm} className={classes.form}>
+        <>
+          <Typography className={classes.title} variant="h4" color="primary">
+            {steps[activeStep].title}
+          </Typography>
+          <Typography className={classes.title} variant="h5" color="primary">
+            {steps[activeStep].help}
+          </Typography>
+          {getStepContent(activeStep)}
+          <div className={classes.buttons}>
+            <Button disabled={activeStep === 0} onClick={handleBack}>
+              Back
+            </Button>
+            {activeStep === steps.length - 1 ? (
+              <DialogConfirm
+                disabled={_.includes(errors, activeStep) || legacyName.length <= 0}
+                title="Start new legacy"
+                buttonText="Start Legacy"
+                message={`Do you want initiate the ${legacyName} legacy`}
+                onConfirm={handleFinish} />
+            ) : (
               <Button variant="contained" color="primary" onClick={handleNext}>
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                Next
               </Button>
-            </div>
-          </>
-        )}
+            )}
+          </div>
+        </>
       </form>
     </>
   );
