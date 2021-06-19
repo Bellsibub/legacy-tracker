@@ -21,8 +21,8 @@ export default () => {
   return (
     dataFetchDone && (
       <>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
+        <Grid container justify="center" spacing={3}>
+          <Grid item lg={7} xs={12}>
             <CreateNewLegacy />
 
           </Grid>

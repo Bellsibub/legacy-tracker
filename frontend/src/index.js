@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider, responsiveFontSizes } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import store from 'store';
@@ -21,11 +21,14 @@ const providerConfig = {
   redirectUri: `${window.location.origin}/dashboard`,
   scope: 'read:current_user'
 };
+
+const theme = responsiveFontSizes(muitheme);
+
 ReactDOM.render(
   <Auth0Provider {...providerConfig}>
     <Provider store={store}>
       <BrowserRouter>
-        <ThemeProvider theme={muitheme}>
+        <ThemeProvider theme={theme}>
           <CssBaseline />
           <Switch>
             <Route path="/" component={HomeLayout} />

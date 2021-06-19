@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
 // 3rd party components
-import {
-  Dialog,
+import { Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
@@ -13,8 +12,8 @@ import {
   IconButton,
   Divider,
   useTheme,
-  useMediaQuery
-} from '@material-ui/core';
+  useMediaQuery,
+  Container } from '@material-ui/core';
 import { Edit } from '@material-ui/icons';
 // styling
 import dialog from 'assets/jss/dialog';
@@ -29,6 +28,7 @@ import Relations from 'components/Inputs/SelectRelations';
 import TextInput from 'components/Inputs/TextInput';
 import SimpleSelect from 'components/Inputs/SimpleSelect';
 import SwitchToggle from 'components/Inputs/SwitchToggle';
+// import { Container } from '@material-ui/core';
 
 const useStyles = makeStyles(dialog);
 
@@ -62,12 +62,12 @@ export default ({ onConfirm, simInfo, setSimInfo }) => {
   };
 
   return (
-    <>
+    <Container maxWidth="xs">
       {/* <DialogTitle id="dialogEditSims">{title}</DialogTitle> */}
       {/* <DialogContent> */}
       {/* GENERAL */}
-      <DialogTitle className={classes.dialogSectionTitle}>General</DialogTitle>
-      <Divider className={classes.dialogDivider} />
+      {/* <DialogTitle className={classes.dialogSectionTitle}>General</DialogTitle> */}
+      {/* <Divider className={classes.dialogDivider} /> */}
       {/* name */}
       <TextInput
         value={simInfo.firstName}
@@ -85,6 +85,6 @@ export default ({ onConfirm, simInfo, setSimInfo }) => {
       <Species value={simInfo.species} onChange={handleSingleSelectChange} />
       {/* <Traits value={simInfo.traits} onChange={handleTraitChange} items={packs} /> */}
       {/* <Aspirations value={simInfo.aspirations} onChange={handleAspirationChange} /> */}
-    </>
+    </Container>
   );
 };

@@ -5,7 +5,7 @@ import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { useSelector, useDispatch } from 'react-redux';
 // import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
+import { Stepper, useTheme, useMediaQuery } from '@material-ui/core';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
@@ -57,8 +57,10 @@ export default () => {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
+  const theme = useTheme();
   const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
   const availablePacks = useSelector((store) => store.session.data.packs);
+  const smallScreen = useMediaQuery(theme.breakpoints.down('xs'))
   const [simInfo, setSimInfo] = React.useState({ ...defaultValues });
   const [legacyName, setLegacyName] = React.useState('');
   const [packs, setPacks] = React.useState(availablePacks);
@@ -132,7 +134,7 @@ export default () => {
           }
           return (
             <Step key={label.label}>
-              <StepLabel {...labelProps}>{label.label}</StepLabel>
+              <StepLabel {...labelProps}>{!smallScreen ? label.label : ''}</StepLabel>
             </Step>
           );
         })}
@@ -152,7 +154,7 @@ export default () => {
             </Button>
             {activeStep === steps.length - 1 ? (
               <DialogConfirm
-                disabled={_.includes(errors, activeStep) || legacyName.length <= 0}
+                disabled={errors.length > 0 || legacyName.length <= 0}
                 title="Start new legacy"
                 buttonText="Start Legacy"
                 message={`Do you want initiate the ${legacyName} legacy`}
