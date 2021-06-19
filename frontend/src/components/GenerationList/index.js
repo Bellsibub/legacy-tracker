@@ -21,7 +21,7 @@ import { createSim } from 'store/legacy/services';
 
 // const useStyles = makeStyles(styling);
 
-export default ({ items, generation }) => {
+export default ({ items, generation, roles }) => {
   // const classes = useStyles();
   const dispatch = useDispatch();
   const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
@@ -45,10 +45,28 @@ export default ({ items, generation }) => {
         <Table cellData={items} />
       </CardBody>
       <CardFooter>
+        {generation !== 1 && (
+          <DialogSims
+            title="Create new child"
+            buttonText="Add new child"
+            generation={generation}
+            roleType={roles.child}
+            description="This child will be added as part of the legacy. Therefore they will be calculated against your laws in the running for the position of ruler."
+            onConfirm={handleNewSimConfirm} />
+        )}
         <DialogSims
-          title="Create new Sim"
-          buttonText="Add new Sim"
+          title="Create new partner"
+          buttonText="Add new partner"
           generation={generation}
+          roleType={roles.partner}
+          description="This sim will be registered as a partner in this generation. They will be available as Mother or Father for the next generation."
+          onConfirm={handleNewSimConfirm} />
+        <DialogSims
+          title="Create new cadet"
+          buttonText="Add non-legacy Sim"
+          generation={generation}
+          roleType={roles.cadet}
+          description="This sim is a cadet. Meaning that they are not part of the legacy. They will not be calculated as an heir (and therin ruler). They will however be available as Mother, Father or Partner for legacy sims."
           onConfirm={handleNewSimConfirm} />
       </CardFooter>
     </Card>

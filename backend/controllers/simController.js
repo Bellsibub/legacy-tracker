@@ -43,6 +43,21 @@ export const update = async (req, res, next) => {
   }
 };
 
+export const deleteSim = async (req, res, next) => {
+  try {
+    // const { name, ruler, packs } = req.body;
+    const { id } = req.params;
+    // const laws = await LawsModel.find()
+    // const rules = await RulesModel.find();
+    const doc = await Sims.findOneAndRemove({ _id: id });
+    
+    // const doc = await Legacy.findById(newLegacy._id);
+    res.status(200).json(doc);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const get = async (req, res, next) => {
   try {
     // By default this returns the lastest 20 thoughts

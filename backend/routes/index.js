@@ -30,6 +30,7 @@ router.get('/sim', sims.get);
 router.post('/sim', sims.create);
 router.post('/sim/:id/:category', sims.addCategoryItem);
 router.patch('/sim/:id', sims.update);
+router.delete('/sim/:id', sims.deleteSim);
 
 router.get('/categories', categories.get);
 router.get('/data', data.get);

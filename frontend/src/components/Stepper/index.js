@@ -49,7 +49,12 @@ const getSteps = () => {
 
 const defaultValues = {
   generation: 1,
-  role: 'Founder',
+  role: {
+    text: 'Founder',
+    legacy: true,
+    runningForRuler: false,
+    eligible: false
+  },
   status: 'Alive, in legacy household'
 };
 

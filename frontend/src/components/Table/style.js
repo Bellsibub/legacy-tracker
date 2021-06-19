@@ -42,11 +42,19 @@ export default (theme) => ({
     alignItems: 'center'
   },
   tableCellButton: {
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: theme.spacing(1),
     '& > *': {
       margin: 0,
+      height: '50px',
+      width: '50px',
       padding: 0
     }
+    // '& > :first-child': {
+    //   marginRight: theme.spacing(2)
+    //   // padding: 0
+    // }
   }
 });

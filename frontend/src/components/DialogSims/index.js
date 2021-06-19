@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
 // 3rd party components
@@ -12,8 +12,7 @@ import {
   Button,
   IconButton,
   Divider,
-  useTheme,
-  useMediaQuery
+  DialogContentText
 } from '@material-ui/core';
 import { Edit } from '@material-ui/icons';
 // styling
@@ -32,37 +31,25 @@ import SwitchToggle from 'components/Inputs/SwitchToggle';
 
 const useStyles = makeStyles(dialog);
 
-export default ({
-  title,
-  buttonText,
-  buttonIcon,
-  currentItem,
-  onConfirm,
-  newGen,
-  generation,
-  disabled
-}) => {
+export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other }) => {
   const classes = useStyles();
-  const theme = useTheme();
-  const dispatch = useDispatch();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const [open, setOpen] = React.useState(false);
-  const sessionData = useSelector((store) => store.session.data);
   const { name } = useSelector((store) => store.legacy);
-  const generations = useSelector((store) => _.groupBy(store.legacy.sims, 'generation'));
-  const generationOpts = _.keys(generations);
+  const role = { ...other.roleType }
   const defaultValues = {
+    role,
     relations: {},
     generation,
-    lastName: newGen ? name : ''
+    lastName: role.legacy ? name : ''
   };
 
-  const [simInfo, setSimInfo] = React.useState(currentItem || { ...defaultValues });
+  const [simInfo, setSimInfo] = React.useState(other.currentItem || { ...defaultValues });
 
   React.useEffect(() => {
-    setSimInfo(currentItem || { ...defaultValues });
+    setSimInfo(other.currentItem || { ...defaultValues });
     console.log(simInfo);
   }, [open]);
+  // console.log(other.roletype)
 
   const toggleDialog = () => {
     setOpen(!open);
@@ -113,17 +100,16 @@ export default ({
   return (
     <>
       {buttonIcon && (
-        <IconButton disabled={disabled} color="primary" onClick={toggleDialog}>
+        <IconButton disabled={other.disabled} color="primary" onClick={toggleDialog}>
           <Edit />
         </IconButton>
       )}
       {buttonText && (
-        <Button disabled={disabled} variant="contained" color="primary" onClick={toggleDialog}>
+        <Button disabled={other.disabled} variant="contained" color="primary" onClick={toggleDialog}>
           {typeof buttonText === 'string' ? buttonText : 'edit'}
         </Button>
       )}
       <Dialog
-        fullScreen={fullScreen}
         open={open}
         onClose={toggleDialog}
         aria-labelledby="dialogEditSims"
@@ -131,6 +117,7 @@ export default ({
         <form onSubmit={handleSubmit}>
           <DialogTitle id="dialogEditSims">{title}</DialogTitle>
           <DialogContent>
+            <DialogContentText>{other.description}</DialogContentText>
             {/* GENERAL */}
             <DialogTitle className={classes.dialogSectionTitle}>General</DialogTitle>
             <Divider className={classes.dialogDivider} />
@@ -169,21 +156,21 @@ export default ({
               label="Mother"
               onChange={handleRelationChange}
               generation={simInfo.generation}
-              newGen={newGen || false}
+              newGen={other.newGen || false}
               currentSimID={simInfo._id} />
             <Relations
               value={simInfo.relations.father}
               label="Father"
               onChange={handleRelationChange}
               generation={simInfo.generation}
-              newGen={newGen || false}
+              newGen={other.newGen || false}
               currentSimID={simInfo._id} />
             <Relations
               value={simInfo.relations.spouse}
-              label="Spouse"
+              label="Partner"
               onChange={handleRelationChange}
               generation={simInfo.generation}
-              newGen={newGen || false}
+              newGen={other.newGen || false}
               currentSimID={simInfo._id} />
             {/* LEGACY STATUS */}
             <DialogTitle className={classes.dialogSectionTitle}>
@@ -191,7 +178,7 @@ export default ({
             </DialogTitle>
             <Divider className={classes.dialogDivider} />
             {/* Role */}
-            <Roles value={simInfo.role} onChange={handleSingleSelectChange} />
+            {/* <Roles value={simInfo.role} onChange={handleSingleSelectChange} /> */}
             {/* Status */}
             <Status value={simInfo.status} onChange={handleSingleSelectChange} />
             {/* Cause of Death */}

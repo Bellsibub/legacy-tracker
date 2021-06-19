@@ -33,6 +33,8 @@ export default ({ value, onChange }) => {
       name="role"
       value={value || null}
       onChange={onChange}
+      getOptionSelected={(option, val) => option.text === val.text}
+      getOptionLabel={(option) => `${option.text}`}
       options={roles}
       renderInput={(params) => <TextField {...params} label="Role" required />} />
   );

@@ -26,23 +26,10 @@ const simsSchema = new Schema({
     required: [true, 'Gender is required']
   },
   role: {
-    type: String,
-    enum: {
-      values: [
-        'Founder',
-        'Ruler',
-        'Heir',
-        'Potential heir',
-        'Spouse',
-        'Secondary spouse',
-        'Non-eligible child',
-        'Cadet child',
-        'Cadet spouse',
-        'Spare'
-      ],
-      message: '{VALUE} is not a supported role'
-    },
-    required: [true, 'Role is required']
+    text: String,
+    legacy: Boolean,
+    runningForRuler: Boolean,
+    eligible: Boolean
   },
   adopted: {
     type: Boolean,
@@ -69,7 +56,7 @@ const simsSchema = new Schema({
       ref: 'Sims',
       default: null
     },
-    spouse: {
+    partner: {
       type: Schema.Types.ObjectId,
       ref: 'Sims',
       default: null

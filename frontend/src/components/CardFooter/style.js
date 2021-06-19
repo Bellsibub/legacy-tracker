@@ -5,6 +5,12 @@ export default (theme) => ({
     justifyContent: 'flex-end',
     alignItems: 'center',
     display: 'flex',
-    borderTop: `1px solid ${theme.palette.divider}`
+    flexWrap: 'wrap',
+    borderTop: `1px solid ${theme.palette.divider}`,
+    '& > *': {
+      marginRight: theme.spacing(1),
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1)
+    }
   }
 });

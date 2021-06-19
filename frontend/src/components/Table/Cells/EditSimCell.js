@@ -11,8 +11,10 @@ import TableCell from '@material-ui/core/TableCell';
 import DialogSims from 'components/DialogSims';
 
 // services
-import { updateSim } from 'store/legacy/services';
+import { updateSim, deleteSim } from 'store/legacy/services';
 
+import DialogConfirm from 'components/DialogConfirm';
+import { Delete } from 'mdi-material-ui';
 import styles from '../style';
 
 const useStyles = makeStyles(styles);
@@ -32,6 +34,13 @@ export default ({ item }) => {
       })
       .catch((err) => console.log(err))
   };
+  const handleDeleteSimConfirm = () => {
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(deleteSim({ simID: item._id, legacyID: _id, token }));
+      })
+      .catch((err) => console.log(err))
+  };
 
   return (
     <>
@@ -40,6 +49,13 @@ export default ({ item }) => {
           buttonIcon
           title={`Edit ${item.firstName} ${item.lastName}`}
           onConfirm={handleEditSimConfirm}
+          currentItem={item} />
+        <DialogConfirm
+          buttonIcon
+          icon={Delete}
+          title="Are you sure you want to delete this sim?"
+          message="⚠️This can't de undone!⚠️"
+          onConfirm={handleDeleteSimConfirm}
           currentItem={item} />
       </TableCell>
     </>

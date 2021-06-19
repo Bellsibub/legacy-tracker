@@ -18,13 +18,15 @@ export default ({ value, onChange, currentSimID, label, generation, newGen }) =>
 
   React.useEffect(() => {
     let _sims = [];
-    if (newGen) {
-      _sims = sims.filter((sim) => sim.generation === generation - 1);
-      setSims(_sims);
-    } else {
-      _sims = sims.filter((sim) => sim.generation === generation);
-      setSims(_sims);
-    }
+    // if (newGen) {
+    _sims = sims.filter(
+      (sim) => sim.generation === generation - 1 || sim.generation === generation
+    );
+    setSims(_sims);
+    // } else {
+    //   _sims = sims.filter((sim) => sim.generation === generation);
+    //   setSims(_sims);
+    // }
   }, [generation, newGen]);
 
   return (

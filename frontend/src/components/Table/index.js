@@ -32,8 +32,8 @@ const header = {
   firstName: 'Name',
   gender: 'Gender',
   role: 'Role',
-  status: 'Status',
-  traits: 'traits'
+  status: 'Status'
+  // traits: 'traits'
 };
 const moreInfo = {
   causeOfDeath: 'Cause Of Death',
@@ -63,6 +63,13 @@ const CollapseRow = ({ ...item }) => {
             return (
               <TableCell key={key} className={classes.tableCell}>
                 {`${item.firstName} ${item.lastName}`}
+              </TableCell>
+            );
+          }
+          if (key === 'role') {
+            return (
+              <TableCell key={key} className={classes.tableCell}>
+                {`${item.role.text}`}
               </TableCell>
             );
           }

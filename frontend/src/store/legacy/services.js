@@ -157,6 +157,30 @@ export const updateSim = createAsyncThunk(
     }
   }
 );
+export const deleteSim = createAsyncThunk(
+  'legacy/deleteSim',
+  async ({ simID, legacyID, token }, thunkAPI) => {
+    try {
+      // 1. update sim based on ID
+      const resp = await fetch(API_URL(`sim/${simID}`), {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const data = await resp.json();
+      console.log('updated SIM', data);
+      // 2. call the next api call to fetch the full legacy object to update the state
+      if (resp.status === 200) {
+        thunkAPI.dispatch(getLegacy({ legacyID, token }));
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 
 export const updateLegacy = createAsyncThunk(
   'legacy/updateLegacy',

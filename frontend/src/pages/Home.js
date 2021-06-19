@@ -34,7 +34,7 @@ export const Home = () => {
   const dispatch = useDispatch();
   const { legacyID } = useSelector((store) => store.session);
   const { firstTime } = useSelector((store) => store.session.user);
-  const { generation, fetchDone } = useSelector((store) => store.legacy);
+  const { generation, fetchDone, _id } = useSelector((store) => store.legacy);
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -54,7 +54,7 @@ export const Home = () => {
   React.useEffect(() => {
     if (fetchDone) {
       dispatch(setScores());
-      if (firstTime) {
+      if (firstTime && !_id) {
         history.push('/onboarding')
       }
     }
