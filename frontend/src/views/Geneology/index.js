@@ -51,18 +51,23 @@ export default () => {
   const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
   const [disabled, setDisabled] = React.useState(false);
   const { _id, generation, fetchDone } = useSelector((store) => store.legacy);
-  const generations = useSelector((store) => _.groupBy(store.legacy.sims, 'generation'));
+  const generations = useSelector((store) => {
+    return _.chain(store.legacy.sims)
+      .groupBy((sim) => sim.generation)
+      .map((sim, gen) => ({ gen, sims: { ...sim } }))
+      .orderBy((group) => Number(group.gen), ['desc'])
+      .value()
+    // console.log(t)
+  });
 
   React.useEffect(() => {
-    const k = _.findLastKey(generations);
-    if (k - 1 === generation) {
+    const topGenerationList = _.head(generations)
+    if (topGenerationList.gen - 1 === generation) {
       setDisabled(true);
     } else {
       setDisabled(false);
     }
   }, [fetchDone]);
-
-  const calculatedPermission = () => {};
 
   const handleNewSimConfirm = (newSim) => {
     // console.log(newSim);
@@ -76,7 +81,9 @@ export default () => {
     // console.log(newSim);
     getAccessTokenSilently()
       .then((token) => {
-        dispatch(updateLegacy({ newData: { generation: generation + 1 }, legacyID: _id, token }));
+        dispatch(
+          updateLegacy({ newData: { generation: generation + 1 }, legacyID: _id, token })
+        );
       })
       .catch((err) => console.log(err));
   };
@@ -116,8 +123,8 @@ export default () => {
           {_.map(generations, (gen, key) => (
             <GenerationList
               key={key}
-              items={gen}
-              generation={parseInt(key, 10)}
+              items={gen.sims}
+              gen={parseInt(gen.gen, 10)}
               roles={roles} />
           ))}
           {/* <Generations /> */}

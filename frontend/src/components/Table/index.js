@@ -107,6 +107,7 @@ const CollapseRow = ({ ...item }) => {
 };
 
 export default ({ cellData }) => {
+  // console.log('cellData', cellData);
   const classes = useStyles();
   return (
     <div className={classes.tableResponsive}>
@@ -121,7 +122,7 @@ export default ({ cellData }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {cellData.map((item) => (
+          {_.map(cellData, (item) => (
             <CollapseRow key={item._id} {...item} />
           ))}
         </TableBody>
