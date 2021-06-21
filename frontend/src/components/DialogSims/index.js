@@ -18,7 +18,7 @@ import { Edit } from '@material-ui/icons';
 // styling
 import dialog from 'assets/jss/dialog';
 // custom components
-import Aspirations from 'components/Inputs/SelectAspirations';
+// import Aspirations from 'components/Inputs/SelectAspirations';
 import Species from 'components/Inputs/SelectSpecies';
 import Traits from 'components/Inputs/SelectTraits';
 import CauseOfDeath from 'components/Inputs/SelectCod';
@@ -147,7 +147,7 @@ export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other
             </DialogTitle>
             <Divider className={classes.dialogDivider} />
             <Traits value={simInfo.traits} onChange={handleTraitChange} />
-            <Aspirations value={simInfo.aspirations} onChange={handleAspirationChange} />
+            {/* <Aspirations value={simInfo.aspirations} onChange={handleAspirationChange} /> */}
             {/* RELATIONS */}
             <DialogTitle className={classes.dialogSectionTitle}>Relations</DialogTitle>
             <Divider className={classes.dialogDivider} />

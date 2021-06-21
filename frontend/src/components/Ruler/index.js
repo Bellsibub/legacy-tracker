@@ -65,7 +65,7 @@ export default () => {
       </CardHeader>
       {ruler.traits.length > 0 && <ChipSection items={ruler.traits} title="traits" />}
       {ruler.aspirations.length > 0 && (
-        <ChipSection items={ruler.aspirations} title="aspirations" />
+        <ChipSection items={ruler.aspirations} title="completed aspirations" />
       )}
       <CardFooter>
         <DialogSims

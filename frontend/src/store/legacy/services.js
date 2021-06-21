@@ -136,7 +136,6 @@ export const updateSim = createAsyncThunk(
   'legacy/updateSim',
   async ({ simData, legacyID, token }, thunkAPI) => {
     try {
-      // 1. update sim based on ID
       const simResponse = await fetch(API_URL(`sim/${simData._id}`), {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
@@ -157,6 +156,7 @@ export const updateSim = createAsyncThunk(
     }
   }
 );
+
 export const deleteSim = createAsyncThunk(
   'legacy/deleteSim',
   async ({ simID, legacyID, token }, thunkAPI) => {
@@ -207,6 +207,7 @@ export const updateLegacy = createAsyncThunk(
     }
   }
 );
+
 export const updateLaws = createAsyncThunk(
   'legacy/updateLaws',
   async ({ laws, legacyID, token }, thunkAPI) => {

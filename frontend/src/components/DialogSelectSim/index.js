@@ -1,7 +1,8 @@
 import React from 'react';
+import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 
 // 3rd party components
 import {
@@ -12,7 +13,8 @@ import {
   Button,
   List,
   ListItem,
-  ListItemText
+  ListItemText,
+  DialogContentText
 } from '@material-ui/core';
 
 // services
@@ -29,7 +31,16 @@ export default ({ open, setOpen, categoryItem, category, actionType }) => {
 
   const { _id, generation } = useSelector((store) => store.legacy);
   const sims = useSelector((store) => {
-    return store.legacy.sims.filter((sim) => sim.generation >= generation);
+    return _.filter(store.legacy.sims, (sim) => {
+      const hasItem = _.filter(sim[category], _.matches(categoryItem));
+      const inGeneration = sim.generation >= generation;
+      if (hasItem.length === 0) {
+        if (!inGeneration) {
+          return false
+        }
+        return true
+      } else { return false; }
+    })
   });
 
   const toggleDialog = () => {
@@ -40,14 +51,17 @@ export default ({ open, setOpen, categoryItem, category, actionType }) => {
     toggleDialog();
     switch (actionType) {
       case 'complete':
-        dispatch(
-          completeCategoryItem({
-            category,
-            itemID: categoryItem._id,
-            legacyID: _id,
-            simID
-          })
-        );
+        getAccessTokenSilently().then((token) => {
+          dispatch(
+            completeCategoryItem({
+              category,
+              itemID: categoryItem._id,
+              legacyID: _id,
+              simID,
+              token
+            })
+          );
+        });
         break;
       case 'setfocus':
         getAccessTokenSilently()
@@ -62,7 +76,7 @@ export default ({ open, setOpen, categoryItem, category, actionType }) => {
               })
             );
           })
-          .catch((err) => console.log(err))
+          .catch((err) => console.log(err));
         break;
       default:
         break;
@@ -74,18 +88,22 @@ export default ({ open, setOpen, categoryItem, category, actionType }) => {
       <Dialog open={open} onClose={toggleDialog} fullWidth className={classes.dialog}>
         <DialogTitle>{`Editing ${categoryItem.name}`}</DialogTitle>
         <DialogContent>
-          <List>
-            {sims.map((sim) => (
-              <ListItem
-                key={sim._id}
-                button
-                onClick={() => {
-                  handleSelect(sim._id);
-                }}>
-                <ListItemText primary={`${sim.firstName} ${sim.lastName}`} />
-              </ListItem>
-            ))}
-          </List>
+          {sims.length !== 0 ? (
+            <List>
+              {sims.map((sim) => (
+                <ListItem
+                  key={sim._id}
+                  button
+                  onClick={() => {
+                    handleSelect(sim._id);
+                  }}>
+                  <ListItemText primary={`${sim.firstName} ${sim.lastName}`} />
+                </ListItem>
+              ))}
+            </List>
+          ) : (
+            <DialogContentText>No sim available for this category</DialogContentText>
+          )}
         </DialogContent>
         <DialogActions>
           <Button onClick={toggleDialog}>Cancel</Button>

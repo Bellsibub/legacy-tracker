@@ -27,7 +27,7 @@ export default ({ item }) => {
   const { _id } = useSelector((store) => store.legacy);
 
   const handleEditSimConfirm = (newSim) => {
-    console.log('NEW sim to update', newSim);
+    console.log('NEW sim to update', item);
     getAccessTokenSilently()
       .then((token) => {
         dispatch(updateSim({ simData: newSim, legacyID: _id, token }));
