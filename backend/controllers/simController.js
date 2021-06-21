@@ -11,11 +11,20 @@ export const create = async (req, res, next) => {
       ...simData
     });
 
-    await Legacy.updateOne(
-      { _id: legacyID },
-      { $push: { sims: [doc._id] } },
-      { new: true, upsert: true }
-    );
+    const { runningForRuler, eligible } = simData.role;
+    if (runningForRuler && eligible) {
+      await Legacy.updateOne(
+        { _id: legacyID },
+        { $push: { sims: [doc._id], potentialHeirs: [doc._id] } },
+        { new: true, upsert: true }
+      );
+    } else {
+      await Legacy.updateOne(
+        { _id: legacyID },
+        { $push: { sims: [doc._id] } },
+        { new: true, upsert: true }
+      );
+    }
 
     res.status(201).json(doc);
   } catch (error) {
@@ -26,8 +35,26 @@ export const create = async (req, res, next) => {
 export const update = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const doc = await Sims.updateOne({ _id: id }, { ...req.body }, { new: true });
-    // await Legacy.updateOne({}, { $push: { sims: [doc._id] } });
+    const { simData, legacyID } = req.body;
+    const doc = await Sims.updateOne({ _id: id }, { ...simData }, { new: true });
+    
+    const { runningForRuler, eligible } = simData.role;
+    if (runningForRuler && eligible) {
+      await Legacy.updateOne(
+        { _id: legacyID },
+        { $push: { potentialHeirs: [id] } },
+        { new: true, upsert: true }
+      );
+    } else {
+      await Legacy.updateOne(
+        { _id: legacyID },
+        { 
+          $pull: { potentialHeirs: id } 
+        },
+        { new: true, upsert: true }
+      );
+    }
+    
     if (!doc) {
       return next(
         new AppError(
@@ -45,13 +72,17 @@ export const update = async (req, res, next) => {
 
 export const deleteSim = async (req, res, next) => {
   try {
-    // const { name, ruler, packs } = req.body;
     const { id } = req.params;
-    // const laws = await LawsModel.find()
-    // const rules = await RulesModel.find();
-    const doc = await Sims.findOneAndRemove({ _id: id });
-    
-    // const doc = await Legacy.findById(newLegacy._id);
+    const { legacyID } = req.body;
+    const doc = await Sims.deleteOne({ _id: id });
+    await Legacy.updateOne(
+      { _id: legacyID },
+      { 
+        $unset: { heir: '' }, 
+        $pull: { sims: id, potentialHeirs: id } 
+      },
+      { new: true, upsert: true }
+    );
     res.status(200).json(doc);
   } catch (error) {
     next(error);
@@ -60,9 +91,7 @@ export const deleteSim = async (req, res, next) => {
 
 export const get = async (req, res, next) => {
   try {
-    // By default this returns the lastest 20 thoughts
     const request = new APIRequest(Sims.find());
-    // .sort().limit();
 
     const doc = await request.mongoQuery;
 

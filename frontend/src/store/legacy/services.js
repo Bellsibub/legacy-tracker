@@ -1,6 +1,6 @@
 /* eslint-disable no-plusplus */
 import _ from 'lodash';
-import { verifyGoalCompletion } from 'utils/calculations';
+import { verifyGoalCompletion, calculateHeir } from 'utils/calculations';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { addLegacyToUser, removeLegacyForUser } from 'store/session/services';
@@ -111,6 +111,7 @@ export const createSim = createAsyncThunk(
   'legacy/createSim',
   async ({ simData, legacyID, token }, thunkAPI) => {
     try {
+      // TODO: Make sure that we check eligible and set it before doing fetch
       // 1. create a new sim to be the ruler
       const simResponse = await fetch(API_URL('sim'), {
         method: 'POST',
@@ -135,11 +136,14 @@ export const createSim = createAsyncThunk(
 export const updateSim = createAsyncThunk(
   'legacy/updateSim',
   async ({ simData, legacyID, token }, thunkAPI) => {
+    simData = calculateHeir(simData);
     try {
+      console.log('sim to udpate', simData)
+      // TODO: Make sure that we check eligible and set it before doing fetch
       const simResponse = await fetch(API_URL(`sim/${simData._id}`), {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ ...simData })
+        body: JSON.stringify({ simData, legacyID })
       });
       const updatedSim = await simResponse.json();
       console.log('updated SIM', updatedSim);
@@ -161,10 +165,12 @@ export const deleteSim = createAsyncThunk(
   'legacy/deleteSim',
   async ({ simID, legacyID, token }, thunkAPI) => {
     try {
+      // TODO: Make sure that we check eligible and set it before doing fetch
       // 1. update sim based on ID
       const resp = await fetch(API_URL(`sim/${simID}`), {
         method: 'DELETE',
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ legacyID })
       });
       const data = await resp.json();
       console.log('updated SIM', data);

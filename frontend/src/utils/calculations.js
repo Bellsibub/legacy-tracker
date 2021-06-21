@@ -16,3 +16,9 @@ export const verifyGoalCompletion = ({ state, category }) => {
     }
   }
 }
+
+// TODO: Finish this calculation
+// return and set role.eligible
+export const calculateHeir = ({ ...simData }) => {
+  return { ...simData, role: { ...simData.role, eligible: true } }
+}
