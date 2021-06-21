@@ -15,11 +15,12 @@ router.get('/legacy', legacy.getAll);
 router.get('/legacy/:id', legacy.getOne);
 router.delete('/legacy/:id', legacy.deleteLegacy);
 router.post('/legacy', legacy.create);
-router.patch('/legacy/:id/packs/:itemid', legacy.updatePacks);
 router.post('/legacy/:id/:category/:itemid', legacy.completeCategoryItem);
-router.patch('/legacy/:id/:category/:itemid', legacy.updateCategoryItem);
 router.post('/legacy/:id/goals/:category/:itemid', legacy.toggleGoal);
+router.patch('/legacy/:id/packs/:itemid', legacy.updatePacks);
+router.patch('/legacy/:id/:category/:itemid', legacy.updateCategoryItem);
 router.patch('/legacy/:id', legacy.update);
+router.patch('/legacy/:id/laws', legacy.updateLaws);
 // router.get('/users/:id', legacy.getUser);
 
 router.patch('/users/:id/legacies', authAPI.addLegacyToUser);

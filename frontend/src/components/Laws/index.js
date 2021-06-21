@@ -27,7 +27,7 @@ import DialogEdit from 'components/DialogEdit';
 import DialogSelectLaws from 'components/DialogSelectLaws';
 
 // services
-import { updateLegacy } from 'store/legacy/services';
+import { updateLaws } from 'store/legacy/services';
 
 import styling from './style';
 
@@ -80,24 +80,24 @@ export default () => {
   const handleSelectedLaw = (value, key) => {
     getAccessTokenSilently()
       .then((token) => {
-        dispatch(updateLegacy({ newData: { laws: { [key]: value } }, legacyID: _id, token }));
+        dispatch(updateLaws({ laws: { [key]: value }, legacyID: _id, token }));
       })
       .catch((err) => console.log(err))
   };
-  const handleNewLaws = (value) => {
-    getAccessTokenSilently()
-      .then((token) => {
-        dispatch(updateLegacy({ newData: { laws: value }, legacyID: _id, token }))
-      })
-      .catch((err) => console.log(err))
-  }
+  // const handleNewLaws = (value) => {
+  //   getAccessTokenSilently()
+  //     .then((token) => {
+  //       dispatch(updateLegacy({ newData: { laws: value }, legacyID: _id, token }))
+  //     })
+  //     .catch((err) => console.log(err))
+  // }
 
   return (
     <Card>
       <CardHeader color="accent" icon={Gavel}>
         <Typography variant="subtitle2">LAWS</Typography>
       </CardHeader>
-      {laws ? (
+      {laws && (
         <CardBody>
           {_.map(laws, (law, key) => (
             <List
@@ -111,14 +111,6 @@ export default () => {
                 onConfirm={(value) => handleSelectedLaw(value, key)} />
             </List>
           ))}
-        </CardBody>
-      ) : (
-        <CardBody>
-          <DialogSelectLaws
-            title="Select new law"
-            buttonText="Select new law"
-            onConfirm={handleNewLaws}
-            edge="end" />
         </CardBody>
       )}
     </Card>

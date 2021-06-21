@@ -55,25 +55,25 @@ export const legacySlice = createSlice({
       state.loading = true;
       state.fetchDone = false;
     },
-    [createLegacy.fulfilled]: (state, { payload }) => {
-      return { ...state, ...payload, fetchDone: true, loading: false };
-    },
     [createLegacy.rejected]: (state, { payload }) => {
       state.loading = false;
       state.fetchDone = false;
       state.error = { ...payload }
     },
+    [createLegacy.fulfilled]: (state, { payload }) => {
+      return { ...state, ...payload, fetchDone: true, loading: false };
+    },
     [getLegacy.pending]: (state, { payload }) => {
       state.loading = true;
       state.fetchDone = false;
-    },
-    [getLegacy.fulfilled]: (state, { payload }) => {
-      return { ...state, ...payload, fetchDone: true, loading: false };
     },
     [getLegacy.rejected]: (state, { payload }) => {
       state.loading = false;
       state.fetchDone = false;
       state.error = { ...payload }
+    },
+    [getLegacy.fulfilled]: (state, { payload }) => {
+      return { ...state, ...payload, fetchDone: true, loading: false };
     },
     [deleteLegacy.pending]: (state, { payload }) => {
       state.loading = true;
@@ -81,10 +81,10 @@ export const legacySlice = createSlice({
     },
     [deleteLegacy.fulfilled]: (state, { payload }) => {
       return { ...initState, fetchDone: true, loading: false };
-    },
-    [updateLegacy.fulfilled]: (state, { payload }) => {
-      return { ...payload };
     }
+    // [updateLegacy.fulfilled]: (state, { payload }) => {
+    //   return { ...payload };
+    // }
     // [updateLegacy.rejected]: (state, { payload }) => {
     //   state.loading = false;
     //   state.fetchDone = false;

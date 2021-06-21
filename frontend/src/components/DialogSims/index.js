@@ -47,7 +47,7 @@ export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other
 
   React.useEffect(() => {
     setSimInfo(other.currentItem || { ...defaultValues });
-    console.log(simInfo);
+    // console.log(simInfo);
   }, [open]);
   // console.log(other.roletype)
 

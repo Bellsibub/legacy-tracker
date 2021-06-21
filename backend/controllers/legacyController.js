@@ -12,9 +12,9 @@ import APIRequest from '../utils/apiRequest';
 
 export const create = async (req, res, next) => {
   try {
-    const { name, ruler, packs } = req.body;
+    const { name, ruler, packs, laws } = req.body;
     // const laws = await LawsModel.find()
-    // const rules = await RulesModel.find();
+    const rules = await RulesModel.find();
     const goals = await GoalsModel.findOne();
     const aspirations = await AspirationModel.find();
     const skills = await SkillsModel.find();
@@ -31,7 +31,9 @@ export const create = async (req, res, next) => {
       traits,
       goals,
       skills,
-      packs
+      packs,
+      laws,
+      rules
     });
     const doc = await Legacy.findById(newLegacy._id);
     res.status(201).json(doc);
@@ -105,26 +107,27 @@ export const getUser = async (req, res, next) => {
 export const update = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const newLaw = req.body.laws;
-    const keys = Object.keys(newLaw);
-
+    // const newLaw = req.body.laws;
+    // const keys = Object.keys(newLaw);
+    
+    const doc = await Legacy.updateOne({ _id: id }, { ...req.body }, { new: true });
     // this update runs only for a law change
     // TODO: create a seperate endpoint for this
-    if (newLaw) {
-      for (let i = 0; i < keys.length; i++) {
-        await Legacy.updateOne(
-          { _id: id },
-          {
-            $set: { [`laws.${keys[i]}`]: { ...newLaw[keys[i]] } }
-          },
-          { new: true }
-        );
-      }
-    } else {
-      await Legacy.updateOne({ _id: id }, { ...req.body }, { new: true });
-    }
+    // if (newLaw) {
+    //   for (let i = 0; i < keys.length; i++) {
+    //     await Legacy.updateOne(
+    //       { _id: id },
+    //       {
+    //         $set: { [`laws.${keys[i]}`]: { ...newLaw[keys[i]] } }
+    //       },
+    //       { new: true }
+    //     );
+    //   }
+    // } else {
+      
+    // }
 
-    const doc = await Legacy.findById(id);
+    // const doc = await Legacy.findById(id);
 
     if (!doc) {
       return next(
@@ -135,11 +138,52 @@ export const update = async (req, res, next) => {
         )
       );
     }
-    res.status(201).json(doc);
+    res.status(200).json(doc);
   } catch (error) {
     next(error);
   }
 };
+
+export const updateLaws = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { laws } = req.body;
+    const keys = Object.keys(laws);
+    
+    // const doc = await Legacy.updateOne({ _id: id }, { ...req.body }, { new: true });
+    // this update runs only for a law change
+    // TODO: create a seperate endpoint for this
+    // if (newLaw) {
+    // let doc;
+    // for (let i = 0; i < keys.length; i++) {
+    const doc = await Legacy.updateOne(
+      { _id: id },
+      {
+        $set: { [`laws.${keys[0]}`]: { ...laws[keys[0]] } }
+      },
+      { new: true }
+    );
+    // }
+    // } else {
+      
+    // }
+
+    // const doc = await Legacy.findById(id);
+
+    if (!doc) {
+      return next(
+        new AppError(
+          404,
+          'Not Found',
+          'The ID you provided did not exist. Please try again'
+        )
+      );
+    }
+    res.status(200).json(doc);
+  } catch (error) {
+    next(error);
+  }
+}
 
 export const completeCategoryItem = async (req, res, next) => {
   try {

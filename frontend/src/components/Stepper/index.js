@@ -100,7 +100,7 @@ export default () => {
   };
 
   const handleFinish = () => {
-    console.log(packs)
+    console.log(laws)
     getAccessTokenSilently()
       .then((token) => {
         dispatch(

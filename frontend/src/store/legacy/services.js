@@ -193,9 +193,35 @@ export const updateLegacy = createAsyncThunk(
         body: JSON.stringify({ ...newData })
       });
       const data = await legacyResponse.json();
-      console.log('updated LEGACY', data);
+      // console.log('updated LEGACY', data);
       // 2. call the next api call to fetch the full legacy object to update the state
-      if (legacyResponse.status === 201) {
+      if (legacyResponse.status === 200) {
+        thunkAPI.dispatch(getLegacy({ legacyID, token }));
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+export const updateLaws = createAsyncThunk(
+  'legacy/updateLaws',
+  async ({ laws, legacyID, token }, thunkAPI) => {
+    try {
+      // 1. create a new sim to be the ruler
+      const legacyResponse = await fetch(API_URL(`legacy/${legacyID}/laws`), {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ laws })
+      });
+      const data = await legacyResponse.json();
+      console.log('updated laws', data);
+      // 2. call the next api call to fetch the full legacy object to update the state
+      if (legacyResponse.status === 200) {
+        thunkAPI.dispatch(getLegacy({ legacyID, token }));
         return data;
       } else {
         return thunkAPI.rejectWithValue(data);

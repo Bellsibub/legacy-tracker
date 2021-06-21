@@ -15,7 +15,7 @@ import GenerationList from 'components/GenerationList';
 import DialogSims from 'components/DialogSims';
 import DialogConfirm from 'components/DialogConfirm';
 // services
-import { createSim } from 'store/legacy/services';
+import { createSim, updateLegacy } from 'store/legacy/services';
 // actions
 import { addNewSim, addNewGeneration } from 'store/legacy';
 
@@ -72,6 +72,14 @@ export default () => {
       })
       .catch((err) => console.log(err));
   };
+  const handleInitNewGen = () => {
+    // console.log(newSim);
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(updateLegacy({ newData: { generation: generation + 1 }, legacyID: _id, token }));
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
@@ -90,7 +98,7 @@ export default () => {
           title="Are you sure you want to begin the next generation? There is no going back after this!"
           buttonText="Init next gen"
           // newGen
-          onConfirm={handleNewSimConfirm} />
+          onConfirm={handleInitNewGen} />
       </Grid>
       <Grid container spacing={3}>
         {/* Ruler */}

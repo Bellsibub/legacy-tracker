@@ -71,6 +71,14 @@ const LawItemCollapse = ({ onChange, selectedValue, index, ...law }) => {
 
 const LawCategory = ({ category, setLaws, ...lawsInCat }) => {
   const [selectedValue, setSelectedValue] = React.useState("0");
+
+  React.useEffect(() => {
+    setLaws((prevState) => ({
+      ...prevState,
+      [category]: { ...lawsInCat[0] }
+    }));
+  }, [])
+
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
     setLaws((prevState) => ({
