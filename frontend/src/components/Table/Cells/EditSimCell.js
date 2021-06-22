@@ -12,7 +12,7 @@ import DialogSims from 'components/DialogSims';
 
 // services
 import { updateSim, deleteSim, updateHeirs, getLegacy } from 'store/legacy/services';
-
+import { filterRunningSims } from 'utils/calculations';
 import DialogConfirm from 'components/DialogConfirm';
 import { Delete } from 'mdi-material-ui';
 import styles from '../style';
@@ -31,11 +31,7 @@ export default ({ item }) => {
       .then((token) => {
         dispatch(updateSim({ simData: newSim, legacyID: _id, token })).then(() => {
           dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
-            let simsRunning = _.filter(
-              updatedLegacy.payload.sims,
-              (sim) => sim.role.runningForRuler
-            );
-            simsRunning = _.filter(simsRunning, (sim) => sim.generation >= generation);
+            const simsRunning = filterRunningSims(updatedLegacy, generation);
             dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
           });
         });
@@ -47,11 +43,7 @@ export default ({ item }) => {
       .then((token) => {
         dispatch(deleteSim({ simData: item, legacyID: _id, token })).then(() => {
           dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
-            let simsRunning = _.filter(
-              updatedLegacy.payload.sims,
-              (sim) => sim.role.runningForRuler
-            );
-            simsRunning = _.filter(simsRunning, (sim) => sim.generation >= generation);
+            const simsRunning = filterRunningSims(updatedLegacy, generation);
             dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
           });
         });

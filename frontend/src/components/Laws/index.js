@@ -27,7 +27,8 @@ import DialogEdit from 'components/DialogEdit';
 import DialogSelectLaws from 'components/DialogSelectLaws';
 
 // services
-import { updateLaws } from 'store/legacy/services';
+import { updateLaws, getLegacy, updateHeirs } from 'store/legacy/services';
+import { filterRunningSims } from 'utils/calculations'
 
 import styling from './style';
 
@@ -75,22 +76,20 @@ export default () => {
   const dispatch = useDispatch();
   const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
 
-  const { laws, _id } = useSelector((store) => store.legacy);
+  const { laws, _id, generation } = useSelector((store) => store.legacy);
 
   const handleSelectedLaw = (value, key) => {
     getAccessTokenSilently()
       .then((token) => {
-        dispatch(updateLaws({ laws: { [key]: value }, legacyID: _id, token }));
+        dispatch(updateLaws({ laws: { [key]: value }, legacyID: _id, token })).then(() => {
+          dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
+            const simsRunning = filterRunningSims(updatedLegacy, generation);
+            dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
+          });
+        });
       })
       .catch((err) => console.log(err))
   };
-  // const handleNewLaws = (value) => {
-  //   getAccessTokenSilently()
-  //     .then((token) => {
-  //       dispatch(updateLegacy({ newData: { laws: value }, legacyID: _id, token }))
-  //     })
-  //     .catch((err) => console.log(err))
-  // }
 
   return (
     <Card>

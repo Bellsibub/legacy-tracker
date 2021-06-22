@@ -3,8 +3,7 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-underscore-dangle */
 import Legacy from '../models/legacyModel';
-// import Sims from '../models/simsModel';
-import { RulesModel, LawsModel, PacksModel, GoalsModel } from '../models/dataModel';
+import { RulesModel, GoalsModel } from '../models/dataModel';
 import { AspirationModel, TraitsModel, SkillsModel } from '../models/categoriesModel';
 import AppError from '../utils/appError';
 import { UserModel } from '../models/userModel';
@@ -13,7 +12,7 @@ import APIRequest from '../utils/apiRequest';
 export const create = async (req, res, next) => {
   try {
     const { name, ruler, packs, laws } = req.body;
-    // const laws = await LawsModel.find()
+    
     const rules = await RulesModel.find();
     const goals = await GoalsModel.findOne();
     const aspirations = await AspirationModel.find();
@@ -41,15 +40,13 @@ export const create = async (req, res, next) => {
     next(error);
   }
 };
+
 export const deleteLegacy = async (req, res, next) => {
   try {
-    // const { name, ruler, packs } = req.body;
     const { id } = req.params;
-    // const laws = await LawsModel.find()
-    // const rules = await RulesModel.find();
-    const doc = await Legacy.findOneAndRemove({ _id: id });
     
-    // const doc = await Legacy.findById(newLegacy._id);
+    const doc = await Legacy.deleteOne({ _id: id });
+    
     res.status(200).json(doc);
   } catch (error) {
     next(error);
@@ -107,27 +104,15 @@ export const getUser = async (req, res, next) => {
 export const update = async (req, res, next) => {
   try {
     const { id } = req.params;
-    // const newLaw = req.body.laws;
-    // const keys = Object.keys(newLaw);
-    
+    const { remove } = req.body;
+    if (remove) {
+      await Legacy.updateOne(
+        { _id: id },
+        { $unset: { [`${remove}`]: '' } },
+        { new: true }
+      );
+    }
     const doc = await Legacy.updateOne({ _id: id }, { ...req.body }, { new: true });
-    // this update runs only for a law change
-    // TODO: create a seperate endpoint for this
-    // if (newLaw) {
-    //   for (let i = 0; i < keys.length; i++) {
-    //     await Legacy.updateOne(
-    //       { _id: id },
-    //       {
-    //         $set: { [`laws.${keys[i]}`]: { ...newLaw[keys[i]] } }
-    //       },
-    //       { new: true }
-    //     );
-    //   }
-    // } else {
-      
-    // }
-
-    // const doc = await Legacy.findById(id);
 
     if (!doc) {
       return next(
@@ -150,12 +135,6 @@ export const updateLaws = async (req, res, next) => {
     const { laws } = req.body;
     const keys = Object.keys(laws);
     
-    // const doc = await Legacy.updateOne({ _id: id }, { ...req.body }, { new: true });
-    // this update runs only for a law change
-    // TODO: create a seperate endpoint for this
-    // if (newLaw) {
-    // let doc;
-    // for (let i = 0; i < keys.length; i++) {
     const doc = await Legacy.updateOne(
       { _id: id },
       {
@@ -163,12 +142,6 @@ export const updateLaws = async (req, res, next) => {
       },
       { new: true }
     );
-    // }
-    // } else {
-      
-    // }
-
-    // const doc = await Legacy.findById(id);
 
     if (!doc) {
       return next(
@@ -194,7 +167,6 @@ export const completeCategoryItem = async (req, res, next) => {
       { new: true }
     );
     const doc = await Legacy.findOne({ _id: id });
-    // console.log(doc);
     if (!doc) {
       return next(
         new AppError(

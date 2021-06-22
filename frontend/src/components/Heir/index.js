@@ -1,6 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+
 // import { makeStyles } from '@material-ui/core/styles';
 // material ui
 import {
@@ -20,6 +22,8 @@ import CardBody from 'components/CardBody';
 import { ArrowUpCircleOutline, Crown } from 'mdi-material-ui';
 
 import { updateHeir } from 'store/legacy';
+import { updateLegacy, getLegacy, updateHeirs } from 'store/legacy/services';
+import { filterRunningSims } from 'utils/calculations'
 // styles
 // import styling from './style';
 
@@ -46,10 +50,22 @@ const PotentialHeir = ({ item, onClick }) => {
 
 export default () => {
   const dispatch = useDispatch();
-  const { heir, potentialHeirs } = useSelector((store) => store.legacy);
+  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+
+  const { heir, potentialHeirs, _id, generation } = useSelector((store) => store.legacy);
 
   const handleHeirChange = (newHeir) => {
-    dispatch(updateHeir({ newHeir }))
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(updateLegacy({ newData: { heir: newHeir._id }, legacyID: _id, token }))
+          .then(() => {
+            dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
+              const simsRunning = filterRunningSims(updatedLegacy, generation);
+              dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
+            });
+          });
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

@@ -16,6 +16,7 @@ import DialogSims from 'components/DialogSims';
 
 // services
 import { createSim, updateHeirs, getLegacy } from 'store/legacy/services';
+import { filterRunningSims } from 'utils/calculations'
 
 // styles
 // import styling from './style';
@@ -34,11 +35,7 @@ export default ({ items, gen, roles }) => {
       .then((token) => {
         dispatch(createSim({ simData: newSim, legacyID: _id, token })).then(() => {
           dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
-            let simsRunning = _.filter(
-              updatedLegacy.payload.sims,
-              (sim) => sim.role.runningForRuler
-            );
-            simsRunning = _.filter(simsRunning, (sim) => sim.generation >= generation);
+            const simsRunning = filterRunningSims(updatedLegacy, generation);
             dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
           });
         });

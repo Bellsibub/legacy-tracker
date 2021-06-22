@@ -5,9 +5,9 @@ import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 
 import { useSelector, useDispatch, batch } from 'react-redux';
 import { Fab, Grid, Typography, Box } from '@material-ui/core';
-
 import { Plus } from 'mdi-material-ui';
 
+// custom components
 import Ruler from 'components/Ruler';
 import Heir from 'components/Heir';
 import Table from 'components/Table';
@@ -15,9 +15,15 @@ import GenerationList from 'components/GenerationList';
 import DialogSims from 'components/DialogSims';
 import DialogConfirm from 'components/DialogConfirm';
 // services
-import { createSim, updateLegacy, getLegacy, updateHeirs } from 'store/legacy/services';
-// actions
-import { addNewSim, addNewGeneration } from 'store/legacy';
+import {
+  createSim,
+  updateLegacy,
+  getLegacy,
+  updateHeirs,
+  updateSim
+} from 'store/legacy/services';
+// utils
+import { filterRunningSims } from 'utils/calculations';
 
 const roles = {
   child: {
@@ -50,18 +56,18 @@ export default () => {
   const dispatch = useDispatch();
   const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
   const [disabled, setDisabled] = React.useState(false);
-  const { _id, generation, fetchDone } = useSelector((store) => store.legacy);
+  const { _id, generation, heir, fetchDone } = useSelector((store) => store.legacy);
   const generations = useSelector((store) => {
     return _.chain(store.legacy.sims)
       .groupBy((sim) => sim.generation)
       .map((sim, gen) => ({ gen, sims: { ...sim } }))
       .orderBy((group) => Number(group.gen), ['desc'])
-      .value()
+      .value();
     // console.log(t)
   });
 
   React.useEffect(() => {
-    const topGenerationList = _.head(generations)
+    const topGenerationList = _.head(generations);
     if (topGenerationList.gen - 1 === generation) {
       setDisabled(true);
     } else {
@@ -73,18 +79,12 @@ export default () => {
     // console.log(newSim);
     getAccessTokenSilently()
       .then((token) => {
-        dispatch(createSim({ simData: newSim, legacyID: _id, token }))
-          .then(() => {
-            dispatch(getLegacy({ legacyID: _id, token }))
-              .then((updatedLegacy) => {
-                let simsRunning = _.filter(
-                  updatedLegacy.payload.sims,
-                  (sim) => sim.role.runningForRuler
-                );
-                simsRunning = _.filter(simsRunning, (sim) => sim.generation >= generation);
-                dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
-              });
-          })
+        dispatch(createSim({ simData: newSim, legacyID: _id, token })).then(() => {
+          dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
+            const simsRunning = filterRunningSims(updatedLegacy, generation);
+            dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
+          });
+        });
       })
       .catch((err) => console.log(err));
   };
@@ -93,8 +93,27 @@ export default () => {
     getAccessTokenSilently()
       .then((token) => {
         dispatch(
-          updateLegacy({ newData: { generation: generation + 1 }, legacyID: _id, token })
-        );
+          updateLegacy({
+            newData: { remove: 'heir', generation: generation + 1, ruler: heir._id },
+            legacyID: _id,
+            token
+          })
+        )
+          .then(() => {
+            dispatch(
+              updateSim({
+                simData: { ...heir, role: { ...roles.ruler } },
+                legacyID: _id,
+                token
+              })
+            );
+          })
+          .then(() => {
+            dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
+              const simsRunning = filterRunningSims(updatedLegacy, generation);
+              dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
+            });
+          });
       })
       .catch((err) => console.log(err));
   };

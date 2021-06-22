@@ -1,4 +1,5 @@
 /* eslint-disable no-underscore-dangle */
+import _ from 'lodash';
 import Legacy from '../models/legacyModel';
 import Sims from '../models/simsModel';
 import AppError from '../utils/appError';
@@ -10,25 +11,10 @@ export const create = async (req, res, next) => {
     const doc = await Sims.create({
       ...simData
     });
-
-    // const { runningForRuler, eligible } = simData.role;
-    // if (eligible) {
-    //   await Legacy.updateOne(
-    //     { _id: legacyID },
-    //     { $addToSet: { sims: doc._id, potentialHeirs: doc._id } }
-    //     // { new: true, upsert: true }
-    //   );
-    // } else {
-    //   await Legacy.updateOne(
-    //     { _id: legacyID },
-    //     { $addToSet: { sims: doc._id } },
-    //     { new: true, upsert: true }
-    //   );
-    // }
     await Legacy.updateOne(
       { _id: legacyID },
-      { $addToSet: { sims: doc._id } },
-      { new: true, upsert: true }
+      { $push: { sims: doc._id } },
+      { new: true }
     );
 
     res.status(201).json(doc);
@@ -40,26 +26,8 @@ export const create = async (req, res, next) => {
 export const update = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { simData, legacyID } = req.body;
+    const { simData } = req.body;
     const doc = await Sims.updateOne({ _id: id }, { ...simData }, { new: true });
-
-    // const { runningForRuler, eligible } = simData.role;
-    // // console.log(`hello${simData.firstName}isEligible${eligible}`)
-    // if (eligible) {
-    //   await Legacy.updateOne(
-    //     { _id: legacyID },
-    //     { $addToSet: { potentialHeirs: id } }
-    //     // { new: true, upsert: true }
-    //   );
-    // } else {
-    //   await Legacy.updateOne(
-    //     { _id: legacyID },
-    //     {
-    //       $pull: { potentialHeirs: id }
-    //     },
-    //     { new: true, upsert: true }
-    //   );
-    // }
 
     if (!doc) {
       return next(
@@ -78,9 +46,7 @@ export const update = async (req, res, next) => {
 export const updateHeirs = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { eligibleSims, nonEligible, legacyID } = req.body;
-
-    console.log(eligibleSims);
+    const { eligibleSims, nonEligible } = req.body;
 
     const doc = await Sims.updateMany(
       { _id: { $in: eligibleSims } },
@@ -93,40 +59,9 @@ export const updateHeirs = async (req, res, next) => {
     await Legacy.updateOne(
       { _id: id },
       { 
-        $addToSet: { potentialHeirs: { $each: eligibleSims } }
+        $set: { potentialHeirs: eligibleSims }
       }
-      // { new: true, upsert: true }
     );
-    await Legacy.updateOne(
-      { _id: id },
-      { 
-        $pull: { potentialHeirs: nonEligible }
-      }
-      // { new: true, upsert: true }
-    );
-    // console.log(t);
-
-    // const doc = await Sims.updateOne({ _id: id }, { ...simData }, { new: true });
-
-    // const { runningForRuler, eligible } = simData.role;
-    // const { _id } = simData;
-    // console.log(`hello${simData.firstName}isEligible${eligible}`)
-    // let doc;
-    // if (eligible) {
-    //   await Legacy.updateOne(
-    //     { _id: id },
-    //     { $addToSet: { potentialHeirs: _id } },
-    //     { new: true, upsert: true }
-    //   );
-    // } else {
-    //   await Legacy.updateOne(
-    //     { _id: id },
-    //     {
-    //       $pull: { potentialHeirs: _id }
-    //     },
-    //     { new: true, upsert: true }
-    //   );
-    // }
 
     if (!doc) {
       return next(
@@ -146,28 +81,19 @@ export const updateHeirs = async (req, res, next) => {
 export const deleteSim = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { legacyID } = req.body;
+    
     const doc = await Sims.deleteOne({ _id: id });
-    await Legacy.updateOne(
-      { _id: legacyID },
-      {
-        $unset: { heir: '' },
-        $pull: { sims: id, potentialHeirs: id }
-      },
-      { new: true, upsert: true }
-    );
-    res.status(200).json(doc);
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const get = async (req, res, next) => {
-  try {
-    const request = new APIRequest(Sims.find());
-
-    const doc = await request.mongoQuery;
-
+    
+    const legacy = await Legacy.findOne({ sims: { $in: [id] } });
+    
+    const sims = legacy.sims.filter((sim) => sim._id !== id).map((sim) => sim._id)
+    
+    await Legacy.updateOne({ _id: id }, { $set: { sims: [sims] } })
+    
+    if (legacy.heir === id) {
+      await Legacy.updateOne({ _id: id }, { $unset: { heir: "" } })
+    } 
+    
     res.status(200).json(doc);
   } catch (error) {
     next(error);
