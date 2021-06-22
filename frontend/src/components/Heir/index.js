@@ -73,7 +73,7 @@ export default () => {
             <List>
               <Divider variant="middle" />
               {_.map(potentialHeirs, (item) => (
-                <PotentialHeir key={item.id} item={item} onClick={handleHeirChange} />
+                <PotentialHeir key={item._id} item={item} onClick={handleHeirChange} />
               ))}
             </List>
           </CardBody>

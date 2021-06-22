@@ -14,7 +14,7 @@ import CardFooter from 'components/CardFooter';
 import DialogSims from 'components/DialogSims';
 
 // services
-import { updateSim } from 'store/legacy/services';
+import { updateSim, getLegacy } from 'store/legacy/services';
 
 const ChipSection = ({ items, title }) => {
   return (
@@ -53,7 +53,10 @@ export default () => {
     console.log('NEW sim to update', newSim);
     getAccessTokenSilently()
       .then((token) => {
-        dispatch(updateSim({ simData: newSim, legacyID: _id, token }));
+        dispatch(updateSim({ simData: newSim, legacyID: _id, token }))
+          .then(() => {
+            dispatch(getLegacy({ legacyID: _id, token }))
+          })
       })
       .catch((err) => console.log(err))
   };

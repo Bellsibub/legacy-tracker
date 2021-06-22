@@ -14,7 +14,11 @@ const useStyles = makeStyles(dialog);
 
 export default ({ value, onChange, label }) => {
   const classes = useStyles();
-
+  // const [val, setValue] = React.useState(value)
+  // const handleChange = () => {
+  //   onChange(!val)
+  //   setValue(!val)
+  // }
   return (
     <FormControl className={classes.dialogFullWidth}>
       <Typography component="div">

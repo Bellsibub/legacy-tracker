@@ -20,7 +20,7 @@ const simsSchema = new Schema({
   gender: {
     type: String,
     enum: {
-      values: ['Male', 'Female', 'Other'],
+      values: ['Male', 'Female'],
       message: '{VALUE} is not a supported gender'
     },
     required: [true, 'Gender is required']
@@ -47,18 +47,15 @@ const simsSchema = new Schema({
   causeOfDeath: { type: dataSchema },
   relations: {
     mother: {
-      type: Schema.Types.ObjectId,
-      ref: 'Sims',
+      type: Schema.Types.Mixed,
       default: null
     },
     father: {
-      type: Schema.Types.ObjectId,
-      ref: 'Sims',
+      type: Schema.Types.Mixed,
       default: null
     },
     partner: {
-      type: Schema.Types.ObjectId,
-      ref: 'Sims',
+      type: Schema.Types.Mixed,
       default: null
     }
   },

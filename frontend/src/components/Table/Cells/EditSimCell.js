@@ -1,7 +1,7 @@
 import React from 'react';
-// import _ from 'lodash';
+import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -11,7 +11,7 @@ import TableCell from '@material-ui/core/TableCell';
 import DialogSims from 'components/DialogSims';
 
 // services
-import { updateSim, deleteSim } from 'store/legacy/services';
+import { updateSim, deleteSim, updateHeirs, getLegacy } from 'store/legacy/services';
 
 import DialogConfirm from 'components/DialogConfirm';
 import { Delete } from 'mdi-material-ui';
@@ -23,23 +23,40 @@ export default ({ item }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
-
-  const { _id } = useSelector((store) => store.legacy);
+  const { generation, _id } = useSelector((store) => store.legacy);
 
   const handleEditSimConfirm = (newSim) => {
     console.log('NEW sim to update', item);
     getAccessTokenSilently()
       .then((token) => {
-        dispatch(updateSim({ simData: newSim, legacyID: _id, token }));
+        dispatch(updateSim({ simData: newSim, legacyID: _id, token })).then(() => {
+          dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
+            let simsRunning = _.filter(
+              updatedLegacy.payload.sims,
+              (sim) => sim.role.runningForRuler
+            );
+            simsRunning = _.filter(simsRunning, (sim) => sim.generation >= generation);
+            dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
+          });
+        });
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   };
   const handleDeleteSimConfirm = () => {
     getAccessTokenSilently()
       .then((token) => {
-        dispatch(deleteSim({ simID: item._id, legacyID: _id, token }));
+        dispatch(deleteSim({ simData: item, legacyID: _id, token })).then(() => {
+          dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
+            let simsRunning = _.filter(
+              updatedLegacy.payload.sims,
+              (sim) => sim.role.runningForRuler
+            );
+            simsRunning = _.filter(simsRunning, (sim) => sim.generation >= generation);
+            dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
+          });
+        });
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   };
 
   return (

@@ -67,6 +67,13 @@ export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other
       [target.name]: target.checked || target.value
     }));
   };
+  const handleToggle = (event) => {
+    const { target } = event;
+    setSimInfo((prevState) => ({
+      ...prevState,
+      adopted: target.checked
+    }))
+  }
   const handleTraitChange = (event, newValue) => {
     setSimInfo((prevState) => ({
       ...prevState,
@@ -136,8 +143,8 @@ export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other
             <SimpleSelect value={simInfo.gender} onChange={handleChange} label="Gender" />
             {/* is adopted */}
             <SwitchToggle
-              value={simInfo.adopted}
-              onChange={handleChange}
+              value={simInfo.adopted || false}
+              onChange={handleToggle}
               label="Adopted" />
             {/* species */}
             <Species value={simInfo.species} onChange={handleSingleSelectChange} />
@@ -166,7 +173,7 @@ export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other
               newGen={other.newGen || false}
               currentSimID={simInfo._id} />
             <Relations
-              value={simInfo.relations.spouse}
+              value={simInfo.relations.partner}
               label="Partner"
               onChange={handleRelationChange}
               generation={simInfo.generation}

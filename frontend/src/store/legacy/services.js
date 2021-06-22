@@ -107,24 +107,23 @@ export const deleteLegacy = createAsyncThunk(
   }
 );
 
-export const createSim = createAsyncThunk(
-  'legacy/createSim',
+export const updateSim = createAsyncThunk(
+  'legacy/updateSim',
   async ({ simData, legacyID, token }, thunkAPI) => {
     try {
-      // TODO: Make sure that we check eligible and set it before doing fetch
-      // 1. create a new sim to be the ruler
-      const simResponse = await fetch(API_URL('sim'), {
-        method: 'POST',
+      const simResponse = await fetch(API_URL(`sim/${simData._id}`), {
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ simData, legacyID })
       });
-      const newSim = await simResponse.json();
-      // 2. call the next api call to create a new legacy with the newly created sim
+      const updatedSim = await simResponse.json();
+      console.log('updated SIM', updatedSim);
+      // 2. call the next api call to fetch the full legacy object to update the state
       if (simResponse.status === 201) {
-        thunkAPI.dispatch(getLegacy({ legacyID, token }));
-        return newSim;
+        // thunkAPI.dispatch(getLegacy({ legacyID, token }));
+        return updatedSim;
       } else {
-        return thunkAPI.rejectWithValue(newSim);
+        return thunkAPI.rejectWithValue(updatedSim);
       }
     } catch (error) {
       console.log('Error', error.response.data);
@@ -132,18 +131,16 @@ export const createSim = createAsyncThunk(
     }
   }
 );
-
-export const updateSim = createAsyncThunk(
-  'legacy/updateSim',
-  async ({ simData, legacyID, token }, thunkAPI) => {
-    simData = calculateHeir(simData);
+export const updateHeirs = createAsyncThunk(
+  'legacy/updateHeirs',
+  async ({ simsRunning, legacyID, token }, thunkAPI) => {
+    const { laws } = thunkAPI.getState().legacy
+    const calcs = calculateHeir({ laws, simsRunning });
     try {
-      console.log('sim to udpate', simData)
-      // TODO: Make sure that we check eligible and set it before doing fetch
-      const simResponse = await fetch(API_URL(`sim/${simData._id}`), {
+      const simResponse = await fetch(API_URL(`legacy/${legacyID}/potentialHeirs`), {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ simData, legacyID })
+        body: JSON.stringify({ ...calcs })
       });
       const updatedSim = await simResponse.json();
       console.log('updated SIM', updatedSim);
@@ -161,22 +158,43 @@ export const updateSim = createAsyncThunk(
   }
 );
 
+export const createSim = createAsyncThunk(
+  'legacy/createSim',
+  async ({ simData, legacyID, token }, thunkAPI) => {
+    try {
+      const simResponse = await fetch(API_URL('sim'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ simData, legacyID })
+      });
+      const newSim = await simResponse.json();
+      // 2. call the next api call to create a new legacy with the newly created sim
+      if (simResponse.status === 201) {
+        // thunkAPI.dispatch(getLegacy({ legacyID, token }));
+        return newSim;
+      } else {
+        return thunkAPI.rejectWithValue(newSim);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const deleteSim = createAsyncThunk(
   'legacy/deleteSim',
-  async ({ simID, legacyID, token }, thunkAPI) => {
+  async ({ simData, legacyID, token }, thunkAPI) => {
     try {
-      // TODO: Make sure that we check eligible and set it before doing fetch
-      // 1. update sim based on ID
-      const resp = await fetch(API_URL(`sim/${simID}`), {
+      const resp = await fetch(API_URL(`sim/${simData._id}`), {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
         body: JSON.stringify({ legacyID })
       });
       const data = await resp.json();
       console.log('updated SIM', data);
-      // 2. call the next api call to fetch the full legacy object to update the state
       if (resp.status === 200) {
-        thunkAPI.dispatch(getLegacy({ legacyID, token }));
+        // thunkAPI.dispatch(getLegacy({ legacyID, token }));
         return data;
       } else {
         return thunkAPI.rejectWithValue(data);

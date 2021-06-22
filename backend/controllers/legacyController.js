@@ -74,7 +74,7 @@ export const getOne = async (req, res, next) => {
   try {
     const { id } = req.params;
     // By default this returns the lastest 20 thoughts
-    const doc = await Legacy.findById(id);
+    const doc = await Legacy.findById(id)
     // .sort().limit();
     if (!doc) {
       return next(

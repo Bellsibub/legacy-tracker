@@ -13,7 +13,7 @@ const useStyles = makeStyles(dialog);
 // const status = ['Alive, in legacy household', 'Alive, not in legacy household', 'Dead'];
 
 const data = {
-  gender: ['Male', 'Female', 'Other']
+  gender: ['Male', 'Female']
 }
 
 export default ({ value, onChange, label }) => {

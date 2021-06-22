@@ -15,7 +15,7 @@ import GenerationList from 'components/GenerationList';
 import DialogSims from 'components/DialogSims';
 import DialogConfirm from 'components/DialogConfirm';
 // services
-import { createSim, updateLegacy } from 'store/legacy/services';
+import { createSim, updateLegacy, getLegacy, updateHeirs } from 'store/legacy/services';
 // actions
 import { addNewSim, addNewGeneration } from 'store/legacy';
 
@@ -73,7 +73,18 @@ export default () => {
     // console.log(newSim);
     getAccessTokenSilently()
       .then((token) => {
-        dispatch(createSim({ simData: newSim, legacyID: _id, token }));
+        dispatch(createSim({ simData: newSim, legacyID: _id, token }))
+          .then(() => {
+            dispatch(getLegacy({ legacyID: _id, token }))
+              .then((updatedLegacy) => {
+                let simsRunning = _.filter(
+                  updatedLegacy.payload.sims,
+                  (sim) => sim.role.runningForRuler
+                );
+                simsRunning = _.filter(simsRunning, (sim) => sim.generation >= generation);
+                dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
+              });
+          })
       })
       .catch((err) => console.log(err));
   };

@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 // import { makeStyles } from '@material-ui/core/styles';
@@ -14,7 +15,7 @@ import CardFooter from 'components/CardFooter';
 import DialogSims from 'components/DialogSims';
 
 // services
-import { createSim } from 'store/legacy/services';
+import { createSim, updateHeirs, getLegacy } from 'store/legacy/services';
 
 // styles
 // import styling from './style';
@@ -26,14 +27,33 @@ export default ({ items, gen, roles }) => {
   const dispatch = useDispatch();
   const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
   const { _id, generation } = useSelector((store) => store.legacy);
-  // console.log(items, generation)
+
+  const handleNewLegacyChild = (newSim) => {
+    // console.log(newSim);
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(createSim({ simData: newSim, legacyID: _id, token })).then(() => {
+          dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
+            let simsRunning = _.filter(
+              updatedLegacy.payload.sims,
+              (sim) => sim.role.runningForRuler
+            );
+            simsRunning = _.filter(simsRunning, (sim) => sim.generation >= generation);
+            dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
+          });
+        });
+      })
+      .catch((err) => console.log(err));
+  };
   const handleNewSimConfirm = (newSim) => {
     // console.log(newSim);
     getAccessTokenSilently()
       .then((token) => {
-        dispatch(createSim({ simData: newSim, legacyID: _id, token }));
+        dispatch(createSim({ simData: newSim, legacyID: _id, token })).then(() => {
+          dispatch(getLegacy({ legacyID: _id, token }));
+        });
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -52,7 +72,7 @@ export default ({ items, gen, roles }) => {
             generation={gen}
             roleType={roles.child}
             description="This child will be added as part of the legacy. Therefore they will be calculated against your laws in the running for the position of ruler."
-            onConfirm={handleNewSimConfirm} />
+            onConfirm={handleNewLegacyChild} />
         )}
         <DialogSims
           title="Create new partner"
