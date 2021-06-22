@@ -38,7 +38,7 @@ const Links = ({ routes, section }) => {
       return;
     }
     if (route.isLogout) {
-      return (<Logout route={route} />)
+      return (<Logout key={route.name} route={route} />)
     } else {
       return (
         <ListItem key={route.name} className={classes.item}>

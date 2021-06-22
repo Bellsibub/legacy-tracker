@@ -43,7 +43,6 @@ export default ({ title, items, splitBy, ...other }) => {
             <Divider />
             <GridList
               className={classes.gridList}
-              // cellHeight={64}
               cols={smallScreen ? 3 : 5}>
               {group.map((item) => (
                 <GridListTile key={item.name} className={classes.gridTile}>
@@ -51,7 +50,6 @@ export default ({ title, items, splitBy, ...other }) => {
                 </GridListTile>
               ))}
             </GridList>
-            <Divider />
           </div>
         ))}
       </CardBody>

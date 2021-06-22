@@ -34,14 +34,14 @@ export const Home = () => {
   const dispatch = useDispatch();
   const { legacyID } = useSelector((store) => store.session);
   const { firstTime } = useSelector((store) => store.session.user);
-  const { generation, fetchDone, _id } = useSelector((store) => store.legacy);
+  const { generation, fetchDone, _id, loading } = useSelector((store) => store.legacy);
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   React.useEffect(() => {
     getAccessTokenSilently()
       .then((token) => {
         if (isAuthenticated) {
-          dispatch(setUserID(user.sub))
+          dispatch(setUserID(user.sub));
           dispatch(getUserMetadata({ token }));
         }
         dispatch(getData({ token }));
@@ -55,7 +55,7 @@ export const Home = () => {
     if (fetchDone) {
       dispatch(setScores());
       if (firstTime && !_id) {
-        history.push('/onboarding')
+        history.push('/onboarding');
       }
     }
   }, [fetchDone]);
@@ -64,7 +64,7 @@ export const Home = () => {
       if (legacyID) {
         dispatch(getLegacy({ legacyID, token }));
       }
-    })
+    });
   }, [legacyID]);
 
   const handleDrawerToggle = () => {
@@ -93,13 +93,17 @@ export const Home = () => {
         logo={logo} />
       <div className={classes.mainPanel}>
         <Appbar handleDrawerToggle={handleDrawerToggle} />
-
-        <div className={classes.content}>
-          <Switch>
-            {getRoutes(routes)}
-            {/* <Route component={NoMatch} /> */}
-          </Switch>
-        </div>
+        {!fetchDone ? (
+          <div className={classes.content}>
+            <Loading />
+          </div>
+        ) : (
+          <>
+            <div className={classes.content}>
+              <Switch>{getRoutes(routes)}</Switch>
+            </div>
+          </>
+        )}
       </div>
     </>
   );
@@ -107,6 +111,6 @@ export const Home = () => {
 
 export default withAuthenticationRequired(Home, {
   onRedirecting: () => {
-    return <Loading />;
+    return <Loading line />;
   }
 });

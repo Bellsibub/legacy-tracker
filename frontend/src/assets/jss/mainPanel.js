@@ -16,5 +16,9 @@ export default (theme) => ({
     marginTop: `calc(15px + ${appBarHeight}px)`,
     padding: '15px',
     minHeight: `calc(100vh - ${appBarHeight}px - 30px)`
+  },
+  loading: {
+    height: `200px !important`,
+    width: `200px !important`
   }
 });

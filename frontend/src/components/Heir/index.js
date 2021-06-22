@@ -19,11 +19,11 @@ import {
 import Card from 'components/Card';
 import CardHeader from 'components/CardHeader';
 import CardBody from 'components/CardBody';
-import { ArrowUpCircleOutline, Crown } from 'mdi-material-ui';
+import { ArrowUpCircleOutline, Crown, Podium } from 'mdi-material-ui';
 
 import { updateHeir } from 'store/legacy';
 import { updateLegacy, getLegacy, updateHeirs } from 'store/legacy/services';
-import { filterRunningSims } from 'utils/calculations'
+import { filterRunningSims } from 'utils/calculations';
 // styles
 // import styling from './style';
 
@@ -57,20 +57,21 @@ export default () => {
   const handleHeirChange = (newHeir) => {
     getAccessTokenSilently()
       .then((token) => {
-        dispatch(updateLegacy({ newData: { heir: newHeir._id }, legacyID: _id, token }))
-          .then(() => {
-            dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
-              const simsRunning = filterRunningSims(updatedLegacy, generation);
-              dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
-            });
+        dispatch(
+          updateLegacy({ newData: { heir: newHeir._id }, legacyID: _id, token })
+        ).then(() => {
+          dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
+            const simsRunning = filterRunningSims(updatedLegacy, generation);
+            dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
           });
+        });
       })
       .catch((err) => console.log(err));
   };
 
   return (
     <Card>
-      <CardHeader color="accent" icon={Crown}>
+      <CardHeader color="accent" icon={Podium}>
         <Typography variant="subtitle2">HEIR</Typography>
         {heir ? (
           <Typography variant="h2">{`${heir.firstName} ${heir.lastName}`}</Typography>
@@ -86,12 +87,17 @@ export default () => {
           <CardBody>
             <Typography variant="subtitle2">POTENTIAL HEIRS</Typography>
 
-            <List>
-              <Divider variant="middle" />
-              {_.map(potentialHeirs, (item) => (
-                <PotentialHeir key={item._id} item={item} onClick={handleHeirChange} />
-              ))}
-            </List>
+            {_.size(potentialHeirs) !== 0 ? (
+              <List>
+                {_.map(potentialHeirs, (item) => (
+                  <PotentialHeir key={item._id} item={item} onClick={handleHeirChange} />
+                ))}
+              </List>
+            ) : (
+              <Typography variant="caption" component="p">
+                No potential heirs found that match your laws
+              </Typography>
+            )}
           </CardBody>
         </>
       )}

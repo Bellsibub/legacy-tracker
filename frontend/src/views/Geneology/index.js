@@ -63,7 +63,6 @@ export default () => {
       .map((sim, gen) => ({ gen, sims: { ...sim } }))
       .orderBy((group) => Number(group.gen), ['desc'])
       .value();
-    // console.log(t)
   });
 
   React.useEffect(() => {

@@ -502,6 +502,8 @@ export const completeCategoryItemTask = createAsyncThunk(
               token
             })
           );
+        } else {
+          thunkAPI.dispatch(getLegacy({ legacyID, token }));
         }
         return data;
       } else {

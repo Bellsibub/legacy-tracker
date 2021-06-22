@@ -37,10 +37,6 @@ export default () => {
     }
   };
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
     isAuthenticated && (
       <>

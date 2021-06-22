@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
 // 3rd party components
-import { List, Divider } from '@material-ui/core';
+import { List, Divider, Typography } from '@material-ui/core';
 import { EmojiEvents } from '@material-ui/icons';
 
 // custom components
@@ -14,6 +14,7 @@ import CardBody from 'components/CardBody';
 import FocusTaskItem from 'components/FocusTaskItem';
 
 // styling
+import { FormatListChecks } from 'mdi-material-ui';
 import styling from './style';
 
 const useStyles = makeStyles(styling);
@@ -35,18 +36,26 @@ export default () => {
   });
   return (
     <Card>
-      <CardHeader color="blue" icon={EmojiEvents} />
+      <CardHeader color="accent" icon={FormatListChecks}>
+        <Typography variant="subtitle2">FOCUS TASKS</Typography>
+      </CardHeader>
       <CardBody>
-        <List>
-          {tasks.map((item) => (
-            <div key={item._id}>
-              <div className={classes.listItem}>
-                <FocusTaskItem item={item} category={item.category} />
+        {_.size(tasks) !== 0 ? (
+          <List>
+            {tasks.map((item) => (
+              <div key={item._id}>
+                <div className={classes.listItem}>
+                  <FocusTaskItem item={item} category={item.category} />
+                </div>
+                <Divider />
               </div>
-              <Divider />
-            </div>
-          ))}
-        </List>
+            ))}
+          </List>
+        ) : (
+          <Typography variant="caption" component="p">
+            No tasks selected
+          </Typography>
+        )}
       </CardBody>
     </Card>
   );

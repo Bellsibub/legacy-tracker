@@ -1,12 +1,9 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import _ from 'lodash';
-// material ui
+
+// 3rd party components
 import {
   Divider,
-  GridList,
-  GridListTile,
   Typography,
   useTheme,
   useMediaQuery,
@@ -19,14 +16,13 @@ import {
   Badge
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { ExpandLess, ExpandMore, Check } from '@material-ui/icons';
 
 // custom components
 import Card from 'components/Card';
 import CardHeader from 'components/CardHeader';
 import CardBody from 'components/CardBody';
-import IconItem from 'components/IconItem';
 
-import { ExpandLess, ExpandMore, Check } from '@material-ui/icons';
 import styling from './style';
 
 const useStyles = makeStyles(styling);
@@ -66,23 +62,24 @@ const ListItemCollapse = ({ mainItem, itemsKey }) => {
 };
 
 export default ({ title, items, itemsKey }) => {
-  const classes = useStyles();
-  const theme = useTheme();
-  const smallScreen = useMediaQuery(theme.breakpoints.down('xs'));
-  const groups = _.groupBy(items, 'generation');
-
+  const generations = _.chain(items)
+    .groupBy((sim) => sim.generation)
+    .map((sim, gen) => ({ gen, sims: { ...sim } }))
+    .orderBy((group) => Number(group.gen), ['desc'])
+    .value();
   return (
     <Card>
       <CardHeader color="accent" text>
         <Typography variant="h3">{title}</Typography>
       </CardHeader>
       <CardBody>
-        {/* list of items icons with actions */}
-        {_.map(groups, (group, key) => (
+        {_.map(generations, (gen, key) => (
           <List
-            subheader={<ListSubheader component="div">{`GENERATION ${key}`}</ListSubheader>}
+            subheader={
+              <ListSubheader component="div">{`GENERATION ${gen.gen}`}</ListSubheader>
+            }
             key={`generation-${key}`}>
-            {group.map((item) => (
+            {_.map(gen.sims, (item) => (
               <div key={item._id}>
                 {item.aspirations.length > 0 ? (
                   <ListItemCollapse mainItem={item} itemsKey={itemsKey} />

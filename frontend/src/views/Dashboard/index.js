@@ -22,15 +22,8 @@ export default () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
   const { score, _id } = useSelector((store) => store.legacy);
-  // const handleStartNewGen = () => {
-  //   getAccessTokenSilently()
-  //     .then((token) => {
-  //       dispatch(initLegacy({ founder: startingSim, legacy: startingLegacySettings, token }));
-  //     })
-  //     .catch((err) => console.log(err))
-  // };
 
   const handleStartNewLegacy = () => {
     history.push('/onboarding');

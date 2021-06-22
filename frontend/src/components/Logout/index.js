@@ -14,9 +14,9 @@ import {
 import styling from './style';
 
 const useStyles = makeStyles(styling);
+
 export default ({ route }) => {
   const classes = useStyles();
-
   const { logout } = useAuth0();
 
   return (
@@ -25,7 +25,7 @@ export default ({ route }) => {
         button
         className={classes.item}
         onClick={() => logout({ returnTo: window.location.origin })}>
-        <ListItemIcon activeClassName={classes.activeLink} className={classes.itemLink}>
+        <ListItemIcon className={classes.itemLink}>
           {typeof route.icon === 'string' ? (
             <Icon className={classes.itemIcon}>{route.icon}</Icon>
           ) : (
