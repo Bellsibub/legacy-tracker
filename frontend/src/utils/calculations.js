@@ -118,8 +118,6 @@ const lawsCalculations = {
   }
 };
 
-// TODO: Finish this calculation
-// return and set role.eligible
 export const calculateHeir = ({ laws, simsRunning, ruler }) => {
   const eligibleSims = [];
   const nonEligible = [];

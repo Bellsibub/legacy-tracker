@@ -1,7 +1,5 @@
-/* eslint-disable no-plusplus */
 import _ from 'lodash';
 import { verifyGoalCompletion, calculateHeir } from 'utils/calculations';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { addLegacyToUser, removeLegacyForUser } from 'store/session/services';
 import { setLegacy } from 'store/session';
@@ -19,7 +17,6 @@ export const createLegacy = createAsyncThunk(
       const data = await response.json();
       if (response.status === 201) {
         thunkAPI.dispatch(setLegacy({ id: data._id }));
-        // call the authAPI to save to usermeta
         thunkAPI.dispatch(addLegacyToUser({ token, legacyID: data._id }));
         return data;
       } else {
@@ -36,15 +33,12 @@ export const initLegacy = createAsyncThunk(
   'legacy/initLegacy',
   async ({ founder, legacy, token }, thunkAPI) => {
     try {
-      // 1. create a new sim to be the ruler
       const simResponse = await fetch(API_URL('sim'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ simData: { ...founder } })
       });
       const newSim = await simResponse.json();
-      console.log('new SIM', newSim);
-      // 2. call the next api call to create a new legacy with the newly created sim
       if (simResponse.status === 201) {
         thunkAPI.dispatch(
           createLegacy({ legacyData: { ...legacy, ruler: newSim._id }, token })
@@ -330,7 +324,7 @@ export const updatePacks = createAsyncThunk(
       const legacyResponse = await fetch(
         API_URL(`legacy/${legacyID}/packs/${packID}`),
         {
-          method: 'PATCH',
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
@@ -340,7 +334,7 @@ export const updatePacks = createAsyncThunk(
       );
       const data = await legacyResponse.json();
       // 2. call the next api call to fetch the full legacy object to update the state
-      if (legacyResponse.status === 201) {
+      if (legacyResponse.status === 200) {
         thunkAPI.dispatch(getLegacy({ legacyID, token }));
         return data;
       } else {

@@ -1,52 +1,260 @@
 [
   {
     "name": "base_game",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/basegame.png",
+    "active": false,
     "type": "base game version"
   },
   {
-    "name": "jungle_adventure",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
-    "type": "game pack"
-  },
-  {
-    "name": "cats_and_dogs",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
-    "type": "expansion"
-  },
-  {
-    "name": "discover_university",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
-    "type": "expansion"
-  },
-  {
-    "name": "eco_lifestyle",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "name": "get_to_work",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/ep01.png",
+    "active": false,
     "type": "expansion"
   },
   {
     "name": "get_together",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/ep02.png",
+    "active": false,
     "type": "expansion"
   },
   {
-    "name": "throwback_fit",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
-    "type": "kit"
+    "name": "city_living",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/ep03.png",
+    "active": false,
+    "type": "expansion"
   },
   {
-    "name": "country_kitchen",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
-    "type": "kit"
+    "name": "cats_and_dogs",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/ep04.png",
+    "active": false,
+    "type": "expansion"
+  },
+  {
+    "name": "seasons",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/ep05.png",
+    "active": false,
+    "type": "expansion"
+  },
+  {
+    "name": "get_famous",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/ep06.png",
+    "active": false,
+    "type": "expansion"
+  },
+  {
+    "name": "island_living",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/ep07.png",
+    "active": false,
+    "type": "expansion"
+  },
+  {
+    "name": "discover_university",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/ep08.png",
+    "active": false,
+    "type": "expansion"
+  },
+  {
+    "name": "eco_lifestyle",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/ep09.png",
+    "active": false,
+    "type": "expansion"
+  },
+  {
+    "name": "snowy_escape",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/ep10.png",
+    "active": false,
+    "type": "expansion"
+  },
+  {
+    "name": "cottage_living",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/ep11.png",
+    "active": false,
+    "type": "expansion"
+  },
+  {
+    "name": "outdoor_retreat",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/gp01.png",
+    "active": false,
+    "type": "game pack"
+  },
+  {
+    "name": "spa_day",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/gp02.png",
+    "active": false,
+    "type": "game pack"
+  },
+  {
+    "name": "dine_out",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/gp03.png",
+    "active": false,
+    "type": "game pack"
+  },
+  {
+    "name": "vampires",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/gp04.png",
+    "active": false,
+    "type": "game pack"
+  },
+  {
+    "name": "parenthood",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/gp05.png",
+    "active": false,
+    "type": "game pack"
+  },
+  {
+    "name": "jungle_adventure",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/gp06.png",
+    "active": false,
+    "type": "game pack"
+  },
+  {
+    "name": "strangerville",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/gp07.png",
+    "active": false,
+    "type": "game pack"
+  },
+  {
+    "name": "realm_of_magic",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/gp08.png",
+    "active": false,
+    "type": "game pack"
+  },
+  {
+    "name": "star_wars",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/gp09.png",
+    "active": false,
+    "type": "game pack"
+  },
+  {
+    "name": "dream_home_decorator",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/gp10.png",
+    "active": false,
+    "type": "game pack"
+  },
+  {
+    "name": "luxury_party",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp01.png",
+    "active": false,
+    "type": "stuff pack"
+  },
+  {
+    "name": "perfect_patio",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp02.png",
+    "active": false,
+    "type": "stuff pack"
+  },
+  {
+    "name": "cool_kitchen",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp03.png",
+    "active": false,
+    "type": "stuff pack"
+  },
+  {
+    "name": "spooky",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp04.png",
+    "active": false,
+    "type": "stuff pack"
+  },
+  {
+    "name": "movie_hangout",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp05.png",
+    "active": false,
+    "type": "stuff pack"
+  },
+  {
+    "name": "romantic_garden",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp06.png",
+    "active": false,
+    "type": "stuff pack"
+  },
+  {
+    "name": "kids_room",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp07.png",
+    "active": false,
+    "type": "stuff pack"
+  },
+  {
+    "name": "vintage_glamour",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp08.png",
+    "active": false,
+    "type": "stuff pack"
+  },
+  {
+    "name": "bowling_night",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp09.png",
+    "active": false,
+    "type": "stuff pack"
+  },
+  {
+    "name": "fitness",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp10.png",
+    "active": false,
+    "type": "stuff pack"
+  },
+  {
+    "name": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp11.png",
+    "active": false,
+    "type": "stuff pack"
+  },
+  {
+    "name": "laundry_day",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp12.png",
+    "active": false,
+    "type": "stuff pack"
+  },
+  {
+    "name": "my_first_pet",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp13.png",
+    "active": false,
+    "type": "stuff pack"
+  },
+  {
+    "name": "moschino",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp14.png",
+    "active": false,
+    "type": "stuff pack"
   },
   {
     "name": "tiny_living",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp15.png",
+    "active": false,
+    "type": "stuff pack"
+  },
+  {
+    "name": "nifty_knitting",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp16.png",
+    "active": false,
     "type": "stuff pack"
   },
   {
     "name": "paranormal",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/sp17.png",
+    "active": false,
     "type": "stuff pack"
+  },
+  {
+    "name": "throwback_fit",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/kp01.png",
+    "active": false,
+    "type": "kit"
+  },
+  {
+    "name": "country_kitchen",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/kp02.png",
+    "active": false,
+    "type": "kit"
+  },
+  {
+    "name": "bust_the_dust",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/kp03.png",
+    "active": false,
+    "type": "kit"
+  },
+  {
+    "name": "courtyard_oasis",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/kp04.png",
+    "active": false,
+    "type": "kit"
   }
 ]

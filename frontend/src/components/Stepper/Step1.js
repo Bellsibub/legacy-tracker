@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import _ from 'lodash';
 
 // 3rd party components
@@ -14,9 +13,6 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 
 // custom components
-import Card from 'components/Card';
-import CardHeader from 'components/CardHeader';
-import CardBody from 'components/CardBody';
 import IconItem from 'components/IconItem';
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +28,6 @@ export default ({ items, ...props }) => {
   const classes = useStyles();
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('xs'));
-  // const items = useSelector((store) => store.session.data.packs);
   const groups = _.groupBy(items, 'type');
 
   return (
@@ -45,7 +40,6 @@ export default ({ items, ...props }) => {
           <Divider />
           <GridList
             className={classes.gridList}
-            // cellHeight={64}
             cols={smallScreen ? 3 : 5}>
             {group.map((item) => (
               <GridListTile key={item.name} className={classes.gridTile}>
@@ -58,7 +52,6 @@ export default ({ items, ...props }) => {
               </GridListTile>
             ))}
           </GridList>
-          <Divider />
         </div>
       ))}
     </>

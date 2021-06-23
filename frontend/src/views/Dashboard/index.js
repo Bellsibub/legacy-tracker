@@ -38,20 +38,18 @@ export default () => {
     <>
       {_id && (
         <Grid container spacing={3}>
-          {/* Ruler */}
-          <Grid item lg={6} md={9} sm={9} xs={12}>
+          <Grid item sm={6} xs={12}>
             <Ruler />
           </Grid>
-          {/* Heir */}
-          <Grid item lg={6} md={9} sm={9} xs={12}>
+          <Grid item sm={6} xs={12}>
             <Heir />
           </Grid>
           {_.map(score, (scoreValues, key) => (
-            <Grid item xs={12} sm={6} md={6} lg={3} key={key}>
+            <Grid item lg={3} md={5} sm={6} xs={12} key={key}>
               <Stats value={scoreValues.score || 0} type="score" title={key} />
             </Grid>
           ))}
-          <Grid item lg={6} md={9} sm={9} xs={12}>
+          <Grid item sm={6} xs={12}>
             <FocusTaskList />
           </Grid>
         </Grid>
@@ -64,8 +62,6 @@ export default () => {
           justify="center"
           alignItems="center">
           <BigImage image={logo} alt="logo" />
-          {/* <Typography variant="h1">🍧</Typography> */}
-
           <DialogConfirm
             onConfirm={handleStartNewLegacy}
             buttonText="Start new legacy"

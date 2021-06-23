@@ -1,12 +1,7 @@
-// @material-ui/icons
-// import Apps from '@material-ui/icons/Apps';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-// import DateRange from '@material-ui/icons/DateRange';
-// import GridOn from '@material-ui/icons/GridOn';
-// import Image from '@material-ui/icons/Image';
-// import Place from '@material-ui/icons/Place';
-// import Timeline from '@material-ui/icons/Timeline';
+// icons
+import { Bookshelf, Cog, Dna, FoodApple, Gavel, LockOpenVariant, StarShooting, ViewDashboard } from 'mdi-material-ui';
 
+// views
 import Dashboard from 'views/Dashboard';
 import Laws from 'views/Laws';
 import Geneology from 'views/Geneology';
@@ -20,7 +15,7 @@ export default [
   {
     path: '/dashboard',
     name: 'Dashboard',
-    icon: DashboardIcon,
+    icon: ViewDashboard,
     component: Dashboard,
     auth: true,
     section: 'categories',
@@ -29,7 +24,7 @@ export default [
   {
     path: '/laws-rules',
     name: 'Laws and Rules',
-    icon: 'LR',
+    icon: Gavel,
     component: Laws,
     auth: true,
     section: 'categories',
@@ -38,7 +33,7 @@ export default [
   {
     path: '/geneology',
     name: 'Geneology',
-    icon: 'GE',
+    icon: Dna,
     component: Geneology,
     auth: true,
     section: 'categories',
@@ -47,7 +42,7 @@ export default [
   {
     path: '/skills',
     name: 'Skills',
-    icon: 'SK',
+    icon: Bookshelf,
     component: Skills,
     auth: true,
     section: 'categories',
@@ -56,7 +51,7 @@ export default [
   {
     path: '/aspirations',
     name: 'Aspirations',
-    icon: 'GE',
+    icon: StarShooting,
     component: Aspirations,
     auth: true,
     section: 'categories',
@@ -65,7 +60,7 @@ export default [
   {
     path: '/food',
     name: 'Food',
-    icon: 'FO',
+    icon: FoodApple,
     component: Food,
     auth: true,
     section: 'categories',
@@ -74,7 +69,7 @@ export default [
   {
     path: '/settings',
     name: 'Settings',
-    icon: 'SE',
+    icon: Cog,
     component: Settings,
     auth: true,
     section: 'profile',
@@ -83,7 +78,6 @@ export default [
   {
     path: '/onboarding',
     name: 'OnBoarding',
-    // icon: 'SE',
     component: OnBoarding,
     auth: true,
     section: 'none',
@@ -92,8 +86,7 @@ export default [
   {
     path: '/auth/login',
     name: 'Logout',
-    icon: 'LG',
-    // component: Login,
+    icon: LockOpenVariant,
     auth: false,
     section: 'profile',
     noLegacyShow: true,

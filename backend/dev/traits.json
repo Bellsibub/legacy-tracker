@@ -1,44 +1,374 @@
 [
   {
-    "name": "Angelic",
-    "type": "toddler",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Trait1.png",
-    "pack": "base_game"
-  },
-  {
-    "name": "Charmer",
-    "type": "toddler",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Trait1.png",
-    "pack": "base_game"
-  },
-  {
-    "name": "Clingy",
-    "type": "toddler",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Trait1.png",
-    "pack": "base_game"
-  },
-  {
-    "name": "Bro",
+    "name": "Active",
     "type": "adult",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Trait1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Active.png",
     "pack": "base_game"
   },
   {
-    "name": "Insider",
+    "name": "Cheerful",
     "type": "adult",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Trait1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Cheerful.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Creative",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Creative.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Genius",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Genius.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Gloomy",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Gloomy.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Goofball",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Goofball.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Hot-Headed",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Hot-Headed.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Romantic",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Romantic.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Self-Assured",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Self-Assured.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Unflirty",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Unflirty.png",
+    "pack": "city_living"
+  },
+  {
+    "name": "Art_Lover",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Art_Lover.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Bookworm",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Bookworm.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Foodie",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Foodie.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Geek",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Geek.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Music_lover",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Music_lover.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Perfectionist",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Perfectionist.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Maker",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Maker.png",
+    "pack": "eco_lifestyle"
+  },
+  {
+    "name": "Ambitious",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Ambitious.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Childish",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Childish.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Clumsy",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Clumsy.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Erratic",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Erratic.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Glutton",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Glutton.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Kleptomaniac",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Kleptomaniac.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Lazy",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Lazy.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Loves_Outdoors",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Loves_Outdoors.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Materialistic",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Materialistic.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Neat",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Neat.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Slob",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Slob.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Snob",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Snob.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Adventurous",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Adventurous.png",
+    "pack": "snowy_escape"
+  },
+  {
+    "name": "Cat_Lover",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Cat_Lover.png",
+    "pack": "cats_and_dogs"
+  },
+  {
+    "name": "Dog_Lover",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Dog_Lover.png",
+    "pack": "cats_and_dogs"
+  },
+  {
+    "name": "Child_of_the_Islands",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Child_of_the_Islands.png",
+    "pack": "island_living"
+  },
+  {
+    "name": "Child_of_the_Ocean",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Child_of_the_Ocean.png",
+    "pack": "island_living"
+  },
+  {
+    "name": "Dance_Machine",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Dance_Machine.png",
     "pack": "get_together"
   },
   {
     "name": "Freegan",
     "type": "adult",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Trait1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Freegan.png",
     "pack": "eco_lifestyle"
   },
   {
-    "name": "Green Friend",
+    "name": "Green_Friend",
     "type": "adult",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Trait1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Green_Friend.png",
     "pack": "eco_lifestyle"
+  },
+  {
+    "name": "Recycle_Disciple",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Recycle_Disciple.png",
+    "pack": "eco_lifestyle"
+  },
+  {
+    "name": "Squeamish",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Squeamish.png",
+    "pack": "outdoor_retreat"
+  },
+  {
+    "name": "Vegetarian",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Vegetarian.png",
+    "pack": "city_living"
+  },
+  {
+    "name": "Bro",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Bro.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Evil",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Evil.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Family-Oriented",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Family-Oriented.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Good",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Good.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Hates_Children",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Hates_Children.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Jealous",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Jealous.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Loner",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Loner.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Mean",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Mean.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Noncommittal",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Noncommittal.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Outgoing",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Outgoing.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Insider",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Insider.png",
+    "pack": "get_together"
+  },
+  {
+    "name": "Paranoid",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Paranoid.png",
+    "pack": "strangerville"
+  },
+  {
+    "name": "Proper",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Proper.png",
+    "pack": "snowy_escape"
+  },
+  {
+    "name": "Self-Absorbed",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Self-Absorbed.png",
+    "pack": "get_famous"
+  },
+  {
+    "name": "Angelic",
+    "type": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Angelic.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Charmer",
+    "type": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Charmer.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Clingy",
+    "type": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Clingy.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Fussy",
+    "type": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Fussy.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Independent",
+    "type": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Independent.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Inquisitive",
+    "type": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Inquisitive.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Silly",
+    "type": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Silly.png",
+    "pack": "base_game"
+  },
+  {
+    "name": "Wild",
+    "type": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623507752/legacyTracker/traits/Wild.png",
+    "pack": "base_game"
   }
 ]

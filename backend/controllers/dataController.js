@@ -5,18 +5,15 @@ import {
   PacksModel,
   RulesModel
 } from '../models/dataModel';
-// import AppError from '../utils/appError';
 
 export const get = async (req, res, next) => {
   try {
-    // By default this returns the lastest 20 thoughts
     const causeOfDeath = await CodModel.find();
     const species = await SpeciesModel.find();
     const laws = await LawsModel.find();
     const packs = await PacksModel.find();
     const rules = await RulesModel.find();
-    // .sort().limit();
-    // format laws
+    
     const formatLaws = {};
     laws.forEach((key, index) => {
       Object.assign(formatLaws, { [key.type]: laws[index].items });

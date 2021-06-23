@@ -1,8 +1,6 @@
-/* eslint-disable no-underscore-dangle */
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 
-import { API_URL, AUTH_URL } from 'utils/apiConfig';
+import { API_URL } from 'utils/apiConfig';
 
 export const getData = createAsyncThunk(
   'session/getData',
@@ -27,19 +25,18 @@ export const getData = createAsyncThunk(
     }
   }
 );
+
 export const addLegacyToUser = createAsyncThunk(
   'session/addLegacyToUser',
   async ({ token, legacyID }, thunkAPI) => {
     try {
       const userID = thunkAPI.getState().session.user.id;
-      const { legacies } = thunkAPI.getState().session.user;
       const response = await fetch(API_URL(`users/${userID}/legacies`), {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ legacyID })
       });
       const data = await response.json();
-      console.log('updated user: ', data);
       if (response.status === 200) {
         return data;
       } else {
@@ -51,18 +48,17 @@ export const addLegacyToUser = createAsyncThunk(
     }
   }
 );
+
 export const removeLegacyForUser = createAsyncThunk(
   'session/removeLegacyForUser',
-  async ({ token, legacyID }, thunkAPI) => {
+  async ({ token }, thunkAPI) => {
     try {
       const userID = thunkAPI.getState().session.user.id;
-      // const { legacies } = thunkAPI.getState().session.user;
       const response = await fetch(API_URL(`users/${userID}/legacies`), {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
-      console.log('updated user: ', data);
       if (response.status === 200) {
         return data;
       } else {
@@ -74,19 +70,17 @@ export const removeLegacyForUser = createAsyncThunk(
     }
   }
 );
+
 export const getUserMetadata = createAsyncThunk(
   'session/getUserMetadata',
   async ({ token }, thunkAPI) => {
     try {
       const userID = thunkAPI.getState().session.user.id;
-      // const { legacies } = thunkAPI.getState().session.user;
       const response = await fetch(API_URL(`users/${userID}/legacies`), {
         method: 'GET',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
-        // body: JSON.stringify({ legacyID })
       });
       const data = await response.json();
-      console.log('fethed user: ', data);
       if (response.status === 200) {
         return data;
       } else {

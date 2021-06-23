@@ -1,8 +1,8 @@
 [
   {
-    "name": "Friend of the Animals",
+    "name": "Friend_of_the_Animals",
     "type": "adult",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Friend_of_the_Animals.png",
     "pack": "cats_and_dogs",
     "completed": 0,
     "inFocus": false
@@ -10,79 +10,383 @@
   {
     "name": "Bodybuilder",
     "type": "adult",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration2.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Bodybuilder.png",
     "pack": "base_game",
     "completed": 0,
     "inFocus": false
   },
   {
-    "name": "Painter Extraordinaire",
+    "name": "Extreme_Sports_Enthusiast",
     "type": "adult",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Extreme_Sports_Enthusiast.png",
+    "pack": "snowy_escape",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Painter_Extraordinaire",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Painter_Extraordinaire.png",
     "pack": "base_game",
     "completed": 0,
     "inFocus": false
   },
   {
-    "name": "Musical Genius",
+    "name": "Musical_Genius",
     "type": "adult",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Musical_Genius.png",
     "pack": "base_game",
     "completed": 0,
     "inFocus": false
   },
   {
-    "name": "Bestselling Author",
+    "name": "Bestselling_Author",
     "type": "adult",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration2.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Bestselling_Author.png",
     "pack": "base_game",
     "completed": 0,
     "inFocus": false
   },
   {
-    "name": "Jungle Explorer",
+    "name": "Master_Actor_or_Actress",
     "type": "adult",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration2.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Master_Actor_or_Actress.png",
+    "pack": "get_famous",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Master_Maker",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Master_Maker.png",
+    "pack": "eco_lifestyle",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Lord_or_Lady_of_Knits",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Lord_or_Lady_of_Knits.png",
+    "pack": "nifty_knitting",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Public_Enemy",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Public_Enemy.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Chief_of_Mischief",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Chief_of_Mischief.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Successful_Lineage",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Successful_Lineage.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Big_Happy_Family",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Big_Happy_Family.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Vampire_Family",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Vampire_Family.png",
+    "pack": "vampires",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Super_Parent",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Super_Parent.png",
+    "pack": "parenthood",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Master_Chef",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Master_Chef.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Master_Mixologist",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Master_Mixologist.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Fabulously_Wealthy",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Fabulously_Wealthy.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Mansion_Baron",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Mansion_Baron.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Renaissance_Sim",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Renaissance_Sim.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Nerd_Brain",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Nerd_Brain.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Computer_Whiz",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Computer_Whiz.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Master_Vampire",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Master_Vampire.png",
+    "pack": "vampires",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Archaeology_Scholar",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Archaeology_Scholar.png",
     "pack": "jungle_adventure",
     "completed": 0,
     "inFocus": false
   },
   {
-    "name": "Archaeology Scholar",
+    "name": "Spellcraft_and_Sorcery",
     "type": "adult",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration2.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Spellcraft_and_Sorcery.png",
+    "pack": "realm_of_magic",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Academic",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Academic.png",
+    "pack": "discover_university",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Serial_Romantic",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Serial_Romantic.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Soulmate",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Soulmate.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "City_Native",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/City_Native.png",
+    "pack": "city_living",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Strangerville_Mystery",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Strangerville_Mystery.png",
+    "pack": "strangerville",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Beach_Life",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Beach_Life.png",
+    "pack": "island_living",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Mt._Komorebi_Sightseer",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Mt._Komorebi_Sightseer.png",
+    "pack": "snowy_escape",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Freelance_Botanist",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Freelance_Botanist.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "The_Curator",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/The_Curator.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Angling_Ace",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Angling_Ace.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Outdoor_Enthusiast",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Outdoor_Enthusiast.png",
+    "pack": "outdoor_retreat",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Jungle_Explorer",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Jungle_Explorer.png",
     "pack": "jungle_adventure",
     "completed": 0,
     "inFocus": false
   },
   {
-    "name": "Artistic Prodigy",
-    "type": "child",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "name": "Purveyor_of_Potions",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Purveyor_of_Potions.png",
+    "pack": "realm_of_magic",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Eco_Innovator",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Eco_Innovator.png",
+    "pack": "eco_lifestyle",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Joke_Star",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Joke_Star.png",
     "pack": "base_game",
     "completed": 0,
     "inFocus": false
   },
   {
-    "name": "Rambunctious Scamp",
-    "type": "child",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "name": "Party_Animal",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Party_Animal.png",
     "pack": "base_game",
     "completed": 0,
     "inFocus": false
   },
   {
-    "name": "Social Butterfly",
-    "type": "child",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "name": "Friend_of_the_World",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Friend_of_the_World.png",
     "pack": "base_game",
     "completed": 0,
     "inFocus": false
   },
   {
-    "name": "Whiz Kid",
+    "name": "Leader_of_the_Pack",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Leader_of_the_Pack.png",
+    "pack": "get_together",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Good_Vampire",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Good_Vampire.png",
+    "pack": "vampires",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "World_Famous_Celebrity",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/World_Famous_Celebrity.png",
+    "pack": "get_famous",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Artistic_Prodigy",
     "type": "child",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Artistic_Prodigy.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Rambunctious_Scamp",
+    "type": "child",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Rambunctious_Scamp.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Social_Butterfly",
+    "type": "child",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Social_Butterfly.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Whiz_Kid",
+    "type": "child",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Whiz_Kid.png",
     "pack": "base_game",
     "completed": 0,
     "inFocus": false

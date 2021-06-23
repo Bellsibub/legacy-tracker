@@ -41,18 +41,12 @@ export default () => {
       <Grid item xs={12} sm={6} md={6} lg={3}>
         <Stats value={score.skills.percentage || 0} type="percentage" />
       </Grid>
-      {/* Goals */}
       <Grid item lg={6} md={9} sm={9} xs={12}>
         <Goals isDynamic category="skills" data={goals.skills} />
       </Grid>
-      {/* Icon Items list */}
       <Grid item lg={6} md={9} sm={9} xs={12}>
         <IconItemsList title="Skills" items={skills} splitBy="type" type="item" />
       </Grid>
-      {/* Item By Sims List */}
-      {/* <Grid item lg={6} md={9} sm={9} xs={12}>
-        <ItemBySimsList title="Aspirations per Sim" itemsKey="skills" items={sims} />
-      </Grid> */}
     </Grid>
   );
 };

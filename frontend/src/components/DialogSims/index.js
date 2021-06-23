@@ -155,7 +155,7 @@ export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other
               onChange={handleRelationChange}
               generation={simInfo.generation}
               newGen={other.newGen || false}
-              required
+              required={simInfo.role.text !== 'Founder'}
               currentSimID={simInfo._id} />
             <Relations
               value={simInfo.relations.father}

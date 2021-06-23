@@ -2,7 +2,7 @@
   {
     "name": "Charisma",
     "type": "adult",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Charisma.png",
     "pack": "base_game",
     "completed": 0,
     "inFocus": false
@@ -10,31 +10,367 @@
   {
     "name": "Comedy",
     "type": "adult",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Comedy.png",
     "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Cooking",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Cooking.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Fishing",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Fishing.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Fitness",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Fitness.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Gardening",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Gardening.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Gourmet_Cooking",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Gourmet_Cooking.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Guitar",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Guitar.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Handiness",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Handiness.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Logic",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Logic.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Mischief",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Mischief.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Mixology",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Mixology.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Painting",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Painting.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Piano",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Piano.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Photography",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Photography.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Programming",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Programming.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Rocket_Science",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Rocket_Science.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Video_Gaming",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Video_Gaming.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Violin",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Violin.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Writing",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Writing.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Herbalism",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Herbalism.png",
+    "pack": "outdoor_retreat",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Baking",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Baking.png",
+    "pack": "get_to_work",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Wellness",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Wellness.png",
+    "pack": "spa_day",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Dancing",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Dancing.png",
+    "pack": "get_together",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "DJ_Mixing",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/DJ_Mixing.png",
+    "pack": "get_together",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Singing",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Singing.png",
+    "pack": "city_living",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Pipe_Organ",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Pipe_Organ.png",
+    "pack": "vampires",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Vampire_Lore",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Vampire_Lore.png",
+    "pack": "vampires",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Bowling",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Bowling.png",
+    "pack": "bowling_night",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Parenting",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Parenting.png",
+    "pack": "parenthood",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Pet_Training",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Pet_Training.png",
+    "pack": "cats_and_dogs",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Veterinarian",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Veterinarian.png",
+    "pack": "cats_and_dogs",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Archaeology",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Archaeology.png",
+    "pack": "jungle_adventure",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Selvadoradian_Culture",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Selvadoradian_Culture.png",
+    "pack": "jungle_adventure",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Flower_Arranging",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Flower_Arranging.png",
+    "pack": "seasons",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Acting",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Acting.png",
+    "pack": "get_famous",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Media_Production",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Media_Production.png",
+    "pack": "get_famous",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Research_and_Debate",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Research_and_Debate.png",
+    "pack": "discover_university",
     "completed": 0,
     "inFocus": false
   },
   {
     "name": "Robotics",
     "type": "adult",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Robotics.png",
     "pack": "discover_university",
     "completed": 0,
     "inFocus": false
   },
   {
-    "name": "Research & Debate",
+    "name": "Fabrication",
     "type": "adult",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
-    "pack": "discover_university",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Fabrication.png",
+    "pack": "eco_lifestyle",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Juice_Fizzing",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Juice_Fizzing.png",
+    "pack": "eco_lifestyle",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Knitting",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Knitting.png",
+    "pack": "nifty_knitting",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Rock_Climbing",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Rock_Climbing.png",
+    "pack": "snowy_escape",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Skiing",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Skiing.png",
+    "pack": "snowy_escape",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Snowboarding",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Snowboarding.png",
+    "pack": "snowy_escape",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Medium",
+    "type": "adult",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Medium.png",
+    "pack": "paranormal",
     "completed": 0,
     "inFocus": false
   },
   {
     "name": "Communication",
     "type": "toddler",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Communication.png",
     "pack": "base_game",
     "completed": 0,
     "inFocus": false
@@ -42,7 +378,31 @@
   {
     "name": "Imagination",
     "type": "toddler",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Imagination.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Movement",
+    "type": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Movement.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Potty",
+    "type": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Potty.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Thinking",
+    "type": "toddler",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Thinking.png",
     "pack": "base_game",
     "completed": 0,
     "inFocus": false
@@ -50,7 +410,7 @@
   {
     "name": "Creativity",
     "type": "child",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Creativity.png",
     "pack": "base_game",
     "completed": 0,
     "inFocus": false
@@ -58,7 +418,23 @@
   {
     "name": "Mental",
     "type": "child",
-    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/aspirations/Aspiration1.png",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Mental.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Motor",
+    "type": "child",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Motor.png",
+    "pack": "base_game",
+    "completed": 0,
+    "inFocus": false
+  },
+  {
+    "name": "Social",
+    "type": "child",
+    "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1624479741/legacyTracker/skills/Social.png",
     "pack": "base_game",
     "completed": 0,
     "inFocus": false

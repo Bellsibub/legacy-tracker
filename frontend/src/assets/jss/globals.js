@@ -18,43 +18,11 @@ const hexToRgb = (input) => {
   return `${parseInt(first, 16)}, ${parseInt(second, 16)}, ${parseInt(last, 16)}`;
 };
 
-// ##############################
-// // // Variables - Styles that are used on more than one component
-// #############################
-
 const drawerWidth = 260;
 
 const drawerMiniWidth = 80;
 
 export const appBarHeight = 150;
-
-// const containerFluid = {
-
-//   // }
-// };
-
-// const container = {
-//   paddingRight: '15px',
-//   paddingLeft: '15px',
-//   marginRight: 'auto',
-//   marginLeft: 'auto',
-//   '@media (min-width: 768px)': {
-//     width: '750px'
-//   },
-//   '@media (min-width: 992px)': {
-//     width: '970px'
-//   },
-//   '@media (min-width: 1200px)': {
-//     width: '1170px'
-//   },
-//   '&:before,&:after': {
-//     display: 'table',
-//     content: '" "'
-//   },
-//   '&:after': {
-//     clear: 'both'
-//   }
-// };
 
 const defaultFont = {
   fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -77,11 +45,10 @@ const boxShadow = {
 };
 
 export const softBoxShadow = {
-  boxShadow: `0 1px 4px 0 rgba(${hexToRgb('#000')}, 0.14)`
+  boxShadow: `1px 2px 7px 0 rgba(${hexToRgb('#000')}, 0.2)`
 };
 
 export const title = {
-  // color: grayColors[2],
   textDecoration: 'none',
   fontWeight: '300',
   marginTop: '30px',
@@ -89,7 +56,6 @@ export const title = {
   minHeight: '32px',
   fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
   '& small': {
-    // color: grayColors[1],
     fontSize: '65%',
     fontWeight: '400',
     lineHeight: '1'
@@ -100,29 +66,6 @@ export {
   hexToRgb,
   drawerWidth,
   drawerMiniWidth,
-  // transition,
   boxShadow,
-  // card,
   defaultFont
-  // grayColors,
-  // blackColor,
-  // whiteColor,
-  // twitterColor,
-  // facebookColor,
-  // googleColor,
-  // linkedinColor,
-  // pinterestColor,
-  // youtubeColor,
-  // tumblrColor,
-  // behanceColor,
-  // dribbbleColor,
-  // redditColor
-  // cardActions,
-  // cardHeader,
-  // defaultBoxShadow,
-  // tooltip,
-  // title,
-  // cardTitle,
-  // cardSubtitle,
-  // cardLink
 };

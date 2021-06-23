@@ -43,7 +43,7 @@ export default () => {
       return itemTasks;
     });
   });
-  console.log(tasks)
+
   return (
     <Card>
       <CardHeader color="accent" icon={FormatListChecks}>

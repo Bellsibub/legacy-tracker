@@ -84,14 +84,6 @@ export const legacySlice = createSlice({
     [deleteLegacy.fulfilled]: (state, { payload }) => {
       return { ...initState, fetchDone: true, loading: false };
     }
-    // [updateLegacy.fulfilled]: (state, { payload }) => {
-    //   return { ...payload };
-    // }
-    // [updateLegacy.rejected]: (state, { payload }) => {
-    //   state.loading = false;
-    //   state.fetchDone = false;
-    //   state.error = { ...payload }
-    // },
   }
 });
 

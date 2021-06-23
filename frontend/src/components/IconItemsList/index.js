@@ -26,7 +26,7 @@ const useStyles = makeStyles(styling);
 export default ({ title, items, splitBy, ...other }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const smallScreen = useMediaQuery(theme.breakpoints.down('xs'));
+  const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const groups = _.groupBy(items, splitBy);
 
   return (

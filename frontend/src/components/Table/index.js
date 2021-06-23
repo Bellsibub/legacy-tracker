@@ -33,7 +33,6 @@ const header = {
   gender: 'Gender',
   role: 'Role',
   status: 'Status'
-  // traits: 'traits'
 };
 const moreInfo = {
   causeOfDeath: 'Cause Of Death',
@@ -80,13 +79,13 @@ const CollapseRow = ({ ...item }) => {
           );
         })}
         <EditSimCell item={item} />
-        <TableCell className={classes.expandTableCell}>
+        {/* <TableCell className={classes.expandTableCell}>
           <IconButton onClick={handleClick}>
             {open ? <ExpandLess /> : <ExpandMore />}
           </IconButton>
-        </TableCell>
+        </TableCell> */}
       </TableRow>
-      <TableRow>
+      {/* <TableRow>
         <TableCell colSpan={10} className={classes.collapseCell}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
@@ -101,7 +100,7 @@ const CollapseRow = ({ ...item }) => {
             </Box>
           </Collapse>
         </TableCell>
-      </TableRow>
+      </TableRow> */}
     </>
   );
 };

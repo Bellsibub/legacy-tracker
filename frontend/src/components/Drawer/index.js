@@ -16,7 +16,6 @@ import {
 } from '@material-ui/core';
 // custom components
 import Logout from 'components/Logout';
-// import avatar from 'assets/img/default-avatar.png';
 // styles
 import styling from './style';
 
@@ -102,7 +101,6 @@ export default ({ logo, routes, open, handleDrawerToggle }) => {
 
   return (
     <>
-      {/* // Small screens */}
       <Hidden mdUp implementation="css">
         <Drawer
           variant="temporary"
@@ -110,7 +108,7 @@ export default ({ logo, routes, open, handleDrawerToggle }) => {
           open={open}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true // Better open performance on mobile.
+            keepMounted: true
           }}
           classes={{ paper: classes.drawer }}>
           <DrawerWrapper
@@ -120,7 +118,6 @@ export default ({ logo, routes, open, handleDrawerToggle }) => {
             profile={profile} />
         </Drawer>
       </Hidden>
-      {/* // Big screens */}
       <Hidden smDown implementation="css">
         <Drawer
           variant="permanent"

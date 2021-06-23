@@ -1,13 +1,7 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-underscore-dangle */
 import Legacy from '../models/legacyModel';
-import { RulesModel, GoalsModel } from '../models/dataModel';
+import { RulesModel, GoalsModel, PacksModel } from '../models/dataModel';
 import { AspirationModel, TraitsModel, SkillsModel } from '../models/categoriesModel';
 import AppError from '../utils/appError';
-import { UserModel } from '../models/userModel';
-import APIRequest from '../utils/apiRequest';
 
 export const create = async (req, res, next) => {
   try {
@@ -15,6 +9,7 @@ export const create = async (req, res, next) => {
     
     const rules = await RulesModel.find();
     const goals = await GoalsModel.findOne();
+    // const packs = await PacksModel.find();
     const aspirations = await AspirationModel.find();
     const skills = await SkillsModel.find();
     const traits = await TraitsModel.find();
@@ -55,11 +50,7 @@ export const deleteLegacy = async (req, res, next) => {
 
 export const getAll = async (req, res, next) => {
   try {
-    // By default this returns the lastest 20 thoughts
-    const request = new APIRequest(Legacy.find());
-    // .sort().limit();
-
-    const doc = await request.mongoQuery;
+    const doc = await Legacy.find({});
 
     res.status(200).json(doc);
   } catch (error) {
@@ -70,9 +61,7 @@ export const getAll = async (req, res, next) => {
 export const getOne = async (req, res, next) => {
   try {
     const { id } = req.params;
-    // By default this returns the lastest 20 thoughts
     const doc = await Legacy.findById(id)
-    // .sort().limit();
     if (!doc) {
       return next(
         new AppError(
@@ -82,19 +71,6 @@ export const getOne = async (req, res, next) => {
         )
       );
     }
-    res.status(200).json(doc);
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const getUser = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    // By default this returns the lastest 20 thoughts
-    const doc = await UserModel.findOne({ email: id });
-    // .sort().limit();
-
     res.status(200).json(doc);
   } catch (error) {
     next(error);
@@ -219,14 +195,11 @@ export const updateCategoryItem = async (req, res, next) => {
 export const updatePacks = async (req, res, next) => {
   try {
     const { id, itemid } = req.params;
-    // const { remove } = req.body;
     const { bool } = req.body;
     const doc = await Legacy.updateOne(
       { _id: id, 'packs._id': itemid },
-      { $set: { 'packs.$.active': bool } },
-      { new: true }
+      { $set: { 'packs.$.active': bool } }
     );
-    // const doc = await Legacy.findOne({ _id: id });
     if (!doc) {
       return next(
         new AppError(
@@ -236,7 +209,7 @@ export const updatePacks = async (req, res, next) => {
         )
       );
     }
-    res.status(201).json(doc);
+    res.status(200).json(doc);
   } catch (error) {
     next(error);
   }
@@ -246,13 +219,13 @@ export const toggleGoal = async (req, res, next) => {
   try {
     const { id, category, itemid } = req.params;
     const { bool, property } = req.body;
+    // console.log(bool)
     await Legacy.updateOne(
       { _id: id, [`goals.${category}._id`]: itemid },
       { $set: { [`goals.${category}.$.${property}`]: bool } },
       { new: true }
     );
     const doc = await Legacy.findOne({ _id: id });
-    // console.log(doc);
     if (!doc) {
       return next(
         new AppError(

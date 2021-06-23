@@ -20,6 +20,9 @@ import {
   toggleGoal
 } from 'store/legacy/services';
 
+// utils
+import { formatString } from 'utils/helpers'
+
 // styling
 import styles from './style';
 
@@ -36,13 +39,13 @@ export default ({ item, category }) => {
   const getFocusText = () => {
     switch (category) {
       case 'skills':
-        return `Max out the ${item.name} skill`;
+        return `Max out the ${formatString(item.name)} skill`;
       case 'aspirations':
-        return `Complete ${item.name} for ${item.focusTarget.firstName.toUpperCase()}`;
+        return `Complete ${formatString(item.name)} for ${item.focusTarget.firstName.toUpperCase()}`;
       case 'food':
         return item.text;
       default:
-        return item.name;
+        return formatString(item.name);
     }
   };
 

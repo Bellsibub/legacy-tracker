@@ -1,9 +1,7 @@
-/* eslint-disable no-underscore-dangle */
 import _ from 'lodash';
 import Legacy from '../models/legacyModel';
 import Sims from '../models/simsModel';
 import AppError from '../utils/appError';
-import APIRequest from '../utils/apiRequest';
 
 export const create = async (req, res, next) => {
   try {

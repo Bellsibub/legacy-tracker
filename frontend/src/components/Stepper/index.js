@@ -1,9 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 import { useHistory } from 'react-router-dom'
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Stepper, useTheme, useMediaQuery } from '@material-ui/core';
 import Step from '@material-ui/core/Step';
@@ -81,7 +80,6 @@ export default () => {
 
   const handleNext = (event) => {
     if (!myForm.current.checkValidity()) {
-      // return;
       setErrors((prevState) => [...prevState, activeStep]);
     } else {
       setErrors(errors.filter((err, index) => err !== activeStep));
@@ -91,7 +89,6 @@ export default () => {
 
   const handleBack = () => {
     if (!myForm.current.checkValidity()) {
-      // return;
       setErrors((prevState) => [...prevState, activeStep]);
     } else {
       setErrors(errors.filter((err, index) => err !== activeStep));
@@ -100,7 +97,6 @@ export default () => {
   };
 
   const handleFinish = () => {
-    console.log(laws)
     getAccessTokenSilently()
       .then((token) => {
         dispatch(

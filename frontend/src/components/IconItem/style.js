@@ -1,21 +1,34 @@
+import {
+  softBoxShadow
+} from 'assets/jss/globals';
+
 export default (theme) => ({
   root: {
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    margin: theme.spacing(2)
+    alignItems: 'center',
+    margin: theme.spacing(1),
+    '& > p': {
+      textAlign: 'center',
+      marginTop: theme.spacing(1),
+      height: '40px'
+    }
   },
   image: {
-    '& > *': {
-      borderRadius: '5px'
-    },
-
+    width: '70px',
+    borderRadius: '50px',
     '&:hover': {
       zIndex: 1,
       '& $imageBackdrop': {
         opacity: 0.15
       }
+    },
+    '& > img': {
+      width: '70px',
+      borderRadius: '50px',
+      ...softBoxShadow
     }
   },
   imageBackdrop: {
@@ -25,7 +38,6 @@ export default (theme) => ({
     right: 0,
     top: 0,
     bottom: 0,
-    backgroundColor: theme.palette.common.black,
     opacity: 0.1,
     transition: theme.transitions.create('opacity')
   },
@@ -48,7 +60,6 @@ export default (theme) => ({
     top: 0,
     right: 0,
     backgroundColor: 'white',
-    borderRadius: '5px',
     '& svg': {
       color: theme.palette.accent.main
     }

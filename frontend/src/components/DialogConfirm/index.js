@@ -49,7 +49,11 @@ export default ({ title, message, onConfirm, className, children, ...other }) =>
         </Button>
       )}
       {other.buttonBase && (
-        <ButtonBase focusRipple onClick={toggleDialog} className={buttonBaseClasses}>
+        <ButtonBase
+          focusRipple
+          disabled={other.disabled}
+          onClick={toggleDialog}
+          className={buttonBaseClasses}>
           {children}
         </ButtonBase>
       )}

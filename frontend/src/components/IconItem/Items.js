@@ -1,13 +1,13 @@
 import React from 'react';
 import _ from 'lodash';
 import classNames from 'classnames';
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
 // 3rd-party components
-import { ButtonBase, Icon, Menu, MenuItem } from '@material-ui/core';
+import { ButtonBase, Icon, Menu, MenuItem, Typography } from '@material-ui/core';
 import { CheckRounded } from '@material-ui/icons';
 import { AlertBoxOutline } from 'mdi-material-ui';
 
@@ -15,6 +15,8 @@ import { AlertBoxOutline } from 'mdi-material-ui';
 import DialogSelectSim from 'components/DialogSelectSim';
 // services
 import { updateCategoryItem, completeCategoryItem } from 'store/legacy/services';
+// utils
+import { formatString } from 'utils/helpers';
 // styling
 import styling from './style';
 
@@ -23,7 +25,7 @@ const useStyles = makeStyles(styling);
 export default ({ category, item, simRelated }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
   const [action, setAction] = React.useState('');
   const [dialog, setDialog] = React.useState(false);
@@ -107,7 +109,6 @@ export default ({ category, item, simRelated }) => {
       <div className={classes.root}>
         <ButtonBase focusRipple className={imageClasses} onClick={handleClick}>
           <img src={item.image} alt={item.name} />
-          <span className={classes.imageBackdrop} />
           {item.completed >= 1 && (
             <span className={classes.imageMarked}>
               <Icon>
@@ -149,6 +150,7 @@ export default ({ category, item, simRelated }) => {
             category={category}
             categoryItem={item} />
         )}
+        <Typography variant="body2">{formatString(item.name)}</Typography>
       </div>
     </>
   );
