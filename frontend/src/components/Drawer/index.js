@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink, Link, useLocation } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+import { NavLink, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
-// @material-ui/core components
+// 3rd party components
 import {
   Drawer,
   List,
@@ -13,9 +14,10 @@ import {
   Hidden,
   Typography
 } from '@material-ui/core';
-
-import avatar from 'assets/img/default-avatar.png';
+// custom components
 import Logout from 'components/Logout';
+// import avatar from 'assets/img/default-avatar.png';
+// styles
 import styling from './style';
 
 const useStyles = makeStyles(styling);
@@ -64,6 +66,8 @@ const Links = ({ routes, section }) => {
 
 export default ({ logo, routes, open, handleDrawerToggle }) => {
   const classes = useStyles();
+  const { userName } = useSelector((store) => store.session.user)
+  const { user } = useAuth0();
 
   const drawerHeader = (
     <div className={classes.logo}>
@@ -83,10 +87,10 @@ export default ({ logo, routes, open, handleDrawerToggle }) => {
     <div className={classes.profile}>
       <div className={classes.profileHeader}>
         <div className={classes.photo}>
-          <img src={avatar} className={classes.avatarImg} alt="..." />
+          <img src={user.picture} className={classes.avatarImg} alt={user.nickname} />
         </div>
         <Typography variant="body1" noWrap className={classes.profileName}>
-          Bella
+          {userName}
         </Typography>
       </div>
       <List className={classes.list}>

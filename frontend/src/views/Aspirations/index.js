@@ -7,7 +7,6 @@ import { Grid, Typography } from '@material-ui/core';
 import Goals from 'components/Goals'
 import Stats from 'components/Stats'
 import IconItemsList from 'components/IconItemsList';
-// import { aspirations, sims } from 'utils/data'
 import ItemBySimsList from 'components/ItemBySimsList';
 
 export default () => {

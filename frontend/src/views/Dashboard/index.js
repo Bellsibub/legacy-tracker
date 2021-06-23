@@ -14,7 +14,6 @@ import Stats from 'components/Stats';
 import DialogConfirm from 'components/DialogConfirm';
 import { initLegacy, deleteLegacy } from 'store/legacy/services';
 
-import { startingSim, startingLegacySettings } from 'utils/defaultData';
 import FocusTaskList from 'components/FocusTaskList';
 import BigImage from 'components/BigImage';
 
@@ -47,11 +46,11 @@ export default () => {
           <Grid item lg={6} md={9} sm={9} xs={12}>
             <Heir />
           </Grid>
-          {/* {_.map(score, (scoreValues, key) => (
+          {_.map(score, (scoreValues, key) => (
             <Grid item xs={12} sm={6} md={6} lg={3} key={key}>
-              <Stats value={scoreValues.total} type="score" title={key} />
+              <Stats value={scoreValues.score || 0} type="score" title={key} />
             </Grid>
-          ))} */}
+          ))}
           <Grid item lg={6} md={9} sm={9} xs={12}>
             <FocusTaskList />
           </Grid>

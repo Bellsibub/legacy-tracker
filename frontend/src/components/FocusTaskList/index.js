@@ -23,17 +23,27 @@ export default () => {
   const classes = useStyles();
   const tasks = useSelector((store) => {
     return _.flatMap(store.legacy.goals, (goals, key) => {
-      const categoryTasks = _.filter(store.legacy[key], ['inFocus', true]);
-      return _.map(categoryTasks, (task) => {
+      let itemTasks = _.filter(store.legacy[key], ['inFocus', true]);
+      itemTasks = _.map(itemTasks, (task) => {
         // IF the category is simRelated we need to return that.
         if (key === 'aspirations') {
-          return { ...task, category: key, simRelated: true };
+          return { ...task, hasItems: true, category: key, simRelated: true };
         } else {
-          return { ...task, category: key };
+          return { ...task, hasItems: true, category: key };
         }
       });
+      // IF the goals does not have items
+      if (key === 'food') {
+        let nonItemTasks = _.filter(store.legacy.goals[key], ['focused', true]);
+        nonItemTasks = _.map(nonItemTasks, (_task) => {
+          return { ..._task, category: key, hasItems: false }
+        });
+        return _.concat(itemTasks, nonItemTasks)
+      }
+      return itemTasks;
     });
   });
+  console.log(tasks)
   return (
     <Card>
       <CardHeader color="accent" icon={FormatListChecks}>

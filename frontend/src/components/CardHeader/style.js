@@ -27,6 +27,21 @@ export default (theme) => ({
       margin: '10px 10px 4px'
     }
   },
+  cardHeaderAvatar: {
+    borderRadius: '3px',
+    padding: '5px',
+    marginTop: '-40px',
+    float: 'left',
+    left: 'calc(50% - 100px)',
+    position: 'relative',
+    color: 'white',
+    width: '200px',
+    height: '200px',
+    '& > *': {
+      width: 'auto',
+      height: 'auto'
+    }
+  },
   cardHeaderText: {
     display: 'inline-block',
     borderRadius: '3px',

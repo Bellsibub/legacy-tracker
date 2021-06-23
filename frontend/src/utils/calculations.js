@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-plusplus */
 import _ from 'lodash';
 
 export const verifyGoalCompletion = ({ state, category }) => {
@@ -28,12 +26,9 @@ export const filterRunningSims = (updatedLegacy, generation) => {
   return simsRunning;
 };
 
-const lawsTest = {
+const lawsCalculations = {
   gender: (laws, sim, simsRunning, ruler) => {
-    // console.log(`Ruler${ruler.gender}`);
-    // console.log(gender);
     const simsByGender = _.groupBy(simsRunning, 'gender');
-    // const simsBySpecies = _.groupBy(simsRunning, 'species');
     switch (laws) {
       case 'Matriarchy':
         if (sim.gender === 'Female') {
@@ -102,44 +97,21 @@ const lawsTest = {
             return false;
           }
         }
-        // case 'Strict Matriarchy':
-        //   if (simData.gender === 'Female') {
-        //     return true;
-        //   } else {
-        //     return false;
-        //   }
-        // case 'Patriarchy':
-        //   if (simData.gender === 'Male') {
-        //     return true;
-        //   } else if (_.includes(_.keys(simsByGender), 'Male')) {
-        //     return false;
-        //   } else {
-        //     return true;
-        //   }
-        // case 'Strict Patriarchy':
-        //   if (simData.gender === 'Male') {
-        //     return true;
-        //   } else {
-        //     return false;
-        //   }
-        // case 'Equality':
-        //   return true;
-        // case 'Strict Equality':
-        //   if (rulerGender === 'Female') {
-        //     if (simData.gender === 'Male') {
-        //       return true;
-        //     } else {
-        //       return false;
-        //     }
-        //   }
-        //   if (rulerGender === 'Male') {
-        //     if (simData.gender === 'Female') {
-        //       return true;
-        //     } else {
-        //       return false;
-        //     }
-        //   }
         break;
+      case 'Xenophobic':
+        if (sim.species.value === ruler.species.value) {
+          return true;
+        } else {
+          return false;
+        }
+      case 'Brood':
+        if (sim.relations.mother._id === ruler._id) {
+          return true;
+        } else {
+          return false;
+        }
+      case 'Tolerant':
+        return true;
       default:
         break;
     }
@@ -151,35 +123,24 @@ const lawsTest = {
 export const calculateHeir = ({ laws, simsRunning, ruler }) => {
   const eligibleSims = [];
   const nonEligible = [];
-  const simsByGender = _.groupBy(simsRunning, 'gender');
-  const simsBySpecies = _.groupBy(simsRunning, 'species');
-  // GENDER law
+
   _.forEach(simsRunning, (sim) => {
-    let eligible = _.size(lawsTest);
-    // console.log(eligible);
+    let eligible = _.size(lawsCalculations);
     _.forEach(laws, (law, key) => {
-      if (lawsTest[key]) {
-        if (!lawsTest[key](law.title, sim, simsRunning, ruler)) {
+      if (lawsCalculations[key]) {
+        if (!lawsCalculations[key](law.title, sim, simsRunning, ruler)) {
           --eligible;
         }
       }
     });
-    // console.log(eligible);
-    if (eligible === _.size(lawsTest)) {
+    if (eligible === _.size(lawsCalculations)) {
       eligibleSims.push(sim._id);
     } else {
       nonEligible.push(sim._id);
     }
   });
-  console.log('-------------');
-  console.log('calculation of heir');
-  console.log('eligible', eligibleSims);
-  console.log('non', nonEligible);
-  console.log('-------------');
   return {
     eligibleSims,
     nonEligible
-    // simData: { ...simData, role: { ...simData.role, eligible: isEligible } }
-    // updateHeirs
   };
 };

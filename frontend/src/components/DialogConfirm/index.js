@@ -13,8 +13,7 @@ import {
   Icon,
   ButtonBase
 } from '@material-ui/core';
-// import { addList } from 'store/tasks';
-// import { useStyles } from './style';
+
 import { makeStyles } from '@material-ui/core/styles';
 import dialog from 'assets/jss/dialog';
 import { AlertOutline } from 'mdi-material-ui';
@@ -29,8 +28,6 @@ export default ({ title, message, onConfirm, className, children, ...other }) =>
   });
 
   const [open, setOpen] = React.useState(false);
-  // const [value, setValue] = React.useState('');
-  // const dispatch = useDispatch();
   const toggleDialog = () => {
     setOpen(!open);
   };

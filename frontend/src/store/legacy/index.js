@@ -21,7 +21,9 @@ const initState = {
       percentage: 0
     },
     food: {
-      score: 0
+      score: 0,
+      count: 0,
+      percentage: 0
     }
   }
 }

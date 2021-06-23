@@ -93,17 +93,17 @@ export const Home = () => {
         logo={logo} />
       <div className={classes.mainPanel}>
         <Appbar handleDrawerToggle={handleDrawerToggle} />
-        {!fetchDone ? (
+        {/* {!fetchDone ? (
           <div className={classes.content}>
             <Loading />
           </div>
-        ) : (
-          <>
-            <div className={classes.content}>
-              <Switch>{getRoutes(routes)}</Switch>
-            </div>
-          </>
-        )}
+        ) : ( */}
+        <>
+          <div className={classes.content}>
+            <Switch>{getRoutes(routes)}</Switch>
+          </div>
+        </>
+        {/* )} */}
       </div>
     </>
   );

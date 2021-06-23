@@ -1,7 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-
+import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -11,13 +9,17 @@ import {
   IconButton,
   ListItem,
   ListItemText,
-  ListItemIcon,
-  ListItemSecondaryAction
+  ListItemIcon
 } from '@material-ui/core';
-import { Delete, PriorityHigh, PriorityHighOutlined } from '@material-ui/icons';
+import { Delete } from '@material-ui/icons';
 
 // services
-import { updateCategoryItem, completeCategoryItemTask } from 'store/legacy/services';
+import {
+  updateCategoryItem,
+  completeCategoryItemTask,
+  toggleGoal
+} from 'store/legacy/services';
+
 // styling
 import styles from './style';
 
@@ -26,10 +28,10 @@ const useStyles = makeStyles(styles);
 export default ({ item, category }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
   const { _id } = useSelector((store) => store.legacy);
-  const checkedFocus = item.inFocus;
+  const checkedFocus = item.inFocus || !item.completed;
 
   const getFocusText = () => {
     switch (category) {
@@ -37,6 +39,8 @@ export default ({ item, category }) => {
         return `Max out the ${item.name} skill`;
       case 'aspirations':
         return `Complete ${item.name} for ${item.focusTarget.firstName.toUpperCase()}`;
+      case 'food':
+        return item.text;
       default:
         return item.name;
     }
@@ -61,7 +65,7 @@ export default ({ item, category }) => {
             })
           );
         })
-        .catch((err) => console.log(err))
+        .catch((err) => console.log(err));
     } else {
       getAccessTokenSilently()
         .then((token) => {
@@ -75,41 +79,68 @@ export default ({ item, category }) => {
             })
           );
         })
-        .catch((err) => console.log(err))
+        .catch((err) => console.log(err));
     }
   };
+
   const handleNonRelationChange = (complete) => {
     if (complete) {
       getAccessTokenSilently()
         .then((token) => {
-          dispatch(
-            completeCategoryItemTask({
-              category,
-              itemID: item._id,
-              legacyID: _id,
-              newData: {
-                inFocus: false,
-                completed: item.completed + 1
-              },
-              token
-            })
-          );
+          if (item.hasItems) {
+            dispatch(
+              completeCategoryItemTask({
+                category,
+                itemID: item._id,
+                legacyID: _id,
+                newData: {
+                  inFocus: false,
+                  completed: item.completed + 1
+                },
+                token
+              })
+            );
+          } else {
+            dispatch(
+              toggleGoal({
+                category,
+                goalID: item._id,
+                legacyID: _id,
+                value: !item.completed,
+                property: 'completed',
+                token
+              })
+            );
+          }
         })
-        .catch((err) => console.log(err))
+        .catch((err) => console.log(err));
     } else {
       getAccessTokenSilently()
         .then((token) => {
-          dispatch(
-            updateCategoryItem({
-              category,
-              itemID: item._id,
-              legacyID: _id,
-              newData: { inFocus: false },
-              token
-            })
-          );
+          if (item.hasItems) {
+            dispatch(
+              updateCategoryItem({
+                category,
+                itemID: item._id,
+                legacyID: _id,
+                newData: { inFocus: false },
+                token
+              })
+            );
+          } else {
+            dispatch(
+              toggleGoal({
+                category,
+                goalID: item._id,
+                legacyID: _id,
+                value: false,
+                property: 'focused',
+                token
+              })
+            );
+          }
         })
-        .catch((err) => console.log(err))
+        .catch((err) => console.log(err));
     }
   };
 

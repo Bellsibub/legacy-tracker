@@ -1,7 +1,7 @@
 import React from 'react';
-// import _ from 'lodash'
 import { makeStyles } from '@material-ui/core/styles';
 
+// 3rd party components
 import {
   Dialog,
   DialogActions,
@@ -12,9 +12,9 @@ import {
   IconButton
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-
 import { Edit } from '@material-ui/icons';
 
+// styles
 import dialog from 'assets/jss/dialog';
 
 const useStyles = makeStyles(dialog);
@@ -74,6 +74,7 @@ export default ({
           )}
           {text && (
             <TextField
+              multiline
               autoFocus
               value={value}
               onChange={(e) => setValue(e.target.value)}

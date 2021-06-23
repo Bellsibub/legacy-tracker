@@ -7,7 +7,6 @@ import { useAuth0 } from '@auth0/auth0-react';
 import Loading from 'components/Loading';
 import { getUserLegacies } from 'store/session/services';
 import { initLegacy } from 'store/legacy/services';
-import { startingSim, startingLegacySettings } from 'utils/defaultData';
 import IconItemsList from 'components/IconItemsList';
 import Stepper from 'components/Stepper';
 import CreateNewLegacy from 'components/CreateNewLegacy';
@@ -24,7 +23,6 @@ export default () => {
         <Grid container justify="center" spacing={3}>
           <Grid item lg={7} xs={12}>
             <CreateNewLegacy />
-
           </Grid>
         </Grid>
       </>

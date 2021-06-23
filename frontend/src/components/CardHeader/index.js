@@ -1,10 +1,8 @@
 import React from 'react';
-// nodejs library that concatenates classes
 import classNames from 'classnames';
-// @material-ui/core components
-
-// @material-ui/icons
 import { makeStyles } from '@material-ui/core/styles';
+
+import { Avatar } from '@material-ui/core'
 
 import styling from './style';
 
@@ -23,6 +21,14 @@ export default function CardHeader({ className, children, color, text, ...other 
         <>
           <div className={classes.cardHeaderIcon}>
             <other.icon />
+          </div>
+          {children}
+        </>
+      )}
+      {other.avatar && (
+        <>
+          <div className={classes.cardHeaderAvatar}>
+            <Avatar src={other.avatar} alt={other.avataralt} />
           </div>
           {children}
         </>

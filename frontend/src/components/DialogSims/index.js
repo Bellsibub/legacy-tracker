@@ -15,19 +15,19 @@ import {
   DialogContentText
 } from '@material-ui/core';
 import { Edit } from '@material-ui/icons';
-// styling
-import dialog from 'assets/jss/dialog';
+
 // custom components
-// import Aspirations from 'components/Inputs/SelectAspirations';
 import Species from 'components/Inputs/SelectSpecies';
 import Traits from 'components/Inputs/SelectTraits';
 import CauseOfDeath from 'components/Inputs/SelectCod';
 import Status from 'components/Inputs/SelectStatus';
-import Roles from 'components/Inputs/SelectRole';
 import Relations from 'components/Inputs/SelectRelations';
 import TextInput from 'components/Inputs/TextInput';
 import SimpleSelect from 'components/Inputs/SimpleSelect';
 import SwitchToggle from 'components/Inputs/SwitchToggle';
+
+// styling
+import dialog from 'assets/jss/dialog';
 
 const useStyles = makeStyles(dialog);
 
@@ -47,9 +47,7 @@ export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other
 
   React.useEffect(() => {
     setSimInfo(other.currentItem || { ...defaultValues });
-    // console.log(simInfo);
   }, [open]);
-  // console.log(other.roletype)
 
   const toggleDialog = () => {
     setOpen(!open);
@@ -78,12 +76,6 @@ export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other
     setSimInfo((prevState) => ({
       ...prevState,
       traits: [...newValue]
-    }));
-  };
-  const handleAspirationChange = (event, newValue) => {
-    setSimInfo((prevState) => ({
-      ...prevState,
-      aspirations: [...newValue]
     }));
   };
   const handleRelationChange = (event, newValue) => {
@@ -148,13 +140,12 @@ export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other
               label="Adopted" />
             {/* species */}
             <Species value={simInfo.species} onChange={handleSingleSelectChange} />
-            {/* TRAITS and ASPIRATIONS */}
+            {/* TRAITS */}
             <DialogTitle className={classes.dialogSectionTitle}>
               Traits and Aspirations
             </DialogTitle>
             <Divider className={classes.dialogDivider} />
             <Traits value={simInfo.traits} onChange={handleTraitChange} />
-            {/* <Aspirations value={simInfo.aspirations} onChange={handleAspirationChange} /> */}
             {/* RELATIONS */}
             <DialogTitle className={classes.dialogSectionTitle}>Relations</DialogTitle>
             <Divider className={classes.dialogDivider} />
@@ -164,6 +155,7 @@ export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other
               onChange={handleRelationChange}
               generation={simInfo.generation}
               newGen={other.newGen || false}
+              required
               currentSimID={simInfo._id} />
             <Relations
               value={simInfo.relations.father}

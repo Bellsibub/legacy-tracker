@@ -27,7 +27,6 @@ export default ({ category, item, ...other }) => {
   const dispatch = useDispatch();
   const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
 
-  // const [action, setAction] = React.useState('');
   const [itemActive, setItemActive] = React.useState(item.active);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { _id } = useSelector((store) => store.legacy);
@@ -50,7 +49,6 @@ export default ({ category, item, ...other }) => {
   };
 
   const handleConfirm = () => {
-    // handleClose();
     setItemActive(!itemActive);
     switch (item.active) {
       case true:
@@ -120,21 +118,6 @@ export default ({ category, item, ...other }) => {
                 </span>
               )}
             </DialogConfirm>
-            {/* <Menu
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}>
-              {item.active ? (
-                <MenuItem onClick={() => handleSelect('removeactive', false)}>
-                  Remove as Active
-                </MenuItem>
-              ) : (
-                <MenuItem onClick={() => handleSelect('setactive', true)}>
-                  Set as Active
-                </MenuItem>
-              )}
-            </Menu> */}
           </>
         )}
       </div>

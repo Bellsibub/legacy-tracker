@@ -12,6 +12,7 @@ import Laws from 'views/Laws';
 import Geneology from 'views/Geneology';
 import Skills from 'views/Skills';
 import Aspirations from 'views/Aspirations';
+import Food from 'views/Food';
 import Settings from 'views/Settings';
 import OnBoarding from 'views/OnBoarding';
 
@@ -57,6 +58,15 @@ export default [
     name: 'Aspirations',
     icon: 'GE',
     component: Aspirations,
+    auth: true,
+    section: 'categories',
+    noLegacyShow: false
+  },
+  {
+    path: '/food',
+    name: 'Food',
+    icon: 'FO',
+    component: Food,
     auth: true,
     section: 'categories',
     noLegacyShow: false

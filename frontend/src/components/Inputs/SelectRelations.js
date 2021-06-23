@@ -1,8 +1,8 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-// material ui components
+
+// 3rd-party components
 import { TextField } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
@@ -11,22 +11,20 @@ import dialog from 'assets/jss/dialog';
 
 const useStyles = makeStyles(dialog);
 
-export default ({ value, onChange, currentSimID, label, generation, newGen }) => {
+export default ({ value, onChange, currentSimID, label, generation, newGen, required }) => {
   const classes = useStyles();
   const sims = useSelector((store) => store.legacy.sims.filter((sim) => sim._id !== currentSimID));
   const [simsOpts, setSims] = React.useState(sims);
 
   React.useEffect(() => {
     let _sims = [];
-    // if (newGen) {
     _sims = sims.filter(
       (sim) => sim.generation <= generation
     );
+    if (required) {
+      _sims.push({ firstName: 'Unknown', lastName: '', _id: '0' })
+    }
     setSims(_sims);
-    // } else {
-    //   _sims = sims.filter((sim) => sim.generation === generation);
-    //   setSims(_sims);
-    // }
   }, [generation, newGen]);
 
   return (
@@ -39,6 +37,6 @@ export default ({ value, onChange, currentSimID, label, generation, newGen }) =>
       options={simsOpts}
       getOptionSelected={(option, val) => option._id === val._id}
       getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
-      renderInput={(params) => <TextField {...params} label={label} />} />
+      renderInput={(params) => <TextField {...params} label={label} required={required} />} />
   );
 };

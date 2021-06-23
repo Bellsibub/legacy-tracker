@@ -1,18 +1,12 @@
 import React from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
 
-// material ui
+// 3rd party components
 import { Typography } from '@material-ui/core';
 import { StackOverflow, Medal, Percent } from 'mdi-material-ui';
 
 // core components
 import Card from 'components/Card';
 import CardHeader from 'components/CardHeader';
-
-// Styles
-// import styling from './style';
-
-// const useStyles = makeStyles(styling);
 
 const statsInfo = {
   score: {
@@ -25,7 +19,6 @@ const statsInfo = {
 };
 
 export default ({ value, type, title }) => {
-  // const classes = useStyles();
   const data = statsInfo[type];
 
   return (

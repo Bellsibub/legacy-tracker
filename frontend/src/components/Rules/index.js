@@ -1,8 +1,8 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import _ from 'lodash';
 import { useSelector } from 'react-redux';
-// material ui
+
+// 3rd-party components
 import {
   Typography,
   List,
@@ -10,11 +10,8 @@ import {
   Divider,
   ListItemSecondaryAction,
   ListItemText
-  // ListSubheader
 } from '@material-ui/core';
-// import { makeStyles } from '@material-ui/core/styles';
 import { AlertOutline, Delete } from 'mdi-material-ui';
-// import { ExpandLess, ExpandMore } from '@material-ui/icons';
 
 // custom components
 import Card from 'components/Card';
@@ -23,32 +20,24 @@ import CardBody from 'components/CardBody';
 import DialogEdit from 'components/DialogEdit';
 import DialogConfirm from 'components/DialogConfirm';
 
-// import { rules as rulesData } from 'utils/data'
-
-// import styling from './style';
-
-// const useStyles = makeStyles(styling);
-
 const RuleItem = ({ rule }) => {
   return (
     <>
       <ListItem>
         <ListItemText primary={rule.value} />
-        <ListItemSecondaryAction>
-          <DialogEdit
-            text
-            title="Edit the rule"
-            label="Rule Text"
-            currentItem={rule}
-            onConfirm={(value) => console.log(value)}
-            edge="end" />
-          <DialogConfirm
-            icon={Delete}
-            color="error"
-            title=""
-            message="Are you sure you want to do delete this rule?"
-            onConfirm={() => console.log('hello')} />
-        </ListItemSecondaryAction>
+        <DialogEdit
+          text
+          title="Edit the rule"
+          label="Rule Text"
+          currentItem={rule.value}
+          onConfirm={(value) => console.log(value)}
+          edge="end" />
+        <DialogConfirm
+          icon={Delete}
+          color="error"
+          title=""
+          message="Are you sure you want to do delete this rule?"
+          onConfirm={() => console.log('hello')} />
       </ListItem>
       <Divider />
     </>

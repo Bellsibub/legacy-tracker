@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
-
+import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -14,10 +13,10 @@ import {
   ListItemIcon
 } from '@material-ui/core';
 import { AlertCircle, AlertCircleOutline } from 'mdi-material-ui';
-import { PriorityHigh, PriorityHighOutlined } from '@material-ui/icons';
 
 // services
 import { toggleGoal } from 'store/legacy/services';
+
 // styling
 import styles from './style';
 
@@ -26,7 +25,7 @@ const useStyles = makeStyles(styles);
 export default ({ item, category, isDynamic }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
   const { _id } = useSelector((store) => store.legacy);
   const checkedComp = item.completed;
@@ -59,24 +58,8 @@ export default ({ item, category, isDynamic }) => {
         <>
           <ListItem
             className={listItemClasses}
-            // button
-            disabled={checkedComp}
-            onClick={() => {
-              // handleChange('focused');
-            }}>
+            disabled={checkedComp}>
             <ListItemText primary={item.text} className={classes.listText} />
-            {/* <FormControlLabel
-              label="Set as focus"
-              labelPlacement="end"
-              control={
-                <Checkbox
-                  checked={checkedFocus}
-                  onChange={() => {
-                    handleChange('focused');
-                  }}
-                  icon={<AlertCircleOutline className={classes.unCheckedColor} />}
-                  checkedIcon={<AlertCircle className={classes.checkedColor} />} />
-              } /> */}
           </ListItem>
         </>
       ) : (

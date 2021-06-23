@@ -21,6 +21,7 @@
   },
   "plugins": ["react-hooks"],
   "rules": {
+    "no-plusplus": "off",
     "no-unused-vars":"off",
     "no-underscore-dangle":"off",
     "quotes": "off",
