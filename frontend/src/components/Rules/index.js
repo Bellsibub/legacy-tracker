@@ -3,14 +3,7 @@ import _ from 'lodash';
 import { useSelector } from 'react-redux';
 
 // 3rd-party components
-import {
-  Typography,
-  List,
-  ListItem,
-  Divider,
-  ListItemSecondaryAction,
-  ListItemText
-} from '@material-ui/core';
+import { Typography, List, ListItem, Divider, ListItemText } from '@material-ui/core';
 import { AlertOutline, Delete } from 'mdi-material-ui';
 
 // custom components

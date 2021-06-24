@@ -1,18 +1,26 @@
 import React from 'react';
 import _ from 'lodash';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { Stepper, useTheme, useMediaQuery } from '@material-ui/core';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+
+// 3rd party components
+import {
+  Stepper,
+  useTheme,
+  useMediaQuery,
+  Step,
+  StepLabel,
+  Button,
+  Typography
+} from '@material-ui/core';
+
+// custom components
 import DialogConfirm from 'components/DialogConfirm';
-
+// services
 import { initLegacy } from 'store/legacy/services';
-
+// local components
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
@@ -64,7 +72,7 @@ export default () => {
   const theme = useTheme();
   const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
   const availablePacks = useSelector((store) => store.session.data.packs);
-  const smallScreen = useMediaQuery(theme.breakpoints.down('xs'))
+  const smallScreen = useMediaQuery(theme.breakpoints.down('xs'));
   const [simInfo, setSimInfo] = React.useState({ ...defaultValues });
   const [legacyName, setLegacyName] = React.useState('');
   const [packs, setPacks] = React.useState(availablePacks);
@@ -100,9 +108,13 @@ export default () => {
     getAccessTokenSilently()
       .then((token) => {
         dispatch(
-          initLegacy({ founder: simInfo, legacy: { laws, packs, name: legacyName }, token })
+          initLegacy({
+            founder: simInfo,
+            legacy: { laws, packs, name: legacyName },
+            token
+          })
         );
-        history.push('/dashboard')
+        history.push('/dashboard');
       })
       .catch((err) => console.log(err));
   };

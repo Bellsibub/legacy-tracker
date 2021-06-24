@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 // 3rd party components
 import {
@@ -27,7 +27,7 @@ const useStyles = makeStyles(dialog);
 export default ({ open, setOpen, categoryItem, category, actionType }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
   const { _id, generation } = useSelector((store) => store.legacy);
   const sims = useSelector((store) => {
@@ -36,11 +36,13 @@ export default ({ open, setOpen, categoryItem, category, actionType }) => {
       const inGeneration = sim.generation >= generation;
       if (hasItem.length === 0) {
         if (!inGeneration) {
-          return false
+          return false;
         }
-        return true
-      } else { return false; }
-    })
+        return true;
+      } else {
+        return false;
+      }
+    });
   });
 
   const toggleDialog = () => {

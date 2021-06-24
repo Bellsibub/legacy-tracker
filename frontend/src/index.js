@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
@@ -10,7 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import store from 'store';
 import HomeLayout from 'pages/Home';
 import NoMatch from 'pages/nomatch';
-import { BASE_URL, BASE_AUTH_URL } from 'utils/apiConfig'
+import { BASE_URL } from 'utils/apiConfig';
 
 import { muitheme } from 'assets/jss/theme';
 

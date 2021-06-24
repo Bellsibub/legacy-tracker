@@ -35,7 +35,7 @@ export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const { name } = useSelector((store) => store.legacy);
-  const role = { ...other.roleType }
+  const role = { ...other.roleType };
   const defaultValues = {
     role,
     relations: {},
@@ -70,8 +70,8 @@ export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other
     setSimInfo((prevState) => ({
       ...prevState,
       adopted: target.checked
-    }))
-  }
+    }));
+  };
   const handleTraitChange = (event, newValue) => {
     setSimInfo((prevState) => ({
       ...prevState,
@@ -104,7 +104,11 @@ export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other
         </IconButton>
       )}
       {buttonText && (
-        <Button disabled={other.disabled} variant="contained" color="primary" onClick={toggleDialog}>
+        <Button
+          disabled={other.disabled}
+          variant="contained"
+          color="primary"
+          onClick={toggleDialog}>
           {typeof buttonText === 'string' ? buttonText : 'edit'}
         </Button>
       )}
@@ -176,8 +180,6 @@ export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other
               Legacy status
             </DialogTitle>
             <Divider className={classes.dialogDivider} />
-            {/* Role */}
-            {/* <Roles value={simInfo.role} onChange={handleSingleSelectChange} /> */}
             {/* Status */}
             <Status value={simInfo.status} onChange={handleSingleSelectChange} />
             {/* Cause of Death */}

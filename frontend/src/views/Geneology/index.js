@@ -1,19 +1,18 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import _ from 'lodash';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { useSelector, useDispatch, batch } from 'react-redux';
-import { Fab, Grid, Typography, Box } from '@material-ui/core';
-import { Plus } from 'mdi-material-ui';
+// 3rd party components
+import { Grid } from '@material-ui/core';
 
 // custom components
 import Ruler from 'components/Ruler';
 import Heir from 'components/Heir';
-import Table from 'components/Table';
 import GenerationList from 'components/GenerationList';
 import DialogSims from 'components/DialogSims';
 import DialogConfirm from 'components/DialogConfirm';
+
 // services
 import {
   createSim,
@@ -54,7 +53,7 @@ const roles = {
 
 export default () => {
   const dispatch = useDispatch();
-  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
   const [disabled, setDisabled] = React.useState(false);
   const { _id, generation, heir, fetchDone } = useSelector((store) => store.legacy);
   const generations = useSelector((store) => {
@@ -75,7 +74,6 @@ export default () => {
   }, [fetchDone]);
 
   const handleNewSimConfirm = (newSim) => {
-    // console.log(newSim);
     getAccessTokenSilently()
       .then((token) => {
         dispatch(createSim({ simData: newSim, legacyID: _id, token })).then(() => {
@@ -88,7 +86,6 @@ export default () => {
       .catch((err) => console.log(err));
   };
   const handleInitNewGen = () => {
-    // console.log(newSim);
     getAccessTokenSilently()
       .then((token) => {
         dispatch(
@@ -119,7 +116,6 @@ export default () => {
 
   return (
     <>
-      {/* Add new gen button */}
       <Grid container justify="flex-end">
         <DialogSims
           disabled={disabled}
@@ -137,17 +133,14 @@ export default () => {
           onConfirm={handleInitNewGen} />
       </Grid>
       <Grid container spacing={3}>
-        {/* Ruler */}
         <Grid item lg={6} md={9} sm={9} xs={12}>
           <Ruler />
         </Grid>
-        {/* Heir */}
         <Grid item lg={6} md={9} sm={9} xs={12}>
           <Heir />
         </Grid>
       </Grid>
       <Grid container spacing={3}>
-        {/* Generations */}
         <Grid item lg={8} xs={12}>
           {_.map(generations, (gen, key) => (
             <GenerationList
@@ -156,7 +149,6 @@ export default () => {
               gen={parseInt(gen.gen, 10)}
               roles={roles} />
           ))}
-          {/* <Generations /> */}
         </Grid>
       </Grid>
     </>

@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import { makeStyles } from '@material-ui/core/styles';
 
 // 3rd party components
 import {
@@ -10,11 +11,10 @@ import {
   useTheme,
   useMediaQuery
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 
 // custom components
 import IconItem from 'components/IconItem';
-
+// styles
 const useStyles = makeStyles((theme) => ({
   gridList: {
     alignItems: 'center',
@@ -38,9 +38,7 @@ export default ({ items, ...props }) => {
             {key.toUpperCase()}
           </Typography>
           <Divider />
-          <GridList
-            className={classes.gridList}
-            cols={smallScreen ? 3 : 5}>
+          <GridList className={classes.gridList} cols={smallScreen ? 3 : 5}>
             {group.map((item) => (
               <GridListTile key={item.name} className={classes.gridTile}>
                 <IconItem

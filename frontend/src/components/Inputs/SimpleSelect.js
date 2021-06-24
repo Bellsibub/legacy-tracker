@@ -1,20 +1,24 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-// material ui components
-import { FormControl, InputLabel, Select, MenuItem, Typography, Input } from '@material-ui/core';
-// import Autocomplete from '@material-ui/lab/Autocomplete';
+
+// 3rd party components
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Typography,
+  Input
+} from '@material-ui/core';
 
 // styles
 import dialog from 'assets/jss/dialog';
 
 const useStyles = makeStyles(dialog);
 
-// const status = ['Alive, in legacy household', 'Alive, not in legacy household', 'Dead'];
-
 const data = {
   gender: ['Male', 'Female']
-}
+};
 
 export default ({ value, onChange, label }) => {
   const classes = useStyles();

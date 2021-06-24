@@ -1,11 +1,9 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-// material ui components
-import {
-  TextField
-} from '@material-ui/core';
+
+// 3rd party components
+import { TextField } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 // styles
@@ -15,7 +13,7 @@ const useStyles = makeStyles(dialog);
 
 export default ({ value, onChange }) => {
   const classes = useStyles();
-  const { species } = useSelector((store) => store.session.data)
+  const { species } = useSelector((store) => store.session.data);
 
   return (
     <Autocomplete
@@ -28,5 +26,5 @@ export default ({ value, onChange }) => {
       getOptionSelected={(option, val) => option._id === val._id}
       getOptionLabel={(option) => option.value}
       renderInput={(params) => <TextField {...params} label="Species" required />} />
-  )
-}
+  );
+};

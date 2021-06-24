@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
 import { API_URL } from 'utils/apiConfig';
 
 export const getData = createAsyncThunk(
@@ -13,7 +12,6 @@ export const getData = createAsyncThunk(
         }
       });
       const data = await response.json();
-      console.log('fetched DATA: ', data);
       if (response.status === 200) {
         return data;
       } else {

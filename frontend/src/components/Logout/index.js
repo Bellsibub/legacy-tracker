@@ -1,16 +1,11 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  Icon,
-  Hidden,
-  Typography,
-  ListItemIcon
-} from '@material-ui/core';
+
+// 3rd party components
+import { ListItem, ListItemText, Icon, ListItemIcon } from '@material-ui/core';
+
+// styles
 import styling from './style';
 
 const useStyles = makeStyles(styling);

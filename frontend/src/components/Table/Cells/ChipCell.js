@@ -1,14 +1,7 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import _ from 'lodash';
 
-import {
-  Avatar,
-  Chip,
-  Grid
-} from '@material-ui/core';
+import { Avatar, Chip, Grid } from '@material-ui/core';
 
 export default ({ items }) => {
   return (

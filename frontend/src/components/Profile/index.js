@@ -6,31 +6,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 
 // 3rd-party components
-import {
-  Typography,
-  List,
-  ListItem,
-  Divider,
-  ListItemSecondaryAction,
-  ListItemText
-} from '@material-ui/core';
-import { AlertOutline, Delete } from 'mdi-material-ui';
+import { Typography } from '@material-ui/core';
 
 // custom components
 import Card from 'components/Card';
 import CardHeader from 'components/CardHeader';
-import CardBody from 'components/CardBody';
-import DialogEdit from 'components/DialogEdit';
 import DialogConfirm from 'components/DialogConfirm';
 import CardFooter from 'components/CardFooter';
+
 // services
 import { deleteLegacy } from 'store/legacy/services';
 
 export default () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
-  const { packs, _id } = useSelector((store) => store.legacy);
+  const { user, getAccessTokenSilently } = useAuth0();
+  const { _id } = useSelector((store) => store.legacy);
 
   const { userName } = useSelector((store) => store.session.user);
 

@@ -1,5 +1,14 @@
 // icons
-import { Bookshelf, Cog, Dna, FoodApple, Gavel, LockOpenVariant, StarShooting, ViewDashboard } from 'mdi-material-ui';
+import {
+  Bookshelf,
+  Cog,
+  Dna,
+  FoodApple,
+  Gavel,
+  LockOpenVariant,
+  StarShooting,
+  ViewDashboard
+} from 'mdi-material-ui';
 
 // views
 import Dashboard from 'views/Dashboard';

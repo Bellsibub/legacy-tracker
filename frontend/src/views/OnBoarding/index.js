@@ -1,21 +1,12 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-unused-vars */
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Grid, Typography } from '@material-ui/core';
-import { useAuth0 } from '@auth0/auth0-react';
-import Loading from 'components/Loading';
-import { getUserLegacies } from 'store/session/services';
-import { initLegacy } from 'store/legacy/services';
-import IconItemsList from 'components/IconItemsList';
-import Stepper from 'components/Stepper';
+import { useSelector } from 'react-redux';
+import { Grid } from '@material-ui/core';
+
+// custom components
 import CreateNewLegacy from 'components/CreateNewLegacy';
-// import Goals from 'components/Goals'
 
 export default () => {
-  const dispatch = useDispatch();
-  const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
-  const { dataFetchDone } = useSelector((store) => store.session)
+  const { dataFetchDone } = useSelector((store) => store.session);
 
   return (
     dataFetchDone && (

@@ -1,17 +1,16 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import _ from 'lodash';
 import { useSelector } from 'react-redux';
-import { Grid, Typography } from '@material-ui/core';
 
+// 3rd party components
+import { Grid } from '@material-ui/core';
+// custom components
 import Goals from 'components/Goals';
 import Stats from 'components/Stats';
 import IconItemsList from 'components/IconItemsList';
-// import { aspirations, sims } from 'utils/data'
-import ItemBySimsList from 'components/ItemBySimsList';
 
 export default () => {
-  const { score, sims, goals } = useSelector((store) => store.legacy);
+  const { score, goals } = useSelector((store) => store.legacy);
   const packs = useSelector((store) => {
     return _.filter(store.legacy.packs, ['active', true]);
   });

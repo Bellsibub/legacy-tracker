@@ -1,10 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 
-// import { makeStyles } from '@material-ui/core/styles';
-// material ui
+// 3rd party components
 import {
   Divider,
   List,
@@ -14,20 +13,17 @@ import {
   ListItemText,
   Typography
 } from '@material-ui/core';
+import { ArrowUpCircleOutline, Podium } from 'mdi-material-ui';
 
 // core components
 import Card from 'components/Card';
 import CardHeader from 'components/CardHeader';
 import CardBody from 'components/CardBody';
-import { ArrowUpCircleOutline, Crown, Podium } from 'mdi-material-ui';
 
-import { updateHeir } from 'store/legacy';
+// services
 import { updateLegacy, getLegacy, updateHeirs } from 'store/legacy/services';
+// utils
 import { filterRunningSims } from 'utils/calculations';
-// styles
-// import styling from './style';
-
-// const useStyles = makeStyles(styling);
 
 const PotentialHeir = ({ item, onClick }) => {
   const handleClick = () => {
@@ -50,7 +46,7 @@ const PotentialHeir = ({ item, onClick }) => {
 
 export default () => {
   const dispatch = useDispatch();
-  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
   const { heir, potentialHeirs, _id, generation } = useSelector((store) => store.legacy);
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
+import { makeStyles } from '@material-ui/core/styles';
 
-// import { useDispatch } from 'react-redux';
+// 3rd party components
 import {
   Dialog,
   DialogActions,
@@ -10,13 +11,11 @@ import {
   Typography,
   Button,
   IconButton,
-  Icon,
   ButtonBase
 } from '@material-ui/core';
 
-import { makeStyles } from '@material-ui/core/styles';
+// styles
 import dialog from 'assets/jss/dialog';
-import { AlertOutline } from 'mdi-material-ui';
 
 const useStyles = makeStyles(dialog);
 

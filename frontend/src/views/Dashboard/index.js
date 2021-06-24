@@ -1,21 +1,23 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import _ from 'lodash';
 import { useHistory } from 'react-router-dom';
-
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Grid, Typography } from '@material-ui/core';
-import logo from 'assets/img/logo-white.svg';
+// 3rd party components
+import { Grid } from '@material-ui/core';
+
+// custom components
 import Ruler from 'components/Ruler';
 import Heir from 'components/Heir';
 import Stats from 'components/Stats';
 import DialogConfirm from 'components/DialogConfirm';
-import { initLegacy, deleteLegacy } from 'store/legacy/services';
-
 import FocusTaskList from 'components/FocusTaskList';
 import BigImage from 'components/BigImage';
+// services
+import { deleteLegacy } from 'store/legacy/services';
+// assets
+import logo from 'assets/img/logo-white.svg';
 
 export default () => {
   const dispatch = useDispatch();

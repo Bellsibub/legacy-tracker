@@ -1,9 +1,9 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import _ from 'lodash';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-// material ui components
+
+// 3rd party components
 import {
   TextField,
   Checkbox

@@ -1,9 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from '@auth0/auth0-react';
 
-// material ui
+// 3rd party components
 import {
   Typography,
   List,
@@ -23,11 +23,10 @@ import Card from 'components/Card';
 import CardHeader from 'components/CardHeader';
 import CardBody from 'components/CardBody';
 import DialogEdit from 'components/DialogEdit';
-import DialogSelectLaws from 'components/DialogSelectLaws';
 
 // services
 import { updateLaws, getLegacy, updateHeirs } from 'store/legacy/services';
-import { filterRunningSims } from 'utils/calculations'
+import { filterRunningSims } from 'utils/calculations';
 
 import styling from './style';
 
@@ -80,14 +79,16 @@ export default () => {
   const handleSelectedLaw = (value, key) => {
     getAccessTokenSilently()
       .then((token) => {
-        dispatch(updateLaws({ laws: { [key]: value }, legacyID: _id, token })).then(() => {
-          dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
-            const simsRunning = filterRunningSims(updatedLegacy, generation);
-            dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
-          });
-        });
+        dispatch(updateLaws({ laws: { [key]: value }, legacyID: _id, token })).then(
+          () => {
+            dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
+              const simsRunning = filterRunningSims(updatedLegacy, generation);
+              dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
+            });
+          }
+        );
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   };
 
   return (

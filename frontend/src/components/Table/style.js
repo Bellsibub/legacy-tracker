@@ -1,6 +1,5 @@
 export default (theme) => ({
   tableResponsive: {
-    // width: "100%",
     minHeight: '0.1%',
     overflowX: 'auto'
   },
@@ -52,9 +51,5 @@ export default (theme) => ({
       width: '50px',
       padding: 0
     }
-    // '& > :first-child': {
-    //   marginRight: theme.spacing(2)
-    //   // padding: 0
-    // }
   }
 });

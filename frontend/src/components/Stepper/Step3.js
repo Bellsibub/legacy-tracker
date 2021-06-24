@@ -1,9 +1,9 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import _ from 'lodash';
 import { useSelector } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 
-// material ui
+// 3rd party components
 import {
   List,
   ListItem,
@@ -13,10 +13,9 @@ import {
   ListSubheader,
   Radio
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { Minus, Plus } from 'mdi-material-ui';
 
-// import styling from './style';
+// styles
 const useStyles = makeStyles((theme) => ({
   listItem: {
     display: 'flex',
@@ -24,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       flexWrap: 'wrap'
     }
-
   },
   nested: {
     paddingLeft: theme.spacing(2)
@@ -36,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     }
   }
 }));
-// const useStyles = makeStyles(styling);
 
 const LawItemCollapse = ({ onChange, selectedValue, index, ...law }) => {
   const classes = useStyles();
@@ -70,14 +67,14 @@ const LawItemCollapse = ({ onChange, selectedValue, index, ...law }) => {
 };
 
 const LawCategory = ({ category, setLaws, ...lawsInCat }) => {
-  const [selectedValue, setSelectedValue] = React.useState("0");
+  const [selectedValue, setSelectedValue] = React.useState('0');
 
   React.useEffect(() => {
     setLaws((prevState) => ({
       ...prevState,
       [category]: { ...lawsInCat[0] }
     }));
-  }, [])
+  }, []);
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);

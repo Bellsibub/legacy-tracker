@@ -1,10 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-// @material-ui
+
+// 3rd party components
 import { AppBar, Toolbar, Hidden, IconButton, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
+// styles
 import styles from './style';
 
 const useStyles = makeStyles(styles);

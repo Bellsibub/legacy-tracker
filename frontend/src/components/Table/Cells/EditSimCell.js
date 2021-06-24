@@ -1,20 +1,22 @@
 import React from 'react';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-// @material-ui/core components
+// 3rd party components
 import TableCell from '@material-ui/core/TableCell';
-
+import { Delete } from 'mdi-material-ui';
+// custom components
 import DialogSims from 'components/DialogSims';
+import DialogConfirm from 'components/DialogConfirm';
 
 // services
 import { updateSim, deleteSim, updateHeirs, getLegacy } from 'store/legacy/services';
+// utils
 import { filterRunningSims } from 'utils/calculations';
-import DialogConfirm from 'components/DialogConfirm';
-import { Delete } from 'mdi-material-ui';
+// styles
 import styles from '../style';
 
 const useStyles = makeStyles(styles);
@@ -22,11 +24,10 @@ const useStyles = makeStyles(styles);
 export default ({ item }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
   const { generation, _id } = useSelector((store) => store.legacy);
 
   const handleEditSimConfirm = (newSim) => {
-    console.log('NEW sim to update', item);
     getAccessTokenSilently()
       .then((token) => {
         dispatch(updateSim({ simData: newSim, legacyID: _id, token })).then(() => {

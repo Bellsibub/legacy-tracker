@@ -1,13 +1,10 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import _ from 'lodash';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-// material ui components
-import {
-  TextField,
-  Checkbox
-} from '@material-ui/core';
+
+// 3rd party components
+import { TextField, Checkbox } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 // styles
@@ -58,7 +55,6 @@ export default ({ value, onChange }) => {
       disableCloseOnSelect
       filterSelectedOptions
       getOptionSelected={(option, val) => {
-        // Accept empty string
         if (val === null || val._id === option._id) {
           return true;
         }
@@ -76,5 +72,5 @@ export default ({ value, onChange }) => {
         </>
       )}
       renderInput={(params) => <TextField {...params} label="Traits" />} />
-  )
-}
+  );
+};

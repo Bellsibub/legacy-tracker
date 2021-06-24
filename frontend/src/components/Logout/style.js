@@ -1,5 +1,3 @@
-import { drawerWidth, boxShadow, defaultFont } from 'assets/jss/globals';
-
 export default (theme) => ({
   itemLink: {
     transition: 'all .5s ease-in-out',

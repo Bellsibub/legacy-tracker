@@ -1,8 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
-// import { makeStyles } from '@material-ui/core/styles';
+import { useAuth0 } from '@auth0/auth0-react';
+
 // material ui
 import { Typography } from '@material-ui/core';
 
@@ -16,21 +16,14 @@ import DialogSims from 'components/DialogSims';
 
 // services
 import { createSim, updateHeirs, getLegacy } from 'store/legacy/services';
-import { filterRunningSims } from 'utils/calculations'
-
-// styles
-// import styling from './style';
-
-// const useStyles = makeStyles(styling);
+import { filterRunningSims } from 'utils/calculations';
 
 export default ({ items, gen, roles }) => {
-  // const classes = useStyles();
   const dispatch = useDispatch();
-  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
   const { _id, generation } = useSelector((store) => store.legacy);
 
   const handleNewLegacyChild = (newSim) => {
-    // console.log(newSim);
     getAccessTokenSilently()
       .then((token) => {
         dispatch(createSim({ simData: newSim, legacyID: _id, token })).then(() => {
@@ -43,7 +36,6 @@ export default ({ items, gen, roles }) => {
       .catch((err) => console.log(err));
   };
   const handleNewSimConfirm = (newSim) => {
-    // console.log(newSim);
     getAccessTokenSilently()
       .then((token) => {
         dispatch(createSim({ simData: newSim, legacyID: _id, token })).then(() => {

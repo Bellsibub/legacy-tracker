@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0 } from '@auth0/auth0-react';
 
 // 3rd party components
 import { Divider, Chip, Avatar, Grid, Typography } from '@material-ui/core';
@@ -45,7 +45,7 @@ const ChipSection = ({ items, title }) => {
 
 export default () => {
   const dispatch = useDispatch();
-  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
   const { ruler, _id } = useSelector((store) => store.legacy);
 
@@ -53,12 +53,11 @@ export default () => {
     console.log('NEW sim to update', newSim);
     getAccessTokenSilently()
       .then((token) => {
-        dispatch(updateSim({ simData: newSim, legacyID: _id, token }))
-          .then(() => {
-            dispatch(getLegacy({ legacyID: _id, token }))
-          })
+        dispatch(updateSim({ simData: newSim, legacyID: _id, token })).then(() => {
+          dispatch(getLegacy({ legacyID: _id, token }));
+        });
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   };
   return (
     <Card>

@@ -1,9 +1,11 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import _ from 'lodash';
 import { useSelector } from 'react-redux';
-import { Grid, Typography } from '@material-ui/core';
 
+// 3rd party components
+import { Grid } from '@material-ui/core';
+
+// custom components
 import Goals from 'components/Goals';
 import Stats from 'components/Stats';
 import IconItemsList from 'components/IconItemsList';

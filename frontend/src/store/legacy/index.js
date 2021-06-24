@@ -1,9 +1,6 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-plusplus */
 import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import { createLegacy, getLegacy, updateLegacy, deleteLegacy } from './services';
+import { createLegacy, getLegacy, deleteLegacy } from './services';
 
 const initState = {
   loading: false,
@@ -26,7 +23,7 @@ const initState = {
       percentage: 0
     }
   }
-}
+};
 export const legacySlice = createSlice({
   name: 'legacy',
   initialState: initState,
@@ -48,9 +45,8 @@ export const legacySlice = createSlice({
       });
     },
     resetLegacy(state, { payload }) {
-      state = initState
-    },
-    validateGoals(state, { payload }) {}
+      state = initState;
+    }
   },
   extraReducers: {
     [createLegacy.pending]: (state, { payload }) => {
@@ -60,7 +56,7 @@ export const legacySlice = createSlice({
     [createLegacy.rejected]: (state, { payload }) => {
       state.loading = false;
       state.fetchDone = false;
-      state.error = { ...payload }
+      state.error = { ...payload };
     },
     [createLegacy.fulfilled]: (state, { payload }) => {
       return { ...state, ...payload, fetchDone: true, loading: false };
@@ -72,7 +68,7 @@ export const legacySlice = createSlice({
     [getLegacy.rejected]: (state, { payload }) => {
       state.loading = false;
       state.fetchDone = false;
-      state.error = { ...payload }
+      state.error = { ...payload };
     },
     [getLegacy.fulfilled]: (state, { payload }) => {
       return { ...state, ...payload, fetchDone: true, loading: false };
@@ -87,16 +83,5 @@ export const legacySlice = createSlice({
   }
 });
 
-export const {
-  addNewSim,
-  addNewGeneration,
-  editSim,
-  updateHeir,
-  setRuler,
-  completeTask,
-  addNewTask,
-  setScores,
-  validateGoals,
-  resetLegacy
-} = legacySlice.actions;
+export const { setScores, resetLegacy } = legacySlice.actions;
 export default legacySlice.reducer;

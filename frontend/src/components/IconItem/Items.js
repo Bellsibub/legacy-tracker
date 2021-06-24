@@ -2,7 +2,6 @@ import React from 'react';
 import _ from 'lodash';
 import classNames from 'classnames';
 import { useAuth0 } from "@auth0/auth0-react";
-
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 

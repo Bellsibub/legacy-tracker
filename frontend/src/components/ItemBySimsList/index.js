@@ -5,8 +5,6 @@ import _ from 'lodash';
 import {
   Divider,
   Typography,
-  useTheme,
-  useMediaQuery,
   List,
   ListSubheader,
   Collapse,
@@ -31,7 +29,6 @@ const ListItemCollapse = ({ mainItem, itemsKey }) => {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
-  // console.log(mainItem);
   const handleClick = () => {
     setOpen(!open);
   };

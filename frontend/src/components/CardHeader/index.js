@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';
 
+// 3rd party components
 import { Avatar } from '@material-ui/core'
 
 import styling from './style';
