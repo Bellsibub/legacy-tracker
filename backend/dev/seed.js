@@ -46,8 +46,8 @@ export default async () => {
   rules.forEach((value) => {
     new RulesModel({ value }).save();
   });
-  species.forEach((value) => {
-    new SpeciesModel({ value }).save();
+  species.forEach((modelData) => {
+    new SpeciesModel(modelData).save();
   });
   causeOfDeath.forEach((value) => {
     new CodModel({ value }).save();

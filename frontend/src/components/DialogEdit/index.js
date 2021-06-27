@@ -33,6 +33,7 @@ export default ({
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(currentItem);
+
   const toggleDialog = () => {
     setOpen(!open);
   };

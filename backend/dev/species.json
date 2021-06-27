@@ -1,8 +1,8 @@
 [
-  "Alien",
-  "Ghost",
-  "Human",
-  "Mermaid",
-  "Spellcaster",
-  "Vampire"
+  { "pack": "base_game", "value": "Human" },
+  { "pack": "base_game", "value": "Ghost" },
+  { "pack": "get_to_work", "value": "Alien" },
+  { "pack": "island_living", "value": "Mermaid" },
+  { "pack": "realm_of_magic", "value": "Spellcaster" },
+  { "pack": "vampires", "value": "Vampire" }
 ]

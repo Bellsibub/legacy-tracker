@@ -28,13 +28,18 @@ import DialogEdit from 'components/DialogEdit';
 import { updateLaws, getLegacy, updateHeirs } from 'store/legacy/services';
 import { filterRunningSims } from 'utils/calculations';
 
+import { filterByPack } from 'utils/helpers';
 import styling from './style';
 
 const useStyles = makeStyles(styling);
 
 const LawItemCollapse = ({ category, onConfirm, ...law }) => {
   const classes = useStyles();
-  const { laws } = useSelector((store) => store.session.data);
+  const { packs } = useSelector((store) => store.legacy)
+  const laws = useSelector((store) => {
+    const lawsToFilter = store.session.data.laws[category];
+    return filterByPack(lawsToFilter, packs)
+  });
   const [open, setOpen] = React.useState(false);
 
   const handleExpandToggle = () => {
@@ -50,7 +55,7 @@ const LawItemCollapse = ({ category, onConfirm, ...law }) => {
           <DialogEdit
             select
             title="Select new law"
-            items={laws[category]}
+            items={laws}
             currentItem={law}
             keyValue="title"
             onConfirm={onConfirm}

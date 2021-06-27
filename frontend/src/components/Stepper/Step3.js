@@ -66,8 +66,22 @@ const LawItemCollapse = ({ onChange, selectedValue, index, ...law }) => {
   );
 };
 
-const LawCategory = ({ category, setLaws, ...lawsInCat }) => {
-  const [selectedValue, setSelectedValue] = React.useState('0');
+const LawCategory = ({ packs, category, setLaws, ...lawsInCat }) => {
+  const [selectedValue, setSelectedValue] = React.useState(0);
+  packs = _.filter(packs, ['active', true]);
+  lawsInCat = _.filter(lawsInCat, (item) => {
+    let st;
+    _.forEach(packs, (pack) => {
+      if (pack.name === item.pack) {
+        st = true;
+        // pack matches so return out of loop
+        return false;
+      } else {
+        st = false;
+      }
+    });
+    return st;
+  });
 
   React.useEffect(() => {
     setLaws((prevState) => ({
@@ -84,18 +98,23 @@ const LawCategory = ({ category, setLaws, ...lawsInCat }) => {
     }));
   };
   return (
-    <List
-      subheader={
-        <ListSubheader component="div">{`${category.toUpperCase()}`}</ListSubheader>
-      }>
-      {_.map(lawsInCat, (law, index) => (
-        <LawItemCollapse
-          selectedValue={selectedValue}
-          onChange={handleChange}
-          index={index}
-          {...law} />
-      ))}
-    </List>
+    <>
+      {lawsInCat.length > 0 && (
+        <List
+          subheader={
+            <ListSubheader component="div">{`${category.toUpperCase()}`}</ListSubheader>
+          }>
+          {_.map(lawsInCat, (law, index) => (
+            <LawItemCollapse
+              key={`lawItem${index}`}
+              selectedValue={selectedValue}
+              onChange={handleChange}
+              index={index}
+              {...law} />
+          ))}
+        </List>
+      )}
+    </>
   );
 };
 

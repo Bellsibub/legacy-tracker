@@ -8,7 +8,7 @@ import Species from 'components/Inputs/SelectSpecies';
 import TextInput from 'components/Inputs/TextInput';
 import SimpleSelect from 'components/Inputs/SimpleSelect';
 
-export default ({ simInfo, setSimInfo }) => {
+export default ({ simInfo, setSimInfo, packs }) => {
   const handleChange = (event) => {
     const { target } = event;
     setSimInfo((prevState) => ({
@@ -40,7 +40,7 @@ export default ({ simInfo, setSimInfo }) => {
       {/* Gender */}
       <SimpleSelect value={simInfo.gender} onChange={handleChange} label="Gender" />
       {/* species */}
-      <Species value={simInfo.species} onChange={handleSingleSelectChange} />
+      <Species value={simInfo.species} onChange={handleSingleSelectChange} packs={packs} />
     </Container>
   );
 };

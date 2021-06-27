@@ -70,7 +70,7 @@ export default () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const theme = useTheme();
-  const { getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
   const availablePacks = useSelector((store) => store.session.data.packs);
   const smallScreen = useMediaQuery(theme.breakpoints.down('xs'));
   const [simInfo, setSimInfo] = React.useState({ ...defaultValues });
@@ -129,7 +129,7 @@ export default () => {
       case 1:
         return <Step2 simInfo={simInfo} setSimInfo={setSimInfo} packs={packs} />;
       case 2:
-        return <Step3 setLaws={setLaws} />;
+        return <Step3 packs={packs} setLaws={setLaws} />;
       case 3:
         return <Step4 legacyName={legacyName} setlegacyName={setLegacyName} />;
       default:

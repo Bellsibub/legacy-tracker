@@ -2,7 +2,7 @@
   {
     "name": "base_game",
     "image": "https://res.cloudinary.com/dsp41gbcw/image/upload/v1623499517/legacyTracker/packs/basegame.png",
-    "active": false,
+    "active": true,
     "type": "base game version"
   },
   {

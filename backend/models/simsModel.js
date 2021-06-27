@@ -1,7 +1,5 @@
-/* eslint-disable no-underscore-dangle */
 import mongoose from 'mongoose';
-import Legacy from "./legacyModel"
-// import { categoriesSchema } from './categoriesModel';
+
 import { dataSchema } from './dataModel';
 
 const { Schema } = mongoose;
@@ -64,10 +62,5 @@ const simsSchema = new Schema({
   traits: Array,
   aspirations: Array
 });
-
-// simsSchema.post("remove", (document) => {
-//   const simID = document._id;
-  
-// });
 
 export default mongoose.model('Sims', simsSchema, 'sims');

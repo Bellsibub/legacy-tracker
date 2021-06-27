@@ -1,16 +1,9 @@
 /* eslint-disable func-names */
 import mongoose from 'mongoose';
 import { categoriesSchema } from './categoriesModel';
-import { dataSchema, packsSchema } from './dataModel';
+import { dataSchema, packsSchema, goalsChildSchema } from './dataModel';
 
 const { Schema } = mongoose;
-
-const goalSchema = new Schema({
-  text: { type: String, default: '' },
-  count: { type: Number },
-  focused: { type: Boolean, default: false },
-  completed: { type: Boolean, default: false }
-});
 
 const legacySchema = new Schema({
   name: {
@@ -32,35 +25,39 @@ const legacySchema = new Schema({
     default: null
   },
   potentialHeirs: [{ type: Schema.Types.ObjectId, ref: 'Sims' }],
-  aspirations: [{ type: categoriesSchema }],
-  skills: [{ type: categoriesSchema }],
-  traits: [{ type: categoriesSchema }],
+  sims: [{ type: Schema.Types.ObjectId, ref: 'Sims' }],
   packs: [{ type: packsSchema }],
   laws: {
     gender: {
       title: { type: String },
-      description: { type: String }
+      description: { type: String },
+      pack: { type: String }
     },
     bloodline: {
       title: { type: String },
-      description: { type: String }
+      description: { type: String },
+      pack: { type: String }
     },
     heir: {
       title: { type: String },
-      description: { type: String }
+      description: { type: String },
+      pack: { type: String }
     },
     species: {
       title: { type: String },
-      description: { type: String }
+      description: { type: String },
+      pack: { type: String }
     }
   },
   rules: [{ type: dataSchema }],
-  sims: [{ type: Schema.Types.ObjectId, ref: 'Sims' }],
   goals: {
-    aspirations: [{ type: goalSchema }],
-    skills: [{ type: goalSchema }],
-    food: [{ type: goalSchema }]
-  }
+    aspirations: [{ type: goalsChildSchema }],
+    skills: [{ type: goalsChildSchema }],
+    food: [{ type: goalsChildSchema }]
+  },
+  traits: [{ type: categoriesSchema }],
+  aspirations: [{ type: categoriesSchema }],
+  skills: [{ type: categoriesSchema }]
 });
 
 const autoPopulate = function (next) {
