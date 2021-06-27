@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -11,21 +12,23 @@ import dialog from 'assets/jss/dialog';
 
 const useStyles = makeStyles(dialog);
 
-export default ({ value, onChange, currentSimID, label, generation, newGen, required }) => {
+export default ({
+  value,
+  onChange,
+  currentSimID,
+  label,
+  generation,
+  newGen,
+  required
+}) => {
   const classes = useStyles();
-  const sims = useSelector((store) => store.legacy.sims.filter((sim) => sim._id !== currentSimID));
-  const [simsOpts, setSims] = React.useState(sims);
-
-  React.useEffect(() => {
-    let _sims = [];
-    _sims = sims.filter(
-      (sim) => sim.generation <= generation
-    );
-    if (required) {
-      _sims.push({ firstName: 'Unknown', lastName: '', _id: '0' })
-    }
-    setSims(_sims);
-  }, [generation, newGen]);
+  const sims = useSelector((store) => {
+    return _.chain(store.legacy.sims)
+      .filter((sim) => sim._id !== currentSimID)
+      .filter((sim) => sim.generation <= generation)
+      .push({ firstName: 'Unknown', lastName: '', _id: '01234dads3qwaesdx' })
+      .value();
+  });
 
   return (
     <Autocomplete
@@ -34,9 +37,11 @@ export default ({ value, onChange, currentSimID, label, generation, newGen, requ
       name={label.toLowerCase()}
       value={value || null}
       onChange={onChange}
-      options={simsOpts}
+      options={sims}
       getOptionSelected={(option, val) => option._id === val._id}
       getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
-      renderInput={(params) => <TextField {...params} label={label} required={required} />} />
+      renderInput={(params) => (
+        <TextField {...params} label={label} required={required} />
+      )} />
   );
 };

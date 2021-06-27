@@ -20,7 +20,7 @@ export default ({ value, onChange }) => {
       className={classes.dialogMultiSelect}
       id="status"
       name="status"
-      value={value || null}
+      value={value || status[0]}
       onChange={onChange}
       options={status}
       renderInput={(params) => <TextField {...params} label="Status" />} />

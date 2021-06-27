@@ -183,9 +183,11 @@ export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other
             {/* Status */}
             <Status value={simInfo.status} onChange={handleSingleSelectChange} />
             {/* Cause of Death */}
-            <CauseOfDeath
-              value={simInfo.causeOfDeath}
-              onChange={handleSingleSelectChange} />
+            {simInfo.status === 'Dead' && (
+              <CauseOfDeath
+                value={simInfo.causeOfDeath}
+                onChange={handleSingleSelectChange} />
+            )}
           </DialogContent>
           <DialogActions>
             <Button onClick={toggleDialog}>Cancel</Button>
