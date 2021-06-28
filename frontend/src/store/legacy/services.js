@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { verifyGoalCompletion, calculateHeir } from 'utils/calculations';
-import { addLegacyToUser, removeLegacyForUser } from 'store/session/services';
+import { updateUserMetadata } from 'store/session/services';
 import { setLegacy } from 'store/session';
 import { API_URL } from 'utils/apiConfig';
 
@@ -21,7 +21,7 @@ export const createLegacy = createAsyncThunk(
       const data = await response.json();
       if (response.status === 201) {
         thunkAPI.dispatch(setLegacy({ id: data._id }));
-        thunkAPI.dispatch(addLegacyToUser({ token, legacyID: data._id }));
+        thunkAPI.dispatch(updateUserMetadata({ token, newData: { legacy: data._id } }));
         return data;
       } else {
         return thunkAPI.rejectWithValue(data);
@@ -114,7 +114,7 @@ export const deleteLegacy = createAsyncThunk(
         }
       });
       const data = await response.json();
-      thunkAPI.dispatch(removeLegacyForUser({ token }));
+      thunkAPI.dispatch(updateUserMetadata({ token, newData: { legacy: null } }));
       if (response.status === 200) {
         return data;
       } else {

@@ -28,9 +28,11 @@ router.delete('/legacy/:id/rules/:rulesid', legacy.deleteRules);
 /* -------------------------------------------------------------------------- */
 /*                                    USER                                    */
 /* -------------------------------------------------------------------------- */
-router.get('/users/:id/legacies', authAPI.getUserLegacies);
-router.patch('/users/:id/legacies', authAPI.addLegacyToUser);
-router.delete('/users/:id/legacies', authAPI.removeLegacyForUser);
+router.delete('/users/:id', authAPI.deleteUser);
+router.get('/users/:id/metadata', authAPI.getUserMetadata);
+router.patch('/users/:id/metadata', authAPI.updateUserMetadata);
+// router.patch('/users/:id/metadata/legacies', authAPI.addLegacyToUser);
+// router.delete('/users/:id/metadata/legacies', authAPI.removeLegacyForUser);
 
 /* -------------------------------------------------------------------------- */
 /*                                    SIMS                                    */

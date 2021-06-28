@@ -24,62 +24,62 @@ export const getData = createAsyncThunk(
   }
 );
 
-export const addLegacyToUser = createAsyncThunk(
-  'session/addLegacyToUser',
-  async ({ token, legacyID }, thunkAPI) => {
-    try {
-      const userID = thunkAPI.getState().session.user.id;
-      const response = await fetch(API_URL(`users/${userID}/legacies`), {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ legacyID })
-      });
-      const data = await response.json();
-      if (response.status === 200) {
-        return data;
-      } else {
-        return thunkAPI.rejectWithValue(data);
-      }
-    } catch (error) {
-      console.log('Error', error.response.data);
-      thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const removeLegacyForUser = createAsyncThunk(
-  'session/removeLegacyForUser',
-  async ({ token }, thunkAPI) => {
-    try {
-      const userID = thunkAPI.getState().session.user.id;
-      const response = await fetch(API_URL(`users/${userID}/legacies`), {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
-      });
-      const data = await response.json();
-      if (response.status === 200) {
-        return data;
-      } else {
-        return thunkAPI.rejectWithValue(data);
-      }
-    } catch (error) {
-      console.log('Error', error.response.data);
-      thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-
 export const getUserMetadata = createAsyncThunk(
   'session/getUserMetadata',
   async ({ token }, thunkAPI) => {
     try {
       const userID = thunkAPI.getState().session.user.id;
-      const response = await fetch(API_URL(`users/${userID}/legacies`), {
+      const response = await fetch(API_URL(`users/${userID}/metadata`), {
         method: 'GET',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
       if (response.status === 200) {
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const deleteUser = createAsyncThunk(
+  'session/deleteUser',
+  async ({ userID, token }, thunkAPI) => {
+    try {
+      const response = await fetch(API_URL(`users/${userID}`), {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
+      });
+      const data = await response.json();
+      if (response.status === 204) {
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const updateUserMetadata = createAsyncThunk(
+  'session/updateUserMetadata',
+  async ({ token, newData }, thunkAPI) => {
+    try {
+      const userID = thunkAPI.getState().session.user.id;
+      const response = await fetch(API_URL(`users/${userID}/metadata`), {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify(newData)
+      });
+      const data = await response.json();
+      if (response.status === 201) {
+        // thunkAPI.dispatch(getUserMetadata({ token }))
         return data;
       } else {
         return thunkAPI.rejectWithValue(data);

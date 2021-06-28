@@ -7,6 +7,7 @@ export const sessionSlice = createSlice({
   initialState: {
     legacyID: '',
     dataFetchDone: false,
+    metaDataFetchDone: false,
     data: {},
     user: { id: '', firstTime: true, userName: '' }
   },
@@ -26,10 +27,14 @@ export const sessionSlice = createSlice({
       state.data = { ...payload };
       state.dataFetchDone = true;
     },
+    [getUserMetadata.pending]: (state, { payload }) => {
+      state.metaDataFetchDone = false;
+    },
     [getUserMetadata.fulfilled]: (state, { payload }) => {
       state.legacyID = payload.legacy;
       state.user.firstTime = payload.firstTime;
       state.user.userName = payload.userName;
+      state.metaDataFetchDone = true;
     }
   }
 });
