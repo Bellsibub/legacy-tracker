@@ -1,6 +1,5 @@
 import React from 'react';
 import _ from 'lodash';
-import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,8 +14,7 @@ import DialogConfirm from 'components/DialogConfirm';
 import CardFooter from 'components/CardFooter';
 
 // services
-import { deleteLegacy } from 'store/legacy/services';
-import { deleteUser, updateUserMetadata } from 'store/session/services';
+import { deleteUser, updatePassword, updateUserMetadata } from 'store/session/services';
 import CardBody from 'components/CardBody';
 import TextInput from 'components/Inputs/TextInput';
 
@@ -26,26 +24,31 @@ import styling from './style';
 const useStyles = makeStyles(styling);
 
 export default () => {
-  const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
   const { user, getAccessTokenSilently, logout } = useAuth0();
   const { _id } = useSelector((store) => store.legacy);
   const { userName } = useSelector((store) => store.session.user);
   const { metaDataFetchDone } = useSelector((store) => store.session);
-  const [formData, setFormData] = React.useState({ userName });
+  const [formData, setFormData] = React.useState({
+    user_metadata: userName,
+    email: user.email
+  });
   const [hasChanges, setHasChanges] = React.useState(false);
 
   /* --------------------------------- EFFECTS -------------------------------- */
 
   React.useEffect(() => {
     if (metaDataFetchDone) {
-      setFormData({ userName })
+      setFormData((prevState) => ({
+        ...prevState,
+        user_metadata: { userName }
+      }));
     }
   }, [metaDataFetchDone]);
 
   React.useEffect(() => {
-    if (userName !== formData.userName) {
+    if (userName !== formData.user_metadata.userName || user.email !== formData.email) {
       setHasChanges(true);
     } else {
       setHasChanges(false);
@@ -54,16 +57,6 @@ export default () => {
 
   /* -------------------------------- HANDLERS -------------------------------- */
 
-  const handleStartNewLegacy = () => {
-    history.push('/onboarding');
-    if (_id) {
-      getAccessTokenSilently()
-        .then((token) => {
-          dispatch(deleteLegacy({ legacyID: _id, token }));
-        })
-        .catch((err) => console.log(err));
-    }
-  };
   const handleDeleteUser = () => {
     if (user.sub) {
       getAccessTokenSilently()
@@ -73,12 +66,28 @@ export default () => {
         .catch((err) => console.log(err));
     }
   };
+  const handleUpdatePassword = () => {
+    if (user.email) {
+      getAccessTokenSilently()
+        .then((token) => {
+          dispatch(updatePassword({ userID: user.sub, userEmail: user.email, token }))
+        })
+        .catch((err) => console.log(err));
+    }
+  };
   const handleChange = (event) => {
     const { target } = event;
-    setFormData((prevState) => ({
-      ...prevState,
-      [target.name]: target.value
-    }));
+    if (target.name === 'userName') {
+      setFormData((prevState) => ({
+        ...prevState,
+        user_metadata: { [target.name]: target.value }
+      }));
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        [target.name]: target.value
+      }));
+    }
   };
   const handleSubmit = () => {
     getAccessTokenSilently()
@@ -96,12 +105,19 @@ export default () => {
       </CardHeader>
       <CardBody>
         <form onSubmit={handleSubmit}>
-          {/* username */}
           <TextInput
-            value={formData.userName}
+            required
+            value={formData.user_metadata.userName}
             onChange={handleChange}
             label="Username"
             name="userName" />
+          <TextInput
+            required
+            value={formData.email}
+            onChange={handleChange}
+            label="Email"
+            name="email"
+            type="email" />
           <Button
             className={classes.profileSubmit}
             type="submit"
@@ -112,20 +128,17 @@ export default () => {
           </Button>
         </form>
       </CardBody>
-      <CardFooter hasBorder>
+      <CardFooter hasBorder withColumn>
         <DialogConfirm
-          onConfirm={handleStartNewLegacy}
-          buttonText="Start new legacy"
-          title="Start a new legacy?"
-          message={
-            _id
-              ? '⚠️ Are you sure? You will loose access to your current legacy!! ⚠️'
-              : "Let's create a legacy!"
-          } />
+          onConfirm={handleUpdatePassword}
+          buttonText="Update password"
+          title="Send me a link!"
+          message={`This will send you a reset link to this email address: ${user.email}`} />
         <DialogConfirm
           onConfirm={handleDeleteUser}
           buttonText="Delete user"
           title="Delete my user"
+          color="warning"
           message="⚠️ Are you sure? Your account will be deleted! ⚠️" />
       </CardFooter>
     </Card>

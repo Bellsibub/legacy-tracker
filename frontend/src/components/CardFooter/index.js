@@ -10,7 +10,8 @@ export default function CardFooter({ children, ...other }) {
   const classes = useStyles();
   const cardFooterClasses = classNames({
     [classes.cardFooter]: true,
-    [classes.hasBorder]: other.hasBorder
+    [classes.hasBorder]: other.hasBorder,
+    [classes.withColumn]: other.withColumn
   });
   return (
     <div className={cardFooterClasses}>

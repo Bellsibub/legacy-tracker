@@ -66,6 +66,27 @@ export const deleteUser = createAsyncThunk(
     }
   }
 );
+export const updatePassword = createAsyncThunk(
+  'session/updatePassword',
+  async ({ userID, userEmail, token }, thunkAPI) => {
+    try {
+      const response = await fetch(API_URL(`users/${userID}/resetPassword`), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ email: userEmail })
+      });
+      const data = await response.json();
+      if (response.status === 200) {
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 
 export const updateUserMetadata = createAsyncThunk(
   'session/updateUserMetadata',

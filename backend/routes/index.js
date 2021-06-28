@@ -29,6 +29,7 @@ router.delete('/legacy/:id/rules/:rulesid', legacy.deleteRules);
 /*                                    USER                                    */
 /* -------------------------------------------------------------------------- */
 router.delete('/users/:id', authAPI.deleteUser);
+router.post('/users/:id/resetPassword', authAPI.resetPassword);
 router.get('/users/:id/metadata', authAPI.getUserMetadata);
 router.patch('/users/:id/metadata', authAPI.updateUserMetadata);
 // router.patch('/users/:id/metadata/legacies', authAPI.addLegacyToUser);

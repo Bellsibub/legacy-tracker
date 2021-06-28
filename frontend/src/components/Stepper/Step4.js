@@ -30,7 +30,8 @@ export default ({ legacyName, setlegacyName }) => {
         value={legacyName}
         onChange={handleChange}
         label="Name"
-        name="legacyName" />
+        name="legacyName"
+        required />
     </>
   );
 };

@@ -1,10 +1,4 @@
-export default () => ({
-  dialog: {
-    // borderRadius: "6px",
-    // overflow: "visible",
-    // maxHeight: "unset",
-    // position: 'relative'
-  },
+export default (theme) => ({
   dialogFullWidth: {
     width: '100%',
     margin: '8px 0 4px 0'
@@ -19,5 +13,26 @@ export default () => ({
     marginTop: '25px',
     paddingLeft: 0,
     paddingBottom: 0
+  },
+  buttonAccent: {
+    backgroundColor: theme.palette.accent.main,
+    color: theme.palette.common.white,
+    '&:hover': {
+      backgroundColor: theme.palette.accent.dark
+    }
+  },
+  buttonWarning: {
+    backgroundColor: theme.palette.warning.main,
+    color: theme.palette.common.white,
+    '&:hover': {
+      backgroundColor: theme.palette.warning.dark
+    }
+  },
+  buttonPrimary: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark
+    }
   }
 });

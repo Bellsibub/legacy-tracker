@@ -25,6 +25,11 @@ export default ({ title, message, onConfirm, className, children, ...other }) =>
   const buttonBaseClasses = classNames({
     [className]: className !== undefined
   });
+  const buttonColors = classNames({
+    [classes.buttonPrimary]: !other.color,
+    [classes.buttonAccent]: other.color === 'accent',
+    [classes.buttonWarning]: other.color === 'warning'
+  });
 
   const [open, setOpen] = React.useState(false);
   const toggleDialog = () => {
@@ -40,8 +45,8 @@ export default ({ title, message, onConfirm, className, children, ...other }) =>
       )}
       {other.buttonText && (
         <Button
+          className={buttonColors}
           variant="contained"
-          color="primary"
           onClick={toggleDialog}
           disabled={other.disabled}>
           {other.buttonText}

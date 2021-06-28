@@ -31,12 +31,14 @@ export default ({ simInfo, setSimInfo, packs }) => {
         value={simInfo.firstName}
         onChange={handleChange}
         label="First Name"
-        name="firstName" />
+        name="firstName"
+        required />
       <TextInput
         value={simInfo.lastName}
         onChange={handleChange}
         label="Last Name"
-        name="lastName" />
+        name="lastName"
+        required />
       {/* Gender */}
       <SimpleSelect value={simInfo.gender} onChange={handleChange} label="Gender" />
       {/* species */}

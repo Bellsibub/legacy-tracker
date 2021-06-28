@@ -167,6 +167,7 @@ export default () => {
             </Button>
             {activeStep === steps.length - 1 ? (
               <DialogConfirm
+                color="accent"
                 disabled={errors.length > 0 || legacyName.length <= 0}
                 title="Start new legacy"
                 buttonText="Start Legacy"

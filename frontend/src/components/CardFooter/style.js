@@ -14,5 +14,8 @@ export default (theme) => ({
   },
   hasBorder: {
     borderTop: `1px solid ${theme.palette.divider}`
+  },
+  withColumn: {
+    flexDirection: 'column'
   }
 });
