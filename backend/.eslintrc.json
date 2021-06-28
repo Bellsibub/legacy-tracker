@@ -20,10 +20,11 @@
     }
   },
   "rules": {
-    "no-plusplus":"off",
-    "no-await-in-loop":"off",
-    "no-underscore-dangle":"off",
-    "no-unused-vars": "off",
+    "func-names": "off",
+    "no-plusplus": "off",
+    "no-await-in-loop": "off",
+    "no-underscore-dangle": "off",
+    "no-unused-vars": "warn",
     "quotes": "off",
     "arrow-body-style": "off",
     "class-methods-use-this": "off",

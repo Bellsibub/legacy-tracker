@@ -21,83 +21,6 @@ export const create = async (req, res, next) => {
   }
 };
 
-export const update = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const { simData } = req.body;
-    const doc = await Sims.updateOne({ _id: id }, { ...simData }, { new: true });
-
-    if (!doc) {
-      return next(
-        new AppError(
-          404,
-          'Not Found',
-          'The ID you provided did not exist. Please try again'
-        )
-      );
-    }
-    res.status(201).json(doc);
-  } catch (error) {
-    next(error);
-  }
-};
-export const updateHeirs = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const { eligibleSims, nonEligible } = req.body;
-
-    const doc = await Sims.updateMany(
-      { _id: { $in: eligibleSims } },
-      { $set: { 'role.eligible': true } }
-    );
-    await Sims.updateMany(
-      { _id: { $in: nonEligible } },
-      { $set: { 'role.eligible': false } }
-    );
-    await Legacy.updateOne(
-      { _id: id },
-      { 
-        $set: { potentialHeirs: eligibleSims }
-      }
-    );
-
-    if (!doc) {
-      return next(
-        new AppError(
-          404,
-          'Not Found',
-          'The ID you provided did not exist. Please try again'
-        )
-      );
-    }
-    res.status(201).json(doc);
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const deleteSim = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    
-    const doc = await Sims.deleteOne({ _id: id });
-    
-    const legacy = await Legacy.findOne({ sims: { $in: [id] } });
-    
-    const sims = legacy.sims.filter((sim) => sim._id !== id).map((sim) => sim._id)
-    
-    await Legacy.updateOne({ _id: id }, { $set: { sims: [sims] } })
-    
-    if (legacy.heir === id) {
-      await Legacy.updateOne({ _id: id }, { $unset: { heir: "" } })
-    } 
-    
-    res.status(200).json(doc);
-  } catch (error) {
-    next(error);
-  }
-};
-
 export const addCategoryItem = async (req, res, next) => {
   try {
     const { id, category } = req.params;
@@ -121,3 +44,46 @@ export const addCategoryItem = async (req, res, next) => {
     next(error);
   }
 };
+
+export const update = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { simData } = req.body;
+    const doc = await Sims.updateOne({ _id: id }, { ...simData }, { new: true });
+
+    if (!doc) {
+      return next(
+        new AppError(
+          404,
+          'Not Found',
+          'The ID you provided did not exist. Please try again'
+        )
+      );
+    }
+    res.status(201).json(doc);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteSim = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { legacyID } = req.body;
+
+    const doc = await Sims.deleteOne({ _id: id });
+
+    const legacy = await Legacy.findOne({ sims: { $in: [id] } });
+
+    await Legacy.updateOne({ _id: legacyID }, { $pull: { sims: { _id: id } } });
+
+    if (legacy.heir === id) {
+      await Legacy.updateOne({ _id: legacyID }, { $unset: { heir: '' } });
+    }
+
+    res.status(200).json(doc);
+  } catch (error) {
+    next(error);
+  }
+};
+

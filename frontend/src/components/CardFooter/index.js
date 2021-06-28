@@ -6,14 +6,14 @@ import styles from './style';
 
 const useStyles = makeStyles(styles);
 
-export default function CardFooter({ className, children, ...other }) {
+export default function CardFooter({ children, ...other }) {
   const classes = useStyles();
   const cardFooterClasses = classNames({
     [classes.cardFooter]: true,
-    [className]: className !== undefined
+    [classes.hasBorder]: other.hasBorder
   });
   return (
-    <div className={cardFooterClasses} {...other}>
+    <div className={cardFooterClasses}>
       {children}
     </div>
   );

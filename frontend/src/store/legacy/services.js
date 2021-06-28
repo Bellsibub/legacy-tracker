@@ -5,6 +5,10 @@ import { addLegacyToUser, removeLegacyForUser } from 'store/session/services';
 import { setLegacy } from 'store/session';
 import { API_URL } from 'utils/apiConfig';
 
+/* -------------------------------------------------------------------------- */
+/*                                   LEGACY                                   */
+/* -------------------------------------------------------------------------- */
+
 export const createLegacy = createAsyncThunk(
   'legacy/createLegacy',
   async ({ legacyData, token }, thunkAPI) => {
@@ -77,6 +81,28 @@ export const getLegacy = createAsyncThunk(
   }
 );
 
+export const updateLegacy = createAsyncThunk(
+  'legacy/updateLegacy',
+  async ({ newData, legacyID, token }, thunkAPI) => {
+    try {
+      const legacyResponse = await fetch(API_URL(`legacy/${legacyID}`), {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ ...newData })
+      });
+      const data = await legacyResponse.json();
+      if (legacyResponse.status === 200) {
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const deleteLegacy = createAsyncThunk(
   'legacy/deleteLegacy',
   async ({ legacyID, token }, thunkAPI) => {
@@ -93,6 +119,32 @@ export const deleteLegacy = createAsyncThunk(
         return data;
       } else {
         return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+/* -------------------------------------------------------------------------- */
+/*                                    SIMS                                    */
+/* -------------------------------------------------------------------------- */
+
+export const createSim = createAsyncThunk(
+  'legacy/createSim',
+  async ({ simData, legacyID, token }, thunkAPI) => {
+    try {
+      const simResponse = await fetch(API_URL('sim'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ simData, legacyID })
+      });
+      const newSim = await simResponse.json();
+      if (simResponse.status === 201) {
+        return newSim;
+      } else {
+        return thunkAPI.rejectWithValue(newSim);
       }
     } catch (error) {
       console.log('Error', error.response.data);
@@ -126,53 +178,6 @@ export const updateSim = createAsyncThunk(
   }
 );
 
-export const updateHeirs = createAsyncThunk(
-  'legacy/updateHeirs',
-  async ({ simsRunning, legacyID, token }, thunkAPI) => {
-    const { laws, ruler } = thunkAPI.getState().legacy;
-    const calcs = calculateHeir({ laws, simsRunning, ruler });
-    try {
-      const simResponse = await fetch(API_URL(`legacy/${legacyID}/potentialHeirs`), {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ ...calcs })
-      });
-      const updatedSim = await simResponse.json();
-      if (simResponse.status === 201) {
-        thunkAPI.dispatch(getLegacy({ legacyID, token }));
-        return updatedSim;
-      } else {
-        return thunkAPI.rejectWithValue(updatedSim);
-      }
-    } catch (error) {
-      console.log('Error', error.response.data);
-      thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const createSim = createAsyncThunk(
-  'legacy/createSim',
-  async ({ simData, legacyID, token }, thunkAPI) => {
-    try {
-      const simResponse = await fetch(API_URL('sim'), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ simData, legacyID })
-      });
-      const newSim = await simResponse.json();
-      if (simResponse.status === 201) {
-        return newSim;
-      } else {
-        return thunkAPI.rejectWithValue(newSim);
-      }
-    } catch (error) {
-      console.log('Error', error.response.data);
-      thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-
 export const deleteSim = createAsyncThunk(
   'legacy/deleteSim',
   async ({ simData, legacyID, token }, thunkAPI) => {
@@ -184,50 +189,6 @@ export const deleteSim = createAsyncThunk(
       });
       const data = await resp.json();
       if (resp.status === 200) {
-        return data;
-      } else {
-        return thunkAPI.rejectWithValue(data);
-      }
-    } catch (error) {
-      console.log('Error', error.response.data);
-      thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const updateLegacy = createAsyncThunk(
-  'legacy/updateLegacy',
-  async ({ newData, legacyID, token }, thunkAPI) => {
-    try {
-      const legacyResponse = await fetch(API_URL(`legacy/${legacyID}`), {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ ...newData })
-      });
-      const data = await legacyResponse.json();
-      if (legacyResponse.status === 200) {
-        return data;
-      } else {
-        return thunkAPI.rejectWithValue(data);
-      }
-    } catch (error) {
-      console.log('Error', error.response.data);
-      thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const updateLaws = createAsyncThunk(
-  'legacy/updateLaws',
-  async ({ laws, legacyID, token }, thunkAPI) => {
-    try {
-      const legacyResponse = await fetch(API_URL(`legacy/${legacyID}/laws`), {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ laws })
-      });
-      const data = await legacyResponse.json();
-      if (legacyResponse.status === 200) {
         return data;
       } else {
         return thunkAPI.rejectWithValue(data);
@@ -262,6 +223,10 @@ export const addCategoryItemToSims = createAsyncThunk(
   }
 );
 
+/* -------------------------------------------------------------------------- */
+/*                                Sub-endpoints                               */
+/* -------------------------------------------------------------------------- */
+
 export const toggleGoal = createAsyncThunk(
   'legacy/toggleGoal',
   async ({ category, goalID, legacyID, value, property, token }, thunkAPI) => {
@@ -269,7 +234,7 @@ export const toggleGoal = createAsyncThunk(
       const legacyResponse = await fetch(
         API_URL(`legacy/${legacyID}/goals/${category}/${goalID}`),
         {
-          method: 'POST',
+          method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
@@ -278,33 +243,7 @@ export const toggleGoal = createAsyncThunk(
         }
       );
       const data = await legacyResponse.json();
-      if (legacyResponse.status === 200) {
-        thunkAPI.dispatch(getLegacy({ legacyID, token }));
-        return data;
-      } else {
-        return thunkAPI.rejectWithValue(data);
-      }
-    } catch (error) {
-      console.log('Error', error.response.data);
-      thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const updatePacks = createAsyncThunk(
-  'legacy/updatePacks',
-  async ({ packID, legacyID, value, token }, thunkAPI) => {
-    try {
-      const legacyResponse = await fetch(API_URL(`legacy/${legacyID}/packs/${packID}`), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({ bool: value })
-      });
-      const data = await legacyResponse.json();
-      if (legacyResponse.status === 200) {
+      if (legacyResponse.status === 201) {
         thunkAPI.dispatch(getLegacy({ legacyID, token }));
         return data;
       } else {
@@ -342,61 +281,6 @@ export const updateCategoryItem = createAsyncThunk(
         return data;
       } else {
         console.log(data);
-        return thunkAPI.rejectWithValue(data);
-      }
-    } catch (error) {
-      console.log('Error', error.response.data);
-      thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const completeCategoryItem = createAsyncThunk(
-  'legacy/completeCategoryItem',
-  async ({ category, itemID, legacyID, simID, token }, thunkAPI) => {
-    try {
-      const legacyResponse = await fetch(
-        API_URL(`legacy/${legacyID}/${category}/${itemID}`),
-        {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      );
-      const data = await legacyResponse.json();
-      const updatedItem = data[category].find((el) => el._id === itemID);
-
-      if (legacyResponse.status === 200) {
-        const state = thunkAPI.getState().legacy;
-        const completedGoal = verifyGoalCompletion({ state, category });
-        if (completedGoal) {
-          thunkAPI.dispatch(
-            toggleGoal({
-              category,
-              goalID: completedGoal,
-              legacyID,
-              value: true,
-              property: 'completed',
-              token
-            })
-          );
-        }
-        if (simID) {
-          thunkAPI.dispatch(
-            addCategoryItemToSims({
-              category,
-              item: { ...updatedItem },
-              simID,
-              legacyID,
-              token
-            })
-          );
-        } else {
-          thunkAPI.dispatch(getLegacy({ legacyID, token }));
-        }
-        return data;
-      } else {
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
@@ -454,6 +338,202 @@ export const completeCategoryItemTask = createAsyncThunk(
         } else {
           thunkAPI.dispatch(getLegacy({ legacyID, token }));
         }
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const completeCategoryItem = createAsyncThunk(
+  'legacy/completeCategoryItem',
+  async ({ category, itemID, legacyID, simID, token }, thunkAPI) => {
+    try {
+      const legacyResponse = await fetch(
+        API_URL(`legacy/${legacyID}/${category}/${itemID}/complete`),
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+      const data = await legacyResponse.json();
+      const updatedItem = data[category].find((el) => el._id === itemID);
+
+      if (legacyResponse.status === 200) {
+        const state = thunkAPI.getState().legacy;
+        const completedGoal = verifyGoalCompletion({ state, category });
+        if (completedGoal) {
+          thunkAPI.dispatch(
+            toggleGoal({
+              category,
+              goalID: completedGoal,
+              legacyID,
+              value: true,
+              property: 'completed',
+              token
+            })
+          );
+        }
+        if (simID) {
+          thunkAPI.dispatch(
+            addCategoryItemToSims({
+              category,
+              item: { ...updatedItem },
+              simID,
+              legacyID,
+              token
+            })
+          );
+        } else {
+          thunkAPI.dispatch(getLegacy({ legacyID, token }));
+        }
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const updateHeirs = createAsyncThunk(
+  'legacy/updateHeirs',
+  async ({ simsRunning, legacyID, token }, thunkAPI) => {
+    const { laws, ruler } = thunkAPI.getState().legacy;
+    const calcs = calculateHeir({ laws, simsRunning, ruler });
+    try {
+      const simResponse = await fetch(API_URL(`legacy/${legacyID}/potentialHeirs`), {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ ...calcs })
+      });
+      const updatedSim = await simResponse.json();
+      if (simResponse.status === 201) {
+        thunkAPI.dispatch(getLegacy({ legacyID, token }));
+        return updatedSim;
+      } else {
+        return thunkAPI.rejectWithValue(updatedSim);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const updateLaws = createAsyncThunk(
+  'legacy/updateLaws',
+  async ({ laws, legacyID, token }, thunkAPI) => {
+    try {
+      const legacyResponse = await fetch(API_URL(`legacy/${legacyID}/laws`), {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ laws })
+      });
+      const data = await legacyResponse.json();
+      if (legacyResponse.status === 201) {
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const updatePacks = createAsyncThunk(
+  'legacy/updatePacks',
+  async ({ packID, legacyID, value, token }, thunkAPI) => {
+    try {
+      const legacyResponse = await fetch(API_URL(`legacy/${legacyID}/packs/${packID}`), {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ bool: value })
+      });
+      const data = await legacyResponse.json();
+      if (legacyResponse.status === 201) {
+        thunkAPI.dispatch(getLegacy({ legacyID, token }));
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const addRules = createAsyncThunk(
+  'legacy/addRules',
+  async ({ value, legacyID, token }, thunkAPI) => {
+    try {
+      const legacyResponse = await fetch(API_URL(`legacy/${legacyID}/rules`), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ value })
+      });
+      const data = await legacyResponse.json();
+      if (legacyResponse.status === 201) {
+        thunkAPI.dispatch(getLegacy({ legacyID, token }));
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const updateRules = createAsyncThunk(
+  'legacy/updateRules',
+  async ({ value, legacyID, rulesid, token }, thunkAPI) => {
+    try {
+      const legacyResponse = await fetch(API_URL(`legacy/${legacyID}/rules/${rulesid}`), {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ value })
+      });
+      const data = await legacyResponse.json();
+      if (legacyResponse.status === 201) {
+        thunkAPI.dispatch(getLegacy({ legacyID, token }));
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      console.log('Error', error.response.data);
+      thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const deleteRule = createAsyncThunk(
+  'legacy/deleteRule',
+  async ({ legacyID, rulesid, token }, thunkAPI) => {
+    try {
+      const resp = await fetch(API_URL(`legacy/${legacyID}/rules/${rulesid}`), {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const data = await resp.json();
+      if (resp.status === 200) {
+        thunkAPI.dispatch(getLegacy({ legacyID, token }));
         return data;
       } else {
         return thunkAPI.rejectWithValue(data);

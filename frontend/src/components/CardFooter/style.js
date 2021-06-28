@@ -6,11 +6,13 @@ export default (theme) => ({
     alignItems: 'center',
     display: 'flex',
     flexWrap: 'wrap',
-    borderTop: `1px solid ${theme.palette.divider}`,
     '& > *': {
       marginRight: theme.spacing(1),
       marginTop: theme.spacing(1),
       marginBottom: theme.spacing(1)
     }
+  },
+  hasBorder: {
+    borderTop: `1px solid ${theme.palette.divider}`
   }
 });

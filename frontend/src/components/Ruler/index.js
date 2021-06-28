@@ -69,7 +69,7 @@ export default () => {
       {ruler.aspirations.length > 0 && (
         <ChipSection items={ruler.aspirations} title="completed aspirations" />
       )}
-      <CardFooter>
+      <CardFooter hasBorder>
         <DialogSims
           buttonText
           title={`Edit ${ruler.firstName} ${ruler.lastName}`}

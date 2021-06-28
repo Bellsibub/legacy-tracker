@@ -6,14 +6,13 @@ import styles from "./style";
 
 const useStyles = makeStyles(styles);
 
-export default function CardBody({ className, children, ...other }) {
+export default function CardBody({ children, ...other }) {
   const classes = useStyles();
   const cardBodyClasses = classNames({
-    [classes.cardBody]: true,
-    [className]: className !== undefined
+    [classes.cardBody]: true
   });
   return (
-    <div className={cardBodyClasses} {...other}>
+    <div className={cardBodyClasses}>
       {children}
     </div>
   );

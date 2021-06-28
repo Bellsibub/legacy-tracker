@@ -6,14 +6,13 @@ import styles from './style';
 
 const useStyles = makeStyles(styles);
 
-export default ({ className, children, ...other }) => {
+export default ({ children, ...other }) => {
   const classes = useStyles();
   const cardClasses = classNames({
-    [classes.card]: true,
-    [className]: className !== undefined
+    [classes.card]: true
   });
   return (
-    <div className={cardClasses} {...other}>
+    <div className={cardClasses}>
       {children}
     </div>
   );
