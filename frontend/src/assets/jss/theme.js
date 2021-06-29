@@ -10,7 +10,7 @@ const theme = createMuiTheme({
         body: {
           backgroundColor: defaultTheme.palette.grey[300],
           backgroundImage:
-            'linear-gradient(to bottom, rgba(66,119,183,0.1), rgba(66,119,183,0.9)), url(https://res.cloudinary.com/dsp41gbcw/image/upload/v1624954335/legacyTracker/bkg.jpg)',
+            'linear-gradient(to bottom, rgba(255,255,255,0.57), rgba(1,62,136,0.9)), url(https://res.cloudinary.com/dsp41gbcw/image/upload/v1624954335/legacyTracker/bkg.jpg)',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center center',
           backgroundSize: 'cover',

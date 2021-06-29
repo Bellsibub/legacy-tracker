@@ -22,31 +22,23 @@ export default () => {
   const classes = useStyles();
   return (
     <>
-      <AppBar className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h1">
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-      <div className={classes.mainPanel}>
-        <div className={classes.content}>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <Typography className={classes.title} variant="h1">
+      <Grid
+        container
+        spacing={2}
+        direction="column"
+        justify="center"
+        alignItems="center"
+        className={classes.textWrapper}>
+        <Typography className={classes.title} variant="h1">
                 404
-              </Typography>
-              <Typography className={classes.subTitle} variant="h4">
+        </Typography>
+        <Typography className={classes.subTitle} variant="h4">
                 Page not found
-              </Typography>
-              <Typography className={classes.description} varaint="h3">
+        </Typography>
+        <Typography className={classes.description} varaint="h3">
                 Ooooups! Looks like you got lost.
-              </Typography>
-            </Grid>
-          </Grid>
-        </div>
-      </div>
+        </Typography>
+      </Grid>
     </>
   );
 };

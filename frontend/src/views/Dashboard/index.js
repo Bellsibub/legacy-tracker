@@ -5,8 +5,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // 3rd party components
-import { Grid } from '@material-ui/core';
-
+import { Grid, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 // custom components
 import Ruler from 'components/Ruler';
 import Heir from 'components/Heir';
@@ -18,10 +18,13 @@ import BigImage from 'components/BigImage';
 import { deleteLegacy } from 'store/legacy/services';
 // assets
 import logo from 'assets/img/logo-white.svg';
+import styles from 'assets/jss/fullPageStyles';
 
+const useStyles = makeStyles(styles);
 export default () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const classes = useStyles();
 
   const { getAccessTokenSilently } = useAuth0();
   const { score, _id } = useSelector((store) => store.legacy);
@@ -62,10 +65,14 @@ export default () => {
           spacing={2}
           direction="column"
           justify="center"
-          alignItems="center">
-          <BigImage image={logo} alt="logo" />
+          alignItems="center"
+          className={classes.textWrapper}>
+          <Typography className={classes.subTitle} variant="h4">
+            No legacy found
+          </Typography>
           <DialogConfirm
             onConfirm={handleStartNewLegacy}
+            color="accent"
             buttonText="Start new legacy"
             title="Start a new legacy?"
             message={
