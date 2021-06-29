@@ -7,6 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 // custom components
 import Drawer from 'components/Drawer';
 import Appbar from 'components/Appbar';
+import NoMatch from 'pages/nomatch';
+
 import Loading from 'components/Loading';
 // actions
 import { setScores } from 'store/legacy';
@@ -91,7 +93,10 @@ export const Home = () => {
       <div className={classes.mainPanel}>
         <Appbar handleDrawerToggle={handleDrawerToggle} />
         <div className={classes.content}>
-          <Switch>{getRoutes(routes)}</Switch>
+          <Switch>
+            {getRoutes(routes)}
+            <Route component={NoMatch} />
+          </Switch>
         </div>
       </div>
     </>

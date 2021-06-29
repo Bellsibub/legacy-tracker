@@ -8,13 +8,13 @@ const theme = createMuiTheme({
     MuiCssBaseline: {
       '@global': {
         body: {
-          backgroundColor: defaultTheme.palette.grey[300]
-          // backgroundImage:
-          //   'url(https://images.unsplash.com/photo-1500817487388-039e623edc21?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=935&q=80)',
-          // backgroundRepeat: 'no-repeat',
-          // backgroundPosition: 'center center',
-          // backgroundSize: 'cover',
-          // backgroundAttachment: 'fixed'
+          backgroundColor: defaultTheme.palette.grey[300],
+          backgroundImage:
+            'linear-gradient(to bottom, rgba(66,119,183,0.1), rgba(66,119,183,0.9)), url(https://res.cloudinary.com/dsp41gbcw/image/upload/v1624954335/legacyTracker/bkg.jpg)',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover',
+          backgroundAttachment: 'fixed'
         }
       }
     }
@@ -25,9 +25,9 @@ const theme = createMuiTheme({
   typography: {
     h1: {
       fontWeight: 400,
-      fontSize: "2.5rem",
+      fontSize: '2.5rem',
       lineHeight: 1.3,
-      letterSpacing: "0.01em"
+      letterSpacing: '0.01em'
     },
     h2: {
       textAlign: 'right',
@@ -42,7 +42,7 @@ const theme = createMuiTheme({
       margin: '10px 0'
     },
     subtitle1: {
-      color: "white",
+      color: 'white',
       fontSize: '1rem',
       letterSpacing: '0.09em',
       lineHeight: 2.5,

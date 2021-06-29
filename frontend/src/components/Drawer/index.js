@@ -30,6 +30,7 @@ const DrawerWrapper = ({ className, header, links, profile }) => {
     </div>
   );
 };
+
 const Links = ({ routes, section }) => {
   const classes = useStyles();
   const legacy = useSelector((store) => store.legacy);
@@ -95,7 +96,6 @@ export default ({ logo, routes, open, handleDrawerToggle }) => {
       <List className={classes.list}>
         <Links routes={routes} section="profile" />
       </List>
-      ;
     </div>
   );
 

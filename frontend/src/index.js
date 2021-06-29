@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ThemeProvider, responsiveFontSizes } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -30,8 +30,8 @@ ReactDOM.render(
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Switch>
+            <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
             <Route path="/" component={HomeLayout} />
-            <Route component={NoMatch} />
           </Switch>
         </ThemeProvider>
       </BrowserRouter>

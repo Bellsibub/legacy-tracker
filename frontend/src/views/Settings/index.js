@@ -42,8 +42,8 @@ export default () => {
               : "Let's create a legacy!"
           } />
       </Grid>
-      <Grid container spacing={3}>
-        <Grid item lg={6} md={8} xs={12}>
+      <Grid container spacing={3} justify="center">
+        <Grid item lg={3} md={8} xs={12}>
           <Profile />
         </Grid>
         {_id && (
