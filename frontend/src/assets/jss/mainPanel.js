@@ -5,7 +5,7 @@ export default (theme) => ({
     [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${drawerWidth}px)`
     },
-    overflow: 'auto',
+    // overflow: 'auto',
     position: 'relative',
     float: 'right',
     maxHeight: '100%',

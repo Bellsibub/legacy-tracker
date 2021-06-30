@@ -1,6 +1,6 @@
 import { appBarHeight } from 'assets/jss/globals';
 
-export default () => ({
+export default (theme) => ({
   appBar: {
     position: 'absolute',
     zIndex: '1029',
@@ -12,6 +12,12 @@ export default () => ({
     minHeight: `${appBarHeight}px`
   },
   appBarContent: {
-    flexGrow: 1
+    flexGrow: 1,
+    display: 'flex',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    '& > h6': {
+      marginLeft: theme.spacing(2)
+    }
   }
 });

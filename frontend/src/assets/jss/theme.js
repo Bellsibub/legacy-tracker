@@ -17,6 +17,23 @@ const theme = createMuiTheme({
           backgroundAttachment: 'fixed'
         }
       }
+    },
+    MuiPopover: {
+      paper: {
+        padding: defaultTheme.spacing(2),
+        minWidth: '25%',
+        maxWidth: '45%'
+      }
+    }
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      mobile: 425,
+      sm: 800,
+      md: 1140,
+      lg: 1280,
+      xl: 1920
     }
   },
   palette: {

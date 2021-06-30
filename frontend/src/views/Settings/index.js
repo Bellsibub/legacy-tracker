@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // 3rd party components
-import { Grid } from '@material-ui/core';
+import { Grid, Container } from '@material-ui/core';
 // custom components
 import IconItemsList from 'components/IconItemsList';
 import Profile from 'components/Profile';
@@ -30,7 +30,7 @@ export default () => {
   };
 
   return (
-    <>
+    <Container maxWidth="md">
       <Grid container justify="flex-end">
         <DialogConfirm
           onConfirm={handleStartNewLegacy}
@@ -43,7 +43,7 @@ export default () => {
           } />
       </Grid>
       <Grid container spacing={3} justify="center">
-        <Grid item lg={3} md={8} xs={12}>
+        <Grid item lg md={8} xs={12}>
           <Profile />
         </Grid>
         {_id && (
@@ -52,6 +52,6 @@ export default () => {
           </Grid>
         )}
       </Grid>
-    </>
+    </Container>
   );
 };

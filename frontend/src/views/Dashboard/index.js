@@ -5,7 +5,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // 3rd party components
-import { Grid, Typography } from '@material-ui/core';
+import { Container, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 // custom components
 import Ruler from 'components/Ruler';
@@ -42,22 +42,27 @@ export default () => {
   return (
     <>
       {_id && (
-        <Grid container spacing={3}>
-          <Grid item sm={6} xs={12}>
-            <Ruler />
-          </Grid>
-          <Grid item sm={6} xs={12}>
-            <Heir />
-          </Grid>
-          {_.map(score, (scoreValues, key) => (
-            <Grid item lg={3} md={5} sm={6} xs={12} key={key}>
-              <Stats value={scoreValues.score || 0} type="score" title={key} />
+        <Container maxWidth="md">
+          <Grid container spacing={3} justify="center">
+            <Grid item lg md sm={9} xs={12}>
+              <Ruler />
             </Grid>
-          ))}
-          <Grid item sm={6} xs={12}>
-            <FocusTaskList />
+            <Grid item lg={5} md={6} sm={9} xs={12}>
+              <Heir />
+            </Grid>
+            <Grid item lg={8} md={8} sm={9} xs={12}>
+              <FocusTaskList />
+            </Grid>
           </Grid>
-        </Grid>
+          <Grid container spacing={3} justify="center">
+            {_.map(score, (scoreValues, key) => (
+              <Grid item lg md={4} sm={6} xs={9} key={key}>
+                <Stats value={scoreValues.score || 0} type="score" title={key} />
+              </Grid>
+            ))}
+          </Grid>
+
+        </Container>
       )}
       {!_id && (
         <Grid

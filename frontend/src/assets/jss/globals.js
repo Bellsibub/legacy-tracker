@@ -22,7 +22,7 @@ const drawerWidth = 260;
 
 const drawerMiniWidth = 80;
 
-export const appBarHeight = 150;
+export const appBarHeight = 120;
 
 const defaultFont = {
   fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',

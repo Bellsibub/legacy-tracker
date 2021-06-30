@@ -99,10 +99,7 @@ export default () => {
 
   return (
     <Card>
-      <CardHeader color="accent" avatar={user.picture} avataralt={user.nickname}>
-        <Typography variant="subtitle2">PROFILE</Typography>
-        <Typography variant="h2">{userName}</Typography>
-      </CardHeader>
+      <CardHeader color="accent" avatar={user.picture} avataralt={user.nickname} />
       <CardBody>
         <form onSubmit={handleSubmit}>
           <TextInput

@@ -51,7 +51,6 @@ const RuleItem = ({ rule }) => {
           edge="end" />
         <DialogConfirm
           icon={Delete}
-          color="error"
           title=""
           message="Are you sure you want to do delete this rule?"
           onConfirm={handleDeleteRule} />

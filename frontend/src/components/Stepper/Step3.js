@@ -11,9 +11,15 @@ import {
   Collapse,
   ListItemText,
   ListSubheader,
-  Radio
+  Radio,
+  Popover,
+  Typography,
+  IconButton,
+  useTheme,
+  useMediaQuery
 } from '@material-ui/core';
-import { Minus, Plus } from 'mdi-material-ui';
+import { InfoOutlined } from '@material-ui/icons';
+import { ChevronDown, ChevronUp } from 'mdi-material-ui';
 
 // styles
 const useStyles = makeStyles((theme) => ({
@@ -37,10 +43,20 @@ const useStyles = makeStyles((theme) => ({
 
 const LawItemCollapse = ({ onChange, selectedValue, index, ...law }) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-
-  const handleExpandToggle = () => {
-    setOpen(!open);
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [openCollapse, setOpenCollapse] = React.useState(false);
+  const openPop = Boolean(anchorEl);
+  const handleClick = (event) => {
+    if (smallScreen) {
+      setOpenCollapse(!openCollapse);
+    } else {
+      setAnchorEl(event.currentTarget);
+    }
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -50,18 +66,41 @@ const LawItemCollapse = ({ onChange, selectedValue, index, ...law }) => {
         onChange={onChange}
         value={index}
         name="radio-button-demo" />
-      <ListItem button onClick={handleExpandToggle} className={classes.item}>
+      <ListItem className={classes.item}>
         <ListItemText primary={law.title} />
-        {open ? <Minus /> : <Plus />}
+        <IconButton onClick={handleClick}>
+          {smallScreen ? (
+            <>{openCollapse ? <ChevronUp /> : <ChevronDown />}</>
+          ) : (
+            <InfoOutlined />
+          )}
+        </IconButton>
       </ListItem>
-      <Collapse in={open} timeout="auto" unmountOnExit>
-        <List dense component="div" disablePadding>
-          <ListItem className={classes.nested}>
-            <ListItemText primary={law.description} />
-          </ListItem>
-        </List>
-        {open && <Divider />}
-      </Collapse>
+      {smallScreen ? (
+        <Collapse in={openCollapse} timeout="auto" unmountOnExit>
+          <List dense component="div" disablePadding>
+            <ListItem className={classes.nested}>
+              <ListItemText primary={law.description} />
+            </ListItem>
+          </List>
+          {openCollapse && <Divider />}
+        </Collapse>
+      ) : (
+        <Popover
+          open={openPop}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'center',
+            horizontal: 'right'
+          }}
+          transformOrigin={{
+            vertical: 'center',
+            horizontal: 'left'
+          }}>
+          <Typography>{law.description}</Typography>
+        </Popover>
+      )}
     </div>
   );
 };
@@ -91,10 +130,11 @@ const LawCategory = ({ packs, category, setLaws, ...lawsInCat }) => {
   }, []);
 
   const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+    const { value } = event.target;
+    setSelectedValue(parseInt(value, 10));
     setLaws((prevState) => ({
       ...prevState,
-      [category]: { ...lawsInCat[event.target.value] }
+      [category]: { ...lawsInCat[parseInt(value, 10)] }
     }));
   };
   return (

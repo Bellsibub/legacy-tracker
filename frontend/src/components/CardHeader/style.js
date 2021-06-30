@@ -37,6 +37,11 @@ export default (theme) => ({
     color: 'white',
     width: '200px',
     height: '200px',
+    [theme.breakpoints.down('xs')]: {
+      width: '150px',
+      height: '150px',
+      left: 'calc(50% - 60px)'
+    },
     '& > *': {
       width: 'auto',
       height: 'auto'

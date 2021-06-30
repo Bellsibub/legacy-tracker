@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // 3rd party components
-import { Grid } from '@material-ui/core';
+import { Container, Grid } from '@material-ui/core';
 
 // custom components
 import Ruler from 'components/Ruler';
@@ -115,7 +115,7 @@ export default () => {
   };
 
   return (
-    <>
+    <Container maxWidth="md">
       <Grid container justify="flex-end">
         <DialogSims
           disabled={disabled}
@@ -132,25 +132,25 @@ export default () => {
           // newGen
           onConfirm={handleInitNewGen} />
       </Grid>
-      <Grid container spacing={3}>
-        <Grid item lg={6} md={9} sm={9} xs={12}>
+      <Grid container spacing={3} justify="center">
+        <Grid item lg md sm={9} xs={12}>
           <Ruler />
         </Grid>
-        <Grid item lg={6} md={9} sm={9} xs={12}>
+        <Grid item lg={5} md={6} sm={9} xs={12}>
           <Heir />
         </Grid>
       </Grid>
-      <Grid container spacing={3}>
-        <Grid item lg={8} xs={12}>
-          {_.map(generations, (gen, key) => (
+      <Grid container spacing={6} justify="center">
+        {_.map(generations, (gen, key) => (
+          <Grid item lg={12} xs={12}>
             <GenerationList
               key={key}
               items={gen.sims}
               gen={parseInt(gen.gen, 10)}
               roles={roles} />
-          ))}
-        </Grid>
+          </Grid>
+        ))}
       </Grid>
-    </>
+    </Container>
   );
 };
