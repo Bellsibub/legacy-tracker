@@ -62,52 +62,72 @@
     {
       "title": "First Born",
       "description": "The oldest, by order of joining the family, eligible living child is named heir.",
-      "pack": "base_game"
+      "pack": "base_game",
+      "auto": false,
+      "helpText": "Is this sim the first born or first addition to the family?"
     },
     {
       "title": "Last Born",
       "description": "The youngest, by order of joining the family, eligible living child is named heir.",
-      "pack": "base_game"
+      "pack": "base_game",
+      "auto": false,
+      "helpText": "Is this sim the last born or latest addition to the family?"
     },
     {
       "title": "Living Will",
       "description": "The eligible child with the highest friendly relationship score with their previous-generation’s parent will be named heir.",
-      "pack": "base_game"
+      "pack": "base_game",
+      "auto": false,
+      "helpText": "Does this sim have the best relationship with the current ruler?"
     },
     {
       "title": "Merit",
       "description": "The child with the most fully completed aspirations will be named heir. If there is a tie, the child with the highest level in a single skill will become heir from among the children who are tied.",
-      "pack": "base_game"
+      "pack": "base_game",
+      "auto": false,
+      "helpText": "Does this sim more aspirations completed than the other children?"
     },
     {
       "title": "Strength",
       "description": "The first born eligible child becomes heir by default… but the tile can be forcefully taken from them if an eligible sibling beats them in a fight. That sibling may have their title taken, (or taken back) if they lose a fight to another eligible sibling.",
-      "pack": "base_game"
+      "pack": "base_game",
+      "auto": false,
+      "helpText": "Is this sim a first born? Or have they won a fight with their siblings?"
     },
     {
       "title": "Random",
       "description": "The title of heir is randomly selected from the pool of all eligible children. Every time the eligible pool changes size, The heir must be re-rolled using the new pool.",
-      "pack": "base_game"
+      "pack": "base_game",
+      "auto": true,
+      "helpText": ""
     },
     {
       "title": "Exemplar",
       "description": "At the beginning of the challenge, name a single trait. This trait must be one of your founder’s three traits.. Any eligible heir that has this trait will gain the title of heir. If a single generation has no children with this trait follow the First Born rule. If more than one child has the Exemplar trait then the oldest child WITH the trait will be the heir.",
-      "pack": "base_game"
+      "pack": "base_game",
+      "auto": false,
+      "helpText": "Does this sim have the at least one same trait as the founder?"
     },
     {
       "title": "Democracy",
       "description": "This rule may be used if you are displaying your Legacy Challenge in some public way. Either via Let’s Play, Livestream, blog or other format where people can leave comment. The heir is chosen by your viewers/readers from among the pool of eligible heirs.",
-      "pack": "base_game"
+      "pack": "base_game",
+      "auto": false,
+      "helpText": "Is this the sim that won the vote?"
     },
     {
       "title": "Magical Bloodline",
       "description": "Choose the heir by whoever has the strongest magical bloodline trait. If there is no magical bloodline trait (ie in the earlier generations) then the law defaults to first born until magic is introduced to the family. If multiple potential heirs have the same level of magical trait, choose the oldest one.",
-      "pack": "realm_of_magic"
+      "pack": "realm_of_magic",
+      "auto": false,
+      "helpText": "Does this sims have the strongest magical bloodline trait?"
     },
     {
       "title": "Magical strength",
       "description": "Similar to the Strength law above, this one requires two or more potential heirs to have a magical duel. Whoever wins the duel, is the new heir.",
-      "pack": "realm_of_magic"
+      "pack": "realm_of_magic",
+      "auto": false,
+      "helpText": "Did this sim win in a magical duel against their siblings?"
     }
   ],
   "species": [

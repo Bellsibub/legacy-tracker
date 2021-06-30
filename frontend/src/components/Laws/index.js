@@ -35,10 +35,10 @@ const useStyles = makeStyles(styling);
 
 const LawItemCollapse = ({ category, onConfirm, ...law }) => {
   const classes = useStyles();
-  const { packs } = useSelector((store) => store.legacy)
+  const { packs } = useSelector((store) => store.legacy);
   const laws = useSelector((store) => {
     const lawsToFilter = store.session.data.laws[category];
-    return filterByPack(lawsToFilter, packs)
+    return filterByPack(lawsToFilter, packs);
   });
   const [open, setOpen] = React.useState(false);
 
@@ -87,8 +87,16 @@ export default () => {
         dispatch(updateLaws({ laws: { [key]: value }, legacyID: _id, token })).then(
           () => {
             dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
+              console.log(updatedLegacy)
               const simsRunning = filterRunningSims(updatedLegacy, generation);
-              dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
+              dispatch(
+                updateHeirs({
+                  simsRunning,
+                  legacyID: _id,
+                  token,
+                  laws: { ...updatedLegacy.payload.laws }
+                })
+              );
             });
           }
         );

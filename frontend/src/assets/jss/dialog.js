@@ -34,5 +34,10 @@ export default (theme) => ({
     '&:hover': {
       backgroundColor: theme.palette.primary.dark
     }
+  },
+  item: {},
+  isSelected: {
+    border: `1px solid ${theme.palette.accent.main}`,
+    borderRadius: '5px'
   }
 });

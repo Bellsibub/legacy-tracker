@@ -36,6 +36,11 @@ const theme = createMuiTheme({
       xl: 1920
     }
   },
+  props: {
+    MuiTooltip: {
+      enterDelay: 500
+    }
+  },
   palette: {
     ...colorPalette
   },
@@ -77,9 +82,7 @@ const theme = createMuiTheme({
     },
     caption: {
       textTransform: 'uppercase',
-      textAlign: 'center',
-      marginTop: defaultTheme.spacing(2),
-      marginBottom: defaultTheme.spacing(2)
+      textAlign: 'center'
     }
   }
 });

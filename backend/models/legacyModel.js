@@ -41,7 +41,9 @@ const legacySchema = new Schema({
     heir: {
       title: { type: String },
       description: { type: String },
-      pack: { type: String }
+      pack: { type: String },
+      auto: { type: Boolean },
+      helpText: { type: String }
     },
     species: {
       title: { type: String },

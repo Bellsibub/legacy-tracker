@@ -9,7 +9,6 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  IconButton,
   ListItemText,
   Typography
 } from '@material-ui/core';
@@ -19,6 +18,7 @@ import { ArrowUpCircleOutline, Podium } from 'mdi-material-ui';
 import Card from 'components/Card';
 import CardHeader from 'components/CardHeader';
 import CardBody from 'components/CardBody';
+import DialogConfirm from 'components/DialogConfirm';
 
 // services
 import { updateLegacy, getLegacy, updateHeirs } from 'store/legacy/services';
@@ -26,6 +26,7 @@ import { updateLegacy, getLegacy, updateHeirs } from 'store/legacy/services';
 import { filterRunningSims } from 'utils/calculations';
 
 const PotentialHeir = ({ item, onClick }) => {
+  const { heir } = useSelector((store) => store.legacy.laws)
   const handleClick = () => {
     onClick(item);
   };
@@ -33,9 +34,12 @@ const PotentialHeir = ({ item, onClick }) => {
     <>
       <ListItem key={item.id}>
         <ListItemIcon>
-          <IconButton edge="start" onClick={handleClick}>
-            <ArrowUpCircleOutline color="primary" />
-          </IconButton>
+          <DialogConfirm
+            icon={ArrowUpCircleOutline}
+            title="Select this sim as heir"
+            message={heir.helpText || ""}
+            subTitle={`The current heir law is: ${heir.title}`}
+            onConfirm={handleClick} />
         </ListItemIcon>
         <ListItemText primary={`${item.firstName} ${item.lastName}`} />
       </ListItem>
@@ -48,7 +52,9 @@ export default () => {
   const dispatch = useDispatch();
   const { getAccessTokenSilently } = useAuth0();
 
-  const { heir, potentialHeirs, _id, generation } = useSelector((store) => store.legacy);
+  const { heir, potentialHeirs, _id, generation, laws } = useSelector(
+    (store) => store.legacy
+  );
 
   const handleHeirChange = (newHeir) => {
     getAccessTokenSilently()
@@ -73,16 +79,17 @@ export default () => {
           <Typography variant="h2">{`${heir.firstName} ${heir.lastName}`}</Typography>
         ) : (
           <Typography variant="caption" component="p">
-            No current heir selected
+            {laws.heir.auto
+              ? 'No potential heirs found that match your laws'
+              : 'No current heir selected'}
           </Typography>
         )}
       </CardHeader>
-      {potentialHeirs && (
+      {!laws.heir.auto && (
         <>
           <Divider variant="middle" />
           <CardBody>
             <Typography variant="subtitle2">POTENTIAL HEIRS</Typography>
-
             {_.size(potentialHeirs) !== 0 ? (
               <List>
                 {_.map(potentialHeirs, (item) => (

@@ -12,7 +12,8 @@ import {
   Button,
   IconButton,
   Divider,
-  DialogContentText
+  DialogContentText,
+  Tooltip
 } from '@material-ui/core';
 import { Edit } from '@material-ui/icons';
 
@@ -104,13 +105,29 @@ export default ({ title, buttonText, buttonIcon, generation, onConfirm, ...other
         </IconButton>
       )}
       {buttonText && (
-        <Button
-          disabled={other.disabled}
-          variant="contained"
-          color="primary"
-          onClick={toggleDialog}>
-          {typeof buttonText === 'string' ? buttonText : 'edit'}
-        </Button>
+        <>
+          {other.tooltip ? (
+            <Tooltip title={other.disabled ? other.tooltipDis : other.tooltip}>
+              <span>
+                <Button
+                  disabled={other.disabled}
+                  variant="contained"
+                  color="primary"
+                  onClick={toggleDialog}>
+                  {typeof buttonText === 'string' ? buttonText : 'edit'}
+                </Button>
+              </span>
+            </Tooltip>
+          ) : (
+            <Button
+              disabled={other.disabled}
+              variant="contained"
+              color="primary"
+              onClick={toggleDialog}>
+              {typeof buttonText === 'string' ? buttonText : 'edit'}
+            </Button>
+          )}
+        </>
       )}
       <Dialog
         open={open}

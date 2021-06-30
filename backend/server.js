@@ -36,7 +36,7 @@ const jwtCheck = jwt({
     jwksRequestsPerMinute: 5,
     jwksUri: 'https://legacytracker.eu.auth0.com/.well-known/jwks.json'
   }),
-  audience: 'http://localhost:3004',
+  audience: `http://localhost:8080`,
   issuer: 'https://legacytracker.eu.auth0.com/',
   algorithms: ['RS256']
 });

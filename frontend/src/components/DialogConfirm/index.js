@@ -11,7 +11,8 @@ import {
   Typography,
   Button,
   IconButton,
-  ButtonBase
+  ButtonBase,
+  Tooltip
 } from '@material-ui/core';
 
 // styles
@@ -44,13 +45,29 @@ export default ({ title, message, onConfirm, className, children, ...other }) =>
         </IconButton>
       )}
       {other.buttonText && (
-        <Button
-          className={buttonColors}
-          variant="contained"
-          onClick={toggleDialog}
-          disabled={other.disabled}>
-          {other.buttonText}
-        </Button>
+        <>
+          {other.tooltip ? (
+            <Tooltip title={other.disabled ? other.tooltipDis : other.tooltip}>
+              <span>
+                <Button
+                  className={buttonColors}
+                  variant="contained"
+                  onClick={toggleDialog}
+                  disabled={other.disabled}>
+                  {other.buttonText}
+                </Button>
+              </span>
+            </Tooltip>
+          ) : (
+            <Button
+              className={buttonColors}
+              variant="contained"
+              onClick={toggleDialog}
+              disabled={other.disabled}>
+              {other.buttonText}
+            </Button>
+          )}
+        </>
       )}
       {other.buttonBase && (
         <ButtonBase
@@ -66,9 +83,18 @@ export default ({ title, message, onConfirm, className, children, ...other }) =>
         onClose={toggleDialog}
         aria-labelledby="dialogConfirm"
         className={classes.dialog}>
-        <DialogTitle id="dialogConfirm">{title}</DialogTitle>
+        <DialogTitle id="dialogConfirm">
+          {title}
+          {other.subTitle && (
+            <Typography variant="caption" component="p" align="left">
+              {other.subTitle}
+            </Typography>
+          )}
+        </DialogTitle>
         <DialogContent>
-          <Typography variant="body1">{message}</Typography>
+          <Typography variant="body1" component="p">
+            {message}
+          </Typography>
         </DialogContent>
         <DialogActions>
           <Button onClick={toggleDialog}>Cancel</Button>

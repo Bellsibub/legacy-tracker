@@ -79,7 +79,7 @@ export default () => {
         dispatch(createSim({ simData: newSim, legacyID: _id, token })).then(() => {
           dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
             const simsRunning = filterRunningSims(updatedLegacy, generation);
-            dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
+            dispatch(updateHeirs({ simsRunning, legacyID: _id, token, newSim: true }));
           });
         });
       })
@@ -116,21 +116,27 @@ export default () => {
 
   return (
     <Container maxWidth="md">
-      <Grid container justify="flex-end">
-        <DialogSims
-          disabled={disabled}
-          title="Create your first sim in this generation!"
-          buttonText="Start new generation"
-          newGen
-          roleType={roles.child}
-          generation={generation + 1}
-          onConfirm={handleNewSimConfirm} />
-        <DialogConfirm
-          disabled={!disabled}
-          title="Are you sure you want to begin the next generation? There is no going back after this!"
-          buttonText="Init next gen"
-          // newGen
-          onConfirm={handleInitNewGen} />
+      <Grid container justify="flex-end" spacing={3}>
+        <Grid item>
+          <DialogSims
+            tooltip="Click to create a new generation; therin the first child of that generation"
+            tooltipDis="You cannot start a new generation when there is one waiting to be initiated"
+            disabled={disabled}
+            title="Create your first sim in this generation!"
+            buttonText="Start new generation"
+            newGen
+            roleType={roles.child}
+            generation={generation + 1}
+            onConfirm={handleNewSimConfirm} />
+          <DialogConfirm
+            tooltip="Click to set heir as ruler; therin beginning the next generation"
+            tooltipDis="You need an heir to initiate a new generation"
+            disabled={!heir}
+            title="Begin next generation"
+            message="Are you sure you want to begin the next generation? There is no going back after this!"
+            buttonText="Init next gen"
+            onConfirm={handleInitNewGen} />
+        </Grid>
       </Grid>
       <Grid container spacing={3} justify="center">
         <Grid item lg md sm={9} xs={12}>

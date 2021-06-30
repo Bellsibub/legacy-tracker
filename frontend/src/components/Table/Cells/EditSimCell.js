@@ -45,7 +45,7 @@ export default ({ item }) => {
         dispatch(deleteSim({ simData: item, legacyID: _id, token })).then(() => {
           dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
             const simsRunning = filterRunningSims(updatedLegacy, generation);
-            dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
+            dispatch(updateHeirs({ simsRunning, legacyID: _id, token, newSim: true }));
           });
         });
       })

@@ -17,7 +17,7 @@ export const filterRunningSims = (updatedLegacy, generation) => {
     (sim) => sim.role.runningForRuler
   );
   simsRunning = _.filter(simsRunning, (sim) => sim.generation > generation);
-  if (updatedLegacy.payload.heir) {
+  if (updatedLegacy.payload.heir && !updatedLegacy.payload.laws.heir.auto) {
     simsRunning = _.filter(
       simsRunning,
       (sim) => sim._id !== updatedLegacy.payload.heir._id
@@ -76,6 +76,43 @@ const lawsCalculations = {
           }
         }
         break;
+      default:
+        break;
+    }
+  },
+  bloodline: (laws, sim, simsRunning, ruler) => {
+    const simsByAdotion = _.groupBy(simsRunning, 'adopted');
+    switch (laws) {
+      case 'Modern':
+        return true
+      case 'Traditional':
+        if (!sim.adopted) {
+          return true;
+        } else if (_.includes(_.keys(simsByAdotion), 'false')) {
+          return false;
+        } else {
+          return true;
+        }
+      case 'Strict Traditional':
+        if (!sim.adopted) {
+          return true;
+        } else {
+          return false;
+        }
+      case 'Foster':
+        if (sim.adopted) {
+          return true;
+        } else if (_.includes(_.keys(simsByAdotion), 'true')) {
+          return false;
+        } else {
+          return true;
+        }
+      case 'Strict Foster':
+        if (sim.adopted) {
+          return true;
+        } else {
+          return false;
+        }
       default:
         break;
     }
@@ -142,3 +179,9 @@ export const calculateHeir = ({ laws, simsRunning, ruler }) => {
     nonEligible
   };
 };
+
+export const autoSelectHeir = ({ laws, eligible }) => {
+  const maxVal = _.size(eligible);
+
+  return eligible[_.random(0, maxVal)]
+}

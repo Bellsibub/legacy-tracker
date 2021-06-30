@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { verifyGoalCompletion, calculateHeir } from 'utils/calculations';
+import { verifyGoalCompletion, calculateHeir, autoSelectHeir } from 'utils/calculations';
 import { updateUserMetadata } from 'store/session/services';
 import { setLegacy } from 'store/session';
 import { API_URL } from 'utils/apiConfig';
@@ -410,14 +410,23 @@ export const completeCategoryItem = createAsyncThunk(
 
 export const updateHeirs = createAsyncThunk(
   'legacy/updateHeirs',
-  async ({ simsRunning, legacyID, token }, thunkAPI) => {
+  async ({ simsRunning, legacyID, token, ...other }, thunkAPI) => {
     const { laws, ruler } = thunkAPI.getState().legacy;
     const calcs = calculateHeir({ laws, simsRunning, ruler });
+    let newHeir;
+    if (other.newSim) {
+      if (other.laws) {
+        newHeir = autoSelectHeir({ laws: other.laws, eligible: calcs.eligibleSims })
+      } else if (laws.heir.auto) {
+        newHeir = autoSelectHeir({ laws, eligible: calcs.eligibleSims })
+      }
+    }
+    // console.log(newHeir);
     try {
       const simResponse = await fetch(API_URL(`legacy/${legacyID}/potentialHeirs`), {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ ...calcs })
+        body: JSON.stringify({ ...calcs, newHeir })
       });
       const updatedSim = await simResponse.json();
       if (simResponse.status === 201) {

@@ -191,8 +191,10 @@ export const completeCategoryItem = async (req, res, next) => {
 export const updateHeirs = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { eligibleSims, nonEligible } = req.body;
-
+    const { eligibleSims, nonEligible, newHeir } = req.body;
+    if (newHeir) {
+      await Legacy.updateOne({ _id: id }, { heir: newHeir }, { new: true });
+    }
     const doc = await Sims.updateMany(
       { _id: { $in: eligibleSims } },
       { $set: { 'role.eligible': true } }
