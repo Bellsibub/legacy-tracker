@@ -28,7 +28,8 @@ export default () => {
   const classes = useStyles();
 
   const { getAccessTokenSilently } = useAuth0();
-  const { score, _id, fetchDone } = useSelector((store) => store.legacy);
+  const { score, _id, loading } = useSelector((store) => store.legacy);
+  const { metaDataFetchDone } = useSelector((store) => store.session);
 
   const handleStartNewLegacy = () => {
     history.push('/onboarding');
@@ -77,7 +78,7 @@ export default () => {
         justify="center"
         alignItems="center"
         className={classes.textWrapper}>
-        {fetchDone ? (
+        {metaDataFetchDone && !loading ? (
           <>
             <Typography className={classes.subTitle} variant="h4">
             No legacy found
