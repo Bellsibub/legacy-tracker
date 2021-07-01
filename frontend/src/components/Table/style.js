@@ -11,7 +11,6 @@ export default (theme) => ({
   tableCell: {
     padding: '12px 8px!important',
     borderBottom: 'none',
-    borderTop: `1px solid ${theme.palette.divider}`,
     position: 'relative',
     [theme.breakpoints.down('sm')]: {
       minHeight: '24px',
@@ -27,9 +26,13 @@ export default (theme) => ({
     paddingLeft: '.5em'
   },
   tableRow: {
+    borderBottom: `1px solid ${theme.palette.divider}`,
     '& > *': {
       borderBottom: 'unset'
     }
+  },
+  tableRowOpen: {
+    borderBottom: 'unset !important'
   },
   collapseCell: {
     paddingTop: 0,
@@ -37,7 +40,7 @@ export default (theme) => ({
   },
   expandTableCell: {
     padding: 0,
-    borderLeft: `1px solid ${theme.palette.divider}`,
+    // borderLeft: `1px solid ${theme.palette.divider}`,
     alignItems: 'center'
   },
   tableCellButton: {

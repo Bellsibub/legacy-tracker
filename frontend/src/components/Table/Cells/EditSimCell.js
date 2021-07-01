@@ -21,7 +21,7 @@ import styles from '../style';
 
 const useStyles = makeStyles(styles);
 
-export default ({ item }) => {
+export default ({ item, children }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { getAccessTokenSilently } = useAuth0();
@@ -67,6 +67,7 @@ export default ({ item }) => {
           message="⚠️This can't de undone!⚠️"
           onConfirm={handleDeleteSimConfirm}
           currentItem={item} />
+        {children}
       </TableCell>
     </>
   );

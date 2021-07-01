@@ -1,11 +1,28 @@
 import React from 'react';
 import _ from 'lodash';
+import classNames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';
 
 // 3rd party components
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  IconButton,
+  Collapse,
+  Box,
+  Typography,
+  Card,
+  CardContent,
+  Grid,
+  GridList,
+  GridListTile
+} from '@material-ui/core';
 
 // styles
+import { ChevronDown, ChevronUp } from 'mdi-material-ui';
 import styles from './style';
 // local components
 import ChipCell from './Cells/ChipCell';
@@ -17,48 +34,87 @@ const header = {
   firstName: 'Name',
   gender: 'Gender',
   role: 'Role',
-  status: 'Status'
+  status: 'Status',
+  actions: ''
 };
-const moreInfo = {
-  causeOfDeath: 'Cause Of Death',
-  relations: 'Relations'
-};
+const moreInfo = ['relations', 'adopted', 'traits', 'aspirations', 'species'];
 
 const CollapseRow = ({ ...item }) => {
   const classes = useStyles();
-
+  const [open, setOpen] = React.useState(false);
+  const rowClasses = classNames({
+    [classes.tableRow]: true,
+    [classes.tableRowOpen]: open
+  });
+  const handleClick = () => {
+    setOpen(!open);
+  };
   return (
     <>
-      <TableRow className={classes.tableRow}>
+      <TableRow className={rowClasses}>
         {_.map(header, (prop, key) => {
-          if (key === 'traits') {
-            return (
-              <TableCell key={key} className={classes.tableCellChip}>
-                <ChipCell items={item[key]} />
-              </TableCell>
-            );
+          switch (key) {
+            case 'traits':
+              return (
+                <TableCell key={key} className={classes.tableCellChip}>
+                  <ChipCell items={item[key]} />
+                </TableCell>
+              );
+            case 'firstName':
+              return (
+                <TableCell key={key} className={classes.tableCell}>
+                  {`${item.firstName} ${item.lastName}`}
+                </TableCell>
+              );
+            case 'role':
+              return (
+                <TableCell key={key} className={classes.tableCell}>
+                  {`${item.role.text}`}
+                </TableCell>
+              );
+            case 'actions':
+              return (
+                <>
+                  <EditSimCell item={item}>
+                    <IconButton onClick={handleClick}>
+                      {open ? <ChevronUp /> : <ChevronDown />}
+                    </IconButton>
+                  </EditSimCell>
+                </>
+              );
+            default:
+              return (
+                <TableCell key={key} className={classes.tableCell}>
+                  {item[key]}
+                </TableCell>
+              );
           }
-          if (key === 'firstName') {
-            return (
-              <TableCell key={key} className={classes.tableCell}>
-                {`${item.firstName} ${item.lastName}`}
-              </TableCell>
-            );
-          }
-          if (key === 'role') {
-            return (
-              <TableCell key={key} className={classes.tableCell}>
-                {`${item.role.text}`}
-              </TableCell>
-            );
-          }
-          return (
-            <TableCell key={key} className={classes.tableCell}>
-              {item[key]}
-            </TableCell>
-          );
         })}
-        <EditSimCell item={item} />
+      </TableRow>
+      <TableRow>
+        <TableCell colSpan={10} className={classes.collapseCell}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Card variant="outlined">
+              <CardContent>
+                <GridList cellHeight={50} cols={3}>
+                  {_.map(item, (obj, key) => {
+                    if (!_.includes(moreInfo, key)) {
+                      return
+                    }
+                    return (
+                      <GridListTile>
+                        <Typography variant="caption" align="left" color="textPrimary">
+                          {key}
+                        </Typography>
+                        <Typography variant="body1">to be designed</Typography>
+                      </GridListTile>
+                    )
+                  })}
+                </GridList>
+              </CardContent>
+            </Card>
+          </Collapse>
+        </TableCell>
       </TableRow>
     </>
   );
