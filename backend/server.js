@@ -36,7 +36,7 @@ const jwtCheck = jwt({
     jwksRequestsPerMinute: 5,
     jwksUri: 'https://legacytracker.eu.auth0.com/.well-known/jwks.json'
   }),
-  audience: `http://localhost:8080`,
+  audience: process.env.NODE_ENV === 'production' ? process.env.BACKEND_URL : process.env.LOCAL_URL,
   issuer: 'https://legacytracker.eu.auth0.com/',
   algorithms: ['RS256']
 });
