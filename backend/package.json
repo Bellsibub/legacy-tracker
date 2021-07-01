@@ -15,14 +15,14 @@
   "author": "Isabella Billgren",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.14.3",
     "@babel/eslint-parser": "^7.14.4",
-    "@babel/node": "^7.14.2",
-    "@babel/preset-env": "^7.14.4",
     "eslint": "^7.27.0",
     "eslint-config-airbnb": "^18.2.1"
   },
   "dependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/node": "^7.14.7",
+    "@babel/preset-env": "^7.14.7",
     "auth0": "^2.35.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
