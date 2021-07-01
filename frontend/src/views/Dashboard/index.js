@@ -19,6 +19,7 @@ import { deleteLegacy } from 'store/legacy/services';
 // assets
 import logo from 'assets/img/logo-white.svg';
 import styles from 'assets/jss/fullPageStyles';
+import Loading from 'components/Loading';
 
 const useStyles = makeStyles(styles);
 export default () => {
@@ -27,7 +28,7 @@ export default () => {
   const classes = useStyles();
 
   const { getAccessTokenSilently } = useAuth0();
-  const { score, _id } = useSelector((store) => store.legacy);
+  const { score, _id, fetchDone } = useSelector((store) => store.legacy);
 
   const handleStartNewLegacy = () => {
     history.push('/onboarding');
@@ -39,9 +40,10 @@ export default () => {
         .catch((err) => console.log(err));
     }
   };
-  return (
-    <>
-      {_id && (
+
+  if (_id) {
+    return (
+      <>
         <Container maxWidth="md">
           <Grid container spacing={3} justify="center">
             <Grid item lg md sm={9} xs={12}>
@@ -61,32 +63,40 @@ export default () => {
               </Grid>
             ))}
           </Grid>
-
         </Container>
-      )}
-      {!_id && (
-        <Grid
-          container
-          spacing={2}
-          direction="column"
-          justify="center"
-          alignItems="center"
-          className={classes.textWrapper}>
-          <Typography className={classes.subTitle} variant="h4">
+      </>
+    )
+  }
+
+  return (
+    <>
+      <Grid
+        container
+        spacing={2}
+        direction="column"
+        justify="center"
+        alignItems="center"
+        className={classes.textWrapper}>
+        {fetchDone ? (
+          <>
+            <Typography className={classes.subTitle} variant="h4">
             No legacy found
-          </Typography>
-          <DialogConfirm
-            onConfirm={handleStartNewLegacy}
-            color="accent"
-            buttonText="Start new legacy"
-            title="Start a new legacy?"
-            message={
-              _id
-                ? '⚠️ Are you sure? You will loose access to your current legacy!! ⚠️'
-                : 'Lets go!'
-            } />
-        </Grid>
-      )}
+            </Typography>
+            <DialogConfirm
+              onConfirm={handleStartNewLegacy}
+              color="accent"
+              buttonText="Start new legacy"
+              title="Start a new legacy?"
+              message={
+                _id
+                  ? '⚠️ Are you sure? You will loose access to your current legacy!! ⚠️'
+                  : 'Lets go!'
+              } />
+          </>
+        ) : (
+          <Loading />
+        )}
+      </Grid>
     </>
   );
 };
