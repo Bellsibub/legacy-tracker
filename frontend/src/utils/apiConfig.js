@@ -1,7 +1,7 @@
 const DEV_PORT = '8080';
 
 export const BASE_URL = process.env.NODE_ENV === 'production'
-  ? 'https://legacy-tracker-api-staging.herokuapp.com'
+  ? 'https://legacy-tracker-api-production.herokuapp.com'
   : `http://localhost:${DEV_PORT}`;
 export const BASE_AUTH_URL = 'https://legacytracker.eu.auth0.com/api/v2';
 
