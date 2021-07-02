@@ -22,7 +22,7 @@
   "plugins": ["react-hooks"],
   "rules": {
     "no-plusplus": "off",
-    "no-unused-vars":"warn",
+    "no-unused-vars":"off",
     "no-underscore-dangle":"off",
     "quotes": "off",
     "jsx-a11y/label-has-associated-control": [
@@ -70,7 +70,7 @@
     "jsx-a11y/anchor-is-valid": "off",
     "jsx-a11y/href-no-hash": "off",
     "no-alert": "error",
-    "no-console": "warn",
+    "no-console": "off",
     "no-debugger": "error",
     "no-else-return": "off",
     "no-irregular-whitespace": "error",
