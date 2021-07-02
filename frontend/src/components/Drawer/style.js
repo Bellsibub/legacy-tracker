@@ -18,6 +18,10 @@ export default (theme) => ({
     flexDirection: 'column',
     height: '100vh'
   },
+  logo: {
+    alignSelf: 'center',
+    margin: theme.spacing(2)
+  },
   list: {
     flexGrow: 1
   },

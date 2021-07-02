@@ -17,7 +17,6 @@ import BigImage from 'components/BigImage';
 // services
 import { deleteLegacy } from 'store/legacy/services';
 // assets
-import logo from 'assets/img/logo-white.svg';
 import styles from 'assets/jss/fullPageStyles';
 import Loading from 'components/Loading';
 

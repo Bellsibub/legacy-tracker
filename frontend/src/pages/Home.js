@@ -19,7 +19,7 @@ import { getData, getUserMetadata } from 'store/session/services';
 
 // utils and data
 import routes from 'utils/routes';
-import logo from 'assets/img/logo-white.svg';
+import logo from 'assets/img/logo.svg';
 // styles
 import styles from 'assets/jss/mainPanel';
 
