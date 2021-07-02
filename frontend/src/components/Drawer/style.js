@@ -1,9 +1,9 @@
-import { drawerWidth, boxShadow, defaultFont } from 'assets/jss/globals';
+import { drawerWidth } from 'assets/jss/globals';
 
 export default (theme) => ({
   drawer: {
     border: 'none',
-    ...boxShadow,
+    boxShadow: theme.shadows[10],
     color: 'white',
     background: theme.palette.secondary.main,
     [theme.breakpoints.up('md')]: {
@@ -66,7 +66,7 @@ export default (theme) => ({
     marginRight: '11px',
     borderRadius: '50%',
     marginLeft: '23px',
-    ...boxShadow
+    boxShadow: theme.shadows[10]
   },
   avatarImg: {
     width: '100%',

@@ -18,4 +18,4 @@ export default (theme) => ({
     textAlign: 'center',
     margin: theme.spacing(2)
   }
-})
+});

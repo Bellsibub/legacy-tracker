@@ -13,7 +13,6 @@ import Heir from 'components/Heir';
 import Stats from 'components/Stats';
 import DialogConfirm from 'components/DialogConfirm';
 import FocusTaskList from 'components/FocusTaskList';
-import BigImage from 'components/BigImage';
 // services
 import { deleteLegacy } from 'store/legacy/services';
 // assets
@@ -33,11 +32,9 @@ export default () => {
   const handleStartNewLegacy = () => {
     history.push('/onboarding');
     if (_id) {
-      getAccessTokenSilently()
-        .then((token) => {
-          dispatch(deleteLegacy({ legacyID: _id, token }));
-        })
-        .catch((err) => console.log(err));
+      getAccessTokenSilently().then((token) => {
+        dispatch(deleteLegacy({ legacyID: _id, token }));
+      });
     }
   };
 
@@ -65,7 +62,7 @@ export default () => {
           </Grid>
         </Container>
       </>
-    )
+    );
   }
 
   return (
@@ -80,7 +77,7 @@ export default () => {
         {metaDataFetchDone && !loading ? (
           <>
             <Typography className={classes.subTitle} variant="h4">
-            No legacy found
+              No legacy found
             </Typography>
             <DialogConfirm
               onConfirm={handleStartNewLegacy}

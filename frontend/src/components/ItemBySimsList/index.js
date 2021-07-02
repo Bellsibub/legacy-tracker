@@ -14,7 +14,7 @@ import {
   Badge
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { ExpandLess, ExpandMore, Check } from '@material-ui/icons';
+import { ExpandLess, ExpandMore } from '@material-ui/icons';
 
 // custom components
 import Card from 'components/Card';

@@ -80,11 +80,11 @@ const lawsCalculations = {
         break;
     }
   },
-  bloodline: (laws, sim, simsRunning, ruler) => {
+  bloodline: (laws, sim, simsRunning) => {
     const simsByAdotion = _.groupBy(simsRunning, 'adopted');
     switch (laws) {
       case 'Modern':
-        return true
+        return true;
       case 'Traditional':
         if (!sim.adopted) {
           return true;
@@ -183,5 +183,5 @@ export const calculateHeir = ({ laws, simsRunning, ruler }) => {
 export const autoSelectHeir = ({ laws, eligible }) => {
   const maxVal = _.size(eligible);
 
-  return eligible[_.random(0, maxVal)]
-}
+  return eligible[_.random(0, maxVal)];
+};

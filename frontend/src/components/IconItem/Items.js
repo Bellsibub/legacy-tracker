@@ -1,7 +1,6 @@
 import React from 'react';
-import _ from 'lodash';
 import classNames from 'classnames';
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -52,50 +51,44 @@ export default ({ category, item, simRelated }) => {
     } else {
       switch (actionType) {
         case 'removefocus':
-          getAccessTokenSilently()
-            .then((token) => {
-              dispatch(
-                updateCategoryItem({
-                  category,
-                  itemID: item._id,
-                  legacyID: _id,
-                  newData: { inFocus: false },
-                  token
-                })
-              );
-            })
-            .catch((err) => console.log(err))
+          getAccessTokenSilently().then((token) => {
+            dispatch(
+              updateCategoryItem({
+                category,
+                itemID: item._id,
+                legacyID: _id,
+                newData: { inFocus: false },
+                token
+              })
+            );
+          });
 
           break;
         case 'complete':
-          getAccessTokenSilently()
-            .then((token) => {
-              dispatch(
-                completeCategoryItem({
-                  category,
-                  itemID: item._id,
-                  legacyID: _id,
-                  token
-                })
-              );
-            })
-            .catch((err) => console.log(err))
+          getAccessTokenSilently().then((token) => {
+            dispatch(
+              completeCategoryItem({
+                category,
+                itemID: item._id,
+                legacyID: _id,
+                token
+              })
+            );
+          });
 
           break;
         case 'setfocus':
-          getAccessTokenSilently()
-            .then((token) => {
-              dispatch(
-                updateCategoryItem({
-                  category,
-                  itemID: item._id,
-                  legacyID: _id,
-                  newData: { inFocus: true },
-                  token
-                })
-              );
-            })
-            .catch((err) => console.log(err))
+          getAccessTokenSilently().then((token) => {
+            dispatch(
+              updateCategoryItem({
+                category,
+                itemID: item._id,
+                legacyID: _id,
+                newData: { inFocus: true },
+                token
+              })
+            );
+          });
           break;
         default:
           break;

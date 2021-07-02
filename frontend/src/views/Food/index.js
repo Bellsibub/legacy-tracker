@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { useSelector } from 'react-redux';
 
 // 3rd party components

@@ -26,7 +26,7 @@ import { updateLegacy, getLegacy, updateHeirs } from 'store/legacy/services';
 import { filterRunningSims } from 'utils/calculations';
 
 const PotentialHeir = ({ item, onClick }) => {
-  const { heir } = useSelector((store) => store.legacy.laws)
+  const { heir } = useSelector((store) => store.legacy.laws);
   const handleClick = () => {
     onClick(item);
   };
@@ -37,7 +37,7 @@ const PotentialHeir = ({ item, onClick }) => {
           <DialogConfirm
             icon={ArrowUpCircleOutline}
             title="Select this sim as heir"
-            message={heir.helpText || ""}
+            message={heir.helpText || ''}
             subTitle={`The current heir law is: ${heir.title}`}
             onConfirm={handleClick} />
         </ListItemIcon>
@@ -57,18 +57,16 @@ export default () => {
   );
 
   const handleHeirChange = (newHeir) => {
-    getAccessTokenSilently()
-      .then((token) => {
-        dispatch(
-          updateLegacy({ newData: { heir: newHeir._id }, legacyID: _id, token })
-        ).then(() => {
-          dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
-            const simsRunning = filterRunningSims(updatedLegacy, generation);
-            dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
-          });
+    getAccessTokenSilently().then((token) => {
+      dispatch(
+        updateLegacy({ newData: { heir: newHeir._id }, legacyID: _id, token })
+      ).then(() => {
+        dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
+          const simsRunning = filterRunningSims(updatedLegacy, generation);
+          dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
         });
-      })
-      .catch((err) => console.log(err));
+      });
+    });
   };
 
   return (

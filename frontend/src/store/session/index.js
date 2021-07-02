@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import _ from 'lodash';
 import { getData, getUserMetadata } from './services';
 
 export const sessionSlice = createSlice({
@@ -20,14 +19,14 @@ export const sessionSlice = createSlice({
     }
   },
   extraReducers: {
-    [getData.pending]: (state, { payload }) => {
+    [getData.pending]: (state) => {
       state.dataFetchDone = false;
     },
     [getData.fulfilled]: (state, { payload }) => {
       state.data = { ...payload };
       state.dataFetchDone = true;
     },
-    [getUserMetadata.pending]: (state, { payload }) => {
+    [getUserMetadata.pending]: (state) => {
       state.metaDataFetchDone = false;
     },
     [getUserMetadata.fulfilled]: (state, { payload }) => {

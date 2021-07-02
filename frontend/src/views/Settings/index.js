@@ -21,11 +21,9 @@ export default () => {
   const handleStartNewLegacy = () => {
     history.push('/onboarding');
     if (_id) {
-      getAccessTokenSilently()
-        .then((token) => {
-          dispatch(deleteLegacy({ legacyID: _id, token }));
-        })
-        .catch((err) => console.log(err));
+      getAccessTokenSilently().then((token) => {
+        dispatch(deleteLegacy({ legacyID: _id, token }));
+      });
     }
   };
 

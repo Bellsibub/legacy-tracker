@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 
 // 3rd party components
 import { Container } from '@material-ui/core';
@@ -42,7 +41,10 @@ export default ({ simInfo, setSimInfo, packs }) => {
       {/* Gender */}
       <SimpleSelect value={simInfo.gender} onChange={handleChange} label="Gender" />
       {/* species */}
-      <Species value={simInfo.species} onChange={handleSingleSelectChange} packs={packs} />
+      <Species
+        value={simInfo.species}
+        onChange={handleSingleSelectChange}
+        packs={packs} />
     </Container>
   );
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 
 import { Avatar, Chip, Grid } from '@material-ui/core';
 

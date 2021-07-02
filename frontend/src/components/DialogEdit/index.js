@@ -45,7 +45,7 @@ export default ({
     }
   };
   const handleMultiSelectChange = (event, newValue) => {
-    setValue(newValue)
+    setValue(newValue);
   };
 
   return (

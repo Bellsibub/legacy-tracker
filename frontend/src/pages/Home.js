@@ -36,17 +36,13 @@ export const Home = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   React.useEffect(() => {
-    getAccessTokenSilently()
-      .then((token) => {
-        if (isAuthenticated) {
-          dispatch(setUserID(user.sub));
-          dispatch(getUserMetadata({ token }));
-        }
-        dispatch(getData({ token }));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    getAccessTokenSilently().then((token) => {
+      if (isAuthenticated) {
+        dispatch(setUserID(user.sub));
+        dispatch(getUserMetadata({ token }));
+      }
+      dispatch(getData({ token }));
+    });
   }, []);
 
   React.useEffect(() => {

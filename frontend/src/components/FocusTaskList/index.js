@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // 3rd party components
 import { List, Divider, Typography } from '@material-ui/core';
-import { EmojiEvents } from '@material-ui/icons';
 
 // custom components
 import Card from 'components/Card';

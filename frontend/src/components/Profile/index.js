@@ -1,11 +1,10 @@
 import React from 'react';
-import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import { makeStyles } from '@material-ui/core/styles';
 
 // 3rd-party components
-import { Button, Typography } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 // custom components
 import Card from 'components/Card';
@@ -27,7 +26,6 @@ export default () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const { user, getAccessTokenSilently, logout } = useAuth0();
-  const { _id } = useSelector((store) => store.legacy);
   const { userName } = useSelector((store) => store.session.user);
   const { metaDataFetchDone } = useSelector((store) => store.session);
   const [formData, setFormData] = React.useState({
@@ -35,8 +33,6 @@ export default () => {
     email: user.email
   });
   const [hasChanges, setHasChanges] = React.useState(false);
-
-  /* --------------------------------- EFFECTS -------------------------------- */
 
   React.useEffect(() => {
     if (metaDataFetchDone) {
@@ -55,24 +51,18 @@ export default () => {
     }
   }, [formData]);
 
-  /* -------------------------------- HANDLERS -------------------------------- */
-
   const handleDeleteUser = () => {
     if (user.sub) {
-      getAccessTokenSilently()
-        .then((token) => {
-          dispatch(deleteUser({ userID: user.sub, token })).then(() => logout());
-        })
-        .catch((err) => console.log(err));
+      getAccessTokenSilently().then((token) => {
+        dispatch(deleteUser({ userID: user.sub, token })).then(() => logout());
+      });
     }
   };
   const handleUpdatePassword = () => {
     if (user.email) {
-      getAccessTokenSilently()
-        .then((token) => {
-          dispatch(updatePassword({ userID: user.sub, userEmail: user.email, token }))
-        })
-        .catch((err) => console.log(err));
+      getAccessTokenSilently().then((token) => {
+        dispatch(updatePassword({ userID: user.sub, userEmail: user.email, token }));
+      });
     }
   };
   const handleChange = (event) => {
@@ -90,11 +80,9 @@ export default () => {
     }
   };
   const handleSubmit = () => {
-    getAccessTokenSilently()
-      .then((token) => {
-        dispatch(updateUserMetadata({ token, newData: { ...formData } }));
-      })
-      .catch((err) => console.log(err));
+    getAccessTokenSilently().then((token) => {
+      dispatch(updateUserMetadata({ token, newData: { ...formData } }));
+    });
   };
 
   return (

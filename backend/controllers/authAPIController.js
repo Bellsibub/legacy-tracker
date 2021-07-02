@@ -41,7 +41,6 @@ export const deleteUser = async (req, res, next) => {
 
 export const resetPassword = async (req, res, next) => {
   try {
-    const { id } = req.params;
     const { email } = req.body;
 
     fetch(`https://${process.env.AUTH0_DOMAIN}/oauth/token`, {
@@ -58,18 +57,21 @@ export const resetPassword = async (req, res, next) => {
         return response.json();
       })
       .then((manAPIResp) => {
-        return fetch(`https://${process.env.AUTH0_DOMAIN}/dbconnections/change_password`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${manAPIResp.access_token}`
-          },
-          body: JSON.stringify({
-            client_id: process.env.AUTH0_CLIENT_ID,
-            email,
-            connection: 'Username-Password-Authentication'
-          })
-        });
+        return fetch(
+          `https://${process.env.AUTH0_DOMAIN}/dbconnections/change_password`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${manAPIResp.access_token}`
+            },
+            body: JSON.stringify({
+              client_id: process.env.AUTH0_CLIENT_ID,
+              email,
+              connection: 'Username-Password-Authentication'
+            })
+          }
+        );
       })
       .then((response) => {
         if (response.ok) {
@@ -127,7 +129,6 @@ export const getUserMetadata = async (req, res, next) => {
 export const updateUserMetadata = async (req, res, next) => {
   try {
     const { id } = req.params;
-    // const { id } = req.params;
 
     fetch(`https://${process.env.AUTH0_DOMAIN}/oauth/token`, {
       method: 'POST',

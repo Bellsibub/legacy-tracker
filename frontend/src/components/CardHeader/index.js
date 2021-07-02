@@ -3,8 +3,9 @@ import classNames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';
 
 // 3rd party components
-import { Avatar } from '@material-ui/core'
+import { Avatar } from '@material-ui/core';
 
+// styling
 import styling from './style';
 
 const useStyles = makeStyles(styling);

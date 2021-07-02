@@ -12,15 +12,7 @@ import dialog from 'assets/jss/dialog';
 
 const useStyles = makeStyles(dialog);
 
-export default ({
-  value,
-  onChange,
-  currentSimID,
-  label,
-  generation,
-  newGen,
-  required
-}) => {
+export default ({ value, onChange, currentSimID, label, generation, required }) => {
   const classes = useStyles();
   const sims = useSelector((store) => {
     return _.chain(store.legacy.sims)

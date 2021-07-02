@@ -8,9 +8,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import store from 'store';
 import HomeLayout from 'pages/Home';
-import NoMatch from 'pages/nomatch';
-import { BASE_URL } from 'utils/apiConfig';
 
+import { BASE_URL } from 'utils/apiConfig';
 import { muitheme } from 'assets/jss/theme';
 
 const providerConfig = {

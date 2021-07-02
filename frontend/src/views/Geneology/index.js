@@ -74,44 +74,40 @@ export default () => {
   }, [fetchDone]);
 
   const handleNewSimConfirm = (newSim) => {
-    getAccessTokenSilently()
-      .then((token) => {
-        dispatch(createSim({ simData: newSim, legacyID: _id, token })).then(() => {
-          dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
-            const simsRunning = filterRunningSims(updatedLegacy, generation);
-            dispatch(updateHeirs({ simsRunning, legacyID: _id, token, newSim: true }));
-          });
+    getAccessTokenSilently().then((token) => {
+      dispatch(createSim({ simData: newSim, legacyID: _id, token })).then(() => {
+        dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
+          const simsRunning = filterRunningSims(updatedLegacy, generation);
+          dispatch(updateHeirs({ simsRunning, legacyID: _id, token, newSim: true }));
         });
-      })
-      .catch((err) => console.log(err));
+      });
+    });
   };
   const handleInitNewGen = () => {
-    getAccessTokenSilently()
-      .then((token) => {
-        dispatch(
-          updateLegacy({
-            newData: { remove: 'heir', generation: generation + 1, ruler: heir._id },
-            legacyID: _id,
-            token
-          })
-        )
-          .then(() => {
-            dispatch(
-              updateSim({
-                simData: { ...heir, role: { ...roles.ruler } },
-                legacyID: _id,
-                token
-              })
-            );
-          })
-          .then(() => {
-            dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
-              const simsRunning = filterRunningSims(updatedLegacy, generation);
-              dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
-            });
+    getAccessTokenSilently().then((token) => {
+      dispatch(
+        updateLegacy({
+          newData: { remove: 'heir', generation: generation + 1, ruler: heir._id },
+          legacyID: _id,
+          token
+        })
+      )
+        .then(() => {
+          dispatch(
+            updateSim({
+              simData: { ...heir, role: { ...roles.ruler } },
+              legacyID: _id,
+              token
+            })
+          );
+        })
+        .then(() => {
+          dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
+            const simsRunning = filterRunningSims(updatedLegacy, generation);
+            dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
           });
-      })
-      .catch((err) => console.log(err));
+        });
+    });
   };
 
   return (

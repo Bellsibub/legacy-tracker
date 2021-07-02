@@ -18,7 +18,6 @@ export const getData = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -40,7 +39,6 @@ export const getUserMetadata = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -61,7 +59,6 @@ export const deleteUser = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -82,7 +79,6 @@ export const updatePassword = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -100,13 +96,11 @@ export const updateUserMetadata = createAsyncThunk(
       });
       const data = await response.json();
       if (response.status === 201) {
-        // thunkAPI.dispatch(getUserMetadata({ token }))
         return data;
       } else {
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }

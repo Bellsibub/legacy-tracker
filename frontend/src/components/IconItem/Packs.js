@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import classNames from 'classnames';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +11,7 @@ import { AlertBoxOutline } from 'mdi-material-ui';
 // services
 import { updatePacks } from 'store/legacy/services';
 // utils
-import { formatString } from 'utils/helpers'
+import { formatString } from 'utils/helpers';
 // styling
 import DialogConfirm from 'components/DialogConfirm';
 import styling from './style';
@@ -32,25 +31,23 @@ export default ({ category, item, ...other }) => {
     [classes.focused]: itemActive
   });
 
-  const handleToggle = (event) => {
+  const handleToggle = () => {
     other.setPacks(item._id);
     setItemActive(!itemActive);
   };
 
   const handleConfirm = () => {
     setItemActive(!itemActive);
-    getAccessTokenSilently()
-      .then((token) => {
-        dispatch(
-          updatePacks({
-            packID: item._id,
-            legacyID: _id,
-            value: !itemActive,
-            token
-          })
-        );
-      })
-      .catch((err) => console.log(err));
+    getAccessTokenSilently().then((token) => {
+      dispatch(
+        updatePacks({
+          packID: item._id,
+          legacyID: _id,
+          value: !itemActive,
+          token
+        })
+      );
+    });
   };
 
   return (

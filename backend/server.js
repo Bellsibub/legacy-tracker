@@ -36,7 +36,10 @@ const jwtCheck = jwt({
     jwksRequestsPerMinute: 5,
     jwksUri: 'https://legacytracker.eu.auth0.com/.well-known/jwks.json'
   }),
-  audience: process.env.NODE_ENV === 'production' ? process.env.BACKEND_URL : process.env.LOCAL_URL,
+  audience:
+    process.env.NODE_ENV === 'production'
+      ? process.env.BACKEND_URL
+      : process.env.LOCAL_URL,
   issuer: 'https://legacytracker.eu.auth0.com/',
   algorithms: ['RS256']
 });
@@ -60,8 +63,5 @@ app.use(errorHandler);
 
 // Start the server
 app.listen(port, () => {
-  // eslint-disable-next-line
-  console.log(`ENV: ${process.env.NODE_ENV}`);
-  // eslint-disable-next-line
   console.log(`Server running on http://localhost:${port}`);
 });

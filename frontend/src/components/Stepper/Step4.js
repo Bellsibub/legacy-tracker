@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { makeStyles } from '@material-ui/core/styles';
 
 // 3rd party components

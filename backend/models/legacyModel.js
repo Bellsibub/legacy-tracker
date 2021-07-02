@@ -1,5 +1,5 @@
-/* eslint-disable func-names */
 import mongoose from 'mongoose';
+
 import { categoriesSchema } from './categoriesModel';
 import { dataSchema, packsSchema, goalsChildSchema } from './dataModel';
 

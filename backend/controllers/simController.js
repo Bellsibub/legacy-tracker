@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import Legacy from '../models/legacyModel';
 import Sims from '../models/simsModel';
 import AppError from '../utils/appError';
@@ -86,4 +85,3 @@ export const deleteSim = async (req, res, next) => {
     next(error);
   }
 };
-

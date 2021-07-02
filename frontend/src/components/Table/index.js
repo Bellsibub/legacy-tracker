@@ -12,21 +12,18 @@ import {
   TableRow,
   IconButton,
   Collapse,
-  Box,
   Typography,
   Card,
   CardContent,
-  Grid,
   GridList,
   GridListTile
 } from '@material-ui/core';
-
-// styles
 import { ChevronDown, ChevronUp } from 'mdi-material-ui';
-import styles from './style';
 // local components
 import ChipCell from './Cells/ChipCell';
 import EditSimCell from './Cells/EditSimCell';
+// styles
+import styles from './style';
 
 const useStyles = makeStyles(styles);
 
@@ -99,7 +96,7 @@ const CollapseRow = ({ ...item }) => {
                 <GridList cellHeight={50} cols={3}>
                   {_.map(item, (obj, key) => {
                     if (!_.includes(moreInfo, key)) {
-                      return
+                      return;
                     }
                     return (
                       <GridListTile>
@@ -108,7 +105,7 @@ const CollapseRow = ({ ...item }) => {
                         </Typography>
                         <Typography variant="body1">to be designed</Typography>
                       </GridListTile>
-                    )
+                    );
                   })}
                 </GridList>
               </CardContent>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
-import { NavLink, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 // 3rd party components
@@ -12,8 +11,11 @@ import {
   ListItemText,
   Icon,
   Hidden,
-  Typography
+  Typography,
+  Divider,
+  Box
 } from '@material-ui/core';
+import { NavLink, Link } from 'react-router-dom';
 // custom components
 import Logout from 'components/Logout';
 // styles
@@ -40,7 +42,7 @@ const Links = ({ routes, section }) => {
       return;
     }
     if (route.isLogout) {
-      return (<Logout key={route.name} route={route} />)
+      return <Logout key={route.name} route={route} />;
     } else {
       return (
         <ListItem key={route.name} className={classes.item}>
@@ -66,7 +68,7 @@ const Links = ({ routes, section }) => {
 
 export default ({ logo, routes, open, handleDrawerToggle }) => {
   const classes = useStyles();
-  const { userName } = useSelector((store) => store.session.user)
+  const { userName } = useSelector((store) => store.session.user);
   const { user } = useAuth0();
 
   const drawerHeader = (
@@ -96,6 +98,8 @@ export default ({ logo, routes, open, handleDrawerToggle }) => {
       <List className={classes.list}>
         <Links routes={routes} section="profile" />
       </List>
+      <Divider />
+      <Box align="center">Version: 0.1.0.poc</Box>
     </div>
   );
 

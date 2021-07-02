@@ -29,7 +29,6 @@ export const createLegacy = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -54,7 +53,6 @@ export const initLegacy = createAsyncThunk(
         return thunkAPI.rejectWithValue(newSim);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -77,7 +75,6 @@ export const getLegacy = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -99,7 +96,6 @@ export const updateLegacy = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -125,7 +121,6 @@ export const deleteLegacy = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -151,7 +146,6 @@ export const createSim = createAsyncThunk(
         return thunkAPI.rejectWithValue(newSim);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -167,16 +161,12 @@ export const updateSim = createAsyncThunk(
         body: JSON.stringify({ simData, legacyID })
       });
       const updatedSim = await simResponse.json();
-      console.log('updated SIM', updatedSim);
-      // 2. call the next api call to fetch the full legacy object to update the state
       if (simResponse.status === 201) {
-        // thunkAPI.dispatch(getLegacy({ legacyID, token }));
         return updatedSim;
       } else {
         return thunkAPI.rejectWithValue(updatedSim);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -198,7 +188,6 @@ export const deleteSim = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -221,7 +210,6 @@ export const addCategoryItemToSims = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -254,7 +242,6 @@ export const toggleGoal = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -284,11 +271,9 @@ export const updateCategoryItem = createAsyncThunk(
         thunkAPI.dispatch(getLegacy({ legacyID, token }));
         return data;
       } else {
-        console.log(data);
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -347,7 +332,6 @@ export const completeCategoryItemTask = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -402,7 +386,6 @@ export const completeCategoryItem = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -416,12 +399,11 @@ export const updateHeirs = createAsyncThunk(
     let newHeir;
     if (other.newSim) {
       if (other.laws) {
-        newHeir = autoSelectHeir({ laws: other.laws, eligible: calcs.eligibleSims })
+        newHeir = autoSelectHeir({ laws: other.laws, eligible: calcs.eligibleSims });
       } else if (laws.heir.auto) {
-        newHeir = autoSelectHeir({ laws, eligible: calcs.eligibleSims })
+        newHeir = autoSelectHeir({ laws, eligible: calcs.eligibleSims });
       }
     }
-    // console.log(newHeir);
     try {
       const simResponse = await fetch(API_URL(`legacy/${legacyID}/potentialHeirs`), {
         method: 'PATCH',
@@ -436,7 +418,6 @@ export const updateHeirs = createAsyncThunk(
         return thunkAPI.rejectWithValue(updatedSim);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -458,7 +439,6 @@ export const updateLaws = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -484,7 +464,6 @@ export const updatePacks = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -507,7 +486,6 @@ export const addRules = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -530,7 +508,6 @@ export const updateRules = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -552,7 +529,6 @@ export const deleteRule = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log('Error', error.response.data);
       thunkAPI.rejectWithValue(error.response.data);
     }
   }

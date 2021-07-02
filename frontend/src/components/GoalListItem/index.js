@@ -36,29 +36,25 @@ export default ({ item, category, isDynamic }) => {
   });
 
   const handleChange = (property) => {
-    getAccessTokenSilently()
-      .then((token) => {
-        dispatch(
-          toggleGoal({
-            category,
-            goalID: item._id,
-            legacyID: _id,
-            value: property === 'completed' ? !checkedComp : !checkedFocus,
-            property,
-            token
-          })
-        );
-      })
-      .catch((err) => console.log(err));
+    getAccessTokenSilently().then((token) => {
+      dispatch(
+        toggleGoal({
+          category,
+          goalID: item._id,
+          legacyID: _id,
+          value: property === 'completed' ? !checkedComp : !checkedFocus,
+          property,
+          token
+        })
+      );
+    });
   };
 
   return (
     <>
       {isDynamic ? (
         <>
-          <ListItem
-            className={listItemClasses}
-            disabled={checkedComp}>
+          <ListItem className={listItemClasses} disabled={checkedComp}>
             <ListItemText primary={item.text} className={classes.listText} />
           </ListItem>
         </>

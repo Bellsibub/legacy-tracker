@@ -1,15 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-// @material-ui/core components
+// 3rd party components
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography, AppBar, Toolbar, IconButton, Button } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import { Grid, Typography } from '@material-ui/core';
 
-// core components
-
-import styles from 'assets/jss/fullPageStyles';
+// custom components
 import Loading from 'components/Loading';
+// styles
+import styles from 'assets/jss/fullPageStyles';
 
 const useStyles = makeStyles(styles);
 

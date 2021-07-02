@@ -66,19 +66,17 @@ export default ({ open, setOpen, categoryItem, category, actionType }) => {
         });
         break;
       case 'setfocus':
-        getAccessTokenSilently()
-          .then((token) => {
-            dispatch(
-              updateCategoryItem({
-                category,
-                itemID: categoryItem._id,
-                legacyID: _id,
-                newData: { focusTarget: simID, inFocus: true },
-                token
-              })
-            );
-          })
-          .catch((err) => console.log(err));
+        getAccessTokenSilently().then((token) => {
+          dispatch(
+            updateCategoryItem({
+              category,
+              itemID: categoryItem._id,
+              legacyID: _id,
+              newData: { focusTarget: simID, inFocus: true },
+              token
+            })
+          );
+        });
         break;
       default:
         break;

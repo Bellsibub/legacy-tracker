@@ -3,7 +3,6 @@ export default () => ({
     alignItems: 'center',
     '& > li': {
       height: 'auto !important'
-
     }
   }
 });

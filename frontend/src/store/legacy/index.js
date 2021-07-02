@@ -28,7 +28,7 @@ export const legacySlice = createSlice({
   name: 'legacy',
   initialState: initState,
   reducers: {
-    setScores(state, { payload }) {
+    setScores(state) {
       state.score = _.mapValues(state.goals, (goals, key) => {
         const goalCount = _.countBy(goals, 'completed');
         let completionCount;
@@ -43,13 +43,10 @@ export const legacySlice = createSlice({
           percentage: percentage || null
         };
       });
-    },
-    resetLegacy(state, { payload }) {
-      state = initState;
     }
   },
   extraReducers: {
-    [createLegacy.pending]: (state, { payload }) => {
+    [createLegacy.pending]: (state) => {
       state.loading = true;
       state.fetchDone = false;
     },
@@ -61,7 +58,7 @@ export const legacySlice = createSlice({
     [createLegacy.fulfilled]: (state, { payload }) => {
       return { ...state, ...payload, fetchDone: true, loading: false };
     },
-    [getLegacy.pending]: (state, { payload }) => {
+    [getLegacy.pending]: (state) => {
       state.loading = true;
       state.fetchDone = false;
     },
@@ -73,11 +70,11 @@ export const legacySlice = createSlice({
     [getLegacy.fulfilled]: (state, { payload }) => {
       return { ...state, ...payload, fetchDone: true, loading: false };
     },
-    [deleteLegacy.pending]: (state, { payload }) => {
+    [deleteLegacy.pending]: (state) => {
       state.loading = true;
       state.fetchDone = false;
     },
-    [deleteLegacy.fulfilled]: (state, { payload }) => {
+    [deleteLegacy.fulfilled]: () => {
       return { ...initState, fetchDone: true, loading: false };
     }
   }

@@ -25,18 +25,14 @@ const RuleItem = ({ rule }) => {
   const { _id } = useSelector((store) => store.legacy);
 
   const handleUpdateRule = (value) => {
-    getAccessTokenSilently()
-      .then((token) => {
-        dispatch(updateRules({ value, legacyID: _id, rulesid: rule._id, token }));
-      })
-      .catch((err) => console.log(err));
+    getAccessTokenSilently().then((token) => {
+      dispatch(updateRules({ value, legacyID: _id, rulesid: rule._id, token }));
+    });
   };
   const handleDeleteRule = () => {
-    getAccessTokenSilently()
-      .then((token) => {
-        dispatch(deleteRule({ legacyID: _id, rulesid: rule._id, token }));
-      })
-      .catch((err) => console.log(err));
+    getAccessTokenSilently().then((token) => {
+      dispatch(deleteRule({ legacyID: _id, rulesid: rule._id, token }));
+    });
   };
   return (
     <>
@@ -66,11 +62,9 @@ export default () => {
   const { _id, rules } = useSelector((store) => store.legacy);
 
   const handleAddRule = (value) => {
-    getAccessTokenSilently()
-      .then((token) => {
-        dispatch(addRules({ value, legacyID: _id, token }));
-      })
-      .catch((err) => console.log(err));
+    getAccessTokenSilently().then((token) => {
+      dispatch(addRules({ value, legacyID: _id, token }));
+    });
   };
   return (
     <Card>

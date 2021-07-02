@@ -15,7 +15,7 @@ import {
 // custom components
 import IconItem from 'components/IconItem';
 // styles
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   gridList: {
     alignItems: 'center',
     '& > li': {

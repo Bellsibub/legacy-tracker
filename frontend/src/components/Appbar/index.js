@@ -33,9 +33,7 @@ export default ({ handleDrawerToggle }) => {
             </>
           ) : (
             <>
-              <Typography variant="h1">
-                {fetchDone && `You have no legacy`}
-              </Typography>
+              <Typography variant="h1">{fetchDone && `You have no legacy`}</Typography>
               <Typography variant="subtitle1">
                 {fetchDone && `please start one below`}
               </Typography>

@@ -82,26 +82,21 @@ export default () => {
   const { laws, _id, generation } = useSelector((store) => store.legacy);
 
   const handleSelectedLaw = (value, key) => {
-    getAccessTokenSilently()
-      .then((token) => {
-        dispatch(updateLaws({ laws: { [key]: value }, legacyID: _id, token })).then(
-          () => {
-            dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
-              console.log(updatedLegacy)
-              const simsRunning = filterRunningSims(updatedLegacy, generation);
-              dispatch(
-                updateHeirs({
-                  simsRunning,
-                  legacyID: _id,
-                  token,
-                  laws: { ...updatedLegacy.payload.laws }
-                })
-              );
-            });
-          }
-        );
-      })
-      .catch((err) => console.log(err));
+    getAccessTokenSilently().then((token) => {
+      dispatch(updateLaws({ laws: { [key]: value }, legacyID: _id, token })).then(() => {
+        dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
+          const simsRunning = filterRunningSims(updatedLegacy, generation);
+          dispatch(
+            updateHeirs({
+              simsRunning,
+              legacyID: _id,
+              token,
+              laws: { ...updatedLegacy.payload.laws }
+            })
+          );
+        });
+      });
+    });
   };
 
   return (

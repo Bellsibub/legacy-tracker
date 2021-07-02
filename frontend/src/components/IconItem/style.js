@@ -1,7 +1,3 @@
-import {
-  softBoxShadow
-} from 'assets/jss/globals';
-
 export default (theme) => ({
   root: {
     position: 'relative',
@@ -28,7 +24,7 @@ export default (theme) => ({
     '& > img': {
       width: '70px',
       borderRadius: '50px',
-      ...softBoxShadow
+      boxShadow: theme.shadows[5]
     }
   },
   imageBackdrop: {

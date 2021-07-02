@@ -86,11 +86,11 @@ export default () => {
     return _.includes(errors, index);
   };
 
-  const handleNext = (event) => {
+  const handleNext = () => {
     if (!myForm.current.checkValidity()) {
       setErrors((prevState) => [...prevState, activeStep]);
     } else {
-      setErrors(errors.filter((err, index) => err !== activeStep));
+      setErrors(errors.filter((err) => err !== activeStep));
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -99,24 +99,22 @@ export default () => {
     if (!myForm.current.checkValidity()) {
       setErrors((prevState) => [...prevState, activeStep]);
     } else {
-      setErrors(errors.filter((err, index) => err !== activeStep));
+      setErrors(errors.filter((err) => err !== activeStep));
     }
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
   const handleFinish = () => {
-    getAccessTokenSilently()
-      .then((token) => {
-        dispatch(
-          initLegacy({
-            founder: simInfo,
-            legacy: { laws, packs, name: legacyName },
-            token
-          })
-        );
-        history.push('/dashboard');
-      })
-      .catch((err) => console.log(err));
+    getAccessTokenSilently().then((token) => {
+      dispatch(
+        initLegacy({
+          founder: simInfo,
+          legacy: { laws, packs, name: legacyName },
+          token
+        })
+      );
+      history.push('/dashboard');
+    });
   };
   const handleSetPacks = (id) => {
     setPacks(packs.map((item) => (item._id === id ? { ...item, active: true } : item)));

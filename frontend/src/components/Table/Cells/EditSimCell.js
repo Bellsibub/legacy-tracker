@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -28,28 +27,24 @@ export default ({ item, children }) => {
   const { generation, _id } = useSelector((store) => store.legacy);
 
   const handleEditSimConfirm = (newSim) => {
-    getAccessTokenSilently()
-      .then((token) => {
-        dispatch(updateSim({ simData: newSim, legacyID: _id, token })).then(() => {
-          dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
-            const simsRunning = filterRunningSims(updatedLegacy, generation);
-            dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
-          });
+    getAccessTokenSilently().then((token) => {
+      dispatch(updateSim({ simData: newSim, legacyID: _id, token })).then(() => {
+        dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
+          const simsRunning = filterRunningSims(updatedLegacy, generation);
+          dispatch(updateHeirs({ simsRunning, legacyID: _id, token }));
         });
-      })
-      .catch((err) => console.log(err));
+      });
+    });
   };
   const handleDeleteSimConfirm = () => {
-    getAccessTokenSilently()
-      .then((token) => {
-        dispatch(deleteSim({ simData: item, legacyID: _id, token })).then(() => {
-          dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
-            const simsRunning = filterRunningSims(updatedLegacy, generation);
-            dispatch(updateHeirs({ simsRunning, legacyID: _id, token, newSim: true }));
-          });
+    getAccessTokenSilently().then((token) => {
+      dispatch(deleteSim({ simData: item, legacyID: _id, token })).then(() => {
+        dispatch(getLegacy({ legacyID: _id, token })).then((updatedLegacy) => {
+          const simsRunning = filterRunningSims(updatedLegacy, generation);
+          dispatch(updateHeirs({ simsRunning, legacyID: _id, token, newSim: true }));
         });
-      })
-      .catch((err) => console.log(err));
+      });
+    });
   };
 
   return (

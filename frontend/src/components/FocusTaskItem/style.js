@@ -1,4 +1,4 @@
-export default (theme) => ({
+export default () => ({
   deleteButton: {
     justifyContent: 'center',
     width: '56px'

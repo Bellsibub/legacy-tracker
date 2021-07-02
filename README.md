@@ -1,17 +1,5 @@
 <h1 align="center">
-    <svg width="54" height="101" viewBox="0 0 54 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M41 11.5L46.5 21.62L39 20.5L35 21.62L26.5 24L19.5 27.5L12 33.5L10 35L7.5 22L19.5 27.5V14.5L26.5 24L39 17L41 11.5Z" fill="#D9C93D"/>
-<path d="M9 43.5C6.09251 37.2943 11.5177 30.8758 23.3746 25.3206C35.2316 19.7653 46.5925 17.2943 49.5 23.5C46.0216 21.3956 36.843 22.5321 24.9861 28.0873C13.1292 33.6425 13.1182 33.8284 9 43.5Z" fill="#C9BA32"/>
-<path d="M12 49.995L32.2025 0L54 49.995L32.2025 101L12 49.995Z" fill="#1B6941"/>
-<path d="M12 49.9074L32 0L25.6842 55L12 49.9074Z" fill="#32B471"/>
-<path d="M32 0L54 50L37.5 55L32 0Z" fill="#39AE72"/>
-<path d="M37.5 55H25.5L32 0L37.5 55Z" fill="#45D58B"/>
-<path d="M32 100.5L12 50L26.0541 55L32 100.5Z" fill="#1C7246"/>
-<path d="M37.5 55H25.5L32.2174 101L37.5 55Z" fill="#1A5738"/>
-<path d="M37.5 55L54 50L32 101L37.5 55Z" fill="#206C45"/>
-<path d="M8.5 43.5L0 23L22.5 45V25L36 39.5V14L47 27.5V32L41.5 37L36 39.5L30 42L25.5 43.5L22.5 45H19H15.5H10.5L8.5 43.5Z" fill="#F2E03E"/>
-<path d="M49 23C51.6581 29.3165 45.5687 36.75 33.5 41.8287C21.4313 46.9074 10.6581 48.1452 8 41.8287C11.3919 44.0699 19.9313 44.0787 32 39C44.0687 33.9213 44.5 32.5 49 23Z" fill="#D6C635"/>
-</svg>
+    <img src="https://res.cloudinary.com/dsp41gbcw/image/upload/v1625231932/legacyTracker/logo.png" alt="legacy tracker logo" />
 
 </h1>
 
@@ -23,6 +11,7 @@
 <div align="center">
 <br />
 
+[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/Bellsibub/legacy-tracker?include_prereleases&label=current%20release&style=flat-square)](https://ts4legacytracker.com)
 [![made by Bellsibub](https://img.shields.io/badge/made%20by-Bellsibub-ff69b4?style=flat-square)](https://github.com/Bellsibub)
 
 </div>
@@ -36,13 +25,23 @@
     - [Frontend:](#frontend)
 - [Usage and Features](#usage-and-features)
   - [Prerequisites](#prerequisites)
+  - [Usage](#usage)
   - [Features](#features)
+    - [**Dashboard**](#dashboard)
+    - [**Laws and Rules**](#laws-and-rules)
+    - [**Geneology**](#geneology)
+    - [**Categories**](#categories)
+    - [**Profile**](#profile)
 - [Roadmap](#roadmap)
+  - [Summer 2021](#summer-2021)
+  - [Autumn 2021](#autumn-2021)
+  - [TBD](#tbd)
 - [Acknowledgements](#acknowledgements)
 
 </details>
 
----
+**************************************
+**************************************
 
 ## About
 
@@ -81,6 +80,8 @@ So therefore I have for the past couple of years been planning and thinking abou
 - [mdi-material-ui](https://materialdesignicons.com/)
 - [Auth0](https://auth0.com/)
 
+**************************************
+**************************************
 
 ## Usage and Features
 
@@ -90,12 +91,101 @@ Before you begin using this application you might want to read up a bit on what 
 > 
 > Or just go to Youtube and search for "*sims 4 legacy challenge*"
 
+### Usage
+Link to live project: https://www.ts4legacytracker.com/
+
+URL for backend (All endpoints require Auth0 token): https://legacy-tracker-api-production.herokuapp.com/
+
 ### Features
 
+<table>
+<tr>
+<td>
+
+#### **Dashboard**
+- View/Edit the curret ruler of the current generation
+- View Potential Heirs in the next generation
+  - Select a potential heir as the Heir
+  - If the legacy has the Heir Law of RANDOM
+- Focus Tasks (used to plan your generation playthrough)
+  - Any item from a category set as a focus will be shown here as a todo. 
+  - Each todo can be either removed/completed
+- Category Score Stats
+  - For each category you can see your current score for this legacy
+
+#### **Laws and Rules**
+- Here you can view/edit your selected laws for this legacy
+  - These laws effect what sims will be listed as potential heirs
+- View/Edit/Delete/Add Rules
+  - These have no effect in the applictaion. They serve as a reminder to you when playing the Sims.
+
+#### **Geneology**
+- Here you can view the ruler and heirs (just like the Dashboard)
+- You can also view each generation and its sims
+- At the top of the page you can start a new generation / begin the next generation
+  - Starting a new generation:
+    - This means you want to add your first Legacy Child for the next generation
+    - These sims will be calculated against the laws for potential heirs
+  - Init next generation:
+    - This will be available when you have an heir selected
+    - => It will remove the current ruler and set the heir as the ruler. This will also move the legacy towards the next generation
+- For each generation table you can add new partners or a non-legacy sim. 
+  - These sims have no effect on the application other than provide a nice way to keep track of your family.
+
+#### **Categories**
+These pages are the categories for the scoring of the legacy (as defined by the creators of the challenge)
+- Skills
+- Aspirations
+- Food
+
+#### **Profile**
+- Edit your profile or delete your profile
+- You can also configure what packs the legacy has active
+- You can begin a new legacy. This will remove the current legacy and start a new one.
+
+</td>
+</tr>
+</table>
+
+**************************************
+**************************************
 
 ## Roadmap
 
+### Summer 2021
+- Bug fixes and improvements of current features
+- Age system for sims. (This is needed for more advanced laws calculations)
+- More advanced automation of laws and heir selection
+- Toast notifications for errors and actions
+- Design improvements
+- Add an end state; i.e. when legacy gets to generation 10
+- Add more categories
+  - Family
+  - Creative
+  - Fortune
+  - Love
+  - Nature
+  - Collections
+  - Popularity
+  - Deviance
 
+### Autumn 2021
+- Bug fixes and improvements of current features
+- Additional categories:
+  - Bonus Points
+  - Penalities
+- Extensive user testing and improvements
+- Tutorial videos and improved onboarding
+
+### TBD
+- User should be able to have multiple legacies
+- Custom layout of Dashboard
+- Improved Sim cards with images (i.e. user can upload images)
+- Generators:
+  - RNG Traits -> Get get traits for children
+
+
+**************************************
 
 ## Acknowledgements
 

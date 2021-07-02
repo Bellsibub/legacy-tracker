@@ -1,7 +1,3 @@
-import {
-  softBoxShadow
-} from 'assets/jss/globals';
-
 export default (theme) => ({
   card: {
     marginBottom: theme.spacing(2),
@@ -15,6 +11,6 @@ export default (theme) => ({
     flexDirection: 'column',
     minWidth: '0',
     wordWrap: 'break-word',
-    ...softBoxShadow
+    boxShadow: theme.shadows[5]
   }
 });
